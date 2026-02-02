@@ -1,0 +1,30 @@
+# Build output
+_build/
+site/
+dist/
+build/
+
+# Node (if using doc generators)
+node_modules/
+package-lock.json
+
+# Python (if using Sphinx)
+__pycache__/
+*.pyc
+.venv/
+
+# Environment
+.env
+.env.local
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Generated files
+*.pdf
+*.epub
