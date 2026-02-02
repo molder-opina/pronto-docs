@@ -6,11 +6,11 @@ Documentación técnica general de la plataforma de gestión de restaurantes "Pr
 ## Visión General
 Pronto es una plataforma integral que gestiona el flujo de pedidos de un restaurante, desde la toma de la orden por el cliente o mesero, hasta la preparación en cocina y el cobro.
 
-El sistema está construido como una arquitectura de microservicios contenerizados (Docker), separando la lógica de empleados (`employees_app`) de la experiencia del cliente (`clients_app`), compartiendo un núcleo común (`shared`).
+El sistema está construido como una arquitectura de microservicios contenerizados (Docker), separando la lógica de empleados (`pronto_employees`) de la experiencia del cliente (`pronto_clients`), compartiendo un núcleo común (`shared`).
 
 ## Estructura del Proyecto
 
-### 1. `employees_app/` (Backend & Frontend Staff)
+### 1. `pronto_employees/` (Backend & Frontend Staff)
 Panel administrativo y operativo para el personal.
 - **Tecnología**: Flask (Python), Jinja2 (Templates), TypeScript (Frontend Interactivo).
 - **Módulos Principales**:
@@ -19,7 +19,7 @@ Panel administrativo y operativo para el personal.
   - `routes/api/`: API REST para operaciones dinámicas.
   - `static/js/src/`: Lógica de cliente (WebSockets, UI Managers).
 
-### 2. `clients_app/` (Frontend Cliente)
+### 2. `pronto_clients/` (Frontend Cliente)
 Aplicación para comensales (QR Menu & Ordering).
 - **Tecnología**: Flask, TypeScript.
 - **Funcionalidad**: Ver menú, carrito de compras, checkout, estado de orden en tiempo real.

@@ -391,8 +391,8 @@ RUN apt-get update && apt-get install -y python3 \
 **Qué valida**: Verifica existencia de templates del mesero
 
 **Archivos**:
-- `build/employees_app/templates/dashboard_waiter.html`
-- `build/employees_app/templates/includes/_waiter_section.html`
+- `build/pronto_employees/templates/dashboard_waiter.html`
+- `build/pronto_employees/templates/includes/_waiter_section.html`
 
 ---
 
@@ -420,8 +420,8 @@ RUN apt-get update && apt-get install -y python3 \
 **Qué valida**: Verifica existencia de templates de admin
 
 **Archivos**:
-- `build/employees_app/templates/dashboard_admin.html`
-- `build/employees_app/templates/includes/_admin_sections.html`
+- `build/pronto_employees/templates/dashboard_admin.html`
+- `build/pronto_employees/templates/includes/_admin_sections.html`
 
 ---
 
@@ -451,8 +451,8 @@ RUN apt-get update && apt-get install -y python3 \
 **Qué valida**: Verifica existencia de templates de cajero
 
 **Archivos**:
-- `build/employees_app/templates/dashboard_cashier.html`
-- `build/employees_app/templates/includes/_cashier_section.html`
+- `build/pronto_employees/templates/dashboard_cashier.html`
+- `build/pronto_employees/templates/includes/_cashier_section.html`
 
 ---
 
@@ -479,7 +479,7 @@ RUN apt-get update && apt-get install -y python3 \
 #### 1. Blueprint de Sistema (Error)
 **Qué valida**: Verifica que exista el blueprint `system_bp`
 
-**Archivo**: `build/employees_app/app.py`
+**Archivo**: `build/pronto_employees/app.py`
 
 **Búsqueda**: `system_bp`
 
@@ -490,7 +490,7 @@ RUN apt-get update && apt-get install -y python3 \
 #### 2. JWT Scope Guard (Error)
 **Qué valida**: Verifica que el Scope Guard esté aplicado
 
-**Archivo**: `build/employees_app/app.py`
+**Archivo**: `build/pronto_employees/app.py`
 
 **Búsqueda**: `apply_jwt_scope_guard`
 
@@ -529,8 +529,8 @@ def create_app():
 **Qué valida**: Verifica existencia de templates de cocina
 
 **Archivos**:
-- `build/employees_app/templates/dashboard_chef.html`
-- `build/employees_app/templates/includes/_chef_section.html`
+- `build/pronto_employees/templates/dashboard_chef.html`
+- `build/pronto_employees/templates/includes/_chef_section.html`
 
 ---
 

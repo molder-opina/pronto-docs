@@ -29,32 +29,32 @@ Se ha implementado exitosamente un sistema de reautenticación rápida para supe
 
 ### Infraestructura Base
 
-- ✅ `build/employees_app/extensions.py` - CSRF protection sin side effects
+- ✅ `build/pronto_employees/extensions.py` - CSRF protection sin side effects
 - ✅ `build/shared/datetime_utils.py` - Helper UTC compatible Python 3.10+
 - ✅ `build/shared/models.py` - Modelos SuperAdminHandoffToken y AuditLog
 
 ### Configuración
 
-- ✅ `build/employees_app/requirements.txt` - Flask-WTF>=1.2.0
-- ✅ `config/secrets.env` - HANDOFF_PEPPER, NUM_PROXIES, ALLOWED_HOSTS
-- ✅ `config/secrets.env.example` - Template de configuración
+- ✅ `build/pronto_employees/requirements.txt` - Flask-WTF>=1.2.0
+- ✅ `.env` - HANDOFF_PEPPER, NUM_PROXIES, ALLOWED_HOSTS
+- ✅ `.env.example` - Template de configuración
 - ✅ `docs/PROXY_CONFIGURATION.md` - Guía de configuración de proxies
 
 ### Backend
 
-- ✅ `build/employees_app/app.py` - ProxyFix, CSRF, headers de seguridad
-- ✅ `build/employees_app/routes/system/auth.py` - **Consola /system completa**
-- ✅ `build/employees_app/routes/waiter/auth.py` - Endpoint super_admin_login
-- ✅ `build/employees_app/routes/chef/auth.py` - Endpoint super_admin_login
-- ✅ `build/employees_app/routes/cashier/auth.py` - Endpoint super_admin_login
-- ✅ `build/employees_app/admin/routes.py` - Endpoint super_admin_login
+- ✅ `build/pronto_employees/app.py` - ProxyFix, CSRF, headers de seguridad
+- ✅ `build/pronto_employees/routes/system/auth.py` - **Consola /system completa**
+- ✅ `build/pronto_employees/routes/waiter/auth.py` - Endpoint super_admin_login
+- ✅ `build/pronto_employees/routes/chef/auth.py` - Endpoint super_admin_login
+- ✅ `build/pronto_employees/routes/cashier/auth.py` - Endpoint super_admin_login
+- ✅ `build/pronto_employees/admin/routes.py` - Endpoint super_admin_login
 
 ### Templates
 
-- ✅ `build/employees_app/templates/login_system.html`
-- ✅ `build/employees_app/templates/dashboard_system.html`
-- ✅ `build/employees_app/templates/system_reauth_confirm.html`
-- ✅ `build/employees_app/templates/system_reauth_redirect.html`
+- ✅ `build/pronto_employees/templates/login_system.html`
+- ✅ `build/pronto_employees/templates/dashboard_system.html`
+- ✅ `build/pronto_employees/templates/system_reauth_confirm.html`
+- ✅ `build/pronto_employees/templates/system_reauth_redirect.html`
 
 ### Base de Datos
 
@@ -75,7 +75,7 @@ Se ha implementado exitosamente un sistema de reautenticación rápida para supe
 ### Secrets Configurados
 
 ```bash
-# config/secrets.env
+# .env
 HANDOFF_PEPPER=0PS_lDG0LfinQgkFfHUF... (generado)
 NUM_PROXIES=0 (desarrollo local)
 ALLOWED_HOSTS=localhost:6081,127.0.0.1:6081

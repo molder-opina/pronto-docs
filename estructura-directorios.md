@@ -22,10 +22,10 @@ pronto-app/
 
 ## 🏗️ **Estructura Principal (`build/`)**
 
-### 📱 **Clients App (`build/clients_app/`)**
+### 📱 **Clients App (`build/pronto_clients/`)**
 
 ```
-clients_app/                      # 🌐 Puerto 6080
+pronto_clients/                      # 🌐 Puerto 6080
 ├── 📁 routes/
 │   ├── 📁 api/                  # 🔄 14 API blueprints
 │   │   ├── 🔐 auth.py           # Autenticación cliente
@@ -67,10 +67,10 @@ clients_app/                      # 🌐 Puerto 6080
 └── 📄 __init__.py              # 📦 Module init
 ```
 
-### 👥 **Employees App (`build/employees_app/`)**
+### 👥 **Employees App (`build/pronto_employees/`)**
 
 ```
-employees_app/                   # 🌐 Puerto 6081
+pronto_employees/                   # 🌐 Puerto 6081
 ├── 📁 routes/
 │   ├── 📁 api/                  # 🔄 25+ API blueprints
 │   │   ├── 🔐 auth.py           # Autenticación empleados
@@ -304,8 +304,8 @@ targets: {
 
 | Componente        | Archivos | Líneas Código | Endpoints |
 | ----------------- | -------- | ------------- | --------- |
-| **clients_app**   | ~150     | ~15,000       | ~50       |
-| **employees_app** | ~300     | ~35,000       | ~150      |
+| **pronto_clients**   | ~150     | ~15,000       | ~50       |
+| **pronto_employees** | ~300     | ~35,000       | ~150      |
 | **shared**        | ~80      | ~8,000        | ~30       |
 | **Legacy Apps**   | ~40      | ~4,000        | ~8        |
 | **Tests**         | ~60      | ~5,000        | -         |

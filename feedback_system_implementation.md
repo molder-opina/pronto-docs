@@ -17,37 +17,37 @@
    - Email template rendering
 
 ### Backend API
-3. `clients_app/routes/api/feedback_email.py` - Endpoints:
+3. `pronto_clients/routes/api/feedback_email.py` - Endpoints:
    - `POST /api/orders/:order_id/feedback/email-trigger` - Trigger feedback email after timer
    - `GET /api/feedback/email/:token` - Validate token and return questions
    - `POST /api/feedback/email/:token/submit` - Submit feedback via email link
 
 ### Frontend
-4. `clients_app/static/js/src/modules/post-payment-feedback.ts` - Modal:
+4. `pronto_clients/static/js/src/modules/post-payment-feedback.ts` - Modal:
    - Shows feedback prompt after payment
    - Timer countdown (configurable, default 10s)
    - Options: "Evaluar servicio" or "No, gracias"
    - Integrates with thank-you page
 
-5. Updated `clients_app/static/js/src/modules/thank-you.ts`:
+5. Updated `pronto_clients/static/js/src/modules/thank-you.ts`:
    - Integration with post-payment-feedback module
    - Call to /api/orders/:order_id/feedback/email-trigger on timeout
 
-6. Updated `clients_app/static/js/src/modules/menu-shortcuts.ts`:
+6. Updated `pronto_clients/static/js/src/modules/menu-shortcuts.ts`:
    - Loads shortcuts from API (/api/shortcuts)
    - Dynamically registers based on config
    - Supports hot-reload
 
-7. Updated `clients_app/static/js/src/entrypoints/base.ts`:
+7. Updated `pronto_clients/static/js/src/entrypoints/base.ts`:
    - Init shortcuts module
    - Init post-payment-feedback module
 
-8. Updated `clients_app/static/css/menu.css`:
+8. Updated `pronto_clients/static/css/menu.css`:
    - Added post-payment-feedback modal styles
    - Animations (fadeIn, slideUp, scaleIn, pulse)
 
 ### Admin Config
-9. `employees_app/routes/api/admin_config.py` - Enhanced:
+9. `pronto_employees/routes/api/admin_config.py` - Enhanced:
    - Added keyboard shortcuts management (already existed)
    - Feedback questions management (already existed)
    - TODO: Add feedback email settings (feedback_prompt_enabled, feedback_prompt_timeout_seconds, etc.)
@@ -140,7 +140,7 @@ POST /feedback/email/<token_hash>/submit
 
 1. Apply migration: `mysql -u root pronto_db < migrations/003_feedback_tokens_and_email.sql`
 2. Update models.py to include FeedbackToken model (in progress, needs table structure sync)
-3. Register feedback_email_bp in clients_app/routes/api/__init__.py
+3. Register feedback_email_bp in pronto_clients/routes/api/__init__.py
 4. Add email settings to admin config UI
 5. Configure SMTP/email service for sending emails
 6. Test flow end-to-end:

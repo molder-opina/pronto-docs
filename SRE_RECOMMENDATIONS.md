@@ -20,7 +20,7 @@ Actualmente implementamos logs estructurados (`LOGGING_STANDARD.md`). Para produ
 - **Ventaja**: Inyectar logs directamente desde los contenedores docker sin modificar la app. Búsqueda por `SESSION_ID` y `USER` a través de todos los servicios.
 
 ### C. Tracing Distribuido (OpenTelemetry / Jaeger)
-- Para seguir la vida de una orden a través de `clients_app` -> `OrderService` -> `Kitchen Display`.
+- Para seguir la vida de una orden a través de `pronto_clients` -> `OrderService` -> `Kitchen Display`.
 - Inyectar `Trace-ID` en headers y propagarlo en colas y BD.
 
 ## 2. Fiabilidad y Resiliencia (Reliability)
@@ -36,7 +36,7 @@ Actualmente implementamos logs estructurados (`LOGGING_STANDARD.md`). Para produ
 
 ### C. Límites de Recursos (Resource Quotas)
 - Definir `cpus` y `mem_limit` en `docker-compose.yml` o Kubernetes.
-- Evita que un memory leak en `employees_app` tumbe el nodo completo.
+- Evita que un memory leak en `pronto_employees` tumbe el nodo completo.
 
 ## 3. Automatización y CI/CD (DevOps)
 

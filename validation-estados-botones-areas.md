@@ -43,7 +43,7 @@ Todas las transiciones están definidas en `ORDER_TRANSITIONS` con:
 
 ### Consola Waiter
 
-**Archivo:** `build/employees_app/static/js/src/modules/waiter-board.ts`
+**Archivo:** `build/pronto_employees/static/js/src/modules/waiter-board.ts`
 
 **Acciones implementadas:**
 
@@ -62,7 +62,7 @@ Todas las transiciones están definidas en `ORDER_TRANSITIONS` con:
 
 ### Consola Chef
 
-**Archivo:** `build/employees_app/static/js/src/modules/kitchen-board.ts`
+**Archivo:** `build/pronto_employees/static/js/src/modules/kitchen-board.ts`
 
 **Acciones implementadas:**
 
@@ -81,7 +81,7 @@ Todas las transiciones están definidas en `ORDER_TRANSITIONS` con:
 
 ### Consola Cashier
 
-**Archivo:** `build/employees_app/static/js/src/modules/cashier-board.ts`
+**Archivo:** `build/pronto_employees/static/js/src/modules/cashier-board.ts`
 
 **Acciones esperadas:**
 - Procesar pago de sesiones
@@ -219,7 +219,7 @@ WHERE area_id IS NULL AND is_active = true;
 
 ### Rutas de Órdenes
 
-**Archivo:** `build/employees_app/routes/api/orders.py`
+**Archivo:** `build/pronto_employees/routes/api/orders.py`
 
 **Endpoints validados:**
 

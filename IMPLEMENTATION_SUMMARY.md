@@ -3,28 +3,28 @@
 ## ✅ COMPLETADO
 
 ### 1. Templates Obsoletos Eliminados
-- ❌ `build/clients_app/templates/thank_you_old.html` - ELIMINADO
-- ❌ `build/clients_app/templates/base_old.html` - ELIMINADO
+- ❌ `build/pronto_clients/templates/thank_you_old.html` - ELIMINADO
+- ❌ `build/pronto_clients/templates/base_old.html` - ELIMINADO
 - ℹ️ `index-alt.html` - MANTENIDO (aún referenciado en `/menu-alt`)
 
 ### 2. Módulos de Shortcuts Configurables
 
 #### Backend (API)
-- ✅ `build/clients_app/routes/api/shortcuts.py` - Nuevo endpoint
+- ✅ `build/pronto_clients/routes/api/shortcuts.py` - Nuevo endpoint
   - `GET /api/shortcuts` - Obtener atajos habilitados
   - `POST /api/feedback/questions` - Obtener preguntas de feedback
 
-- ✅ `build/employees_app/routes/api/admin_config.py` - Panel de administración
+- ✅ `build/pronto_employees/routes/api/admin_config.py` - Panel de administración
   - `GET/POST/PUT/DELETE /api/admin/shortcuts` - CRUD de atajos
   - `GET/POST/PUT/DELETE /api/admin/feedback/questions` - CRUD de preguntas
 
 #### Frontend
-- ✅ `build/clients_app/static/js/src/modules/menu-shortcuts.ts` - Recargado
+- ✅ `build/pronto_clients/static/js/src/modules/menu-shortcuts.ts` - Recargado
   - Carga atajos desde API
   - Registro dinámico basado en config
   - Mapeo de callbacks
 
-- ✅ `build/clients_app/static/js/src/entrypoints/base.ts` - Inicialización
+- ✅ `build/pronto_clients/static/js/src/entrypoints/base.ts` - Inicialización
   - `initMenuShortcuts()` llamado al cargar
 
 ### 3. Sistema de Feedback por Email
@@ -38,27 +38,27 @@
   - Envío de emails con templates
 
 #### Backend (API)
-- ✅ `build/clients_app/routes/api/feedback_email.py` - Endpoints
+- ✅ `build/pronto_clients/routes/api/feedback_email.py` - Endpoints
   - `POST /api/orders/:order_id/feedback/email-trigger` - Dispara email después de timer
   - `GET /api/feedback/email/:token` - Valida token + retorna contexto
   - `POST /api/feedback/email/:token/submit` - Envía feedback por email
-  - Integración con `clients_app/routes/api/__init__.py`
+  - Integración con `pronto_clients/routes/api/__init__.py`
 
 #### Frontend (Modal)
-- ✅ `build/clients_app/static/js/src/modules/post-payment-feedback.ts` - Nuevo módulo
+- ✅ `build/pronto_clients/static/js/src/modules/post-payment-feedback.ts` - Nuevo módulo
   - Modal de feedback post-pago
   - Timer configurable (default 10s)
   - Opciones: "Evaluar servicio" o "No, gracias"
   - Integración con `thank-you.ts`
 
 #### Frontend (Thank You Page)
-- ✅ `build/clients_app/static/js/src/modules/thank-you.ts` - Integrado
+- ✅ `build/pronto_clients/static/js/src/modules/thank-you.ts` - Integrado
   - Import de `showPostPaymentFeedbackModal`
   - Llamada en `markPaymentCompleted()`
   - Navegación a `/feedback` si el usuario elige evaluar
 
 #### Estilos
-- ✅ `build/clients_app/static/css/menu.css` - Estilos del modal
+- ✅ `build/pronto_clients/static/css/menu.css` - Estilos del modal
   - Animaciones: fadeIn, slideUp, scaleIn, pulse
   - Responsive design
   - Colores y tipografía
@@ -164,7 +164,7 @@ Valores agregados en `pronto_config`:
 mysql -u root pronto_db < migrations/003_feedback_tokens_and_email.sql
 
 # 2. Reconstruir JS (si se agregaron nuevos módulos)
-cd build/clients_app/static/js
+cd build/pronto_clients/static/js
 npm run build
 
 # 3. Reiniciar aplicación
@@ -218,7 +218,7 @@ tail -f logs/pronto.log | grep -E "feedback|shortcuts|token"
 
 1. **Email Service**: El archivo `shared/services/email_service.py` no existe en el código base. Es necesario implementar `send_template_email()` usando el proveedor de email configurado (SMTP, SendGrid, etc.).
 
-2. **Thank-You Page**: El archivo `build/clients_app/static/js/src/modules/thank-you.ts` muestra 0 líneas después del último commit. Necesito que lo restaures del repositorio para poder integrar correctamente.
+2. **Thank-You Page**: El archivo `build/pronto_clients/static/js/src/modules/thank-you.ts` muestra 0 líneas después del último commit. Necesito que lo restaures del repositorio para poder integrar correctamente.
 
 3. **Config Service**: Asegúrate de que `ConfigService` exista en `shared/config_service.py` y tenga los métodos necesarios:
    - `get_bool(key, default=False)`

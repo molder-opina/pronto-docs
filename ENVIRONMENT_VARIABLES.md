@@ -10,18 +10,13 @@ Esta guía documenta todas las variables de entorno utilizadas en el proyecto Pr
 
 ### Estructura
 ```
-config/
-├── general.env          # Configuración general (versionado)
-├── secrets.env          # Secretos y credenciales (NO versionado)
-├── secrets.env.example  # Plantilla de secretos
-└── backups/             # Backups automáticos (NO versionado)
+.env                    # Configuración principal (versionado)
+.env.example            # Plantilla de configuración
+backups/                # Backups automáticos (NO versionado)
 ```
 
 ### Carga de Variables
-Las variables se cargan en este orden (las últimas sobrescriben):
-1. `config/general.env` - Configuración base
-2. `config/secrets.env` - Secretos y sobrescrituras
-3. Variables de entorno del sistema - Sobrescrituras finales
+Las variables se cargan desde `.env` y pueden ser sobrescritas por variables de entorno del sistema.
 
 ---
 
@@ -31,7 +26,7 @@ Las variables se cargan en este orden (las últimas sobrescriben):
 **Propósito**: Clave secreta para Flask y firma de JWT  
 **Tipo**: String (32+ caracteres)  
 **Obligatoria**: ✅ Sí  
-**Archivo**: `secrets.env`  
+**Archivo**: `.env`  
 **Valor por defecto**: ❌ Ninguno (debe configurarse)
 
 **Generar**:
@@ -56,7 +51,7 @@ SECRET_KEY=lhlJHWqUOdYUveqkzz6nClgGpzheVFuxd5bRWJBNVEA
 **Propósito**: Pepper para tokens de handoff de super admin  
 **Tipo**: String (32+ caracteres)  
 **Obligatoria**: ✅ Sí (en producción)  
-**Archivo**: `secrets.env`  
+**Archivo**: `.env`  
 **Valor por defecto**: ❌ Ninguno
 
 **Generar**:
@@ -80,7 +75,7 @@ HANDOFF_PEPPER=YW5vdGhlci1zZWN1cmUtcGVwcGVyLWZvci1oYW5kb2ZmLXRva2Vu
 **Propósito**: Salt para hashing de passwords  
 **Tipo**: String (32+ caracteres)  
 **Obligatoria**: ✅ Sí  
-**Archivo**: `secrets.env`  
+**Archivo**: `.env`  
 **Valor por defecto**: ❌ Ninguno
 
 **Generar**:
@@ -104,7 +99,7 @@ PASSWORD_HASH_SALT=AUILydszwFkPNU0s6NlNFKvDB0DcA0dlp3Kan99q2ZY
 **Propósito**: Clave para encriptar datos sensibles de clientes  
 **Tipo**: String (32+ caracteres)  
 **Obligatoria**: ✅ Sí  
-**Archivo**: `secrets.env`  
+**Archivo**: `.env`  
 **Valor por defecto**: ❌ Ninguno
 
 **Generar**:
@@ -130,7 +125,7 @@ CUSTOMER_DATA_KEY=c3VwcGxlLW1vcmUtZGF0YS1lbmNyeXB0aW9uLWtleS1mb3ItY3VzdG9tZXI
 **Propósito**: Tiempo de expiración de access tokens  
 **Tipo**: Integer  
 **Obligatoria**: ❌ No  
-**Archivo**: `general.env`  
+**Archivo**: `.env`  
 **Valor por defecto**: `24` (24 horas)
 
 **Rango recomendado**: 1-168 horas (1 hora a 7 días)
@@ -151,7 +146,7 @@ JWT_ACCESS_TOKEN_EXPIRES_HOURS=24
 **Propósito**: Tiempo de expiración de refresh tokens  
 **Tipo**: Integer  
 **Obligatoria**: ❌ No  
-**Archivo**: `general.env`  
+**Archivo**: `.env`  
 **Valor por defecto**: `7` (7 días)
 
 **Rango recomendado**: 1-90 días
@@ -174,7 +169,7 @@ JWT_REFRESH_TOKEN_EXPIRES_DAYS=7
 **Propósito**: Hostname del servidor PostgreSQL  
 **Tipo**: String  
 **Obligatoria**: ✅ Sí  
-**Archivo**: `general.env`  
+**Archivo**: `.env`  
 **Valor por defecto**: `postgres` (nombre del contenedor Docker)
 
 **Ejemplos**:
@@ -195,7 +190,7 @@ POSTGRES_HOST=localhost
 **Propósito**: Puerto del servidor PostgreSQL  
 **Tipo**: Integer  
 **Obligatoria**: ❌ No  
-**Archivo**: `general.env`  
+**Archivo**: `.env`  
 **Valor por defecto**: `5432`
 
 **Ejemplo**:
@@ -209,7 +204,7 @@ POSTGRES_PORT=5432
 **Propósito**: Usuario de PostgreSQL  
 **Tipo**: String  
 **Obligatoria**: ✅ Sí  
-**Archivo**: `general.env`  
+**Archivo**: `.env`  
 **Valor por defecto**: `pronto`
 
 **Ejemplo**:
@@ -223,7 +218,7 @@ POSTGRES_USER=pronto
 **Propósito**: Password de PostgreSQL  
 **Tipo**: String  
 **Obligatoria**: ✅ Sí  
-**Archivo**: `secrets.env` (en producción) o `general.env` (desarrollo)  
+**Archivo**: `.env` (en producción) o `general.env` (desarrollo)  
 **Valor por defecto**: `pronto123` (solo desarrollo)
 
 **Ejemplo**:
@@ -241,7 +236,7 @@ POSTGRES_PASSWORD=pronto123
 **Propósito**: Nombre de la base de datos  
 **Tipo**: String  
 **Obligatoria**: ✅ Sí  
-**Archivo**: `general.env`  
+**Archivo**: `.env`  
 **Valor por defecto**: `pronto`
 
 **Ejemplo**:
@@ -255,7 +250,7 @@ POSTGRES_DB=pronto
 **Propósito**: Usar PostgreSQL local en lugar de Supabase  
 **Tipo**: Boolean  
 **Obligatoria**: ❌ No  
-**Archivo**: `general.env`  
+**Archivo**: `.env`  
 **Valor por defecto**: `true`
 
 **Ejemplo**:
@@ -271,7 +266,7 @@ USE_LOCAL_POSTGRES=true
 **Propósito**: Nombre del restaurante  
 **Tipo**: String  
 **Obligatoria**: ❌ No  
-**Archivo**: `general.env`  
+**Archivo**: `.env`  
 **Valor por defecto**: `cafeteria-test`
 
 **Ejemplo**:
@@ -289,7 +284,7 @@ RESTAURANT_NAME=cafeteria-test
 **Propósito**: Tasa de impuesto (IVA)  
 **Tipo**: Float  
 **Obligatoria**: ❌ No  
-**Archivo**: `general.env`  
+**Archivo**: `.env`  
 **Valor por defecto**: `0.16` (16%)
 
 **Ejemplo**:
@@ -303,7 +298,7 @@ TAX_RATE=0.16
 **Propósito**: URL base para archivos estáticos  
 **Tipo**: String (URL)  
 **Obligatoria**: ❌ No  
-**Archivo**: `general.env`  
+**Archivo**: `.env`  
 **Valor por defecto**: `http://static:80`
 
 **Ejemplos**:
@@ -324,7 +319,7 @@ STATIC_BASE_URL=http://localhost:9088
 **Propósito**: Nivel de logging  
 **Tipo**: String (DEBUG, INFO, WARNING, ERROR, CRITICAL)  
 **Obligatoria**: ❌ No  
-**Archivo**: `general.env`  
+**Archivo**: `.env`  
 **Valor por defecto**: `INFO`
 
 **Ejemplo**:
@@ -345,7 +340,7 @@ LOG_LEVEL=INFO
 **Propósito**: Habilitar modo debug  
 **Tipo**: Boolean  
 **Obligatoria**: ❌ No  
-**Archivo**: `general.env`  
+**Archivo**: `.env`  
 **Valor por defecto**: `false`
 
 **Ejemplo**:
@@ -364,7 +359,7 @@ DEBUG_MODE=false
 **Propósito**: Habilitar debug de Flask  
 **Tipo**: Boolean  
 **Obligatoria**: ❌ No  
-**Archivo**: `general.env`  
+**Archivo**: `.env`  
 **Valor por defecto**: `false`
 
 **Ejemplo**:
@@ -385,7 +380,7 @@ FLASK_DEBUG=false
 **Propósito**: Orígenes permitidos para CORS  
 **Tipo**: String (lista separada por comas)  
 **Obligatoria**: ❌ No  
-**Archivo**: `secrets.env`  
+**Archivo**: `.env`  
 **Valor por defecto**: `` (vacío, usa lista interna en desarrollo)
 
 **Ejemplo**:
@@ -404,7 +399,7 @@ CORS_ALLOWED_ORIGINS=https://app.example.com,https://admin.example.com
 **Propósito**: Número de proxies confiables  
 **Tipo**: Integer  
 **Obligatoria**: ❌ No  
-**Archivo**: `secrets.env`  
+**Archivo**: `.env`  
 **Valor por defecto**: `0`
 
 **Ejemplos**:
@@ -429,7 +424,7 @@ NUM_PROXIES=2
 **Propósito**: Hosts permitidos para validación Origin/Referer  
 **Tipo**: String (lista separada por comas)  
 **Obligatoria**: ❌ No  
-**Archivo**: `secrets.env`  
+**Archivo**: `.env`  
 **Valor por defecto**: `localhost:6081,127.0.0.1:6081`
 
 **Ejemplo**:
@@ -449,7 +444,7 @@ ALLOWED_HOSTS=localhost:6081,127.0.0.1:6081,app.example.com
 **Propósito**: Nombre del proyecto Docker Compose  
 **Tipo**: String  
 **Obligatoria**: ❌ No  
-**Archivo**: `general.env`  
+**Archivo**: `.env`  
 **Valor por defecto**: `pronto`
 
 **Ejemplo**:
@@ -463,7 +458,7 @@ COMPOSE_PROJECT_NAME=pronto
 **Propósito**: Puerto del host para la app de clientes  
 **Tipo**: Integer  
 **Obligatoria**: ❌ No  
-**Archivo**: `general.env`  
+**Archivo**: `.env`  
 **Valor por defecto**: `6080`
 
 **Ejemplo**:
@@ -479,7 +474,7 @@ CLIENT_APP_HOST_PORT=6080
 **Propósito**: Puerto del host para la app de empleados  
 **Tipo**: Integer  
 **Obligatoria**: ❌ No  
-**Archivo**: `general.env`  
+**Archivo**: `.env`  
 **Valor por defecto**: `6081`
 
 **Ejemplo**:
@@ -495,7 +490,7 @@ EMPLOYEE_APP_HOST_PORT=6081
 **Propósito**: Puerto del host para la API  
 **Tipo**: Integer  
 **Obligatoria**: ❌ No  
-**Archivo**: `general.env`  
+**Archivo**: `.env`  
 **Valor por defecto**: `6082`
 
 **Ejemplo**:
@@ -511,7 +506,7 @@ API_APP_HOST_PORT=6082
 **Propósito**: Puerto del host para el servidor estático  
 **Tipo**: Integer  
 **Obligatoria**: ❌ No  
-**Archivo**: `general.env`  
+**Archivo**: `.env`  
 **Valor por defecto**: `9088`
 
 **Ejemplo**:
@@ -620,8 +615,8 @@ ls -lh config/backups/
 # Generar nueva clave
 python3 -c "import secrets; print(secrets.token_urlsafe(32))"
 
-# Agregar a config/secrets.env
-echo "SECRET_KEY=<valor-generado>" >> config/secrets.env
+# Agregar a .env
+echo "SECRET_KEY=<valor-generado>" >> .env
 ```
 
 ### Error: "HANDOFF_PEPPER must be configured in production"
@@ -631,13 +626,13 @@ echo "SECRET_KEY=<valor-generado>" >> config/secrets.env
 # Generar pepper
 python3 -c "import secrets; print(secrets.token_urlsafe(32))"
 
-# Agregar a config/secrets.env
-echo "HANDOFF_PEPPER=<valor-generado>" >> config/secrets.env
+# Agregar a .env
+echo "HANDOFF_PEPPER=<valor-generado>" >> .env
 ```
 
 ### Error: "POSTGRES_HOST must be configured"
 **Causa**: Variables de PostgreSQL no están configuradas  
-**Solución**: Verificar que `config/general.env` contiene todas las variables POSTGRES_*
+**Solución**: Verificar que `.env` contiene todas las variables POSTGRES_*
 
 ### Warning: "JWT_ACCESS_TOKEN_EXPIRES_HOURS=X is outside recommended range"
 **Causa**: Valor fuera del rango recomendado (1-168 horas)  

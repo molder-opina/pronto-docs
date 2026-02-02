@@ -6,9 +6,9 @@ Este documento describe el plan para subdividir archivos grandes del proyecto en
 
 ### Archivos Críticos (>2000 líneas)
 1. **dashboard.js** - 3730 líneas ✅ EN PROGRESO
-2. **employees_app/routes/api.py** - 2692 líneas 🔴 PENDIENTE
+2. **pronto_employees/routes/api.py** - 2692 líneas 🔴 PENDIENTE
 3. **shared/services/seed.py** - 2301 líneas 🔴 PENDIENTE
-4. **clients_app/routes/api.py** - 2003 líneas 🔴 PENDIENTE
+4. **pronto_clients/routes/api.py** - 2003 líneas 🔴 PENDIENTE
 
 ---
 
@@ -34,7 +34,7 @@ dashboard.js (3730 → ~500 líneas)
 
 ---
 
-## 🔴 2. employees_app/routes/api.py (2692 líneas)
+## 🔴 2. pronto_employees/routes/api.py (2692 líneas)
 
 ### Análisis de Contenido
 ```bash
@@ -51,7 +51,7 @@ dashboard.js (3730 → ~500 líneas)
 
 ### Subdivisión Propuesta
 ```
-employees_app/routes/
+pronto_employees/routes/
 ├── api/
 │   ├── __init__.py           # Blueprint principal
 │   ├── orders.py             # Endpoints de órdenes
@@ -67,7 +67,7 @@ employees_app/routes/
 
 ### Implementación Sugerida
 ```python
-# employees_app/routes/api/__init__.py
+# pronto_employees/routes/api/__init__.py
 from flask import Blueprint
 from .orders import orders_bp
 from .sessions import sessions_bp
@@ -84,7 +84,7 @@ api_bp.register_blueprint(modifications_bp)
 ```
 
 ```python
-# employees_app/routes/api/orders.py
+# pronto_employees/routes/api/orders.py
 from flask import Blueprint
 
 orders_bp = Blueprint('orders', __name__)
@@ -159,7 +159,7 @@ def load_seed_data(session):
 
 ---
 
-## 🔴 4. clients_app/routes/api.py (2003 líneas)
+## 🔴 4. pronto_clients/routes/api.py (2003 líneas)
 
 ### Análisis de Contenido
 ```bash
@@ -175,7 +175,7 @@ def load_seed_data(session):
 
 ### Subdivisión Propuesta
 ```
-clients_app/routes/
+pronto_clients/routes/
 ├── api/
 │   ├── __init__.py           # Blueprint principal
 │   ├── auth.py               # Endpoints de autenticación
@@ -206,8 +206,8 @@ clients_app/routes/
 
 ### Fase 3: Python - API Routes (3-4 días)
 - [ ] Crear estructura de sub-blueprints
-- [ ] Migrar endpoints de employees_app/routes/api.py
-- [ ] Migrar endpoints de clients_app/routes/api.py
+- [ ] Migrar endpoints de pronto_employees/routes/api.py
+- [ ] Migrar endpoints de pronto_clients/routes/api.py
 - [ ] Actualizar imports en todo el proyecto
 - [ ] Pruebas de integración
 

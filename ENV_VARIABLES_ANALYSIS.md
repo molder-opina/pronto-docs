@@ -120,8 +120,8 @@ Y sobrescribe/agrega variables específicas en cada servicio:
 #### 1. **SECRET_KEY**
 **Usado en**:
 - `build/shared/jwt_service.py` (línea 56) - Para firmar JWT
-- `build/employees_app/app.py` (línea 72) - `app.config["SECRET_KEY"]`
-- `build/clients_app/app.py` - Similar
+- `build/pronto_employees/app.py` (línea 72) - `app.config["SECRET_KEY"]`
+- `build/pronto_clients/app.py` - Similar
 - `build/api_app/app.py` - Similar
 
 **Estado**: ✅ Correctamente configurado y usado
@@ -150,7 +150,7 @@ if not salt:
 
 #### 4. **HANDOFF_PEPPER**
 **Usado en**:
-- `build/employees_app/app.py` (línea 51) - Validación en startup
+- `build/pronto_employees/app.py` (línea 51) - Validación en startup
 
 **Validación**:
 ```python

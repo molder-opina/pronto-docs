@@ -159,7 +159,7 @@ class Order(Base):
 
 ### TypeScript
 ```typescript
-// build/employees_app/static/js/src/modules/payments-flow.ts
+// build/pronto_employees/static/js/src/modules/payments-flow.ts
 
 // Session ID (Bill/Cuenta)
 const openPaymentModal = (sessionId: number) => {
@@ -177,7 +177,7 @@ const trackOrderStatus = (orderId: number) => {
 ## Referencias
 
 - **Modelo de datos**: `build/shared/models.py`
-- **API de órdenes**: `build/employees_app/routes/api/orders.py`
-- **API de sesiones**: `build/employees_app/routes/api/sessions.py`
-- **UI Cliente**: `build/clients_app/static/js/src/modules/active-orders.ts`
-- **UI Empleados**: `build/employees_app/static/js/src/modules/payments-flow.ts`
+- **API de órdenes**: `build/pronto_employees/routes/api/orders.py`
+- **API de sesiones**: `build/pronto_employees/routes/api/sessions.py`
+- **UI Cliente**: `build/pronto_clients/static/js/src/modules/active-orders.ts`
+- **UI Empleados**: `build/pronto_employees/static/js/src/modules/payments-flow.ts`

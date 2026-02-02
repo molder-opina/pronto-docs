@@ -214,16 +214,16 @@ docker-compose restart clients-app employees-app
 ### Backend
 1. `migrations/003_feedback_tokens_and_email.sql` - 64 líneas
 2. `shared/services/feedback_email_service.py` - ~270 líneas
-3. `clients_app/routes/api/feedback_email.py` - ~250 líneas
+3. `pronto_clients/routes/api/feedback_email.py` - ~250 líneas
 
 ### Frontend
-4. `build/clients_app/static/js/src/modules/post-payment-feedback.ts` - ~150 líneas
-5. `build/clients_app/static/js/src/modules/menu-shortcuts.ts` - Actualizado (~150 líneas)
-6. `build/clients_app/static/js/src/modules/thank-you.ts` - Actualizado (~470 líneas)
-7. `build/clients_app/static/js/src/entrypoints/base.ts` - Actualizado (35 líneas)
+4. `build/pronto_clients/static/js/src/modules/post-payment-feedback.ts` - ~150 líneas
+5. `build/pronto_clients/static/js/src/modules/menu-shortcuts.ts` - Actualizado (~150 líneas)
+6. `build/pronto_clients/static/js/src/modules/thank-you.ts` - Actualizado (~470 líneas)
+7. `build/pronto_clients/static/js/src/entrypoints/base.ts` - Actualizado (35 líneas)
 
 ### CSS
-8. `build/clients_app/static/css/menu.css` - +100 líneas (estilos del modal)
+8. `build/pronto_clients/static/css/menu.css` - +100 líneas (estilos del modal)
 
 ### Docs
 9. `docs/cleanup_report.md` - Reporte de código no usado

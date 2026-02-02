@@ -15,7 +15,7 @@
 
 ```
 build/
-├── clients_app/                 # App Cliente (Puerto 6080)
+├── pronto_clients/                 # App Cliente (Puerto 6080)
 │   ├── routes/
 │   │   ├── api/                # 14 API blueprints
 │   │   │   ├── auth.py         # Autenticación cliente
@@ -49,7 +49,7 @@ build/
 │               │   └── thank-you.ts
 │               └── components/
 │
-├── employees_app/              # Dashboard Empleados (Puerto 6081)
+├── pronto_employees/              # Dashboard Empleados (Puerto 6081)
 │   ├── routes/
 │   │   ├── api/                # 25+ API blueprints
 │   │   │   ├── auth.py         # Auth empleados

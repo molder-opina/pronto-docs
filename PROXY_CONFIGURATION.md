@@ -87,4 +87,4 @@ ALLOWED_HOSTS=localhost:6081,127.0.0.1:6081
 
 **Síntoma**: Error 400 al consumir token
 
-**Solución**: El endpoint debe tener `@csrf.exempt`. Verifica que `from build.employees_app.extensions import csrf` está presente.
+**Solución**: El endpoint debe tener `@csrf.exempt`. Verifica que `from build.pronto_employees.extensions import csrf` está presente.

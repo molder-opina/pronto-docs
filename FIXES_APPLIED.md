@@ -51,7 +51,7 @@ payment_action_delay_seconds: {{ payment_action_delay_seconds }},
 
 **Archivo Modificado:**
 
-- `/build/employees_app/templates/dashboard.html` (líneas 4503-4511)
+- `/build/pronto_employees/templates/dashboard.html` (líneas 4503-4511)
 
 ---
 
@@ -101,7 +101,7 @@ payment_action_delay_seconds: {{ payment_action_delay_seconds }},
 
 **Archivo Modificado:**
 
-- `/build/employees_app/templates/dashboard.html` (líneas 967-974)
+- `/build/pronto_employees/templates/dashboard.html` (líneas 967-974)
 
 ---
 
@@ -124,7 +124,7 @@ payment_action_delay_seconds: {{ payment_action_delay_seconds }},
 
 **Archivo Modificado:**
 
-- `/build/employees_app/static/js/src/modules/waiter-board.ts` (líneas 1901, 1920)
+- `/build/pronto_employees/static/js/src/modules/waiter-board.ts` (líneas 1901, 1920)
 
 ---
 
@@ -152,7 +152,7 @@ cancelled → "Cancelada"
 
 **Archivo Modificado:**
 
-- `/build/employees_app/static/js/src/modules/kitchen-board.ts`
+- `/build/pronto_employees/static/js/src/modules/kitchen-board.ts`
 
 ---
 
@@ -169,7 +169,7 @@ cancelled → "Cancelada"
 
 **Archivo Modificado:**
 
-- `/build/employees_app/templates/dashboard.html`
+- `/build/pronto_employees/templates/dashboard.html`
 
 ---
 
@@ -230,8 +230,8 @@ cancelled → "Cancelada"
 
 **Archivos a Investigar:**
 
-- `/build/employees_app/static/js/src/modules/kitchen-board.ts` (método `refreshOrders()`)
-- `/build/employees_app/templates/dashboard.html` (template inicial de filas)
+- `/build/pronto_employees/static/js/src/modules/kitchen-board.ts` (método `refreshOrders()`)
+- `/build/pronto_employees/templates/dashboard.html` (template inicial de filas)
 
 ---
 
@@ -264,14 +264,14 @@ cancelled → "Cancelada"
 
 ```bash
 # Buscar el método que genera las filas
-grep -n "refreshOrders" build/employees_app/static/js/src/modules/kitchen-board.ts
+grep -n "refreshOrders" build/pronto_employees/static/js/src/modules/kitchen-board.ts
 ```
 
 **Opción B - Verificar Template Inicial:**
 
 ```bash
 # Verificar que el HTML inicial en dashboard.html tenga <td> tags
-grep -A 20 "kitchen-orders" build/employees_app/templates/dashboard.html
+grep -A 20 "kitchen-orders" build/pronto_employees/templates/dashboard.html
 ```
 
 **Opción C - Testing en Navegador:**

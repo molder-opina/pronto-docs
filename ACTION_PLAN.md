@@ -216,7 +216,7 @@ CUSTOMER_DATA_KEY=your-customer-data-encryption-key-here-32chars-minimum
 **Archivos**:
 - `build/shared/jwt_blacklist.py` (nuevo)
 - `build/shared/jwt_middleware.py` (actualizar)
-- `build/employees_app/routes/api/auth.py` (actualizar)
+- `build/pronto_employees/routes/api/auth.py` (actualizar)
 
 **Tiempo estimado**: 3 horas  
 **Prioridad**: 🟢 BAJA
@@ -231,7 +231,7 @@ CUSTOMER_DATA_KEY=your-customer-data-encryption-key-here-32chars-minimum
 - Invalidar refresh token anterior al generar uno nuevo
 - Implementar "refresh token family" para detectar reutilización
 
-**Archivo**: `build/employees_app/routes/api/auth.py`  
+**Archivo**: `build/pronto_employees/routes/api/auth.py`  
 **Tiempo estimado**: 2 horas  
 **Prioridad**: 🟢 BAJA
 
@@ -247,8 +247,8 @@ CUSTOMER_DATA_KEY=your-customer-data-encryption-key-here-32chars-minimum
 - Métricas de login/logout
 
 **Archivos**:
-- `build/employees_app/routes/system/tokens.py` (nuevo)
-- `build/employees_app/templates/system/tokens.html` (nuevo)
+- `build/pronto_employees/routes/system/tokens.py` (nuevo)
+- `build/pronto_employees/templates/system/tokens.html` (nuevo)
 
 **Tiempo estimado**: 4 horas  
 **Prioridad**: 🟢 BAJA

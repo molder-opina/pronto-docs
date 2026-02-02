@@ -176,13 +176,13 @@ All product/menu validation tasks have been successfully completed.
 
 ### Layer 3: API-Level Endpoint
 
-**File:** `build/employees_app/routes/api/menu.py`
+**File:** `build/pronto_employees/routes/api/menu.py`
 
 **Endpoints:**
 
-- `POST /api/menu-items` - Creates product (requires admin/content_manager/chef)
-- `PUT /api/menu-items/<id>` - Updates product (requires admin/content_manager/chef)
-- `DELETE /api/menu-items/<id>` - Deletes product (requires admin/content_manager/chef)
+- `POST /api/menu-items` - Creates product (requires admin/chef)
+- `PUT /api/menu-items/<id>` - Updates product (requires admin/chef)
+- `DELETE /api/menu-items/<id>` - Deletes product (requires admin/chef)
 
 **Features:**
 
@@ -402,7 +402,7 @@ All validation rules are documented in:
    - Clear inline comments
 
 2. **API Documentation:**
-   - `build/employees_app/routes/api/menu.py`
+   - `build/pronto_employees/routes/api/menu.py`
    - Endpoint docstrings
    - Request/response examples
 

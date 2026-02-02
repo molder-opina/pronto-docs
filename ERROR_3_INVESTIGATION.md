@@ -22,7 +22,7 @@ Después de revisar exhaustivamente el código del backend, **NO encontré ning�
 
 ### 1. Endpoint `/api/orders` (POST)
 
-**Archivo**: `/build/clients_app/routes/api/orders.py`
+**Archivo**: `/build/pronto_clients/routes/api/orders.py`
 **Líneas**: 30-118
 
 ```python
@@ -52,7 +52,7 @@ def create_order_endpoint():
 
 ### 2. Servicio `create_order_service`
 
-**Archivo**: `/build/clients_app/services/order_service.py`
+**Archivo**: `/build/pronto_clients/services/order_service.py`
 **Líneas**: 131-488
 
 #### 2.1 Validación de Payload

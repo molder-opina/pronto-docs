@@ -8,7 +8,7 @@ Se ha implementado un sistema de reautenticación rápida para super_admin que p
 
 ### 1. Extensiones Flask
 
-- `build/employees_app/extensions.py` - CSRF protection sin side effects
+- `build/pronto_employees/extensions.py` - CSRF protection sin side effects
 
 ### 2. Utilidades
 
@@ -22,7 +22,7 @@ Se ha implementado un sistema de reautenticación rápida para super_admin que p
 
 ### 4. Documentación
 
-- `config/secrets.env.example` - Template de configuración
+- `.env.example` - Template de configuración
 - `docs/PROXY_CONFIGURATION.md` - Guía de configuración de proxies
 - Este archivo
 
@@ -30,8 +30,8 @@ Se ha implementado un sistema de reautenticación rápida para super_admin que p
 
 ### 1. Configuración
 
-- `build/employees_app/requirements.txt` - Agregado Flask-WTF>=1.2.0
-- `config/secrets.env` - Agregadas configuraciones:
+- `build/pronto_employees/requirements.txt` - Agregado Flask-WTF>=1.2.0
+- `.env` - Agregadas configuraciones:
   - `HANDOFF_PEPPER` - Generado automáticamente
   - `NUM_PROXIES=0`
   - `ALLOWED_HOSTS=localhost:6081,127.0.0.1:6081`
@@ -49,7 +49,7 @@ Los siguientes archivos necesitan ser creados/actualizados manualmente o mediant
 
 ### 1. CRÍTICO - Actualizar app.py
 
-`build/employees_app/app.py` necesita:
+`build/pronto_employees/app.py` necesita:
 
 - Import de `csrf` desde `extensions`
 - Inicialización con `csrf.init_app(app)`
@@ -60,7 +60,7 @@ Los siguientes archivos necesitan ser creados/actualizados manualmente o mediant
 
 ### 2. CRÍTICO - Crear /system console
 
-`build/employees_app/routes/system/auth.py` - Nuevo archivo:
+`build/pronto_employees/routes/system/auth.py` - Nuevo archivo:
 
 - Login exclusivo super_admin
 - Dashboard system
@@ -70,7 +70,7 @@ Los siguientes archivos necesitan ser creados/actualizados manualmente o mediant
 
 ### 3. CRÍTICO - Actualizar scopes existentes
 
-Cada archivo `build/employees_app/routes/{scope}/auth.py` necesita:
+Cada archivo `build/pronto_employees/routes/{scope}/auth.py` necesita:
 
 - Import de `csrf` desde `extensions`
 - Import de `utcnow` desde `shared.datetime_utils`
@@ -92,9 +92,9 @@ Scopes a actualizar:
 
 Crear/actualizar:
 
-- `build/employees_app/templates/login_system.html`
-- `build/employees_app/templates/system_reauth_confirm.html`
-- `build/employees_app/templates/system_reauth_redirect.html`
+- `build/pronto_employees/templates/login_system.html`
+- `build/pronto_employees/templates/system_reauth_confirm.html`
+- `build/pronto_employees/templates/system_reauth_redirect.html`
 - Actualizar templates de login de cada scope con botón "Entrar como super_admin"
 
 ### 5. Base de datos
@@ -109,8 +109,8 @@ alembic upgrade head
 
 ### Checklist Pre-Deploy
 
-- [ ] Flask-WTF instalado: `pip install -r build/employees_app/requirements.txt`
-- [ ] HANDOFF_PEPPER configurado en `config/secrets.env`
+- [ ] Flask-WTF instalado: `pip install -r build/pronto_employees/requirements.txt`
+- [ ] HANDOFF_PEPPER configurado en `.env`
 - [ ] Migración de DB aplicada
 - [ ] ProxyFix configurado correctamente (NUM_PROXIES)
 - [ ] ALLOWED_HOSTS configurado para el entorno

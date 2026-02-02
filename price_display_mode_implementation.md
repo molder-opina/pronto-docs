@@ -63,7 +63,7 @@ Retorna `True` si se debe mostrar indicador "Precios + IVA" en la UI.
 ### 3. Actualización de Lógica de Órdenes ✅
 
 #### **Servicio de Órdenes de Clientes**
-**Archivo**: `build/clients_app/services/order_service.py`
+**Archivo**: `build/pronto_clients/services/order_service.py`
 
 **Cambios**:
 - Importa `calculate_price_breakdown` y `get_price_display_mode`
@@ -81,7 +81,7 @@ Retorna `True` si se debe mostrar indicador "Precios + IVA" en la UI.
 
 ### 4. API de Configuración ✅
 
-**Archivo**: `build/employees_app/routes/api/config.py` (Ya existía)
+**Archivo**: `build/pronto_employees/routes/api/config.py` (Ya existía)
 
 **Endpoints disponibles**:
 - `GET /api/config` - Listar todas las configuraciones (requiere login)
@@ -210,7 +210,7 @@ PUT /api/config/{id}
 
 - Modelo: `build/shared/models.py:684` - `BusinessConfig`
 - Servicio: `build/shared/services/price_service.py`
-- Orden Cliente: `build/clients_app/services/order_service.py:122`
+- Orden Cliente: `build/pronto_clients/services/order_service.py:122`
 - Modificaciones: `build/shared/services/order_modification_service.py:411`
 
 ## Autor

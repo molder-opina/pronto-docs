@@ -26,7 +26,7 @@ Cada scope tiene su propia ruta API que valida la cookie y sesión correspondien
 ### Núcleo (Controladores compartidos)
 
 Los handlers y servicios son los mismos para todos los scopes:
-- `build/employees_app/routes/api/*.py` - Controladores API
+- `build/pronto_employees/routes/api/*.py` - Controladores API
 - `build/shared/services/*.py` - Lógica de negocio
 
 ## Cambios Implementados
@@ -59,7 +59,7 @@ if session_scope != url_scope:
     }), 403
 ```
 
-### 2. API Scoped Registration (`build/employees_app/routes/api_scoped.py`)
+### 2. API Scoped Registration (`build/pronto_employees/routes/api_scoped.py`)
 
 Nuevo módulo que registra el mismo blueprint múltiples veces con diferentes prefijos:
 
@@ -80,7 +80,7 @@ for scope in scopes:
     )
 ```
 
-### 3. App Configuration (`build/employees_app/app.py`)
+### 3. App Configuration (`build/pronto_employees/app.py`)
 
 Se integró la arquitectura perímetro en la configuración de la app:
 
@@ -103,7 +103,7 @@ from shared.scope_guard import apply_api_scope_guard
 apply_api_scope_guard(app)
 ```
 
-### 4. Frontend URL Rewriting (`build/employees_app/static/js/src/core/http.ts`)
+### 4. Frontend URL Rewriting (`build/pronto_employees/static/js/src/core/http.ts`)
 
 El frontend ahora reescribe automáticamente las URLs de API según el scope actual:
 
@@ -273,5 +273,5 @@ Para migración completa a apps modulares:
 
 Para reportar problemas con esta arquitectura, consultar:
 - `build/shared/scope_guard.py:92-229` (API scope validation)
-- `build/employees_app/routes/api_scoped.py` (Blueprint registration)
-- `build/employees_app/static/js/src/core/http.ts` (Frontend URL rewriting)
+- `build/pronto_employees/routes/api_scoped.py` (Blueprint registration)
+- `build/pronto_employees/static/js/src/core/http.ts` (Frontend URL rewriting)

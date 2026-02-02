@@ -126,12 +126,12 @@ new_table = Table(
 
 Archivos a modificar:
 
-- `build/employees_app/routes/api/tables.py`
-- `build/employees_app/routes/api/debug.py`
-- `build/employees_app/routes/api/areas.py`
-- `build/employees_app/routes/api_legacy.py`
-- `build/clients_app/routes/api/config.py`
-- `build/clients_app/routes/api_legacy.py`
+- `build/pronto_employees/routes/api/tables.py`
+- `build/pronto_employees/routes/api/debug.py`
+- `build/pronto_employees/routes/api/areas.py`
+- `build/pronto_employees/routes/api_legacy.py`
+- `build/pronto_clients/routes/api/config.py`
+- `build/pronto_clients/routes/api_legacy.py`
 - `build/shared/services/waiter_table_assignment_service.py`
 
 ### Fase 3: Deprecation Warnings (Backend)

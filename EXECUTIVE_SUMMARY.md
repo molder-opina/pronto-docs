@@ -38,16 +38,16 @@ Asegurar la correcta implementación y documentación del sistema de autenticaci
    
 3. ✅ **Agregar validación de variables en startup**
    - `validate_required_env_vars()` en `config.py`
-   - Integrado en `employees_app`, `clients_app`, `api_app`
+   - Integrado en `pronto_employees`, `pronto_clients`, `api_app`
    - Validación fail-fast
 
 ### Archivos Modificados/Creados
-- `config/secrets.env.example`
+- `.env.example`
 - `bin/backup-env.sh`
 - `.gitignore`
 - `build/shared/config.py`
-- `build/employees_app/app.py`
-- `build/clients_app/app.py`
+- `build/pronto_employees/app.py`
+- `build/pronto_clients/app.py`
 - `build/api_app/app.py`
 
 ### Impacto

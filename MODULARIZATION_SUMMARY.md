@@ -14,7 +14,7 @@
 **Resultado:** 6 módulos CSS especializados + 1 orquestador
 
 ```
-build/clients_app/static/css/
+build/pronto_clients/static/css/
 ├── menu.css (31 líneas) - Orquestador con @imports
 ├── menu-core.css (60 líneas) - Variables y utilidades
 ├── menu-filters.css (971 líneas) - Filtros y búsqueda
@@ -37,7 +37,7 @@ build/clients_app/static/css/
 **Resultado:** 4 módulos especializados + 1 orquestador
 
 ```
-build/clients_app/static/js/src/modules/
+build/pronto_clients/static/js/src/modules/
 ├── menu-flow.ts (803 líneas) - Orquestador principal
 ├── cart-manager.ts (229 líneas) - Gestión de carrito
 ├── modal-manager.ts (524 líneas) - Modales y modificadores
@@ -113,7 +113,7 @@ build/clients_app/static/js/src/modules/
 ## 📁 Estructura Final del Proyecto
 
 ```
-build/clients_app/
+build/pronto_clients/
 ├── static/
 │   ├── css/
 │   │   ├── design-system.css
@@ -204,10 +204,10 @@ docs/
 **Editar estilos específicos:**
 ```bash
 # Modificar filtros
-vim build/clients_app/static/css/menu-filters.css
+vim build/pronto_clients/static/css/menu-filters.css
 
 # Modificar checkout
-vim build/clients_app/static/css/menu-checkout.css
+vim build/pronto_clients/static/css/menu-checkout.css
 ```
 
 ### TypeScript
@@ -261,7 +261,7 @@ private readonly checkoutHandler: CheckoutHandler;
 
 ### Si necesitas revertir CSS:
 ```bash
-cd build/clients_app/static/css/
+cd build/pronto_clients/static/css/
 cp menu.css.backup menu.css
 rm menu-core.css menu-filters.css menu-checkout.css \
    menu-components.css menu-modals.css menu-orders.css
@@ -269,7 +269,7 @@ rm menu-core.css menu-filters.css menu-checkout.css \
 
 ### Si necesitas revertir TypeScript:
 ```bash
-cd build/clients_app/static/js/src/modules/
+cd build/pronto_clients/static/js/src/modules/
 cp menu-flow.ts.backup menu-flow.ts
 rm cart-manager.ts modal-manager.ts order-tracker.ts checkout-handler.ts
 ```

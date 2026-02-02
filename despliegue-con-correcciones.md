@@ -30,16 +30,16 @@
 - **Problema**: El ScopeGuard estaba retornando incorrectamente en lugar de devolver None
 - **Cambio Realizado**: Se eliminaron los `()` extra de las llamadas al ScopeGuard
 - **Archivos Corregidos**:
-  - `build/employees_app/routes/chef/auth.py`
-  - `build/employees_app/routes/waiter/auth.py`
-  - `build/employees_app/routes/cashier/auth.py`
-  - `build/employees_app/routes/admin/auth.py`
+  - `build/pronto_employees/routes/chef/auth.py`
+  - `build/pronto_employees/routes/waiter/auth.py`
+  - `build/pronto_employees/routes/cashier/auth.py`
+  - `build/pronto_employees/routes/admin/auth.py`
 - **Estado**: ✅ **APLICADO**
 
 ---
 
 ### 🔴 **CORRECCIÓN #3: Indentación en App.py**
-- **Archivo**: `build/employees_app/app.py`
+- **Archivo**: `build/pronto_employees/app.py`
 - **Problema**: Error de indentación en bloque CORS (línea 156)
 - **Cambio Realizado**: Corregida la indentación del bloque else
 - **Estado**: ✅ **APLICADO**
@@ -51,16 +51,16 @@
 - **Problema**: Panel de credenciales visible sin condición debug
 - **Cambio Realizado**: Envuelto en `{% if debug_mode %}`
 - **Archivos Corregidos**:
-  - `build/employees_app/templates/login_chef.html`
-  - `build/employees_app/templates/login_waiter.html`
-  - `build/employees_app/templates/login_cashier.html`
-  - `build/employees_app/templates/login_admin.html`
+  - `build/pronto_employees/templates/login_chef.html`
+  - `build/pronto_employees/templates/login_waiter.html`
+  - `build/pronto_employees/templates/login_cashier.html`
+  - `build/pronto_employees/templates/login_admin.html`
 - **Estado**: ✅ **APLICADO**
 
 ---
 
 ### 🔧 **CORRECCIÓN #5: Archivo TypeScript Corregido**
-- **Archivo**: `build/employees_app/static/js/src/modules/kitchen-board.ts`
+- **Archivo**: `build/pronto_employees/static/js/src/modules/kitchen-board.ts`
 - **Problema**: Sintaxis con llave extra en línea 1195
 - **Cambio Realizado**: Archivo restaurado desde la versión funcional
 - **Estado**: ✅ **APLICADO**

@@ -6,7 +6,7 @@ Se ha implementado feedback visual completo para las acciones de enviar email y 
 
 ## Cambios Realizados
 
-### 1. Template del Cajero (`build/employees_app/templates/cashier/dashboard.html`)
+### 1. Template del Cajero (`build/pronto_employees/templates/cashier/dashboard.html`)
 
 **Antes:**
 - Tabla de sesiones pagadas con 7 columnas (Sesión, Mesa, Cliente, Total, Órdenes, Método, Cerrada)
@@ -17,7 +17,7 @@ Se ha implementado feedback visual completo para las acciones de enviar email y 
   - 📧 Enviar ticket por email
   - 📄 Descargar PDF del ticket
 
-### 2. JavaScript del Cajero (`build/employees_app/static/js/src/modules/cashier-board.ts`)
+### 2. JavaScript del Cajero (`build/pronto_employees/static/js/src/modules/cashier-board.ts`)
 
 #### Nuevas Funciones:
 
@@ -46,7 +46,7 @@ Se ha implementado feedback visual completo para las acciones de enviar email y 
    - Se cierra automáticamente después de 5 segundos
    - Botón de cierre manual
 
-### 3. Estilos CSS (`build/employees_app/static/css/styles.css`)
+### 3. Estilos CSS (`build/pronto_employees/static/css/styles.css`)
 
 **Estilos agregados para botones de acción:**
 ```css
@@ -143,9 +143,9 @@ Para probar esta funcionalidad:
 
 ## Archivos Modificados
 
-1. `build/employees_app/templates/cashier/dashboard.html` - Columna de Acciones
-2. `build/employees_app/static/js/src/modules/cashier-board.ts` - Lógica de acciones y toasts
-3. `build/employees_app/static/css/styles.css` - Estilos de botones
+1. `build/pronto_employees/templates/cashier/dashboard.html` - Columna de Acciones
+2. `build/pronto_employees/static/js/src/modules/cashier-board.ts` - Lógica de acciones y toasts
+3. `build/pronto_employees/static/css/styles.css` - Estilos de botones
 
 ## Estado
 

@@ -9,19 +9,19 @@
 2. ✅ `shared/services/feedback_email_service.py` - Servicio de feedback por email (~270 líneas)
 3. ✅ `shared/services/email_service.py` - Servicio de envío de emails SMTP (~150 líneas)
 4. ✅ `shared/config.py` - Actualizado con métodos get_bool, get_int, get_string
-5. ✅ `clients_app/routes/api/feedback_email.py` - Endpoints email trigger, validate, submit (~250 líneas)
-6. ✅ `clients_app/routes/api/__init__.py` - Registro de feedback_email_bp
+5. ✅ `pronto_clients/routes/api/feedback_email.py` - Endpoints email trigger, validate, submit (~250 líneas)
+6. ✅ `pronto_clients/routes/api/__init__.py` - Registro de feedback_email_bp
 
 **Frontend:**
-7. ✅ `build/clients_app/static/js/src/modules/post-payment-feedback.ts` - Modal feedback post-pago (~150 líneas)
-8. ✅ `build/clients_app/static/js/src/modules/menu-shortcuts.ts` - Shortcuts dinámicos desde API (~150 líneas)
-9. ✅ `build/clients_app/static/js/src/modules/thank-you.ts` - Integración completa con feedback (~470 líneas)
-10. ✅ `build/clients_app/static/js/src/entrypoints/base.ts` - Import de shortcuts y feedback (~35 líneas)
-11. ✅ `build/clients_app/static/css/menu.css` - Estilos modal feedback (~100 líneas)
+7. ✅ `build/pronto_clients/static/js/src/modules/post-payment-feedback.ts` - Modal feedback post-pago (~150 líneas)
+8. ✅ `build/pronto_clients/static/js/src/modules/menu-shortcuts.ts` - Shortcuts dinámicos desde API (~150 líneas)
+9. ✅ `build/pronto_clients/static/js/src/modules/thank-you.ts` - Integración completa con feedback (~470 líneas)
+10. ✅ `build/pronto_clients/static/js/src/entrypoints/base.ts` - Import de shortcuts y feedback (~35 líneas)
+11. ✅ `build/pronto_clients/static/css/menu.css` - Estilos modal feedback (~100 líneas)
 
 **Eliminados:**
-12. ✅ `build/clients_app/templates/thank_you_old.html` - Obsoleto
-13. ✅ `build/clients_app/templates/base_old.html` - Obsoleto
+12. ✅ `build/pronto_clients/templates/thank_you_old.html` - Obsoleto
+13. ✅ `build/pronto_clients/templates/base_old.html` - Obsoleto
 
 **Documentación:**
 14. ✅ `docs/cleanup_report.md` - Análisis de código no usado

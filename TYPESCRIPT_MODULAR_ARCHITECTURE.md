@@ -5,7 +5,7 @@
 El archivo monolítico `menu-flow.ts` (1,752 líneas) ha sido modularizado en 5 archivos especializados para mejor mantenibilidad, testabilidad y organización.
 
 ```
-build/clients_app/static/js/src/modules/
+build/pronto_clients/static/js/src/modules/
 ├── menu-flow.ts            (803 líneas) - Orquestador principal
 ├── cart-manager.ts         (229 líneas) - Gestión de carrito
 ├── modal-manager.ts        (524 líneas) - Modales y modificadores
@@ -358,7 +358,7 @@ Después:
 
 **Para revertir:**
 ```bash
-cd build/clients_app/static/js/src/modules/
+cd build/pronto_clients/static/js/src/modules/
 cp menu-flow.ts.backup menu-flow.ts
 rm cart-manager.ts modal-manager.ts order-tracker.ts checkout-handler.ts
 ```
@@ -588,7 +588,7 @@ cart.renderCartItems((price) => formatCurrency(price));
 ### Estructura de Tests Recomendada
 
 ```
-build/clients_app/static/js/src/modules/
+build/pronto_clients/static/js/src/modules/
 ├── __tests__/
 │   ├── cart-manager.test.ts
 │   ├── modal-manager.test.ts

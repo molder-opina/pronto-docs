@@ -5,7 +5,7 @@
 La hoja de estilos `menu.css` (anteriormente 3,042 líneas) ha sido modularizada en 6 archivos temáticos para mejor mantenibilidad, performance y organización.
 
 ```
-build/clients_app/static/css/
+build/pronto_clients/static/css/
 ├── menu.css                 (31 líneas) - Archivo principal con imports
 ├── menu-core.css           (60 líneas) - Variables y estilos base
 ├── menu-filters.css        (971 líneas) - Filtros, búsqueda y navegación
@@ -271,18 +271,18 @@ Después: Abrir módulo específico directamente
 **1. Agregar nuevos estilos de filtros:**
 ```bash
 # Editar solo el módulo relevante
-vim build/clients_app/static/css/menu-filters.css
+vim build/pronto_clients/static/css/menu-filters.css
 ```
 
 **2. Modificar checkout:**
 ```bash
-vim build/clients_app/static/css/menu-checkout.css
+vim build/pronto_clients/static/css/menu-checkout.css
 ```
 
 **3. Crear nuevo componente:**
 ```bash
 # Agregar en menu-components.css
-vim build/clients_app/static/css/menu-components.css
+vim build/pronto_clients/static/css/menu-components.css
 ```
 
 ### Para Diseñadores
@@ -325,10 +325,10 @@ El orden de imports en `menu.css` es importante:
 
 ```bash
 # Ver que todos los archivos existen
-ls -l build/clients_app/static/css/menu*.css
+ls -l build/pronto_clients/static/css/menu*.css
 
 # Verificar que menu.css tenga los imports
-cat build/clients_app/static/css/menu.css
+cat build/pronto_clients/static/css/menu.css
 ```
 
 ### Validar CSS
@@ -338,7 +338,7 @@ cat build/clients_app/static/css/menu.css
 npm install -g stylelint stylelint-config-standard
 
 # Validar todos los módulos
-stylelint "build/clients_app/static/css/menu-*.css"
+stylelint "build/pronto_clients/static/css/menu-*.css"
 ```
 
 ### Browser Testing
@@ -400,7 +400,7 @@ stylelint "build/clients_app/static/css/menu-*.css"
 
 **Para revertir:**
 ```bash
-cd build/clients_app/static/css/
+cd build/pronto_clients/static/css/
 cp menu.css.backup menu.css
 rm menu-*.css
 ```
