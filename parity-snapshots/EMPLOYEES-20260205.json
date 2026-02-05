@@ -1,0 +1,1249 @@
+{
+  "ok": true,
+  "target": "employees",
+  "parity_check_version": "1.0.0",
+  "generated_at": "2026-02-05T23:33:11Z",
+  "git_commit": "f005d3c",
+  "repo_root": "/Users/molder/projects/github - molder/pronto",
+  "sources_scanned": {
+    "employees_vue": {
+      "files": 53
+    },
+    "employees_jinja": {
+      "files": 42
+    }
+  },
+  "backend": {
+    "count": 83,
+    "sample": [
+      "/api/admin/shortcuts",
+      "/api/admin/shortcuts/{var}",
+      "/api/analytics/category-performance",
+      "/api/analytics/comparison",
+      "/api/analytics/customer-segments",
+      "/api/analytics/kpis",
+      "/api/analytics/operational-metrics",
+      "/api/analytics/revenue-trends",
+      "/api/analytics/waiter-performance",
+      "/api/areas",
+      "/api/areas/{var}",
+      "/api/branding/config",
+      "/api/branding/generate-products",
+      "/api/branding/generate/{var}",
+      "/api/branding/logo",
+      "/api/branding/upload/{var}",
+      "/api/business-info",
+      "/api/config",
+      "/api/config/{var}",
+      "/api/debug/orders"
+    ]
+  },
+  "missing_known_method": [],
+  "missing_unknown_method": [
+    {
+      "path": "/api/business-info/upload-logo",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/components/BusinessConfig.vue",
+          "line": 380
+        }
+      ]
+    },
+    {
+      "path": "/api/config/store_cancel_reason",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter-board.ts",
+          "line": 2063
+        }
+      ]
+    },
+    {
+      "path": "/api/customers/search",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/customers-manager.ts",
+          "line": 185
+        }
+      ]
+    },
+    {
+      "path": "/api/customers/stats",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/customers-manager.ts",
+          "line": 160
+        }
+      ]
+    },
+    {
+      "path": "/api/customers/{var}",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/customers-manager.ts",
+          "line": 255
+        }
+      ]
+    },
+    {
+      "path": "/api/customers/{var}/coupons",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/customers-manager.ts",
+          "line": 379
+        }
+      ]
+    },
+    {
+      "path": "/api/customers/{var}/orders",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/customers-manager.ts",
+          "line": 327
+        }
+      ]
+    },
+    {
+      "path": "/api/feedback/stats/overall",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/components/FeedbackDashboard.vue",
+          "line": 240
+        }
+      ]
+    },
+    {
+      "path": "/api/feedback/stats/top-employees",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/components/FeedbackDashboard.vue",
+          "line": 241
+        }
+      ]
+    },
+    {
+      "path": "/api/menu-items/popular",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/recommendations-manager.ts",
+          "line": 204
+        }
+      ]
+    },
+    {
+      "path": "/api/menu-items/recommendations",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/recommendations-manager.ts",
+          "line": 160
+        }
+      ]
+    },
+    {
+      "path": "/api/modifiers",
+      "method": "UNKNOWN",
+      "refs_count": 2,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/modifiers-manager.ts",
+          "line": 129
+        },
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/modifiers-manager.ts",
+          "line": 550
+        }
+      ]
+    },
+    {
+      "path": "/api/modifiers/groups",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/modifiers-manager.ts",
+          "line": 446
+        }
+      ]
+    },
+    {
+      "path": "/api/modifiers/groups/{var}",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/modifiers-manager.ts",
+          "line": 445
+        }
+      ]
+    },
+    {
+      "path": "/api/modifiers/{var}",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/modifiers-manager.ts",
+          "line": 549
+        }
+      ]
+    },
+    {
+      "path": "/api/orders/table-rows",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter-board.ts",
+          "line": 3706
+        }
+      ]
+    },
+    {
+      "path": "/api/orders/{var}",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/employee-events.ts",
+          "line": 371
+        }
+      ]
+    },
+    {
+      "path": "/api/orders/{var}/delivery-status",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter-board.ts",
+          "line": 4019
+        }
+      ]
+    },
+    {
+      "path": "/api/orders/{var}/print",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter/constants.ts",
+          "line": 24
+        }
+      ]
+    },
+    {
+      "path": "/api/realtime/notifications",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/employee-events.ts",
+          "line": 133
+        }
+      ]
+    },
+    {
+      "path": "/api/realtime/orders",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/core/realtime.ts",
+          "line": 153
+        }
+      ]
+    },
+    {
+      "path": "/api/reports",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/components/ReportsManager.vue",
+          "line": 320
+        }
+      ]
+    },
+    {
+      "path": "/api/reports/peak-hours",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/reports-manager.ts",
+          "line": 301
+        }
+      ]
+    },
+    {
+      "path": "/api/reports/sales",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/reports-manager.ts",
+          "line": 156
+        }
+      ]
+    },
+    {
+      "path": "/api/reports/top-products",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/reports-manager.ts",
+          "line": 233
+        }
+      ]
+    },
+    {
+      "path": "/api/reports/waiter-tips",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/reports-manager.ts",
+          "line": 359
+        }
+      ]
+    },
+    {
+      "path": "/api/sessions/anonymous",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/anonymous-sessions-manager.ts",
+          "line": 84
+        }
+      ]
+    },
+    {
+      "path": "/api/sessions/{var}/orders",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter-board.ts",
+          "line": 687
+        }
+      ]
+    },
+    {
+      "path": "/api/settings/public/waiter_notification_sound",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "employees_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter/sounds.ts",
+          "line": 13
+        }
+      ]
+    },
+    {
+      "path": "/api/stats/public",
+      "method": "UNKNOWN",
+      "refs_count": 5,
+      "refs": [
+        {
+          "source": "employees_jinja",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/login_chef.html",
+          "line": 519
+        },
+        {
+          "source": "employees_jinja",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/login_admin.html",
+          "line": 519
+        },
+        {
+          "source": "employees_jinja",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/login_waiter.html",
+          "line": 519
+        },
+        {
+          "source": "employees_jinja",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/login.html",
+          "line": 586
+        },
+        {
+          "source": "employees_jinja",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/login_cashier.html",
+          "line": 519
+        }
+      ]
+    }
+  ],
+  "method_mismatch": [],
+  "unknown_methods": [
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/core/realtime.ts",
+      "line": 153,
+      "path": "/api/realtime/orders"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/components/EmployeesManager.vue",
+      "line": 59,
+      "path": "/api/roles"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/components/EmployeesManager.vue",
+      "line": 83,
+      "path": "/api/employees"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/components/EmployeesManager.vue",
+      "line": 144,
+      "path": "/api/employees"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/components/EmployeesManager.vue",
+      "line": 144,
+      "path": "/api/employees/{var}"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/components/ClosedSessionsManager.vue",
+      "line": 141,
+      "path": "/api/orders"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/components/BrandingManager.vue",
+      "line": 121,
+      "path": "/api/branding/config"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/components/ShortcutsManager.vue",
+      "line": 202,
+      "path": "/api/admin/shortcuts"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/components/ShortcutsManager.vue",
+      "line": 285,
+      "path": "/api/admin/shortcuts"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/components/ShortcutsManager.vue",
+      "line": 285,
+      "path": "/api/admin/shortcuts/{var}"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/components/RolesManager.vue",
+      "line": 299,
+      "path": "/api/roles"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/components/FeedbackDashboard.vue",
+      "line": 240,
+      "path": "/api/feedback/stats/overall"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/components/FeedbackDashboard.vue",
+      "line": 241,
+      "path": "/api/feedback/stats/top-employees"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/components/BusinessConfig.vue",
+      "line": 247,
+      "path": "/api/business-info"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/components/BusinessConfig.vue",
+      "line": 380,
+      "path": "/api/business-info/upload-logo"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/components/PaymentFlow.vue",
+      "line": 294,
+      "path": "/api/sessions/{var}/ticket"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/components/ReportsManager.vue",
+      "line": 320,
+      "path": "/api/reports"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/modifiers-manager.ts",
+      "line": 129,
+      "path": "/api/modifiers"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/modifiers-manager.ts",
+      "line": 445,
+      "path": "/api/modifiers/groups/{var}"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/modifiers-manager.ts",
+      "line": 446,
+      "path": "/api/modifiers/groups"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/modifiers-manager.ts",
+      "line": 549,
+      "path": "/api/modifiers/{var}"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/modifiers-manager.ts",
+      "line": 550,
+      "path": "/api/modifiers"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/orders-board.ts",
+      "line": 82,
+      "path": "/api/orders/{var}/accept"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/orders-board.ts",
+      "line": 90,
+      "path": "/api/orders/{var}/kitchen/start"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/orders-board.ts",
+      "line": 98,
+      "path": "/api/orders/{var}/kitchen/ready"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/orders-board.ts",
+      "line": 106,
+      "path": "/api/orders/{var}/deliver"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/orders-board.ts",
+      "line": 425,
+      "path": "/api/orders"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/orders-board.ts",
+      "line": 603,
+      "path": "/api/orders"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/orders-board.ts",
+      "line": 796,
+      "path": "/api/orders"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/kitchen-board.ts",
+      "line": 80,
+      "path": "/api/orders/{var}/kitchen/start"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/kitchen-board.ts",
+      "line": 81,
+      "path": "/api/orders/{var}/kitchen/start"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/kitchen-board.ts",
+      "line": 83,
+      "path": "/api/orders/{var}/kitchen/ready"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/kitchen-board.ts",
+      "line": 85,
+      "path": "/api/orders/{var}/deliver"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/kitchen-board.ts",
+      "line": 925,
+      "path": "/api/orders"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/kitchen-board.ts",
+      "line": 999,
+      "path": "/api/sessions/{var}/ticket.pdf"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/kitchen-board.ts",
+      "line": 1083,
+      "path": "/api/orders"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/kitchen-board.ts",
+      "line": 1347,
+      "path": "/api/orders"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/role-management.ts",
+      "line": 134,
+      "path": "/api/employees/search"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/role-management.ts",
+      "line": 194,
+      "path": "/api/employees/{var}"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/role-management.ts",
+      "line": 328,
+      "path": "/api/permissions/system"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/payments-flow.ts",
+      "line": 743,
+      "path": "/api/sessions/{var}/confirm-payment"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/areas-manager.ts",
+      "line": 263,
+      "path": "/api/areas"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/areas-manager.ts",
+      "line": 378,
+      "path": "/api/areas"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/areas-manager.ts",
+      "line": 378,
+      "path": "/api/areas/{var}"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter-board.ts",
+      "line": 687,
+      "path": "/api/sessions/{var}/orders"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter-board.ts",
+      "line": 797,
+      "path": "/api/sessions/{var}/ticket.pdf"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter-board.ts",
+      "line": 1281,
+      "path": "/api/orders/{var}/accept"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter-board.ts",
+      "line": 1662,
+      "path": "/api/notifications/waiter/pending"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter-board.ts",
+      "line": 2063,
+      "path": "/api/config/store_cancel_reason"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter-board.ts",
+      "line": 3098,
+      "path": "/api/orders"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter-board.ts",
+      "line": 3244,
+      "path": "/api/sessions/{var}/ticket.pdf"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter-board.ts",
+      "line": 3431,
+      "path": "/api/sessions/{var}/ticket"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter-board.ts",
+      "line": 3632,
+      "path": "/api/orders"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter-board.ts",
+      "line": 3706,
+      "path": "/api/orders/table-rows"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter-board.ts",
+      "line": 3743,
+      "path": "/api/orders"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter-board.ts",
+      "line": 3782,
+      "path": "/api/orders"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter-board.ts",
+      "line": 3828,
+      "path": "/api/orders"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter-board.ts",
+      "line": 4019,
+      "path": "/api/orders/{var}/delivery-status"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter-board.ts",
+      "line": 4228,
+      "path": "/api/orders/{var}/deliver"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/cashier-board.ts",
+      "line": 768,
+      "path": "/api/orders"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/cashier-board.ts",
+      "line": 1021,
+      "path": "/api/orders"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/reports-manager.ts",
+      "line": 156,
+      "path": "/api/reports/sales"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/reports-manager.ts",
+      "line": 233,
+      "path": "/api/reports/top-products"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/reports-manager.ts",
+      "line": 301,
+      "path": "/api/reports/peak-hours"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/reports-manager.ts",
+      "line": 359,
+      "path": "/api/reports/waiter-tips"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/recommendations-manager.ts",
+      "line": 160,
+      "path": "/api/menu-items/recommendations"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/recommendations-manager.ts",
+      "line": 204,
+      "path": "/api/menu-items/popular"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/anonymous-sessions-manager.ts",
+      "line": 84,
+      "path": "/api/sessions/anonymous"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/tables-manager.ts",
+      "line": 400,
+      "path": "/api/areas"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/tables-manager.ts",
+      "line": 551,
+      "path": "/api/tables"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/tables-manager.ts",
+      "line": 881,
+      "path": "/api/tables/{var}/qr"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/tables-manager.ts",
+      "line": 989,
+      "path": "/api/tables"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/tables-manager.ts",
+      "line": 989,
+      "path": "/api/tables/{var}"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/promotions-manager.ts",
+      "line": 149,
+      "path": "/api/promotions"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/promotions-manager.ts",
+      "line": 170,
+      "path": "/api/discount-codes"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/employee-events.ts",
+      "line": 133,
+      "path": "/api/realtime/notifications"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/employee-events.ts",
+      "line": 243,
+      "path": "/api/notifications/waiter/pending"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/employee-events.ts",
+      "line": 371,
+      "path": "/api/orders/{var}"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/customers-manager.ts",
+      "line": 160,
+      "path": "/api/customers/stats"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/customers-manager.ts",
+      "line": 185,
+      "path": "/api/customers/search"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/customers-manager.ts",
+      "line": 255,
+      "path": "/api/customers/{var}"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/customers-manager.ts",
+      "line": 327,
+      "path": "/api/customers/{var}/orders"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/customers-manager.ts",
+      "line": 379,
+      "path": "/api/customers/{var}/coupons"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/config-manager.ts",
+      "line": 73,
+      "path": "/api/config"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/menu-manager.ts",
+      "line": 585,
+      "path": "/api/menu-items"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/menu-manager.ts",
+      "line": 585,
+      "path": "/api/menu-items/{var}"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/menu-manager.ts",
+      "line": 611,
+      "path": "/api/menu"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/branding-manager.ts",
+      "line": 49,
+      "path": "/api/branding/config"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter/constants.ts",
+      "line": 11,
+      "path": "/api/orders/{var}/accept"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter/constants.ts",
+      "line": 24,
+      "path": "/api/orders/{var}/print"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter/constants.ts",
+      "line": 31,
+      "path": "/api/orders/{var}/kitchen/start"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter/constants.ts",
+      "line": 45,
+      "path": "/api/orders/{var}/kitchen/ready"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter/constants.ts",
+      "line": 53,
+      "path": "/api/orders/{var}/deliver"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter/constants.ts",
+      "line": 67,
+      "path": "/api/orders/{var}/deliver"
+    },
+    {
+      "source": "employees_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/employees/modules/waiter/sounds.ts",
+      "line": 13,
+      "path": "/api/settings/public/waiter_notification_sound"
+    },
+    {
+      "source": "employees_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/login_chef.html",
+      "line": 519,
+      "path": "/api/stats/public"
+    },
+    {
+      "source": "employees_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/login_admin.html",
+      "line": 519,
+      "path": "/api/stats/public"
+    },
+    {
+      "source": "employees_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/login_waiter.html",
+      "line": 519,
+      "path": "/api/stats/public"
+    },
+    {
+      "source": "employees_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/login.html",
+      "line": 586,
+      "path": "/api/stats/public"
+    },
+    {
+      "source": "employees_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/dashboard.html",
+      "line": 768,
+      "path": "/api/sessions/all"
+    },
+    {
+      "source": "employees_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/dashboard.html",
+      "line": 5070,
+      "path": "/api/tables"
+    },
+    {
+      "source": "employees_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/dashboard.html",
+      "line": 5129,
+      "path": "/api/orders"
+    },
+    {
+      "source": "employees_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/dashboard.html",
+      "line": 5239,
+      "path": "/api/tables/{var}/qr"
+    },
+    {
+      "source": "employees_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/dashboard.html",
+      "line": 5631,
+      "path": "/api/employees/me/preferences"
+    },
+    {
+      "source": "employees_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/dashboard.html",
+      "line": 6142,
+      "path": "/api/branding/config"
+    },
+    {
+      "source": "employees_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/login_cashier.html",
+      "line": 519,
+      "path": "/api/stats/public"
+    },
+    {
+      "source": "employees_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/analytics.html",
+      "line": 654,
+      "path": "/api/analytics/kpis"
+    },
+    {
+      "source": "employees_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/analytics.html",
+      "line": 761,
+      "path": "/api/analytics/revenue-trends"
+    },
+    {
+      "source": "employees_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/analytics.html",
+      "line": 834,
+      "path": "/api/analytics/waiter-performance"
+    },
+    {
+      "source": "employees_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/analytics.html",
+      "line": 886,
+      "path": "/api/analytics/category-performance"
+    },
+    {
+      "source": "employees_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/analytics.html",
+      "line": 938,
+      "path": "/api/analytics/operational-metrics"
+    },
+    {
+      "source": "employees_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/analytics.html",
+      "line": 1023,
+      "path": "/api/analytics/customer-segments"
+    },
+    {
+      "source": "employees_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/analytics.html",
+      "line": 1088,
+      "path": "/api/analytics/comparison"
+    },
+    {
+      "source": "employees_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/includes/_dashboard_scripts.html",
+      "line": 694,
+      "path": "/api/tables"
+    },
+    {
+      "source": "employees_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/includes/_dashboard_scripts.html",
+      "line": 753,
+      "path": "/api/orders"
+    },
+    {
+      "source": "employees_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/includes/_dashboard_scripts.html",
+      "line": 863,
+      "path": "/api/tables/{var}/qr"
+    },
+    {
+      "source": "employees_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/includes/_dashboard_scripts.html",
+      "line": 1256,
+      "path": "/api/employees/me/preferences"
+    },
+    {
+      "source": "employees_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-employees/src/pronto_employees/templates/includes/_dashboard_scripts.html",
+      "line": 1778,
+      "path": "/api/branding/config"
+    }
+  ],
+  "warnings": [
+    {
+      "code": "UNKNOWN_METHODS_THRESHOLD",
+      "source": "employees_vue",
+      "count": 95,
+      "threshold": 20
+    },
+    {
+      "code": "UNKNOWN_METHODS_THRESHOLD",
+      "source": "employees_jinja",
+      "count": 23,
+      "threshold": 10
+    }
+  ],
+  "violations": [],
+  "query_keys_used": {
+    "/api/orders": {
+      "status": 10,
+      "include_closed": 9,
+      "include_delivered": 9
+    },
+    "/api/roles": {
+      "include_inactive": 1
+    },
+    "/api/feedback/stats/overall": {
+      "days": 1
+    },
+    "/api/feedback/stats/top-employees": {
+      "days": 1,
+      "limit": 1
+    },
+    "/api/reports": {
+      "${params}": 1
+    },
+    "/api/employees/search": {
+      "q": 1
+    },
+    "/api/orders/table-rows": {
+      "include_closed": 1,
+      "include_delivered": 1
+    },
+    "/api/reports/sales": {
+      "start_date": 1,
+      "end_date": 1,
+      "group_by": 1
+    },
+    "/api/reports/top-products": {
+      "start_date": 1,
+      "end_date": 1,
+      "limit": 1
+    },
+    "/api/reports/peak-hours": {
+      "start_date": 1,
+      "end_date": 1
+    },
+    "/api/reports/waiter-tips": {
+      "start_date": 1,
+      "end_date": 1
+    },
+    "/api/menu-items/popular": {
+      "days": 1,
+      "limit": 1
+    },
+    "/api/realtime/notifications": {
+      "after_id": 1,
+      "limit": 1,
+      "timeout_ms": 1
+    },
+    "/api/customers/search": {
+      "q": 1
+    },
+    "/api/analytics/kpis": {
+      "start_date": 1,
+      "end_date": 1,
+      "comparison_period": 1
+    },
+    "/api/analytics/revenue-trends": {
+      "start_date": 1,
+      "end_date": 1,
+      "granularity": 1
+    },
+    "/api/analytics/waiter-performance": {
+      "start_date": 1,
+      "end_date": 1
+    },
+    "/api/analytics/category-performance": {
+      "start_date": 1,
+      "end_date": 1
+    },
+    "/api/analytics/operational-metrics": {
+      "start_date": 1,
+      "end_date": 1
+    },
+    "/api/analytics/customer-segments": {
+      "start_date": 1,
+      "end_date": 1
+    },
+    "/api/analytics/comparison": {
+      "current_start_date": 1,
+      "current_end_date": 1,
+      "comparison_period": 1
+    }
+  },
+  "batch": {
+    "pin": [],
+    "k": 25,
+    "selected": [],
+    "summary_by_route_base": {}
+  }
+}

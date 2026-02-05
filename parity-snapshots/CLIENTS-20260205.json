@@ -1,0 +1,302 @@
+{
+  "ok": true,
+  "target": "clients",
+  "parity_check_version": "1.0.0",
+  "generated_at": "2026-02-05T23:33:12Z",
+  "git_commit": "f005d3c",
+  "repo_root": "/Users/molder/projects/github - molder/pronto",
+  "sources_scanned": {
+    "clients_vue": {
+      "files": 27
+    },
+    "clients_jinja": {
+      "files": 8
+    }
+  },
+  "backend": {
+    "count": 68,
+    "sample": [
+      "/api/areas",
+      "/api/auth/login",
+      "/api/auth/password/recover",
+      "/api/auth/password/reset",
+      "/api/auth/register",
+      "/api/auth/update/{var}",
+      "/api/auth/update/{var}/avatar",
+      "/api/avatars",
+      "/api/business-info",
+      "/api/call-waiter",
+      "/api/call-waiter/status/{var}",
+      "/api/config/{var}",
+      "/api/confirm-tip",
+      "/api/debug/orders/{var}/advance",
+      "/api/debug/sessions/{var}/request-checkout",
+      "/api/debug/sessions/{var}/simulate-payment",
+      "/api/debug/tables",
+      "/api/discount-code/validate",
+      "/api/feedback/email/{var}",
+      "/api/feedback/email/{var}/submit"
+    ]
+  },
+  "missing_known_method": [],
+  "missing_unknown_method": [
+    {
+      "path": "/api/config/client_session_validation_interval_minutes",
+      "method": "UNKNOWN",
+      "refs_count": 1,
+      "refs": [
+        {
+          "source": "clients_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/active-orders.ts",
+          "line": 1605
+        }
+      ]
+    },
+    {
+      "path": "/api/config/store_cancel_reason",
+      "method": "UNKNOWN",
+      "refs_count": 2,
+      "refs": [
+        {
+          "source": "clients_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/active-orders.ts",
+          "line": 1389
+        },
+        {
+          "source": "clients_vue",
+          "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/client-base.ts",
+          "line": 62
+        }
+      ]
+    }
+  ],
+  "method_mismatch": [],
+  "unknown_methods": [
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/order-tracker.ts",
+      "line": 201,
+      "path": "/api/session/{var}/orders"
+    },
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/order-tracker.ts",
+      "line": 268,
+      "path": "/api/session/{var}/orders"
+    },
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/session-timeout.ts",
+      "line": 35,
+      "path": "/api/session/{var}/timeout"
+    },
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/active-orders.ts",
+      "line": 277,
+      "path": "/api/session/{var}/orders"
+    },
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/active-orders.ts",
+      "line": 742,
+      "path": "/api/session/{var}/orders"
+    },
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/active-orders.ts",
+      "line": 1389,
+      "path": "/api/config/store_cancel_reason"
+    },
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/active-orders.ts",
+      "line": 1550,
+      "path": "/api/session/{var}/orders"
+    },
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/active-orders.ts",
+      "line": 1571,
+      "path": "/api/session/{var}/orders"
+    },
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/active-orders.ts",
+      "line": 1605,
+      "path": "/api/config/client_session_validation_interval_minutes"
+    },
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/active-orders.ts",
+      "line": 1633,
+      "path": "/api/session/{var}/orders"
+    },
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/active-orders.ts",
+      "line": 1713,
+      "path": "/api/business-info"
+    },
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/active-orders.ts",
+      "line": 1834,
+      "path": "/api/sessions/{var}/ticket.pdf"
+    },
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/thank-you.ts",
+      "line": 166,
+      "path": "/api/sessions/{var}/checkout"
+    },
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/thank-you.ts",
+      "line": 246,
+      "path": "/api/sessions/{var}/pay/stripe"
+    },
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/thank-you.ts",
+      "line": 332,
+      "path": "/api/session/{var}/orders"
+    },
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/session-manager.ts",
+      "line": 42,
+      "path": "/api/sessions/validate"
+    },
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/menu-shortcuts.ts",
+      "line": 15,
+      "path": "/api/shortcuts"
+    },
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/tables-manager.ts",
+      "line": 400,
+      "path": "/api/areas"
+    },
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/tables-manager.ts",
+      "line": 551,
+      "path": "/api/tables"
+    },
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/tables-manager.ts",
+      "line": 881,
+      "path": "/api/tables/{var}/qr"
+    },
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/tables-manager.ts",
+      "line": 989,
+      "path": "/api/tables"
+    },
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/tables-manager.ts",
+      "line": 989,
+      "path": "/api/tables/{var}"
+    },
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/client-base.ts",
+      "line": 62,
+      "path": "/api/config/store_cancel_reason"
+    },
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/client-base.ts",
+      "line": 281,
+      "path": "/api/notifications/waiter/status/{var}"
+    },
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/client-base.ts",
+      "line": 666,
+      "path": "/api/session/{var}/orders"
+    },
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/client-base.ts",
+      "line": 734,
+      "path": "/api/session/{var}/orders"
+    },
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/client-base.ts",
+      "line": 810,
+      "path": "/api/session/{var}/orders"
+    },
+    {
+      "source": "clients_vue",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-static/src/vue/clients/modules/client-base.ts",
+      "line": 865,
+      "path": "/api/session/{var}/orders"
+    },
+    {
+      "source": "clients_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-client/src/pronto_clients/templates/index.html",
+      "line": 340,
+      "path": "/api/business-info"
+    },
+    {
+      "source": "clients_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-client/src/pronto_clients/templates/feedback.html",
+      "line": 260,
+      "path": "${FEEDBACK_API_BASE}/api/feedback/bulk",
+      "reason": "TEMPLATE_HOST"
+    },
+    {
+      "source": "clients_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-client/src/pronto_clients/templates/index-alt.html",
+      "line": 394,
+      "path": "/api/business-info"
+    },
+    {
+      "source": "clients_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-client/src/pronto_clients/templates/debug_panel.html",
+      "line": 410,
+      "path": "/api/menu"
+    },
+    {
+      "source": "clients_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-client/src/pronto_clients/templates/debug_panel.html",
+      "line": 794,
+      "path": "/api/business-info"
+    },
+    {
+      "source": "clients_jinja",
+      "file": "/Users/molder/projects/github - molder/pronto/pronto-client/src/pronto_clients/templates/debug_panel.html",
+      "line": 813,
+      "path": "/api/promotions"
+    }
+  ],
+  "warnings": [
+    {
+      "code": "UNKNOWN_METHODS_THRESHOLD",
+      "source": "clients_vue",
+      "count": 28,
+      "threshold": 20
+    }
+  ],
+  "violations": [],
+  "query_keys_used": {
+    "/api/sessions/validate": {
+      "session_id": 1,
+      "table_id": 1
+    }
+  },
+  "batch": {
+    "pin": [],
+    "k": 25,
+    "selected": [],
+    "summary_by_route_base": {}
+  }
+}
