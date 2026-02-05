@@ -69,6 +69,23 @@ pronto-api/
 - `POST /api/notifications/waiter/confirm/<id>` - Confirm waiter call
 - `POST /api/notifications/admin/call` - Create admin call
 
+### Menu
+- `GET /api/menu` - List menu categories and items
+- `GET /api/products` - Alias of `/api/menu`
+
+### Orders
+- `POST /api/orders` - Create order
+- `GET /api/orders` - List orders (filters by status/recency)
+- `POST /api/orders/<id>/cancel` - Cancel order
+- `POST /api/orders/<id>/modify` - Create modification request
+- `POST /api/modifications/<id>/approve` - Approve modification
+- `POST /api/modifications/<id>/reject` - Reject modification
+- `GET /api/modifications/<id>` - Get modification details
+- `POST /api/orders/<id>/request-check` - Request payment for order
+
+### Promotions
+- `GET /api/promotions` - List promotions
+
 ## Configuration
 
 ### Environment Variables
