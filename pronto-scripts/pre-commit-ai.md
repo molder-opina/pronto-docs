@@ -26,7 +26,7 @@ ln -sf pronto-scripts/bin/pre-commit-ai .git/hooks/pre-commit
 - Roles no canónicos (admin_roles, etc.)
 - Static local fuera de pronto-static
 - Código duplicado de pronto-libs
-- PostgreSQL 13 referenciado
+- Version PostgreSQL no canonica referenciada (canonico: 16-alpine)
 - Secrets hardcodeados
 - docker-compose modificado
 - Contratos rotos (openapi, redis, db_schema)
