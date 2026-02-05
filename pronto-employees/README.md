@@ -86,7 +86,8 @@ pronto-employees/
 
 ### System Console (`/system`)
 - `GET /system` - System admin dashboard
-- `GET /system/system_login` - Super admin login
+- `GET /system/login` - System login
+- `POST /system/login` - System login (incluye handoff por token)
 - `GET /system/health` - System health check
 - `POST /system/auth/login` - System admin login
 
