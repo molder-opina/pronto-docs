@@ -7,7 +7,7 @@
 
 ## 📋 Resumen Ejecutivo
 
-Se ha implementado exitosamente un sistema de reautenticación rápida para super_admin que permite acceder a múltiples consolas (waiter, chef, cashier, admin) sin re-escribir credenciales, manteniendo estricto aislamiento por cookies.
+Se ha implementado exitosamente un sistema de reautenticación rápida para system que permite acceder a múltiples consolas (waiter, chef, cashier, admin) sin re-escribir credenciales, manteniendo estricto aislamiento por cookies.
 
 ### Características Implementadas
 
@@ -44,10 +44,10 @@ Se ha implementado exitosamente un sistema de reautenticación rápida para supe
 
 - ✅ `build/pronto_employees/app.py` - ProxyFix, CSRF, headers de seguridad
 - ✅ `build/pronto_employees/routes/system/auth.py` - **Consola /system completa**
-- ✅ `build/pronto_employees/routes/waiter/auth.py` - Endpoint super_admin_login
-- ✅ `build/pronto_employees/routes/chef/auth.py` - Endpoint super_admin_login
-- ✅ `build/pronto_employees/routes/cashier/auth.py` - Endpoint super_admin_login
-- ✅ `build/pronto_employees/admin/routes.py` - Endpoint super_admin_login
+- ✅ `build/pronto_employees/routes/waiter/auth.py` - Endpoint system_login
+- ✅ `build/pronto_employees/routes/chef/auth.py` - Endpoint system_login
+- ✅ `build/pronto_employees/routes/cashier/auth.py` - Endpoint system_login
+- ✅ `build/pronto_employees/admin/routes.py` - Endpoint system_login
 
 ### Templates
 
@@ -58,9 +58,9 @@ Se ha implementado exitosamente un sistema de reautenticación rápida para supe
 
 ### Base de Datos
 
-- ✅ `build/shared/migrations/010_add_super_admin_handoff_and_audit.sql`
+- ✅ `build/shared/migrations/010_add_system_handoff_and_audit.sql`
 - ✅ Migración aplicada exitosamente
-- ✅ Tablas creadas: `super_admin_handoff_tokens`, `audit_logs`
+- ✅ Tablas creadas: `system_handoff_tokens`, `audit_logs`
 - ✅ 8 índices para performance
 
 ### Documentación
@@ -84,7 +84,7 @@ CORS_ALLOWED_ORIGINS= (vacío en desarrollo)
 
 ### Headers de Seguridad
 
-En rutas sensibles (`/system/*`, `*/super_admin_login`, `*/login`, `*/reauth`):
+En rutas sensibles (`/system/*`, `*/system_login`, `*/login`, `*/reauth`):
 
 - `Referrer-Policy: no-referrer`
 - `Cache-Control: no-store, no-cache, must-revalidate, max-age=0`
@@ -96,7 +96,7 @@ En rutas sensibles (`/system/*`, `*/super_admin_login`, `*/login`, `*/reauth`):
 
 ## 🗄️ Estructura de Base de Datos
 
-### super_admin_handoff_tokens
+### system_handoff_tokens
 
 | Columna      | Tipo                     | Descripción                           |
 | ------------ | ------------------------ | ------------------------------------- |
@@ -137,7 +137,7 @@ En rutas sensibles (`/system/*`, `*/super_admin_login`, `*/login`, `*/reauth`):
 ```
 Usuario → /system/login
       ↓
-Verifica has_scope("super_admin")
+Verifica has_scope("system")
       ↓
 Crea sesión con active_scope="system"
       ↓
@@ -157,11 +157,11 @@ Confirmación con warnings
       ↓
 Genera token SHA-256(raw_token + pepper)
       ↓
-Guarda en super_admin_handoff_tokens
+Guarda en system_handoff_tokens
       ↓
 Crea audit_log (action: reauth_token_generated)
       ↓
-POST redirect a /waiter/super_admin_login
+POST redirect a /waiter/system_login
       ↓
 Consume token (atomic UPDATE)
       ↓
@@ -171,7 +171,7 @@ Marca used_at = NOW()
       ↓
 Crea sesión waiter con active_scope="waiter"
       ↓
-Crea audit_log (action: super_admin_handoff_login)
+Crea audit_log (action: system_handoff_login)
       ↓
 Redirect a /waiter/dashboard
 ```
@@ -198,12 +198,12 @@ Redirect a /waiter/dashboard
 - [x] ALLOWED_HOSTS configurado
 - [x] Templates creados
 - [x] Endpoints `/system/*` creados
-- [x] Endpoints `*/super_admin_login` creados en todos los scopes
+- [x] Endpoints `*/system_login` creados en todos los scopes
 
 ### Checklist Post-Deploy (Pendiente)
 
 - [ ] Iniciar servidor: `bin/mac/start.sh employee`
-- [ ] Login en /system funciona solo con super_admin
+- [ ] Login en /system funciona solo con system
 - [ ] Reauth flow completo: /system → /waiter sin re-login
 - [ ] Cookies separadas por Path en DevTools
 - [ ] Token one-time: segundo uso falla
@@ -231,8 +231,8 @@ SELECT
     t.used_at as token_used_at
 FROM audit_logs al
 JOIN pronto_employees e ON al.employee_id = e.id
-LEFT JOIN super_admin_handoff_tokens t ON al.token_id = t.id
-WHERE al.action IN ('reauth_token_generated', 'super_admin_handoff_login')
+LEFT JOIN system_handoff_tokens t ON al.token_id = t.id
+WHERE al.action IN ('reauth_token_generated', 'system_handoff_login')
 ORDER BY al.created_at DESC
 LIMIT 20;
 ```
@@ -252,7 +252,7 @@ SELECT
         WHEN expires_at < NOW() THEN 'EXPIRED'
         ELSE 'ACTIVE'
     END as status
-FROM super_admin_handoff_tokens
+FROM system_handoff_tokens
 ORDER BY created_at DESC
 LIMIT 20;
 ```
@@ -280,7 +280,7 @@ LIMIT 20;
 - Cleanup automático de tokens expirados en cada reauth
 - Consider cron job para limpiar tokens antiguos:
   ```sql
-  DELETE FROM super_admin_handoff_tokens
+  DELETE FROM system_handoff_tokens
   WHERE expires_at < NOW() - INTERVAL '7 days';
   ```
 

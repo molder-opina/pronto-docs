@@ -39,6 +39,36 @@ pronto-api/
 }
 ```
 
+### Realtime
+- `GET /api/realtime/orders` - Long-poll order events
+- `GET /api/realtime/notifications` - Long-poll staff notifications
+
+**Query params (ambos endpoints):**
+- `after_id` (default `0-0`)
+- `limit` (default `50`, max `200`)
+- `timeout_ms` (default `5000`, max `30000`)
+- `types` (CSV opcional)
+
+**Response (ambos endpoints):**
+```json
+{
+  "events": [],
+  "last_id": "1738-0",
+  "meta": {
+    "endpoint": "orders|notifications",
+    "count": 0,
+    "timeout_ms": 5000,
+    "retry_after_ms": 2000
+  }
+}
+```
+
+### Notifications
+- `POST /api/notifications/waiter/call` - Create waiter call
+- `GET /api/notifications/waiter/pending` - List pending waiter calls
+- `POST /api/notifications/waiter/confirm/<id>` - Confirm waiter call
+- `POST /api/notifications/admin/call` - Create admin call
+
 ## Configuration
 
 ### Environment Variables

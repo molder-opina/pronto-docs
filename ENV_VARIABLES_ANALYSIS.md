@@ -31,7 +31,7 @@
 
 #### `secrets.env`
 - ✅ SECRET_KEY (para Flask y JWT)
-- ✅ HANDOFF_PEPPER (para super admin handoff)
+- ✅ HANDOFF_PEPPER (para system handoff)
 - ✅ PASSWORD_HASH_SALT (para hashing de passwords)
 - ✅ CUSTOMER_DATA_KEY (para encriptación de datos de clientes)
 - ✅ CORS_ALLOWED_ORIGINS

@@ -89,14 +89,10 @@ pronto-client/
 - `POST /api/support` - Request support
 - `GET /api/support/tickets` - Get support tickets
 
-### Waiter Calls (`/api/waiter_calls`)
-- `POST /api/waiter_calls` - Call waiter
-- `GET /api/waiter_calls/<session_id>` - Get waiter call status
-- `DELETE /api/waiter_calls/<call_id>` - Cancel waiter call
-
-### Notifications (`/api/notifications`)
-- `GET /api/notifications` - Get notifications
-- `POST /api/notifications/mark-read` - Mark notifications as read
+### Waiter Calls (`/api/call-waiter`)
+- `POST /api/call-waiter` - Call waiter
+- `GET /api/call-waiter/status/<call_id>` - Get waiter call status
+- `GET /api/notifications/waiter/status/<call_id>` - Get waiter call status
 
 ### Shortcuts (`/api/shortcuts`)
 - `GET /api/shortcuts` - Get app shortcuts

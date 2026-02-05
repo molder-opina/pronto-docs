@@ -48,7 +48,7 @@ SECRET_KEY=lhlJHWqUOdYUveqkzz6nClgGpzheVFuxd5bRWJBNVEA
 ---
 
 ### HANDOFF_PEPPER
-**Propósito**: Pepper para tokens de handoff de super admin  
+**Propósito**: Pepper para tokens de handoff de system  
 **Tipo**: String (32+ caracteres)  
 **Obligatoria**: ✅ Sí (en producción)  
 **Archivo**: `.env`  

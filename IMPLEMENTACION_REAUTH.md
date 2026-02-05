@@ -2,7 +2,7 @@
 
 ## Resumen
 
-Se ha implementado un sistema de reautenticación rápida para super_admin que permite acceder a múltiples consolas (waiter, chef, cashier, admin) sin re-escribir credenciales, manteniendo aislamiento estricto por cookies.
+Se ha implementado un sistema de reautenticación rápida para system que permite acceder a múltiples consolas (waiter, chef, cashier, admin) sin re-escribir credenciales, manteniendo aislamiento estricto por cookies.
 
 ## Archivos Creados
 
@@ -62,7 +62,7 @@ Los siguientes archivos necesitan ser creados/actualizados manualmente o mediant
 
 `build/pronto_employees/routes/system/auth.py` - Nuevo archivo:
 
-- Login exclusivo super_admin
+- Login exclusivo system
 - Dashboard system
 - Endpoints `/system/reauth` (GET y POST)
 - Validación Origin/Referer con ALLOWED_HOSTS
@@ -75,7 +75,7 @@ Cada archivo `build/pronto_employees/routes/{scope}/auth.py` necesita:
 - Import de `csrf` desde `extensions`
 - Import de `utcnow` desde `shared.datetime_utils`
 - Reemplazar `datetime.now(UTC)` por `utcnow()`
-- Endpoint `@csrf.exempt /super_admin_login` con:
+- Endpoint `@csrf.exempt /system_login` con:
   - UPDATE atómico de token (no SELECT FOR UPDATE)
   - Validación one-time + TTL
   - Transacción única
@@ -95,13 +95,13 @@ Crear/actualizar:
 - `build/pronto_employees/templates/login_system.html`
 - `build/pronto_employees/templates/system_reauth_confirm.html`
 - `build/pronto_employees/templates/system_reauth_redirect.html`
-- Actualizar templates de login de cada scope con botón "Entrar como super_admin"
+- Actualizar templates de login de cada scope con botón "Entrar como system"
 
 ### 5. Base de datos
 
 ```bash
 cd build/shared
-alembic revision --autogenerate -m "Add super_admin_handoff_tokens and audit_logs"
+alembic revision --autogenerate -m "Add system_handoff_tokens and audit_logs"
 alembic upgrade head
 ```
 
@@ -116,11 +116,11 @@ alembic upgrade head
 - [ ] ALLOWED_HOSTS configurado para el entorno
 - [ ] Templates creados
 - [ ] Endpoints `/system/*` creados
-- [ ] Endpoints `*/super_admin_login` creados en todos los scopes
+- [ ] Endpoints `*/system_login` creados en todos los scopes
 
 ### Checklist Post-Deploy
 
-- [ ] Login en /system funciona solo con super_admin
+- [ ] Login en /system funciona solo con system
 - [ ] Reauth flow completo: /system → /waiter sin re-login
 - [ ] Cookies separadas por Path en DevTools
 - [ ] Token one-time: segundo uso falla

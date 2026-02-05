@@ -122,7 +122,7 @@ CUSTOMER_DATA_KEY=your-customer-data-encryption-key-here-32chars-minimum
   - `test_admin_required_success` - Admin permitido
   - `test_admin_required_denied` - No-admin bloqueado
   - `test_multi_role_access` - Empleado con múltiples roles
-  - `test_super_admin_bypass` - Super admin accede a todo
+  - `test_system_bypass` - Super admin accede a todo
 
 **Archivo**: `tests/integration/test_jwt_roles.py` (nuevo)  
 **Tiempo estimado**: 1.5 horas  

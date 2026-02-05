@@ -125,7 +125,7 @@ pronto-docs/
 - Report generation
 
 **Technologies:**
-- Python 3.14+
+- Python 3.11+
 - SQLAlchemy ORM
 - PyJWT
 - Pydantic
@@ -133,7 +133,7 @@ pronto-docs/
 ### 5. Pronto-PostgreSQL
 
 **Port:** 5432
-**Version:** PostgreSQL 13
+**Version:** PostgreSQL 16
 **Purpose:** Persistent data storage for the platform
 
 **Documentation:**
@@ -157,7 +157,7 @@ pronto-docs/
 - Business configuration
 
 **Technologies:**
-- PostgreSQL 13
+- PostgreSQL 16
 - Docker Compose
 - Alembic migrations
 
@@ -417,7 +417,7 @@ cd pronto-employees/ # For employee application
 ## Technology Stack
 
 ### Backend
-- **Python 3.14+** - Primary backend language
+- **Python 3.11+** - Primary backend language
 - **Flask** - Web framework
 - **SQLAlchemy** - ORM
 - **Alembic** - Database migrations
@@ -431,7 +431,7 @@ cd pronto-employees/ # For employee application
 - **Nginx** - Static asset serving
 
 ### Database
-- **PostgreSQL 13** - Primary database
+- **PostgreSQL 16** - Primary database
 - **Redis 7.x** - Cache and sessions
 
 ### Testing

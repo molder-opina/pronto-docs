@@ -213,8 +213,12 @@ build/
 
 #### 📋 **Orders Management** (`/api/orders`)
 
-- `GET /api/orders` - Obtener todos los pedidos
-- `GET /api/orders/kitchen/pending` - Pedidos pendientes cocina
+- `GET /api/orders` - Obtener pedidos (source of truth = `workflow_status`)
+  - Query params soportados:
+    - `status=...` (repetible, OR por lista)
+    - `paid_recent_minutes=N` (solo `paid_at`; fuerza `status=paid`; excluye `paid_at IS NULL`)
+  - Nota: el backend puede incluir `warnings[]` (ej: `MIX_PAID_NONTERMINAL:<session_id>`)
+- `GET /api/orders?status=queued` - Pedidos pendientes cocina (`workflow_status=queued`)
 - `POST /api/orders/<int:order_id>/accept` - Aceptar pedido (waiter)
 - `POST /api/orders/<int:order_id>/kitchen/start` - Iniciar preparación (chef)
 - `POST /api/orders/<int:order_id>/kitchen/ready` - Marcar listo (chef)
@@ -226,10 +230,9 @@ build/
 
 #### 🛒 **Sessions Management** (`/api/sessions`)
 
-- `GET /api/sessions/awaiting-payment` - Sesiones esperando pago
+- `GET /api/orders?status=awaiting_payment` - Sesiones esperando pago (derivar por `session_id` agrupando órdenes)
 - `POST /api/sessions/<int:session_id>/checkout` - Procesar checkout
 - `POST /api/sessions/<int:session_id>/tip` - Agregar propina
-- `GET /api/sessions/paid-recent` - Pagos recientes
 - `GET /api/sessions/<int:session_id>/ticket` - Generar ticket
 - `POST /api/sessions/<int:session_id>/close` - Cerrar sesión
 - `GET /api/sessions/<int:session_id>/ticket.pdf` - Ticket PDF

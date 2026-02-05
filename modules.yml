@@ -1,0 +1,260 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "name": "pronto-api",
+      "path_root": "./pronto-api",
+      "owner": "equipo-api",
+      "type": "svc",
+      "runtime": "python",
+      "ports": [6082],
+      "compose_files": ["./docker-compose.yml", "./docker-compose.api.yml"],
+      "contracts_path": "./pronto-docs/contracts/pronto-api",
+      "tests_path": "./pronto-tests/pronto-api",
+      "healthchecks": [
+        {"kind": "http", "target": "http://localhost:6082/health"}
+      ],
+      "owns_paths": ["pronto-api"],
+      "shared_paths": [],
+      "shared_paths_consumers": [],
+      "produces": ["http_api", "events", "redis_keys", "db_schema"],
+      "consumes": ["db_runtime", "redis_runtime"],
+      "test_suites": ["contract", "smoke"],
+      "test_cmds": {
+        "contract": "pronto-tests/scripts/run-tests.sh functionality",
+        "smoke": "pronto-tests/scripts/run-tests.sh functionality"
+      }
+    },
+    {
+      "name": "pronto-client",
+      "path_root": "./pronto-client",
+      "owner": "equipo-client",
+      "type": "svc",
+      "runtime": "python",
+      "ports": [6080],
+      "compose_files": ["./docker-compose.yml", "./docker-compose.client.yml"],
+      "contracts_path": "./pronto-docs/contracts/pronto-client",
+      "tests_path": "./pronto-tests/pronto-client",
+      "healthchecks": [
+        {"kind": "http", "target": "http://localhost:6080/health"}
+      ],
+      "owns_paths": ["pronto-client"],
+      "shared_paths": [],
+      "shared_paths_consumers": [],
+      "produces": ["http_web"],
+      "consumes": ["http_api", "cookies", "csrf", "redis_keys", "events"],
+      "test_suites": ["e2e"],
+      "test_cmds": {
+        "e2e": "pronto-tests/scripts/run-tests.sh functionality"
+      }
+    },
+    {
+      "name": "pronto-employees",
+      "path_root": "./pronto-employees",
+      "owner": "equipo-employees",
+      "type": "svc",
+      "runtime": "python",
+      "ports": [6081],
+      "compose_files": ["./docker-compose.yml", "./docker-compose.employees.yml"],
+      "contracts_path": "./pronto-docs/contracts/pronto-employees",
+      "tests_path": "./pronto-tests/pronto-employees",
+      "healthchecks": [
+        {"kind": "http", "target": "http://localhost:6081/health"}
+      ],
+      "owns_paths": ["pronto-employees"],
+      "shared_paths": [],
+      "shared_paths_consumers": [],
+      "produces": ["http_web"],
+      "consumes": ["http_api", "cookies", "csrf", "redis_keys", "events"],
+      "test_suites": ["e2e"],
+      "test_cmds": {
+        "e2e": "pronto-tests/scripts/run-tests.sh functionality"
+      }
+    },
+    {
+      "name": "pronto-static",
+      "path_root": "./pronto-static",
+      "owner": "equipo-frontend",
+      "type": "svc",
+      "runtime": "nginx",
+      "ports": [9088],
+      "compose_files": ["./docker-compose.yml", "./docker-compose.employees.yml"],
+      "contracts_path": "./pronto-docs/contracts/pronto-static",
+      "tests_path": "./pronto-tests/pronto-static",
+      "healthchecks": [
+        {"kind": "http", "target": "http://localhost:9088/"}
+      ],
+      "owns_paths": ["pronto-static"],
+      "shared_paths": [],
+      "shared_paths_consumers": [],
+      "produces": ["http_assets", "asset_manifest"],
+      "consumes": [],
+      "test_suites": ["e2e"],
+      "test_cmds": {
+        "e2e": "pronto-tests/scripts/run-tests.sh design"
+      }
+    },
+    {
+      "name": "pronto-libs",
+      "path_root": "./pronto-libs",
+      "owner": "equipo-platform",
+      "type": "lib",
+      "runtime": "python",
+      "ports": "none",
+      "compose_files": [],
+      "contracts_path": "./pronto-docs/contracts/pronto-libs",
+      "tests_path": "./pronto-tests/pronto-libs",
+      "healthchecks": [],
+      "owns_paths": ["pronto-libs"],
+      "shared_paths": ["pronto-libs/src/pronto_shared"],
+      "shared_paths_consumers": ["pronto-api", "pronto-client", "pronto-employees"],
+      "produces": ["shared_models", "db_schema", "redis_keys", "events"],
+      "consumes": ["db_runtime", "redis_runtime"],
+      "test_suites": ["unit"],
+      "test_cmds": {
+        "unit": "pronto-tests/scripts/run-tests.sh unit"
+      }
+    },
+    {
+      "name": "pronto-postgresql",
+      "path_root": "./pronto-postgresql",
+      "owner": "equipo-infra",
+      "type": "infra",
+      "runtime": "postgres",
+      "ports": [5432],
+      "compose_files": ["./docker-compose.yml", "./docker-compose.infra.yml"],
+      "contracts_path": "./pronto-docs/contracts/pronto-postgresql",
+      "tests_path": "./pronto-tests/pronto-postgresql",
+      "healthchecks": [
+        {"kind": "cmd", "target": "pg_isready -U pronto -h localhost -p 5432"}
+      ],
+      "owns_paths": ["pronto-postgresql"],
+      "shared_paths": [],
+      "shared_paths_consumers": [],
+      "produces": ["db_runtime"],
+      "consumes": [],
+      "test_suites": [],
+      "test_cmds": {}
+    },
+    {
+      "name": "pronto-redis",
+      "path_root": "./pronto-redis",
+      "owner": "equipo-infra",
+      "type": "infra",
+      "runtime": "redis",
+      "ports": [6379],
+      "compose_files": ["./docker-compose.yml", "./docker-compose.infra.yml"],
+      "contracts_path": "./pronto-docs/contracts/pronto-redis",
+      "tests_path": "./pronto-tests/pronto-redis",
+      "healthchecks": [
+        {"kind": "cmd", "target": "redis-cli -h localhost -p 6379 ping | grep -qx PONG"}
+      ],
+      "owns_paths": ["pronto-redis"],
+      "shared_paths": [],
+      "shared_paths_consumers": [],
+      "produces": ["redis_runtime"],
+      "consumes": [],
+      "test_suites": [],
+      "test_cmds": {}
+    },
+    {
+      "name": "pronto-scripts",
+      "path_root": "./pronto-scripts",
+      "owner": "equipo-platform",
+      "type": "tools",
+      "runtime": "bash",
+      "ports": "none",
+      "compose_files": [],
+      "contracts_path": "./pronto-docs/contracts/pronto-scripts",
+      "tests_path": "./pronto-tests/pronto-scripts",
+      "healthchecks": [],
+      "owns_paths": ["pronto-scripts"],
+      "shared_paths": [],
+      "shared_paths_consumers": [],
+      "produces": ["cli_contracts"],
+      "consumes": [],
+      "test_suites": [],
+      "test_cmds": {}
+    },
+    {
+      "name": "pronto-tests",
+      "path_root": "./pronto-tests",
+      "owner": "equipo-qa",
+      "type": "tools",
+      "runtime": "node",
+      "ports": "none",
+      "compose_files": ["./docker-compose.tests.yml"],
+      "contracts_path": "./pronto-docs/contracts/pronto-tests",
+      "tests_path": "./pronto-tests",
+      "healthchecks": [],
+      "owns_paths": ["pronto-tests"],
+      "shared_paths": [],
+      "shared_paths_consumers": [],
+      "produces": ["test_contracts"],
+      "consumes": [],
+      "test_suites": ["functionality", "performance", "design"],
+      "test_cmds": {
+        "functionality": "pronto-tests/scripts/run-tests.sh functionality",
+        "performance": "pronto-tests/scripts/run-tests.sh performance",
+        "design": "pronto-tests/scripts/run-tests.sh design"
+      }
+    },
+    {
+      "name": "pronto-docs",
+      "path_root": "./pronto-docs",
+      "owner": "equipo-platform",
+      "type": "docs",
+      "runtime": "none",
+      "ports": "none",
+      "compose_files": [],
+      "contracts_path": "./pronto-docs/contracts/pronto-docs",
+      "tests_path": "none",
+      "healthchecks": [],
+      "owns_paths": ["pronto-docs"],
+      "shared_paths": [],
+      "shared_paths_consumers": [],
+      "produces": ["docs_format"],
+      "consumes": [],
+      "test_suites": [],
+      "test_cmds": {}
+    },
+    {
+      "name": "pronto-ai",
+      "path_root": "./pronto-ai",
+      "owner": "equipo-platform",
+      "type": "ai",
+      "runtime": "none",
+      "ports": "none",
+      "compose_files": [],
+      "contracts_path": "./pronto-docs/contracts/pronto-ai",
+      "tests_path": "none",
+      "healthchecks": [],
+      "owns_paths": ["pronto-ai"],
+      "shared_paths": [],
+      "shared_paths_consumers": [],
+      "produces": ["ai_policies"],
+      "consumes": [],
+      "test_suites": [],
+      "test_cmds": {}
+    },
+    {
+      "name": "pronto-backups",
+      "path_root": "./pronto-backups",
+      "owner": "equipo-platform",
+      "type": "tools",
+      "runtime": "none",
+      "ports": "none",
+      "compose_files": [],
+      "contracts_path": "./pronto-docs/contracts/pronto-backups",
+      "tests_path": "none",
+      "healthchecks": [],
+      "owns_paths": ["pronto-backups"],
+      "shared_paths": [],
+      "shared_paths_consumers": [],
+      "produces": ["backup_format"],
+      "consumes": [],
+      "test_suites": [],
+      "test_cmds": {}
+    }
+  ]
+}

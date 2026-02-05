@@ -75,7 +75,7 @@ Asegurar la correcta implementación y documentación del sistema de autenticaci
    
 3. ✅ **Tests de Role-Based Access** (17 tests)
    - Roles primarios y adicionales
-   - Admin y super admin
+   - Admin y system
    - Multi-rol employees
    - Edge cases
 
@@ -185,7 +185,7 @@ Asegurar la correcta implementación y documentación del sistema de autenticaci
 | **Configuración** | 3 | secrets.env.example, .gitignore, .pre-commit-config.yaml |
 | **Código** | 4 | config.py, app.py (x3) |
 | **Documentación** | 3 | AGENTS.md, ARCHITECTURE.md, ACTION_PLAN.md |
-| **Agentes** | 1 | super_admin_agent.sh |
+| **Agentes** | 1 | system_agent.sh |
 | **TOTAL** | **11** | **Archivos modificados** |
 
 ### Líneas de Código/Documentación

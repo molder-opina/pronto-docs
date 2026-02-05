@@ -1,0 +1,21 @@
+{
+  "contracts": [
+    "http_api",
+    "http_web",
+    "http_assets",
+    "asset_manifest",
+    "db_schema",
+    "db_runtime",
+    "redis_keys",
+    "redis_runtime",
+    "events",
+    "cookies",
+    "csrf",
+    "shared_models",
+    "backup_format",
+    "cli_contracts",
+    "test_contracts",
+    "docs_format",
+    "ai_policies"
+  ]
+}

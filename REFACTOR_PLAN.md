@@ -46,7 +46,7 @@ dashboard.js (3730 → ~500 líneas)
 - Business Config: /api/business/* (~300 líneas)
 - Employees: /api/employees/* (~400 líneas)
 - Reports: /api/reports/* (~200 líneas)
-- Waiter Calls: /api/waiter-calls/* (~200 líneas)
+- Waiter Calls: /api/notifications/waiter/* (~200 líneas)
 ```
 
 ### Subdivisión Propuesta
@@ -168,7 +168,7 @@ def load_seed_data(session):
 - Orders: /api/orders/* (~400 líneas)
 - Sessions: /api/sessions/* (~300 líneas)
 - Menu: /api/menu/* (~300 líneas)
-- Waiter Calls: /api/waiter-calls/* (~200 líneas)
+- Waiter Calls: /api/notifications/waiter/* (~200 líneas)
 - Payments: /api/payments/* (~400 líneas)
 - Modifications: /api/modifications/* (~200 líneas)
 ```

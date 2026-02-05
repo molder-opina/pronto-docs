@@ -83,7 +83,7 @@ ALLOWED_HOSTS=localhost:6081,127.0.0.1:6081
 
 **Solución**: Asegúrate que estás usando POST redirect, no GET. El template `system_reauth_redirect.html` debe usar auto-submit de form POST.
 
-### Problema: CSRF errors en super_admin_login
+### Problema: CSRF errors en system_login
 
 **Síntoma**: Error 400 al consumir token
 

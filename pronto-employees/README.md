@@ -32,7 +32,7 @@ pronto-employees/
 │       ├── decorators/         # Authentication decorators
 │       └── utils/              # Utility functions
 ├── templates/                  # Jinja2 HTML templates
-├── static/                     # Frontend assets
+├── static/                     # DEPRECATED: assets viven en pronto-static
 ├── check_db.py                 # Database checker
 ├── reset_passwords.py         # Password reset utility
 ├── list_employees.py          # Employee lister
@@ -86,7 +86,7 @@ pronto-employees/
 
 ### System Console (`/system`)
 - `GET /system` - System admin dashboard
-- `GET /system/super_admin_login` - Super admin login
+- `GET /system/system_login` - Super admin login
 - `GET /system/health` - System health check
 - `POST /system/auth/login` - System admin login
 
@@ -239,9 +239,8 @@ pronto-employees/
 - `POST /api/admin_config/restore` - Restore configuration
 
 ### Realtime (`/api/realtime`)
-- `GET /api/realtime/status` - Get realtime status
-- `POST /api/realtime/subscribe` - Subscribe to events
-- `POST /api/realtime/unsubscribe` - Unsubscribe from events
+- `GET /api/realtime/orders` - Long-poll order events
+- `GET /api/realtime/notifications` - Long-poll staff notifications
 
 ### Areas (`/api/areas`)
 - `GET /api/areas` - List areas
@@ -264,9 +263,10 @@ pronto-employees/
 - `DELETE /api/table_assignments/<id>` - Delete assignment
 
 ### Notifications (`/api/notifications`)
-- `GET /api/notifications` - Get notifications
-- `POST /api/notifications/send` - Send notification
-- `POST /api/notifications/mark-read` - Mark notifications as read
+- `POST /api/notifications/waiter/call` - Create waiter call
+- `GET /api/notifications/waiter/pending` - List pending waiter calls
+- `POST /api/notifications/waiter/confirm/<id>` - Confirm waiter call
+- `POST /api/notifications/admin/call` - Create admin call
 
 ### Config (`/api/config`)
 - `GET /api/config` - Get application config
@@ -399,25 +399,42 @@ Each role has scoped API endpoints that are validated against the JWT scope:
 ## Frontend Architecture
 
 ### TypeScript/Vite Setup
-- **Build tool:** Vite
-- **Entry points:**
-  - `static/js/src/entrypoints/base.ts` - Base functionality
-  - `static/js/src/entrypoints/dashboard.ts` - Dashboard logic
+- **Build tool:** Vite (en `pronto-static`)
+- **Entry points:** viven en `pronto-static/src/vue/employees/entrypoints`
 
 ### Template Structure
 - `templates/console_selector.html` - Console selection page
-- `templates/dashboard.html` - Main dashboard template
-- `templates/waiter/*.html` - Waiter-specific templates
-- `templates/chef/*.html` - Chef-specific templates
-- `templates/cashier/*.html` - Cashier-specific templates
-- `templates/admin/*.html` - Admin-specific templates
-- `templates/system/*.html` - System-specific templates
+- `templates/base.html` - Base template with layout
+- `templates/dashboard_waiter.html` - Waiter dashboard (legacy)
+- `templates/dashboard_chef.html` - Chef dashboard (legacy)
+- `templates/dashboard_cashier.html` - Cashier dashboard (legacy)
+- `templates/dashboard_waiter.html` - Waiter dashboard (legacy)
+- `templates/dashboard_chef.html` - Chef dashboard (legacy)
+- `templates/dashboard_cashier.html` - Cashier dashboard (legacy)
+- `templates/dashboard_admin.html` - Admin dashboard (legacy)
+- `templates/login_waiter.html` - Waiter login
+- `templates/login_chef.html` - Chef login
+- `templates/login_admin.html` - Admin login
+- `templates/cashier/dashboard.html` - Cashier dashboard
+- `templates/waiter/dashboard.html` - Main waiter dashboard
+- `templates/includes/` - Shared template includes
+  - `_dashboard_scripts.html` - Dashboard JavaScript
+  - `_admin_sections.html` - Admin sections
+  - `_cashier_section.html` - Cashier sections
+  - `_waiter_section.html` - Waiter sections
+  - `_menu_waiter.html` - Menu section for waiters
+  - `_menu_chef.html` - Menu section for chefs
+  - `_table_assignment_modal.html` - Table assignment modal
+  - `_aditamentos.html` - Modifiers/aditamentos
+  - `_payment_modals.html` - Payment modals
+  - `_notifications_panel.html` - Notifications panel
+- `templates/system_reauth_redirect.html` - System reauth redirect
+- `templates/roles_management.html` - Roles management
+- `templates/feedback_dashboard.html` - Feedback dashboard
 
 ### Static Assets
-- **CSS:** Organized in `static/css/` with shared and role-specific styles
-- **JavaScript:** TypeScript compiled via Vite
-- **Images:** Served from `pronto-static` container
-- **Assets paths:** Configured via `PRONTO_STATIC_CONTAINER_HOST`
+- **CSS/JS/Images:** servidos desde `pronto-static`
+- **Assets paths:** configurados vía `PRONTO_STATIC_CONTAINER_HOST`
 
 ## Permissions System
 

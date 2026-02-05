@@ -23,7 +23,7 @@ El proyecto incluye **14 agentes especializados** que revisan el código antes d
 | Waiter | 🤵 | `bin/agents/waiter_agent.sh` | Console waiter |
 | Admin | 👨‍💼 | `bin/agents/admin_agent.sh` | Console admin |
 | Cashier | 💰 | `bin/agents/cashier_agent.sh` | Console cashier |
-| Super Admin | 👑 | `bin/agents/super_admin_agent.sh` | Sistema y seguridad |
+| Super Admin | 👑 | `bin/agents/system_agent.sh` | Sistema y seguridad |
 | Chef | 👨‍🍳 | `bin/agents/chef_agent.sh` | Console chef |
 | **Deployment** | 🚀 | `bin/agents/deployment_agent.sh` | **Scripts de init** |
 
@@ -472,7 +472,7 @@ RUN apt-get update && apt-get install -y python3 \
 
 ## 👑 Super Admin Agent
 
-**Archivo**: `bin/agents/super_admin_agent.sh`
+**Archivo**: `bin/agents/system_agent.sh`
 
 ### Validaciones
 

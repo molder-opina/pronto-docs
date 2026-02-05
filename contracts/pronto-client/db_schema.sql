@@ -1,0 +1,2 @@
+-- Generated via pg_dump --schema-only
+-- PENDING: ejecutar pg_dump --schema-only y reemplazar este archivo.

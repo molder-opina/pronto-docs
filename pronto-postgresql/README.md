@@ -2,10 +2,10 @@
 
 ## Overview
 
-Pronto-PostgreSQL is PostgreSQL 13 database service for the Pronto platform. It provides persistent data storage for all applications (pronto-clients, pronto-employees, pronto-api).
+Pronto-PostgreSQL is PostgreSQL 16 database service for the Pronto platform. It provides persistent data storage for all applications (pronto-clients, pronto-employees, pronto-api).
 
 **Port:** 5432
-**Version:** PostgreSQL 13
+**Version:** PostgreSQL 16
 **Deployment:** Docker Compose
 
 ## Architecture
