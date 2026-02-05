@@ -87,7 +87,7 @@ pronto-employees/
 ### System Console (`/system`)
 - `GET /system` - System admin dashboard
 - `GET /system/login` - System login
-- `POST /system/login` - System login (incluye handoff por token)
+- `POST /system/login` - System login
 - `GET /system/health` - System health check
 - `POST /system/auth/login` - System admin login
 
@@ -429,7 +429,6 @@ Each role has scoped API endpoints that are validated against the JWT scope:
   - `_aditamentos.html` - Modifiers/aditamentos
   - `_payment_modals.html` - Payment modals
   - `_notifications_panel.html` - Notifications panel
-- `templates/system_reauth_redirect.html` - System reauth redirect
 - `templates/roles_management.html` - Roles management
 - `templates/feedback_dashboard.html` - Feedback dashboard
 
