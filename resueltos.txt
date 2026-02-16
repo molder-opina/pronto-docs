@@ -1,0 +1,44 @@
+2026-02-12 | 20260212_client_employees_schema_preboot_missing | Client y Employees no quedan healthy por schema pre-boot faltante | pendiente | pronto-client, pronto-employees
+2026-02-12 | 20260212_schema_canonicalization_incomplete | Schema canónico incompleto impide validación strict y arranque sin bypass | pendiente | pronto-scripts, pronto-libs, pronto-client, pronto-employees
+2026-02-13 | 20260213_api_parity_import_contract_break | Parity check bloqueado por contratos de importación en pronto-libs/pronto-api | pendiente | pronto-api, pronto-libs
+2026-02-13 | 20260213_client_menu_business_info_failures | /api/menu 404 y /api/business-info 500 en clientes | local-uncommitted | pronto-client, pronto-libs
+2026-02-13 | 20260213_client_api_scope_wrong_host | 6080 sin /api y consumo de API central en 6082 | local-uncommitted | pronto-client, pronto-static, pronto-api
+2026-02-13 | 20260213_api_db_hostname_postgres_unresolvable | API sin resolución DNS de postgres tras redeploy y caída de /api/menu | local-uncommitted | pronto-api, pronto-scripts
+2026-02-13 | 20260213_menu_uuid_click_and_placeholder_404 | Click en tarjeta de menú falla con UUID y placeholders de restaurante generan 404 | local-uncommitted | pronto-static
+2026-02-13 | 20260213_test_suite_runtime_mismatch | Set funcional de pruebas desalineado con contratos/rutas actuales | N/A | pronto-tests
+2026-02-13 | 20260213_checkout_cors_preflight_xcsrftoken | Checkout cliente bloqueado por preflight CORS al enviar X-CSRFToken | N/A | pronto-api, pronto-static
+2026-02-13 | 20260213_employees_spa_login_alias_y_assets_404 | Login SPA de empleados redirige a /employees/* y rompe por 404 de rutas/asset chunks | local-uncommitted | pronto-employees, pronto-static, pronto-tests
+2026-02-13 | ERR-20260213-LOGIN-LAYOUT-VERSION | Login de empleados desproporcionado y versión fuera de viewport | local-uncommitted | pronto-employees, pronto-static
+2026-02-13 | ERR-20260213-LOGIN-SCOPE-403 | Login de empleados retorna 403 por validación de scope incompleta | local-uncommitted | pronto-libs, pronto-employees, pronto-static
+2026-02-13 | ERR-20260213-VALIDATE-SEED-SCRIPT | validate-seed.sh reporta éxito falso y apunta a contenedor incorrecto | local-uncommitted | pronto-scripts
+2026-02-13 | ERR-20260213-AUTH-ERROR-404 | Redirección a /authorization-error retorna 404 en employees | local-uncommitted | pronto-employees, pronto-static
+2026-02-13 | BUG-20260213-PLACEHOLDER-RESTAURANT-404 | Placeholder de menú cliente apunta a ruta de restaurante inexistente y genera 404/ORB | N/A | pronto-static
+2026-02-13 | ERR-20260213-STATIC-DOCKERFILE-LEGACY-SCRIPT | Rebuild de static falla por script faltante en Docker image build context | local-uncommitted | pronto-static
+2026-02-13 | 20260213_reopen_call_waiter_preflight_404 | Reapertura: call waiter falla por preflight 404 al resolver /api en host incorrecto | local-uncommitted | pronto-static, pronto-client
+2026-02-13 | 20260213_client_call_waiter_post_404_on_6080 | POST /api/call-waiter 404 en 6080 por blueprint API no registrado | local-uncommitted | pronto-client, pronto-static
+2026-02-14 | AUTH-001 | Migration kind a Customer | manual-applied | pronto-scripts, pronto-libs
+2026-02-14 | AUTH-002 | Modelo Customer campos kind | manual-applied | pronto-libs
+2026-02-15 | SEC-001 | CSRF protection no habilitada en pronto-client | resolved | pronto-client
+2026-02-15 | SEC-002 | pronto-api expuesto públicamente en puerto 6082 | resolved | docker-compose
+2026-02-15 | SEC-003 | Falta autenticación HMAC servicio-a-servicio BFF→API | resolved | pronto-libs, pronto-client
+2026-02-15 | SEC-004 | JWT empleados no valida issuer (iss) ni audience (aud) | resolved | pronto-libs
+2026-02-15 | SEC-005 | SECRET_KEY compartida para Flask sessions y JWT signing | resolved | pronto-libs
+2026-02-15 | SEC-006 | Refresh tokens no se rotan ni revocan correctamente | resolved | pronto-api
+2026-02-15 | SEC-007 | PII (nombre, email) incluido en JWT claims de empleados | resolved | pronto-libs
+2026-02-15 | SEC-008 | Redis sin password y expuesto públicamente | resolved | docker-compose
+2026-02-15 | SEC-009 | Rate limiting no aplicado en endpoints de login/auth | resolved | pronto-api, pronto-client
+2026-02-15 | SEC-010 | Logging expone email de clientes en output | resolved | pronto-libs
+2026-02-14 | BUG-20260214-003 | /api/me no verifica revocación de customer_ref | pendiente | pronto-client
+2026-02-14 | BUG-20260214-004 | auth.py usa auth_bp = api_bp (blueprint frágil) + doble import en __init__.py | pendiente | pronto-client
+2026-02-14 | BUG-20260214-001 | notifications.py usa JWT (modelo incorrecto para clientes) | pendiente | pronto-client
+2026-02-14 | BUG-20260214-002 | Password hashing usa SHA256 con pepper estático | pendiente | pronto-libs
+2026-02-14 | BUG-20260214-005 | waiter_calls.py sin auth guard | pendiente | pronto-client
+2026-02-14 | BUG-20260214-006 | split_bills.py sin auth guard | pendiente | pronto-client
+2026-02-14 | BUG-20260214-007 | waiter_calls.py name shadowing flask.session vs SQLAlchemy session | pendiente | pronto-client
+2026-02-15 | BUG-20250215-001 | Endpoints de pagos sin autenticación de cliente | RESUELTO | pronto-client
+2026-02-15 | BUG-20250215-002 | Feedback usa JWT de empleados en lugar de customer session | RESUELTO | pronto-client
+2026-02-15 | BUG-20250215-003 | Datos de usuario en localStorage vulnerable a XSS | RESUELTO | pronto-static
+2026-02-15 | BUG-20260215-001 | Rutas API usan <int:id> para entidades que deben usar UUID | ABIERTO | pronto-employees
+2026-02-15 | BUG-20260215-002 | Uso de current_app.logger en lugar de StructuredLogger | ABIERTO | pronto-employees, pronto-client
+2026-02-15 | BUG-20260215-003 | Archivos de backup en directorio de templates | RESUELTO | pronto-client
+

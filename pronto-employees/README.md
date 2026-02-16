@@ -32,7 +32,7 @@ pronto-employees/
 │       ├── decorators/         # Authentication decorators
 │       └── utils/              # Utility functions
 ├── templates/                  # Jinja2 HTML templates
-├── static/                     # DEPRECATED: assets viven en pronto-static
+
 ├── check_db.py                 # Database checker
 ├── reset_passwords.py         # Password reset utility
 ├── list_employees.py          # Employee lister
@@ -409,9 +409,7 @@ Each role has scoped API endpoints that are validated against the JWT scope:
 - `templates/dashboard_waiter.html` - Waiter dashboard (legacy)
 - `templates/dashboard_chef.html` - Chef dashboard (legacy)
 - `templates/dashboard_cashier.html` - Cashier dashboard (legacy)
-- `templates/dashboard_waiter.html` - Waiter dashboard (legacy)
-- `templates/dashboard_chef.html` - Chef dashboard (legacy)
-- `templates/dashboard_cashier.html` - Cashier dashboard (legacy)
+
 - `templates/dashboard_admin.html` - Admin dashboard (legacy)
 - `templates/login_waiter.html` - Waiter login
 - `templates/login_chef.html` - Chef login

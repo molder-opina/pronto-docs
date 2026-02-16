@@ -1,70 +1,62 @@
+# Arquitectura del Sistema Pronto (V3 - SPA-First)
 
-# Arquitectura del Sistema Pronto
-
-Documentación técnica general de la plataforma de gestión de restaurantes "Pronto".
+Documentación técnica de la plataforma "Pronto", actualizada a la arquitectura SPA moderna (2026).
 
 ## Visión General
-Pronto es una plataforma integral que gestiona el flujo de pedidos de un restaurante, desde la toma de la orden por el cliente o mesero, hasta la preparación en cocina y el cobro.
-
-El sistema está construido como una arquitectura de microservicios contenerizados (Docker), separando la lógica de empleados (`pronto_employees`) de la experiencia del cliente (`pronto_clients`), compartiendo un núcleo común (`shared`).
+Pronto es una plataforma integral para la gestión de restaurantes. A partir de la versión 3.0, el sistema ha migrado de una arquitectura híbrida (Templates + JS) a una arquitectura **SPA (Single Page Application)** moderna, eliminando la deuda técnica de Jinja2 en el portal de empleados.
 
 ## Estructura del Proyecto
 
-### 1. `pronto_employees/` (Backend & Frontend Staff)
-Panel administrativo y operativo para el personal.
-- **Tecnología**: Flask (Python), Jinja2 (Templates), TypeScript (Frontend Interactivo).
-- **Módulos Principales**:
-  - `routes/auth.py`: Autenticación y Control de Acceso (RBAC).
-  - `routes/dashboard.py`: Vistas principales (SPA-like navigation).
-  - `routes/api/`: API REST para operaciones dinámicas.
-  - `static/js/src/`: Lógica de cliente (WebSockets, UI Managers).
+### 1. `pronto-static/` (Frontend Moderno)
+El corazón de la interfaz de usuario.
+- **Tecnología**: Vue 3 (Composition API), Vite, Pinia (State Management), TypeScript.
+- **Arquitectura SPA**: 
+  - Un único punto de entrada (`index.html`) servido por Flask.
+  - **Vue Router**: Gestiona la navegación del personal (Waiter, Kitchen, Cashier, Admin) de forma fluida.
+  - **Pinia Stores**: Mantiene el estado global (Órdenes, Sesiones, Configuración) sincronizado mediante `RealtimeClient`.
+  - **Nginx-SPA**: Configuración optimizada para manejar History Mode y Proxy API.
 
-### 2. `pronto_clients/` (Frontend Cliente)
+### 2. `pronto-employees/` (BFF & API Backend)
+Actúa como un Backend-for-Frontend (BFF) para el panel de personal.
+- **Tecnología**: Flask (Python 3.11+).
+- **Responsabilidades**:
+  - Servir el cascarón de la SPA.
+  - Exponer endpoints JSON estandarizados en `/api/*`.
+  - **Autenticación**: 100% Stateless mediante JWT en HTTP-only cookies. Se prohíbe el uso de `flask.session`.
+  - **Seguridad**: Implementación estricta de `ScopeGuard` y `CSRF` mediante cabeceras `X-CSRFToken`.
+
+### 3. `pronto-libs` (Shared Logic & Models)
+Núcleo común de lógica de negocio.
+- **Modelos**: SQLAlchemy ORM (PostgreSQL 16).
+- **Servicios Estandarizados**: Todas las funciones en `pronto_shared.services` devuelven objetos `success_response` o `error_response` definidos en `serializers.py`.
+- **Canonicidad**: Uso exclusivo de `CanonicalWorkflowStatus` para transiciones de estados de órdenes.
+
+### 4. `pronto-client/` (Frontend Cliente)
 Aplicación para comensales (QR Menu & Ordering).
-- **Tecnología**: Flask, TypeScript.
-- **Funcionalidad**: Ver menú, carrito de compras, checkout, estado de orden en tiempo real.
+- **Tecnología**: Flask + TypeScript.
 
-### 3. `shared/` (Core Library)
-Código compartido entre servicios para garantizar consistencia.
-- **Modelos (`models.py`)**: Definiciones SQLAlchemy (ORM) de la base de datos (Orders, Users, Menu items).
-- **Base de Datos (`db.py`)**: Gestión de conexiones y sesiones PostgreSQL.
-- **Servicios (`services/`)**: Lógica de negocio reutilizable (MenuService, OrderService).
-- **Seguridad**: `security.py` (Hashing), `audit_middleware.py` (Logging Estandarizado).
+## Componentes de Infraestructura
 
-### 4. `api_gateway/` (Puerto 6082)
-Punto de entrada unificado (Proxy Reverso) que enruta peticiones a los servicios correspondientes y maneja autenticación centralizada si aplica.
+### Base de Datos (PostgreSQL & Redis)
+- **PostgreSQL**: Persistencia relacional de menús, empleados y órdenes.
+- **Redis**: Caché de alto rendimiento, gestión de PII temporal y bus de mensajes para notificaciones.
 
-## Componentes Clave
+### Comunicación en Tiempo Real
+- **SSE (Server-Sent Events)**: Utilizado por la SPA para recibir actualizaciones de órdenes y llamadas de clientes de forma instantánea sin polling excesivo.
 
-### Base de Datos (PostgreSQL)
-Esquema relacional que almacena:
-- `users`: Empleados y Clientes.
-- `menu_items`: Productos, categorías y precios.
-- `orders`: Transacciones y estado del flujo.
-- `modifiers`: Personalizaciones de productos.
+## Flujos Críticos Modernizados
 
-### Realtime (WebSockets)
-Gestión de eventos en tiempo real para:
-- Notificar a cocina de nuevas órdenes.
-- Notificar a meseros de platos listos.
-- Actualizar estado de orden al cliente.
+### 1. Gestión de Órdenes (SPA Flow)
+`Vue Component` -> `Pinia Store` -> `authenticatedFetch` -> `Employee API` -> `Shared Service` -> `DB` -> `SSE Broadcast` -> `Vue Reactive Update`.
 
-### Sistema de Archivos (Assets)
-Contenedor `pronto-static` (Nginx) sirve imágenes y recursos estáticos optimizados.
-- Ubicación: `/static_content/assets/`
-- Mapeo Docker: Volumen compartido o copia en build time.
+### 2. Autenticación Stateless
+- El usuario hace Login -> El servidor responde con un JWT.
+- El navegador almacena el JWT en una cookie segura.
+- Todas las peticiones API incluyen el token automáticamente.
+- El servidor valida el `active_scope` contra la URL solicitada.
 
-## Flujos Críticos
-
-### 1. Creación de Orden
-`Client API` -> `OrderService` -> `DB Insert` -> `WebSocket Event` -> `Kitchen Display`.
-
-### 2. Autenticación y Permisos
-- Decoradores `@role_required` validan sesión y rol.
-- Middleware de Auditoría registra acceso (User|Action|Type...).
-- Manejo de Errores 403 redirige a `/authorization-error`.
-
-## Estándares de Desarrollo
-- **Logging**: Formato PIPE unificado (Ver `docs/LOGGING_STANDARD.md`).
-- **Manejo de Errores**: Catálogo centralizado en `/error-catalog`.
-- **Frontend**: TypeScript compilado con Vite. Comunicación API vía `authenticatedFetch`.
+## Estándares de Calidad
+- **Zero Technical Debt**: Eliminación total de assets inline (CSS/JS).
+- **Type Safety**: Uso de MyPy en Backend y TypeScript en Frontend.
+- **Linter**: `ruff` para Python, `eslint` para Vue.
+- **Standardized API**: Respuesta uniforme `{success: bool, data: any, error: string|null}`.

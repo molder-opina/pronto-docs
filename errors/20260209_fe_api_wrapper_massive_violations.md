@@ -18,27 +18,10 @@ UBICACION: pronto-static/src/vue/employees/
 
 ARCHIVOS_AFECTADOS:
 
-## Críticos (Seguridad y Pagos) - 3 archivos
-- components/PaymentFlow.vue (4 llamadas)
-  - L175: POST /api/sessions/{id}/pay
-  - L227: POST /api/sessions/{id}/tip
-  - L275: POST /api/sessions/{id}/resend
-  - L296: GET /api/sessions/{id}/ticket
-
-- components/RolesManager.vue (4 llamadas)
-  - L300: GET /api/roles?include_inactive=true
-  - L395: PUT /api/roles/{id}
-  - L408: POST /api/roles/{id}/permissions/bulk
-  - L423: POST /api/roles
-
-- modules/role-management.ts (8 llamadas)
-  - L134: GET /api/employees/search
-  - L194: GET /api/employees/{id}
-  - L254: PUT /api/employees/{id}
-  - L307: POST /api/roles/employees/{id}/revoke
-  - L328: GET /api/permissions/system
-  - L438: POST/PUT endpoints dinámicos
-  - L461: POST /api/permissions/roles/{key}/reset
+## Críticos (Seguridad y Pagos) - 3 archivos [RESUELTO]
+- components/PaymentFlow.vue (4 llamadas) [CORREGIDO]
+- components/RolesManager.vue (4 llamadas) [CORREGIDO]
+- modules/role-management.ts (8 llamadas) [CORREGIDO]
 
 ## Alta Prioridad (Operaciones Core) - 8 archivos
 - modules/customers-manager.ts (5 llamadas)
@@ -146,6 +129,6 @@ PLAN_REMEDIACION:
 
 ESTIMACION_TOTAL: 15-25 horas de trabajo
 
-ESTADO: ABIERTO
-PRIORIDAD_SIGUIENTE: Fase 1 (Críticos)
+ESTADO: EN PROGRESO (Fase 1 completada)
+PRIORIDAD_SIGUIENTE: Fase 2 (Alta Prioridad)
 ---
