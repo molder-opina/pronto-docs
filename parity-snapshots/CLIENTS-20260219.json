@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "target": "clients",
+  "parity_check_version": "1.0.0",
+  "generated_at": "2026-02-19T17:59:46Z",
+  "git_commit": "UNKNOWN",
+  "repo_root": "/Users/molder/projects/github-molder/pronto",
+  "sources_scanned": {
+    "clients_vue": {
+      "files": 35
+    },
+    "clients_jinja": {
+      "files": 9
+    }
+  },
+  "backend": {
+    "count": 190,
+    "sample": [
+      "/api/admin/orders/{var}/force-cancel",
+      "/api/admin/permissions/roles/{var}/add",
+      "/api/admin/permissions/roles/{var}/remove",
+      "/api/admin/permissions/roles/{var}/reset",
+      "/api/admin/permissions/system",
+      "/api/admin/shortcuts",
+      "/api/admin/shortcuts/{var}",
+      "/api/analytics/category-performance",
+      "/api/analytics/comparison",
+      "/api/analytics/customer-segments",
+      "/api/analytics/kpis",
+      "/api/analytics/operational-metrics",
+      "/api/analytics/revenue-trends",
+      "/api/analytics/waiter-performance",
+      "/api/areas",
+      "/api/areas/{var}",
+      "/api/branding/config",
+      "/api/branding/generate-products",
+      "/api/branding/generate/{var}",
+      "/api/branding/logo"
+    ]
+  },
+  "missing_known_method": [],
+  "missing_unknown_method": [],
+  "method_mismatch": [],
+  "unknown_methods": [],
+  "warnings": [],
+  "violations": [],
+  "query_keys_used": {
+    "/api/promotions": {
+      "active": 1
+    }
+  },
+  "batch": {
+    "pin": [],
+    "k": 25,
+    "selected": [],
+    "summary_by_route_base": {}
+  }
+}

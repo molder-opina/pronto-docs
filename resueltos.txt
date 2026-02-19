@@ -84,7 +84,7 @@
 2026-02-18 | ERR-20260218-MAGIC-STRINGS | Strings mágicos de estados en lugar de enums canónicos | RESUELTO | pronto-libs, pronto-api
 2026-02-19 | ERR-20260219-MISSING-BACKEND-ENDPOINTS | Endpoints de API no encontrados (falso positivo) | RESUELTO | pronto-employees
 2026-02-19 | ERR-20260219-MISSING-PLACEHOLDER-ASSET | Asset placeholder-food.png no existe | RESUELTO | pronto-static
-2026-02-19 | ERR-20260219-HARDCODED-HOSTS | Hosts y puertos hardcodeados impiden despliegue en produccion | N/A | pronto-client, pronto-employees, pronto-static
+2026-02-19 | ERR-20260219-HARDCODED-HOSTS | Hosts y puertos hardcodeados impiden despliegue en produccion | RESUELTO | pronto-client, pronto-employees, pronto-static
 2026-02-19 | ERR-20260219-EMPLOYEES-AUTH-REFRESH-MISSING | Interceptor de auth llama endpoint /api/employees/auth/refresh inexistente | RESUELTO | pronto-static, pronto-employees
 2026-02-19 | ERR-20260219-EMPLOYEES-REALTIME-ENDPOINTS-MISSING | Endpoints realtime de employees faltantes generan 404 | RESUELTO | pronto-employees, pronto-static
 2026-02-19 | ERR-20260219-EMPLOYEES-ORDER-HEAD-MISSING | Validación HEAD /api/orders/{id} en employees usa endpoint inexistente | RESUELTO | pronto-employees, pronto-static
@@ -93,15 +93,16 @@
 2026-02-18 | ERR-20260218-001 | Endpoints de orders sin autenticación JWT | RESUELTO | pronto-api
 2026-02-18 | ERR-20260218-002 | Auditoría general de pronto-api - Gate H compliance | RESUELTO | pronto-api
 2026-02-19 | ERR-20260219-MENU-MAP-NOT-FUNCTION | use-menu.ts falla con TypeError: e.value.map is not a function | RESUELTO | pronto-static
-2026-02-19 | ERR-20260219-CLIENTS-TEMPLATE-HOST-API-CALLS | Templates de cliente usan `${window.API_BASE}` en llamadas API y generan ruido parity | local-uncommitted | pronto-client
+2026-02-19 | ERR-20260219-CLIENTS-TEMPLATE-HOST-API-CALLS | Templates de cliente usan `${window.API_BASE}` en llamadas API y generan ruido parity | RESUELTO | pronto-client
 2026-02-19 | ERR-20260219-PLACEHOLDER-STATIC-HOST | Imagenes placeholder usan path relativo en lugar de static_host_url | RESUELTO | pronto-static, pronto-client, pronto-employees
-2026-02-19 | ERR-20260219-CHECKOUT-POST-CSRF | Checkout cliente falla por mutaciones POST sin token CSRF | local-uncommitted | pronto-client
-2026-02-19 | ERR-20260219-FEEDBACK-FORM-UUID | Ruta web de feedback parsea session_id y employee_id como int en dominio UUID | local-uncommitted | pronto-client
-2026-02-19 | ERR-20260219-FEEDBACK-BULK-CROSS-HOST | Formulario feedback usa endpoint cross-host sin contrato de auth/CSRF | local-uncommitted | pronto-client
-2026-02-19 | ERR-20260219-EMPLOYEE-API-ENV-KEY-MISMATCH | Inconsistencia entre variable de entorno documentada y variable leída en app cliente | local-uncommitted | pronto-client
-2026-02-19 | ERR-20260219-EMPLOYEES-AUTH-LOGIN-CSRF-EXEMPT | Endpoint de login de employees usa @csrf.exempt fuera de excepción permitida | local-uncommitted | pronto-api
+2026-02-19 | ERR-20260219-CHECKOUT-POST-CSRF | Checkout cliente falla por mutaciones POST sin token CSRF | RESUELTO | pronto-client
+2026-02-19 | ERR-20260219-FEEDBACK-FORM-UUID | Ruta web de feedback parsea session_id y employee_id como int en dominio UUID | RESUELTO | pronto-client
+2026-02-19 | ERR-20260219-FEEDBACK-BULK-CROSS-HOST | Formulario feedback usa endpoint cross-host sin contrato de auth/CSRF | RESUELTO | pronto-client
+2026-02-19 | ERR-20260219-EMPLOYEE-API-ENV-KEY-MISMATCH | Inconsistencia entre variable de entorno documentada y variable leída en app cliente | RESUELTO | pronto-client
+2026-02-19 | ERR-20260219-EMPLOYEES-AUTH-LOGIN-CSRF-EXEMPT | Endpoint de login de employees usa @csrf.exempt fuera de excepción permitida | RESUELTO | pronto-api
 2026-02-19 | ERR-20260219-SYSTEMSETTING-ATTRIBUTE-NAMES | settings_service.py usa nombres de atributos incorrectos | RESUELTO | pronto-libs
 2026-02-19 | ERR-20260219-KIOSK-PASSWORD-HARDCODED | Password de kiosk hardcodeado | RESUELTO | pronto-client, pronto-employees
 2026-02-19 | ERR-20260219-USEFETCH-CREDENTIALS | useFetch.ts sin credentials | RESUELTO | pronto-static
 2026-02-19 | ERR-20260219-FEEDBACK-TODO-PARSE-DATES | TODO sin resolver en feedback.py | RESUELTO | pronto-api
 2026-02-19 | ERR-20260219-CHEF-NOTIFICATIONS-TEST-FAIL | Test chef_notifications.spec.ts falla con timeout | RESUELTO | pronto-tests
+2026-02-19 | ERR-20260219-PUBLIC-AUTH-ROUTE-CONVENTION | Rutas públicas y de autenticación fuera de la convención /public y /auth | RESUELTO | pronto-api, pronto-employees, pronto-client, pronto-static

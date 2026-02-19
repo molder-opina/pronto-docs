@@ -2,12 +2,11 @@
 
 ## Resumen
 - Bugs abiertos en pronto-docs/errors: 0
-- Bugs resueltos (check): 45
-- Bugs en seguimiento (sin estado resuelto): 2
+- Bugs resueltos (check): 59
+- Bugs en seguimiento (sin estado resuelto): 0
 
 ## En seguimiento
-- [ ] ERR-20260219-HARDCODED-HOSTS | Hosts y puertos hardcodeados impiden despliegue en produccion | estado=N/A | pronto-client, pronto-employees, pronto-static
-- [ ] ERR-20260219-CLIENTS-TEMPLATE-HOST-API-CALLS | Templates de cliente usan `${window.API_BASE}` en llamadas API y generan ruido parity | estado=local-uncommitted | pronto-client
+- [x] Sin bugs pendientes en seguimiento
 
 ## Resueltos
 - [x] ERR-20260213-LOGIN-LAYOUT-VERSION | Login de empleados desproporcionado y versión fuera de viewport | pronto-employees, pronto-static
@@ -48,6 +47,7 @@
 - [x] ERR-20260218-MAGIC-STRINGS | Strings mágicos de estados en lugar de enums canónicos | pronto-libs, pronto-api
 - [x] ERR-20260219-MISSING-BACKEND-ENDPOINTS | Endpoints de API no encontrados (falso positivo) | pronto-employees
 - [x] ERR-20260219-MISSING-PLACEHOLDER-ASSET | Asset placeholder-food.png no existe | pronto-static
+- [x] ERR-20260219-HARDCODED-HOSTS | Hosts y puertos hardcodeados impiden despliegue en produccion | pronto-client, pronto-employees, pronto-static
 - [x] ERR-20260219-EMPLOYEES-AUTH-REFRESH-MISSING | Interceptor de auth llama endpoint /api/employees/auth/refresh inexistente | pronto-static, pronto-employees
 - [x] ERR-20260219-EMPLOYEES-REALTIME-ENDPOINTS-MISSING | Endpoints realtime de employees faltantes generan 404 | pronto-employees, pronto-static
 - [x] ERR-20260219-EMPLOYEES-ORDER-HEAD-MISSING | Validación HEAD /api/orders/{id} en employees usa endpoint inexistente | pronto-employees, pronto-static
@@ -55,3 +55,16 @@
 - [x] ERR-20260218-001 | Endpoints de orders sin autenticación JWT | pronto-api
 - [x] ERR-20260218-002 | Auditoría general de pronto-api - Gate H compliance | pronto-api
 - [x] ERR-20260219-MENU-MAP-NOT-FUNCTION | use-menu.ts falla con TypeError: e.value.map is not a function | pronto-static
+- [x] ERR-20260219-CLIENTS-TEMPLATE-HOST-API-CALLS | Templates de cliente usan `${window.API_BASE}` en llamadas API y generan ruido parity | pronto-client
+- [x] ERR-20260219-PLACEHOLDER-STATIC-HOST | Imagenes placeholder usan path relativo en lugar de static_host_url | pronto-static, pronto-client, pronto-employees
+- [x] ERR-20260219-CHECKOUT-POST-CSRF | Checkout cliente falla por mutaciones POST sin token CSRF | pronto-client
+- [x] ERR-20260219-FEEDBACK-FORM-UUID | Ruta web de feedback parsea session_id y employee_id como int en dominio UUID | pronto-client
+- [x] ERR-20260219-FEEDBACK-BULK-CROSS-HOST | Formulario feedback usa endpoint cross-host sin contrato de auth/CSRF | pronto-client
+- [x] ERR-20260219-EMPLOYEE-API-ENV-KEY-MISMATCH | Inconsistencia entre variable de entorno documentada y variable leída en app cliente | pronto-client
+- [x] ERR-20260219-EMPLOYEES-AUTH-LOGIN-CSRF-EXEMPT | Endpoint de login de employees usa @csrf.exempt fuera de excepción permitida | pronto-api
+- [x] ERR-20260219-SYSTEMSETTING-ATTRIBUTE-NAMES | settings_service.py usa nombres de atributos incorrectos | pronto-libs
+- [x] ERR-20260219-KIOSK-PASSWORD-HARDCODED | Password de kiosk hardcodeado | pronto-client, pronto-employees
+- [x] ERR-20260219-USEFETCH-CREDENTIALS | useFetch.ts sin credentials | pronto-static
+- [x] ERR-20260219-FEEDBACK-TODO-PARSE-DATES | TODO sin resolver en feedback.py | pronto-api
+- [x] ERR-20260219-CHEF-NOTIFICATIONS-TEST-FAIL | Test chef_notifications.spec.ts falla con timeout | pronto-tests
+- [x] ERR-20260219-PUBLIC-AUTH-ROUTE-CONVENTION | Rutas públicas y de autenticación fuera de la convención /public y /auth | pronto-api, pronto-employees, pronto-client, pronto-static

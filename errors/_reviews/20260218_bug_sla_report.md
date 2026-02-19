@@ -3,14 +3,14 @@
 Fuente: pronto-docs/resueltos.txt (BUG/ERR) + enriquecimiento de expedientes
 
 ## Resumen
-- Tickets BUG/ERR analizados: 47
-- Promedio global (dias): 23.55
+- Tickets BUG/ERR analizados: 59
+- Promedio global (dias): 18.76
 
 ## Promedio por severidad
-- bloqueante: total=10, medidos=10, promedio=36.50 dias
-- alta: total=21, medidos=21, promedio=17.76 dias
-- media: total=11, medidos=11, promedio=33.55 dias
-- baja: total=1, medidos=1, promedio=0.00 dias
+- bloqueante: total=12, medidos=12, promedio=30.42 dias
+- alta: total=24, medidos=24, promedio=15.54 dias
+- media: total=16, medidos=16, promedio=23.06 dias
+- baja: total=3, medidos=3, promedio=0.00 dias
 - desconocida: total=4, medidos=4, promedio=0.00 dias
 
 ## Tickets con mayor tiempo de resolucion (Top 10)

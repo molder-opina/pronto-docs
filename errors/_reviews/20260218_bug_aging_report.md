@@ -3,15 +3,15 @@
 Fuente: pronto-docs/resueltos.txt (BUG/ERR) + fechas de expedientes
 
 ## Resumen
-- Total tickets BUG/ERR: 47
-- 0-7: 43
+- Total tickets BUG/ERR: 59
+- 0-7: 55
 - 8-30: 1
 - 31-90: 0
 - 90+: 3
 - sin-dato: 0
 
 ## Bucket 0-7
-- Total: 43
+- Total: 55
 - [x] ERR-20260213-LOGIN-LAYOUT-VERSION | dias=0 | sev=media | pronto-employees, pronto-static
   Login de empleados desproporcionado y versión fuera de viewport
 - [x] ERR-20260213-LOGIN-SCOPE-403 | dias=0 | sev=bloqueante | pronto-libs, pronto-employees, pronto-static
@@ -80,7 +80,7 @@ Fuente: pronto-docs/resueltos.txt (BUG/ERR) + fechas de expedientes
   Endpoints de API no encontrados (falso positivo)
 - [x] ERR-20260219-MISSING-PLACEHOLDER-ASSET | dias=0 | sev=media | pronto-static
   Asset placeholder-food.png no existe
-- [ ] ERR-20260219-HARDCODED-HOSTS | dias=0 | sev=alta | pronto-client, pronto-employees, pronto-static
+- [x] ERR-20260219-HARDCODED-HOSTS | dias=0 | sev=alta | pronto-client, pronto-employees, pronto-static
   Hosts y puertos hardcodeados impiden despliegue en produccion
 - [x] ERR-20260219-EMPLOYEES-AUTH-REFRESH-MISSING | dias=0 | sev=alta | pronto-static, pronto-employees
   Interceptor de auth llama endpoint /api/employees/auth/refresh inexistente
@@ -96,8 +96,32 @@ Fuente: pronto-docs/resueltos.txt (BUG/ERR) + fechas de expedientes
   Auditoría general de pronto-api - Gate H compliance
 - [x] ERR-20260219-MENU-MAP-NOT-FUNCTION | dias=0 | sev=alta | pronto-static
   use-menu.ts falla con TypeError: e.value.map is not a function
-- [ ] ERR-20260219-CLIENTS-TEMPLATE-HOST-API-CALLS | dias=0 | sev=media | pronto-client
+- [x] ERR-20260219-CLIENTS-TEMPLATE-HOST-API-CALLS | dias=0 | sev=media | pronto-client
   Templates de cliente usan `${window.API_BASE}` en llamadas API y generan ruido parity
+- [x] ERR-20260219-PLACEHOLDER-STATIC-HOST | dias=0 | sev=media | pronto-static, pronto-client, pronto-employees
+  Imagenes placeholder usan path relativo en lugar de static_host_url
+- [x] ERR-20260219-CHECKOUT-POST-CSRF | dias=0 | sev=bloqueante | pronto-client
+  Checkout cliente falla por mutaciones POST sin token CSRF
+- [x] ERR-20260219-FEEDBACK-FORM-UUID | dias=0 | sev=alta | pronto-client
+  Ruta web de feedback parsea session_id y employee_id como int en dominio UUID
+- [x] ERR-20260219-FEEDBACK-BULK-CROSS-HOST | dias=0 | sev=alta | pronto-client
+  Formulario feedback usa endpoint cross-host sin contrato de auth/CSRF
+- [x] ERR-20260219-EMPLOYEE-API-ENV-KEY-MISMATCH | dias=0 | sev=media | pronto-client
+  Inconsistencia entre variable de entorno documentada y variable leída en app cliente
+- [x] ERR-20260219-EMPLOYEES-AUTH-LOGIN-CSRF-EXEMPT | dias=0 | sev=bloqueante | pronto-api
+  Endpoint de login de employees usa @csrf.exempt fuera de excepción permitida
+- [x] ERR-20260219-SYSTEMSETTING-ATTRIBUTE-NAMES | dias=0 | sev=alta | pronto-libs
+  settings_service.py usa nombres de atributos incorrectos
+- [x] ERR-20260219-KIOSK-PASSWORD-HARDCODED | dias=0 | sev=media | pronto-client, pronto-employees
+  Password de kiosk hardcodeado
+- [x] ERR-20260219-USEFETCH-CREDENTIALS | dias=0 | sev=media | pronto-static
+  useFetch.ts sin credentials
+- [x] ERR-20260219-FEEDBACK-TODO-PARSE-DATES | dias=0 | sev=baja | pronto-api
+  TODO sin resolver en feedback.py
+- [x] ERR-20260219-CHEF-NOTIFICATIONS-TEST-FAIL | dias=0 | sev=baja | pronto-tests
+  Test chef_notifications.spec.ts falla con timeout
+- [x] ERR-20260219-PUBLIC-AUTH-ROUTE-CONVENTION | dias=0 | sev=media | pronto-api, pronto-employees, pronto-client, pronto-static
+  Rutas públicas y de autenticación fuera de la convención /public y /auth
 
 ## Bucket 8-30
 - Total: 1

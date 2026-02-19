@@ -1,15 +1,15 @@
 # Bug Status (Standup)
 
-Fecha: 2026-02-18
+Fecha: 2026-02-19
 
-- Semáforo: AMARILLO
+- Semáforo: VERDE
 - Bugs abiertos: 0
-- En seguimiento: 2
-- Resueltos (BUG/ERR): 45
+- En seguimiento: 0
+- Resueltos (BUG/ERR): 59
 
 KPIs:
-- SLA promedio histórico: 23.55
-- Aging: 0-7=43 | 8-30=1 | 31-90=0 | 90+=3
+- SLA promedio histórico: 18.76
+- Aging: 0-7=55 | 8-30=1 | 31-90=0 | 90+=3
 
 Referencias:
 - `20260218_bug_dashboard_semaforo.md`

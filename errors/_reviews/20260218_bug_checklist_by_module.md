@@ -3,9 +3,9 @@
 Fuente: pronto-docs/resueltos.txt
 
 ## pronto-static
-- Total: 19
-- Resueltos: 18
-- Pendientes: 1
+- Total: 22
+- Resueltos: 22
+- Pendientes: 0
 
 - [x] ERR-20260213-LOGIN-LAYOUT-VERSION | Login de empleados desproporcionado y versión fuera de viewport | RESUELTO
 - [x] ERR-20260213-LOGIN-SCOPE-403 | Login de empleados retorna 403 por validación de scope incompleta | RESUELTO
@@ -20,17 +20,20 @@ Fuente: pronto-docs/resueltos.txt
 - [x] BUG-20250209-004-LEGACY-TEMPLATES | Consolidación de templates legacy de employees a shell SPA único | RESUELTO
 - [x] ERR-20260219-INITIALIZE-APP-UNDEFINED | menu.ts llama a funcion initializeApp que no existe | RESUELTO
 - [x] ERR-20260219-MISSING-PLACEHOLDER-ASSET | Asset placeholder-food.png no existe | RESUELTO
-- [ ] ERR-20260219-HARDCODED-HOSTS | Hosts y puertos hardcodeados impiden despliegue en produccion | N/A
+- [x] ERR-20260219-HARDCODED-HOSTS | Hosts y puertos hardcodeados impiden despliegue en produccion | RESUELTO
 - [x] ERR-20260219-EMPLOYEES-AUTH-REFRESH-MISSING | Interceptor de auth llama endpoint /api/employees/auth/refresh inexistente | RESUELTO
 - [x] ERR-20260219-EMPLOYEES-REALTIME-ENDPOINTS-MISSING | Endpoints realtime de employees faltantes generan 404 | RESUELTO
 - [x] ERR-20260219-EMPLOYEES-ORDER-HEAD-MISSING | Validación HEAD /api/orders/{id} en employees usa endpoint inexistente | RESUELTO
 - [x] ERR-20260219-HARDCODED-HOSTS | Hosts hardcodeados (falso positivo - ya usa variables de entorno) | RESUELTO
 - [x] ERR-20260219-MENU-MAP-NOT-FUNCTION | use-menu.ts falla con TypeError: e.value.map is not a function | RESUELTO
+- [x] ERR-20260219-PLACEHOLDER-STATIC-HOST | Imagenes placeholder usan path relativo en lugar de static_host_url | RESUELTO
+- [x] ERR-20260219-USEFETCH-CREDENTIALS | useFetch.ts sin credentials | RESUELTO
+- [x] ERR-20260219-PUBLIC-AUTH-ROUTE-CONVENTION | Rutas públicas y de autenticación fuera de la convención /public y /auth | RESUELTO
 
 ## pronto-employees
-- Total: 17
-- Resueltos: 16
-- Pendientes: 1
+- Total: 20
+- Resueltos: 20
+- Pendientes: 0
 
 - [x] ERR-20260213-LOGIN-LAYOUT-VERSION | Login de empleados desproporcionado y versión fuera de viewport | RESUELTO
 - [x] ERR-20260213-LOGIN-SCOPE-403 | Login de empleados retorna 403 por validación de scope incompleta | RESUELTO
@@ -45,14 +48,17 @@ Fuente: pronto-docs/resueltos.txt
 - [x] BUG-20250209-004-LEGACY-TEMPLATES | Consolidación de templates legacy de employees a shell SPA único | RESUELTO
 - [x] ERR-20260218-EMPLOYEES-MISSING-APP-CONTEXT | Template index.html no incluye window.APP_CONTEXT para Vue app | RESUELTO
 - [x] ERR-20260219-MISSING-BACKEND-ENDPOINTS | Endpoints de API no encontrados (falso positivo) | RESUELTO
-- [ ] ERR-20260219-HARDCODED-HOSTS | Hosts y puertos hardcodeados impiden despliegue en produccion | N/A
+- [x] ERR-20260219-HARDCODED-HOSTS | Hosts y puertos hardcodeados impiden despliegue en produccion | RESUELTO
 - [x] ERR-20260219-EMPLOYEES-AUTH-REFRESH-MISSING | Interceptor de auth llama endpoint /api/employees/auth/refresh inexistente | RESUELTO
 - [x] ERR-20260219-EMPLOYEES-REALTIME-ENDPOINTS-MISSING | Endpoints realtime de employees faltantes generan 404 | RESUELTO
 - [x] ERR-20260219-EMPLOYEES-ORDER-HEAD-MISSING | Validación HEAD /api/orders/{id} en employees usa endpoint inexistente | RESUELTO
+- [x] ERR-20260219-PLACEHOLDER-STATIC-HOST | Imagenes placeholder usan path relativo en lugar de static_host_url | RESUELTO
+- [x] ERR-20260219-KIOSK-PASSWORD-HARDCODED | Password de kiosk hardcodeado | RESUELTO
+- [x] ERR-20260219-PUBLIC-AUTH-ROUTE-CONVENTION | Rutas públicas y de autenticación fuera de la convención /public y /auth | RESUELTO
 
 ## pronto-libs
-- Total: 7
-- Resueltos: 7
+- Total: 8
+- Resueltos: 8
 - Pendientes: 0
 
 - [x] ERR-20260213-LOGIN-SCOPE-403 | Login de empleados retorna 403 por validación de scope incompleta | RESUELTO
@@ -62,6 +68,7 @@ Fuente: pronto-docs/resueltos.txt
 - [x] ERR-20260219-MENU-MAPPER-PAYMENT | /api/menu retorna 500 por mapper SQLAlchemy (Payment no resuelto) | RESUELTO
 - [x] ERR-20260218-OSM-HANDLERS | OrderStateMachine handlers no cambian workflow_status | RESUELTO
 - [x] ERR-20260218-MAGIC-STRINGS | Strings mágicos de estados en lugar de enums canónicos | RESUELTO
+- [x] ERR-20260219-SYSTEMSETTING-ATTRIBUTE-NAMES | settings_service.py usa nombres de atributos incorrectos | RESUELTO
 
 ## pronto-scripts
 - Total: 2
@@ -72,9 +79,9 @@ Fuente: pronto-docs/resueltos.txt
 - [x] ERR-20260218-MIGR-20260218-06-NONIDEMPOTENT-INDEX | Migración 20260218_06 falla por CREATE INDEX no idempotente | RESUELTO
 
 ## pronto-client
-- Total: 18
-- Resueltos: 16
-- Pendientes: 2
+- Total: 25
+- Resueltos: 25
+- Pendientes: 0
 
 - [x] BUG-20260214-003 | /api/me no verifica revocación de customer_ref | RESUELTO
 - [x] BUG-20260214-004 | auth.py usa auth_bp = api_bp (blueprint frágil) + doble import en __init__.py | RESUELTO
@@ -91,9 +98,16 @@ Fuente: pronto-docs/resueltos.txt
 - [x] BUG-2026-0216-003 | Bloque grande de estilos inline en index-alt.html (checkout-offers) | RESUELTO
 - [x] ERR-20260218-GATE-VALIDATION-RESOLVED-CONSISTENCY | Incumplimiento de gate de converters int+_id y archivos en resolved con ESTADO ABIERTO | RESUELTO
 - [x] ERR-20260219-MENU-MAPPER-PAYMENT | /api/menu retorna 500 por mapper SQLAlchemy (Payment no resuelto) | RESUELTO
-- [ ] ERR-20260219-HARDCODED-HOSTS | Hosts y puertos hardcodeados impiden despliegue en produccion | N/A
+- [x] ERR-20260219-HARDCODED-HOSTS | Hosts y puertos hardcodeados impiden despliegue en produccion | RESUELTO
 - [x] ERR-20260219-HARDCODED-HOSTS | Hosts hardcodeados (falso positivo - ya usa variables de entorno) | RESUELTO
-- [ ] ERR-20260219-CLIENTS-TEMPLATE-HOST-API-CALLS | Templates de cliente usan `${window.API_BASE}` en llamadas API y generan ruido parity | local-uncommitted
+- [x] ERR-20260219-CLIENTS-TEMPLATE-HOST-API-CALLS | Templates de cliente usan `${window.API_BASE}` en llamadas API y generan ruido parity | RESUELTO
+- [x] ERR-20260219-PLACEHOLDER-STATIC-HOST | Imagenes placeholder usan path relativo en lugar de static_host_url | RESUELTO
+- [x] ERR-20260219-CHECKOUT-POST-CSRF | Checkout cliente falla por mutaciones POST sin token CSRF | RESUELTO
+- [x] ERR-20260219-FEEDBACK-FORM-UUID | Ruta web de feedback parsea session_id y employee_id como int en dominio UUID | RESUELTO
+- [x] ERR-20260219-FEEDBACK-BULK-CROSS-HOST | Formulario feedback usa endpoint cross-host sin contrato de auth/CSRF | RESUELTO
+- [x] ERR-20260219-EMPLOYEE-API-ENV-KEY-MISMATCH | Inconsistencia entre variable de entorno documentada y variable leída en app cliente | RESUELTO
+- [x] ERR-20260219-KIOSK-PASSWORD-HARDCODED | Password de kiosk hardcodeado | RESUELTO
+- [x] ERR-20260219-PUBLIC-AUTH-ROUTE-CONVENTION | Rutas públicas y de autenticación fuera de la convención /public y /auth | RESUELTO
 
 ## pronto-docs
 - Total: 1
@@ -103,11 +117,12 @@ Fuente: pronto-docs/resueltos.txt
 - [x] ERR-20260218-GATE-VALIDATION-RESOLVED-CONSISTENCY | Incumplimiento de gate de converters int+_id y archivos en resolved con ESTADO ABIERTO | RESUELTO
 
 ## pronto-tests
-- Total: 1
-- Resueltos: 1
+- Total: 2
+- Resueltos: 2
 - Pendientes: 0
 
 - [x] ERR-20260218-EMPLOYEES-ORDERS-500-CUSTOMER-EMAIL | GET /api/orders en employees falla 500 por columna customer.email inexistente | RESUELTO
+- [x] ERR-20260219-CHEF-NOTIFICATIONS-TEST-FAIL | Test chef_notifications.spec.ts falla con timeout | RESUELTO
 
 ## PRONTO-System
 - Total: 1
@@ -117,12 +132,15 @@ Fuente: pronto-docs/resueltos.txt
 - [x] BUG-20250209-002-BUSINESS-LOGIC-REVIEW | Revisión completa de lógica de negocio en todos los archivos Python | RESUELTO
 
 ## pronto-api
-- Total: 4
-- Resueltos: 4
+- Total: 7
+- Resueltos: 7
 - Pendientes: 0
 
 - [x] ERR-20260218-MAGIC-STRINGS | Strings mágicos de estados en lugar de enums canónicos | RESUELTO
 - [x] ERR-20260219-HARDCODED-HOSTS | Hosts hardcodeados (falso positivo - ya usa variables de entorno) | RESUELTO
 - [x] ERR-20260218-001 | Endpoints de orders sin autenticación JWT | RESUELTO
 - [x] ERR-20260218-002 | Auditoría general de pronto-api - Gate H compliance | RESUELTO
+- [x] ERR-20260219-EMPLOYEES-AUTH-LOGIN-CSRF-EXEMPT | Endpoint de login de employees usa @csrf.exempt fuera de excepción permitida | RESUELTO
+- [x] ERR-20260219-FEEDBACK-TODO-PARSE-DATES | TODO sin resolver en feedback.py | RESUELTO
+- [x] ERR-20260219-PUBLIC-AUTH-ROUTE-CONVENTION | Rutas públicas y de autenticación fuera de la convención /public y /auth | RESUELTO
 

@@ -1,19 +1,19 @@
 # Dashboard Maestro de Bugs
 
-Fecha de corte: 2026-02-18
+Fecha de corte: 2026-02-19
 Fuente principal: `pronto-docs/resueltos.txt`
 
 ## Estado General
-- Total tickets BUG/ERR: 47
+- Total tickets BUG/ERR: 59
 - Abiertos en `pronto-docs/errors`: 0
-- En seguimiento: 2
-- Resueltos: 45
+- En seguimiento: 0
+- Resueltos: 59
 
 ## Vista Rápida
 - Riesgo histórico (Top 10): ver `20260218_bug_executive_top10.md`
-- SLA promedio global: 23.55
+- SLA promedio global: 18.76
 - Aging:
-  - 0-7 días: 43
+  - 0-7 días: 55
   - 8-30 días: 1
   - 31-90 días: 0
   - 90+ días: 3
