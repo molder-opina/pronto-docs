@@ -33,5 +33,5 @@ grep "Python 3.11" pronto-*/README.md
 HIPOTESIS_CAUSA:
 INDEX.md se actualizó a una versión más nueva de Python (3.14+) mientras que los READMEs de módulos se quedaron con la versión anterior (3.11+).
 
-ESTADO: ABIERTO
+ESTADO: RESUELTO
 ---

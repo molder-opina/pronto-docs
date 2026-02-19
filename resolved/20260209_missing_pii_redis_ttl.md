@@ -11,4 +11,4 @@ RESULTADO_ESPERADO: Código debe setear explícitamente TTL=3600 al guardar PII 
 UBICACION: pronto-libs/src/pronto_shared/services/
 EVIDENCIA: redis_keys.md dice TTL 3600 para pronto:client:customer_ref pero código no muestra esta implementación
 HIPOTESIS_CAUSA: El TTL fue definido en contrato pero nunca se implementó en el código de servicio de clientes
-ESTADO: ABIERTO
+ESTADO: RESUELTO

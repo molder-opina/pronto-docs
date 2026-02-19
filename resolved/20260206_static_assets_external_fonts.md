@@ -26,5 +26,5 @@ EVIDENCIA:
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
 ```
 HIPOTESIS_CAUSA: Se priorizó la facilidad de uso de Google Fonts sin considerar la directriz de centralizar todos los assets en `pronto-static`.
-ESTADO: ABIERTO
+ESTADO: RESUELTO
 ---

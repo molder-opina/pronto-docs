@@ -11,4 +11,4 @@ RESULTADO_ESPERADO: OpenAPI con todos los endpoints documentados (orders, menu, 
 UBICACION: pronto-docs/contracts/pronto-api/openapi.yaml
 EVIDENCIA: Archivo revisado en auditoría técnica - solo 18 líneas con health check
 HIPOTESIS_CAUSA: El equipo priorizó implementar funcionalidad sobre documentación de API, o generó el archivo automáticamente al inicio del proyecto y nunca lo actualizó
-ESTADO: ABIERTO
+ESTADO: RESUELTO

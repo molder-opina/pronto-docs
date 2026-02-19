@@ -40,5 +40,5 @@ Referencias en router.yml: pronto-*.md
 HIPOTESIS_CAUSA:
 El router.yml fue creado antes de la reorganización de la documentación en carpetas. Cuando se reorganizó la documentación, el archivo router.yml no se actualizó.
 
-ESTADO: ABIERTO
+ESTADO: RESUELTO
 ---

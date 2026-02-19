@@ -34,5 +34,5 @@ Source of truth: Order.workflow_status.
 # Keep compatibility flags if caller uses include_closed/include_delivered.
 ```
 HIPOTESIS_CAUSA: La migración de un sistema de estados anterior a uno canónico no se ha completado, o existe una necesidad específica de mantener compatibilidad con versiones anteriores o sistemas externos que aún utilizan los estados legacy.
-ESTADO: ABIERTO
+ESTADO: RESUELTO
 ---

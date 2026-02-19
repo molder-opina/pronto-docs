@@ -22,5 +22,5 @@ find pronto-libs/src/pronto_shared/services -name "order_service.py"
 # Output: pronto-libs/src/pronto_shared/services/order_service.py
 ```
 HIPOTESIS_CAUSA: El servicio de órdenes fue implementado localmente en `pronto-client` sin verificar o reutilizar la implementación existente en la librería compartida, o la funcionalidad en `pronto-client` es ligeramente diferente pero no fue parametrizada en la versión compartida.
-ESTADO: ABIERTO
+ESTADO: RESUELTO
 ---

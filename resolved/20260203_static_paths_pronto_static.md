@@ -11,5 +11,5 @@ RESULTADO_ESPERADO: Assets referenciados vía static_host_url/paths de /assets.
 UBICACION: pronto-static/src/vue/clients/modules/client-base.ts:198; pronto-static/src/vue/employees/modules/employee-events.ts:577-578; pronto-static/src/vue/employees/modules/menu-manager.ts:85
 EVIDENCIA: new Audio(`/static/audio/${soundFile}`), icon: '/static/favicon.ico', placeholder: '/static/img/placeholder.png'.
 HIPOTESIS_CAUSA: Migración a static container sin actualizar rutas absolutas.
-ESTADO: ABIERTO
+ESTADO: RESUELTO
 ---

@@ -11,4 +11,4 @@ RESULTADO_ESPERADO: Archivo con tabla de keys igual que otros módulos (pattern,
 UBICACION: pronto-docs/contracts/pronto-employees/redis_keys.md
 EVIDENCIA: Archivo vacío revisado en auditoría técnica
 HIPOTESIS_CAUSA: El equipo documentó redis_keys para otros módulos pero olvido employees, o las keys de employees aún no fueron inventariadas
-ESTADO: ABIERTO
+ESTADO: RESUELTO

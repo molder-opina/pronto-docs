@@ -10,4 +10,4 @@ RESULTADO_ESPERADO: Las rutas deben usar <uuid:id> para entidades UUID y <int:id
 UBICACION: pronto-employees/src/pronto_employees/routes/api/*.py
 EVIDENCIA: Archivos afectados: customers.py, employees.py, sessions.py, tables.py, menu_items.py, modifiers.py, roles.py, areas.py, discount_codes.py, promotions.py, orders.py, admin_shortcuts.py, notifications.py, product_schedules.py
 HIPOTESIS_CAUSA: Falta de validación durante desarrollo. Los modelos fueron migrados a UUID pero las rutas API no se actualizaron correspondientemente.
-ESTADO: ABIERTO
+ESTADO: RESUELTO

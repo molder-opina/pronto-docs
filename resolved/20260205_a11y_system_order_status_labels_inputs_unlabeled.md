@@ -11,6 +11,6 @@ RESULTADO_ESPERADO: Cada input con label explícito o `aria-label`/`aria-labelle
 UBICACION: pronto-employees/src/pronto_employees/templates/system_order_status_labels.html:23-44
 EVIDENCIA: `<input type=\"text\" ... class=\"client-label\">` sin label/aria-label.
 HIPOTESIS_CAUSA: UI interna construida rápido sin checklist de accesibilidad.
-ESTADO: ABIERTO
+ESTADO: RESUELTO
 ---
 

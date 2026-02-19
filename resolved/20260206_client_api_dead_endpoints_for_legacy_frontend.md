@@ -27,5 +27,5 @@ def delete_table(table_id: int):
     return jsonify({"error": "Not implemented"}), HTTPStatus.NOT_IMPLEMENTED
 ```
 HIPOTESIS_CAUSA: La refactorización o migración de componentes de frontend legacy no se ha completado, dejando "cabos sueltos" que el backend debe manejar pasivamente.
-ESTADO: ABIERTO
+ESTADO: RESUELTO
 ---

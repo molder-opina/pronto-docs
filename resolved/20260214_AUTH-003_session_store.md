@@ -20,6 +20,6 @@ EVIDENCIA:
 Archivo no existe
 HIPOTESIS_CAUSA:
 Funcionalidad no implementada
-ESTADO: ABIERTO
+ESTADO: RESUELTO
 DEPENDENCIAS: AUTH-002 (requiere modelo Customer actualizado)
 BLOQUEA: AUTH-004, AUTH-005, AUTH-006

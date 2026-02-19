@@ -34,5 +34,5 @@ EVIDENCIA:
     /* ... más overrides con !important ... */
 ```
 HIPOTESIS_CAUSA: La evolución del diseño o la introducción de nuevos componentes generó conflictos de estilo que se resolvieron con overrides forzados en lugar de una refactorización de CSS más profunda.
-ESTADO: ABIERTO
+ESTADO: RESUELTO
 ---

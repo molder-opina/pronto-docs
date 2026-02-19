@@ -61,4 +61,4 @@ function getCurrentUser(): ProntoUser | null {
 
 El desarrollador eligió localStorage por conveniencia para persistencia entre refreshes, sin considerar el riesgo de seguridad.
 
-## ESTADO: ABIERTO
+## ESTADO: RESUELTO

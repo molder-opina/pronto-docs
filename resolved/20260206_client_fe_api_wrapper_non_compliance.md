@@ -24,5 +24,5 @@ search_file_content(case_sensitive=False, dir_path='pronto-static/src/vue/client
 # Output: No matches found
 ```
 HIPOTESIS_CAUSA: La arquitectura del frontend no sigue el patrón establecido para las llamadas a la API, o el `http.ts` es un código muerto no utilizado por el resto de la aplicación cliente.
-ESTADO: ABIERTO
+ESTADO: RESUELTO
 ---

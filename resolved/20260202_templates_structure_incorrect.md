@@ -43,5 +43,5 @@ ls pronto-employees/src/pronto_employees/templates/
 HIPOTESIS_CAUSA:
 La documentación se escribió basándose en un diseño arquitectónico planeado pero nunca implementado completamente. Las rutas de templates existen en el código (routes/waiter/, routes/cashier/, etc.) pero los templates se organizan de forma diferente.
 
-ESTADO: ABIERTO
+ESTADO: RESUELTO
 ---

@@ -11,5 +11,5 @@ RESULTADO_ESPERADO: Debería existir un archivo de rutas en el backend (ej. `pro
 UBICACION: `pronto-employees/src/pronto_employees/routes/api/` (Ubicación esperada del archivo faltante)
 EVIDENCIA: No existe un `Blueprint` o archivo de rutas para manejar las rutas bajo `/api/customers/`.
 HIPOTESIS_CAUSA: La funcionalidad de clientes aún no ha sido implementada en el backend.
-ESTADO: ABIERTO
+ESTADO: RESUELTO
 ---

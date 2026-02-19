@@ -33,5 +33,5 @@ EVIDENCIA:
   })();
 ```
 HIPOTESIS_CAUSA: Un componente legacy o un proceso de inicialización de configuración no tiene en cuenta la persistencia o el correcto flujo de valores para `APP_CONFIG`, obligando a este parche de restauración.
-ESTADO: ABIERTO
+ESTADO: RESUELTO
 ---

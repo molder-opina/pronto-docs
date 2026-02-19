@@ -11,5 +11,5 @@ RESULTADO_ESPERADO: Assets de avatars servidos desde pronto-static con assets_*.
 UBICACION: pronto-client/src/pronto_clients/routes/api/auth.py:371-385; pronto-client/src/pronto_clients/app.py:55-58
 EVIDENCIA: url = "/static/avatars/{filename}" y Flask static_folder=None.
 HIPOTESIS_CAUSA: Migración a static container sin actualizar rutas de avatars.
-ESTADO: ABIERTO
+ESTADO: RESUELTO
 ---

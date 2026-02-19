@@ -40,4 +40,4 @@ IMPACTO:
 HIPOTESIS_CAUSA:
 El endpoint fue creado antes de que se definiera la arquitectura clara de employee-auth vs client-auth
 
-ESTADO: ABIERTO
+ESTADO: RESUELTO

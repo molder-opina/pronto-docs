@@ -11,5 +11,5 @@ RESULTADO_ESPERADO: Debería mostrarse una imagen de placeholder.
 UBICACION: `pronto-static/src/vue/clients/modules/modal-manager.ts:175` y otros.
 EVIDENCIA: La referencia al archivo en el código y el resultado del comando `ls` que confirma que el archivo no existe.
 HIPOTESIS_CAUSA: El archivo de imagen nunca fue añadido al repositorio o fue eliminado sin actualizar las referencias en el código.
-ESTADO: ABIERTO
+ESTADO: RESUELTO
 ---

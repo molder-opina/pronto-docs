@@ -13,5 +13,5 @@ RESULTADO_ESPERADO: Docs indican static_folder=None y assets desde pronto-static
 UBICACION: pronto-docs/**, pronto-employees/src/pronto_employees/app.py
 EVIDENCIA: app.py crea Flask con static_folder=None.
 HIPOTESIS_CAUSA: Documentación quedó desalineada con la configuración real.
-ESTADO: ABIERTO
+ESTADO: RESUELTO
 ---

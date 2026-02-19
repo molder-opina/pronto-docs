@@ -64,4 +64,4 @@ def _get_authenticated_customer() -> dict | None:
 
 El endpoint fue copiado de la implementación de empleados sin adaptar al patrón de cliente.
 
-## ESTADO: ABIERTO
+## ESTADO: RESUELTO

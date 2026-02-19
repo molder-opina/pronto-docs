@@ -11,5 +11,5 @@ RESULTADO_ESPERADO: AGENTS.md y variables de contexto reflejan rutas reales o se
 UBICACION: AGENTS.md; pronto-static/src/static_content; pronto-libs/src/pronto_shared/config.py
 EVIDENCIA: pronto-static/src/static_content/assets contiene css/js/images/lib/branding/pronto; assets_images apunta a /assets/images.
 HIPOTESIS_CAUSA: Documentacion desactualizada tras reorganizacion de assets.
-ESTADO: ABIERTO
+ESTADO: RESUELTO
 ---

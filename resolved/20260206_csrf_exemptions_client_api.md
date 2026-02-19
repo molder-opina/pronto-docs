@@ -25,5 +25,5 @@ EVIDENCIA:
     csrf_protection.exempt(payments_bp)
 ```
 HIPOTESIS_CAUSA: La arquitectura del cliente puede depender de una estrategia de autenticación diferente que hace que la protección CSRF tradicional sea redundante, o se optó por la exención por simplicidad sin una evaluación completa de seguridad.
-ESTADO: ABIERTO
+ESTADO: RESUELTO
 ---

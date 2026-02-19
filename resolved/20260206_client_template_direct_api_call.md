@@ -22,5 +22,5 @@ EVIDENCIA:
       })
 ```
 HIPOTESIS_CAUSA: Implementación rápida de funcionalidad sin considerar la centralización de llamadas API o la unificación de la política de credenciales.
-ESTADO: ABIERTO
+ESTADO: RESUELTO
 ---

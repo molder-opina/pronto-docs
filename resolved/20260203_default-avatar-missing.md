@@ -13,5 +13,5 @@ RESULTADO_ESPERADO: La imagen default-avatar.png carga correctamente.
 UBICACION: /Users/molder/projects/github-molder/pronto/pronto-client/src/pronto_clients/templates/base.html:1384
 EVIDENCIA: Falta el archivo /Users/molder/projects/github-molder/pronto/pronto-static/src/static_content/assets/pronto/default-avatar.png.
 HIPOTESIS_CAUSA: Asset eliminado o renombrado (existen avatars en /assets/pronto/avatars).
-ESTADO: ABIERTO
+ESTADO: RESUELTO
 ---

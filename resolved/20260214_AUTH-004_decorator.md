@@ -23,6 +23,6 @@ EVIDENCIA:
 Archivo no existe
 HIPOTESIS_CAUSA:
 Funcionalidad no implementada
-ESTADO: ABIERTO
+ESTADO: RESUELTO
 DEPENDENCIAS: AUTH-003 (requiere CustomerSessionStore)
 BLOQUEA: AUTH-006

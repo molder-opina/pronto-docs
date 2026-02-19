@@ -20,5 +20,5 @@ EVIDENCIA:
     quantity = 1
 ```
 HIPOTESIS_CAUSA: No se ha realizado la migración completa del frontend o de los clientes que utilizan el formato legacy, o se ha pospuesto la refactorización para mantener la compatibilidad hacia atrás.
-ESTADO: ABIERTO
+ESTADO: RESUELTO
 ---
