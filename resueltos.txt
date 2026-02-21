@@ -106,3 +106,6 @@
 2026-02-19 | ERR-20260219-FEEDBACK-TODO-PARSE-DATES | TODO sin resolver en feedback.py | RESUELTO | pronto-api
 2026-02-19 | ERR-20260219-CHEF-NOTIFICATIONS-TEST-FAIL | Test chef_notifications.spec.ts falla con timeout | RESUELTO | pronto-tests
 2026-02-19 | ERR-20260219-PUBLIC-AUTH-ROUTE-CONVENTION | Rutas públicas y de autenticación fuera de la convención /public y /auth | RESUELTO | pronto-api, pronto-employees, pronto-client, pronto-static
+2026-02-21 | ERR-20260220-001 | 81 errores MyPy en rutas employees | de63cbf | pronto-api
+2026-02-21 | ERR-20260220-002 | Test fallando EmployeesManager.spec.ts | 5e5c15b | pronto-static
+2026-02-21 | ERR-20260220-003 | Imports no usados en app.py | 6a5bae5 | pronto-api
