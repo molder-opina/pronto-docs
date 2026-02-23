@@ -32,7 +32,7 @@ Se realizó una auditoría completa del código fuente enfocada en:
 - **Corrección:** Se movió el archivo a `pronto-scripts/bin/python/create_tables_dev.py` clasificándolo como script de utilidad/desarrollo.
 
 ### 5. Versiones de PostgreSQL
-- **Problema:** Referencias a PostgreSQL 13 en documentación histórica (`resolved/`).
+- **Problema:** Referencias a PG v13 en documentación histórica (`resolved/`).
 - **Corrección:** Se ajustó el script de auditoría para ignorar falsos positivos en carpetas de issues resueltos.
 
 ## Resultados de Herramientas Automáticas

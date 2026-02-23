@@ -109,3 +109,17 @@
 2026-02-21 | ERR-20260220-001 | 81 errores MyPy en rutas employees | de63cbf | pronto-api
 2026-02-21 | ERR-20260220-002 | Test fallando EmployeesManager.spec.ts | 5e5c15b | pronto-static
 2026-02-21 | ERR-20260220-003 | Imports no usados en app.py | 6a5bae5 | pronto-api
+2026-02-22 | ERR-20260222-CLIENT-MENU-VUE-STYLES-MISSING | Menú de clientes renderiza sin estilos Vue (layout roto) | local-uncommitted | pronto-client, pronto-static
+2026-02-22 | ERR-20260222-CLIENT-MENU-VUE-STYLES-MISSING-REOPEN-01 | Reapertura - menú clientes mantiene CSS viejo por cache immutable | local-uncommitted | pronto-client, pronto-static
+2026-02-22 | ERR-20260222-CLIENT-MENU-PLACEHOLDER-TRANSPARENT-REOPEN-01 | Reapertura - tarjetas del menú muestran bloque gris por placeholder transparente | local-uncommitted | pronto-client, pronto-static
+2026-02-22 | ERR-20260222-CLIENT-MENU-NULL-IMAGEPATH-SINGLE-FALLBACK | Menú de cliente usa una sola imagen fallback para todos los productos con image_path null | local-uncommitted | pronto-client, pronto-static
+2026-02-22 | ERR-20260222-CLIENT-WAITER-BUTTON-REQUIRES-SESSION | Campana de llamar al mesero disponible sin sesión activa | local-uncommitted | pronto-client, pronto-static
+2026-02-22 | ERR-20260222-CLIENT-MENU-RESPONSIVE-UNEVEN-CARDS | Front clientes descuadrado y cards no uniformes en menú | local-uncommitted | pronto-client, pronto-static
+2026-02-22 | ERR-20260222-MENU-IMAGE-COVERAGE-EXAMPLES | Cobertura completa de imágenes ejemplo para rutas de seed de menú + catálogo en init | local-uncommitted | pronto-static, pronto-libs, pronto-scripts/init
+2026-02-22 | ERR-20260222-CLIENTE-MENU-PLUS-AGOTADO | Botón + poco visible y estado de agotado no evidente en cards del menú cliente | local-uncommitted | pronto-static
+2026-02-22 | ERR-20260222-CLIENTE-MODAL-BACKDROP-CLOSE | Modal de producto no cierra al hacer clic fuera del formulario | local-uncommitted | pronto-client
+2026-02-22 | ERR-20260222-CLIENTE-CART-NO-OPEN-CLICK | Botón de carrito no abre panel de compras en página de cliente | local-uncommitted | pronto-static
+2026-02-22 | ERR-20260222-CLIENTE-MENU-DESIGN-UNPOLISHED | Menú cliente con apariencia desalineada y poco pulida | local-uncommitted | pronto-static
+2026-02-22 | ERR-20260222-CLIENTE-PROFILE-DROPDOWN-UGLY | Menú de perfil al hacer clic en avatar se ve descompuesto y poco usable | local-uncommitted | pronto-static
+2026-02-22 | ERR-20260222-CLIENTE-CART-NO-OPEN-CLICK-REOPEN-01 | Reapertura - carrito sigue sin abrir al hacer clic en cliente | local-uncommitted | pronto-client
+2026-02-22 | ERR-20260222-TABLE-REQUIRED-DETALLES | Mesa obligatoria en confirmacion de orden (Tab Detalles) con lock QR/kiosk | RESUELTO | pronto-client, pronto-api, pronto-libs

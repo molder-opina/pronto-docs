@@ -7,6 +7,7 @@ This directory contains detailed documentation for major features implemented in
 | Feature | Status | Date | PR/Branch |
 |---------|--------|------|-----------|
 | [JWT Dual Mode](jwt-dual-mode/README.md) | Implemented | 2026-02-06 | feat/fase2-jwt-dual-mode |
+| [Mesa obligatoria en Confirmacion](mesa-obligatoria-confirmacion-detalles/README.md) | Implemented | 2026-02-22 | local-uncommitted |
 
 ## Adding New Features
 
