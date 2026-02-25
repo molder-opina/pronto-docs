@@ -123,3 +123,38 @@
 2026-02-22 | ERR-20260222-CLIENTE-PROFILE-DROPDOWN-UGLY | Menú de perfil al hacer clic en avatar se ve descompuesto y poco usable | local-uncommitted | pronto-static
 2026-02-22 | ERR-20260222-CLIENTE-CART-NO-OPEN-CLICK-REOPEN-01 | Reapertura - carrito sigue sin abrir al hacer clic en cliente | local-uncommitted | pronto-client
 2026-02-22 | ERR-20260222-TABLE-REQUIRED-DETALLES | Mesa obligatoria en confirmacion de orden (Tab Detalles) con lock QR/kiosk | RESUELTO | pronto-client, pronto-api, pronto-libs
+2026-02-23 | ERR-20260223-TABLE-SESSION-AUTHORITY-AND-LEGACY-GATE | Autoridad de mesa por DiningSession + migración legacy realtime/waiter + contratos/UX | local-uncommitted | pronto-client, pronto-api, pronto-libs, pronto-static, pronto-docs
+2026-02-23 | ERR-20260223-CART-MODAL-ADD-SIMULATED | Productos agregados desde modal no llegan al carrito | local-uncommitted | pronto-client
+2026-02-23 | ERR-20260223-CHECKOUT-SIN-ACCION | Boton "Ir a pagar" no realiza accion visible en menu cliente | local-uncommitted | pronto-static, pronto-client
+2026-02-23 | ERR-20260223-CHECKOUT-REQUIRES-AUTH | Ir a pagar sin sesión no solicita login/registro y no retoma flujo a Detalles | local-uncommitted | pronto-static, pronto-client
+2026-02-23 | ERR-20260223-PROFILE-MODAL-ZINDEX-PADDING | Modal flotante de login/registro queda detrás del menú y con formulario sin padding interno | local-uncommitted | pronto-client, pronto-static
+2026-02-23 | ERR-20260223-AUTH-LOGIN-500 | POST /api/auth/login retorna 500 durante flujo de checkout con auth obligatoria | local-uncommitted | pronto-libs, pronto-client
+2026-02-23 | ERR-20260223-PROFILE-AVATAR-ANON-DEFAULTS | Avatar de perfil no distingue estado anónimo y no permite seleccionar icono por defecto al autenticarse | local-uncommitted | pronto-client, pronto-static
+2026-02-23 | ERR-20260223-CHECKOUT-DETALLES-MINIMIZAR | Botón minimizar del acordeón en tab Detalles no responde | local-uncommitted | pronto-static, pronto-client
+2026-02-23 | ERR-20260223-AUTH-HASH-LEGACY-UNIFICATION | Unificación segura de hashing/verificación con migración automática de hashes legacy | local-uncommitted | pronto-libs, pronto-client, pronto-employees
+2026-02-23 | ERR-20260223-FOOTER-HOURS-BUTTON-NO-ACTION | Botón Ver horarios de atención sin acción visible en cliente | local-uncommitted | pronto-static, pronto-client
+2026-02-23 | ERR-20260223-SUPPORT-LINK-NO-ACTION | Link de soporte técnico sin acción en cliente | local-uncommitted | pronto-static, pronto-client
+2026-02-23 | ERR-20260223-ORDERS-TAB-ACTIVE-WITHOUT-ORDERS | Tab Órdenes debe deshabilitarse sin órdenes activas | local-uncommitted | pronto-static, pronto-client
+2026-02-23 | ERR-20260223-AUTH-NO-LEGACY-POLICY | Eliminación de compatibilidad legacy en auth + alineación schema/init/seed a política moderna | local-uncommitted | pronto-libs, pronto-employees, pronto-scripts, pronto-client
+2026-02-23 | ERR-20260223-REGISTER-FORM-LAYOUT-INCOMPLETE | Form de registrarse no se ve completo en modal de perfil | local-uncommitted | pronto-client
+2026-02-23 | BUG-20260223-CHK-CSRF-001 | Confirmar pedido falla tras login/registro por token CSRF inválido de sesión anterior | local-uncommitted | pronto-client/pronto-static
+2026-02-23 | BUG-20260223-CHK-CSRF-002 | Confirmar pedido falla con CSRF Error en sesión activa sin refresco de token | local-uncommitted | pronto-client/pronto-static
+2026-02-23 | BUG-20260223-CHK-AUTH-003 | Checkout devuelve 401 No autenticado con UI mostrando sesión iniciada | local-uncommitted | pronto-client/pronto-static
+2026-02-23 | ERR-20260223-CHECKOUT-409-TABLE-MISMATCH-RETRY | Confirmar pedido falla con 409 por TABLE_LOCATION_MISMATCH sin autorecuperación | local-uncommitted | pronto-client,pronto-api
+2026-02-23 | ERR-20260223-ORDERS-TAB-BLANK-AFTER-CONFIRM | Tab Órdenes vacío tras confirmar pedido aunque existe orden activa | local-uncommitted | pronto-static,pronto-client
+2026-02-23 | ERR-20260223-ORDERS-DISPLAY-ID-ZERO | Órdenes activas se muestran como #0 por coerción numérica de ID UUID | local-uncommitted | pronto-static / pronto-client
+2026-02-23 | ERR-20260223-CALL-WAITER-UNBOUND-SESSION | Error al llamar al mesero por UnboundLocalError en endpoint /api/call-waiter | local-uncommitted | pronto-client
+2026-02-23 | ERR-20260223-HARD-REFRESH-LOSES-ORDERS-SESSION-UUID | Hard refresh pierde órdenes activas por invalidación de session_id UUID | local-uncommitted | pronto-static
+2026-02-23 | ERR-20260223-SESSIONS-ME-PAYLOAD-PARSE-FIX | Rehidratación de sesión falla por parseo incorrecto de /api/sessions/me | local-uncommitted | pronto-static
+2026-02-23 | ERR-20260223-REFRESH-LOOP-NO-ACTIVE-ORDERS | Loop de recarga tras hard refresh cuando no hay órdenes activas | local-uncommitted | pronto-static
+2026-02-23 | ERR-20260223-REFRESH-LOOP-SESSION-CLOSED-REDIRECT | Loop de refresh por redirección forzada en SESSION_CLOSED | local-uncommitted | pronto-static
+2026-02-24 | ERR-20260224-ADITAMENTOS-GROUPS-LOAD-500 | Aditamentos y Modificadores falla al cargar grupos en dashboard empleados | local-uncommitted | pronto-libs, pronto-employees, pronto-api, pronto-static
+2026-02-24 | ERR-20260224-DASHBOARD-HEADER-ELEMENTS-CUT | Elementos del header/dashboard se recortan y el bloque principal carece de jerarquía visual | local-uncommitted | pronto-static
+2026-02-24 | ERR-20260224-EMPLOYEES-TABS-DUAL-ACTIVE | Selección de módulos mostraba doble activo y diseño incómodo en dashboard de empleados | local-uncommitted | pronto-static
+2026-02-24 | ERR-20260224-EMPLOYEES-CONSOLE-TAILWIND-ORB | Errores de consola employees por Tailwind runtime y ORB en imágenes | local-uncommitted | pronto-static
+2026-02-24 | ERR-20260224-EMPLOYEES-CONSOLE-TAILWIND-ORB-REOPEN-01 | Reapertura resuelta: CSS hash legacy y polling realtime duplicado en employees | local-uncommitted | pronto-static, pronto-employees
+2026-02-25 | ERR-20260225-SESSION-STATUS-LABEL | Estado de sesión mostrado incorrectamente como "Consumo activo" en Caja y Cierres | local-uncommitted | pronto-static
+2026-02-25 | ERR-20260225-WAITER-MENU-AVAILABILITY-FORBIDDEN | Mesero no puede activar/desactivar disponibilidad de productos en /waiter/dashboard/products | local-uncommitted | pronto-api,pronto-libs
+2026-02-25 | ERR-20260225-001 | Multi-console sessions: cookies namespaced por scope (waiter/chef/cashier/admin/system), proxy técnico deprecated, frontend scope-aware | RESUELTO | pronto-libs, pronto-api, pronto-employees, pronto-static, pronto-client
+2026-02-25 | BUG-20260225-002 | Client orders.py propagaba cookie JWT genérica (eliminado) | RESUELTO | pronto-client
+2026-02-25 | BUG-20260225-003 | Client sessions usaba cookie genérica access_token (renombrado a pronto_client_session) | RESUELTO | pronto-api

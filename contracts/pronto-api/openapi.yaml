@@ -9,9 +9,92 @@ paths:
       responses:
         "200":
           description: OK
+  /api/customer/orders:
+    post:
+      summary: Crear orden de cliente (requiere sesión de cliente)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateCustomerOrderRequest"
+      responses:
+        "201":
+          description: Orden creada
+        "400":
+          description: Validación inválida (incluye TABLE_REQUIRED)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: Conflictos de mesa
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
 components:
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
+  schemas:
+    CreateCustomerOrderRequest:
+      type: object
+      properties:
+        table_id:
+          type: string
+          format: uuid
+          nullable: true
+        table_source:
+          type: string
+          enum: [kiosk, qr, manual, session]
+          nullable: true
+        items:
+          type: array
+          items:
+            type: object
+        notes:
+          type: string
+          nullable: true
+      required: [items]
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        data:
+          nullable: true
+        error:
+          type: string
+        details:
+          type: object
+          properties:
+            code:
+              type: string
+              enum:
+                - TABLE_REQUIRED
+                - TABLE_LOCKED_BY_QR
+                - KIOSK_TABLE_NOT_CONFIGURED
+                - KIOSK_TABLE_LOCATION_MISMATCH
+                - TABLE_LOCATION_MISMATCH
+                - TABLE_SESSION_MISMATCH
+            session_id:
+              type: string
+              format: uuid
+              nullable: true
+            current_table_id:
+              type: string
+              format: uuid
+              nullable: true
+            current_table_code:
+              type: string
+              nullable: true
+            current_table_source:
+              type: string
+              nullable: true
+            table_locked:
+              type: boolean
+              nullable: true

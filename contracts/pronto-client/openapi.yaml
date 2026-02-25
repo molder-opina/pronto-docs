@@ -1,0 +1,169 @@
+openapi: 3.0.0
+info:
+  title: Pronto Client BFF API
+  version: "1.0.0"
+paths:
+  /api/sessions/table-context:
+    get:
+      summary: Obtener contexto de mesa de la sesión de cliente
+      responses:
+        "200":
+          description: Contexto de mesa actual
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessTableContext"
+        "401":
+          description: Sesión inválida
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    post:
+      summary: Persistir/actualizar contexto de mesa de la sesión de cliente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TableContextUpdateRequest"
+      responses:
+        "200":
+          description: Contexto de mesa persistido
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessTableContext"
+        "400":
+          description: Mesa requerida
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: Lock o mismatch de contexto
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/orders:
+    post:
+      summary: Crear orden de cliente con gate de mesa
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateOrderRequest"
+      responses:
+        "201":
+          description: Orden creada
+        "400":
+          description: Error de validación (incluye TABLE_REQUIRED)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: Conflicto de mesa/contexto
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+components:
+  schemas:
+    TableContext:
+      type: object
+      properties:
+        table_id:
+          type: string
+          format: uuid
+          nullable: true
+        table_code:
+          type: string
+          nullable: true
+        table_source:
+          type: string
+          enum: [kiosk, qr, manual, session]
+          nullable: true
+        table_locked:
+          type: boolean
+        table_area_id:
+          type: integer
+          nullable: true
+        table_area_prefix:
+          type: string
+          nullable: true
+        table_version:
+          type: integer
+          nullable: true
+    TableContextUpdateRequest:
+      type: object
+      properties:
+        table_id:
+          type: string
+          nullable: true
+        table_number:
+          type: string
+          nullable: true
+        table_source:
+          type: string
+          enum: [kiosk, qr, manual, session]
+      additionalProperties: false
+    CreateOrderRequest:
+      type: object
+      properties:
+        table_id:
+          type: string
+          format: uuid
+          nullable: true
+        table_source:
+          type: string
+          enum: [kiosk, qr, manual, session]
+          nullable: true
+        table_number:
+          type: string
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        items:
+          type: array
+          items:
+            type: object
+      required: [items]
+    SuccessTableContext:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          type: object
+          properties:
+            table_context:
+              $ref: "#/components/schemas/TableContext"
+        error:
+          nullable: true
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        data:
+          nullable: true
+        error:
+          type: string
+        details:
+          type: object
+          properties:
+            code:
+              type: string
+              enum:
+                - TABLE_REQUIRED
+                - TABLE_LOCKED_BY_QR
+                - KIOSK_TABLE_NOT_CONFIGURED
+                - KIOSK_TABLE_LOCATION_MISMATCH
+                - TABLE_LOCATION_MISMATCH
+                - TABLE_SESSION_MISMATCH
