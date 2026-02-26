@@ -51,12 +51,27 @@ SOLUCION:
 - Actualizado http.ts para routing scope-aware
 - Eliminado todo fallback a cookies genericas
 - Cada consola usa cookies access_token_{scope} y refresh_token_{scope}
+- Login GET endpoints solo buscan su cookie namespaced especifica
+- Frontend detecta scope mismatch y no bootstrapea usuario incorrecto
 COMMIT:
 - pronto-libs: feat(employees-auth): add console context resolver + harden JWT extractor
 - pronto-libs: fix(jwt): remove legacy cookie fallback from token extractor
+- pronto-libs: fix(scope-guard): remove legacy cookie fallback
 - pronto-employees: feat(employees-proxy): add deprecated scope transport proxy
 - pronto-employees: fix(auth): namespaced cookies in employees API logout
 - pronto-employees: fix(auth): remove legacy cookie fallback from console auth
+- pronto-employees: fix(auth): exempt login endpoints from CSRF for API access
+- pronto-employees: fix(auth): prevent cross-scope session leak in login pages
 - pronto-static: feat(static-employees): scope-aware api wrapper
+- pronto-static: fix(auth): scope mismatch detection in user bootstrap
 - pronto-api: feat(auth): namespaced JWT cookies per console scope
-FECHA_RESOLUCION: 2026-02-25
+- pronto-api: fix(client-sessions): namespace client session cookie
+- pronto-client: fix(client): remove JWT cookie propagation in orders proxy
+VERIFICACION:
+- Test de navegación cruzada (20 combinaciones) - TODAS PASARON
+- waiter → chef/cashier/admin/system → login correcto, sin leak de sesión
+- chef → waiter/cashier/admin/system → login correcto, sin leak de sesión
+- cashier → waiter/chef/admin/system → login correcto, sin leak de sesión
+- admin → waiter/chef/cashier/system → login correcto, sin leak de sesión
+- waiter → waiter → permanece autenticado en dashboard
+FECHA_RESOLUCION: 2026-02-26
