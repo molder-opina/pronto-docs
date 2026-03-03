@@ -1,62 +1,60 @@
-# Arquitectura del Sistema Pronto (V3 - SPA-First)
+# Arquitectura del Sistema Pronto (V3.1 - Core API & Multi-Console)
 
-Documentación técnica de la plataforma "Pronto", actualizada a la arquitectura SPA moderna (2026).
+Documentación técnica de la plataforma "Pronto", actualizada a la arquitectura orientada a servicios (2026).
 
 ## Visión General
-Pronto es una plataforma integral para la gestión de restaurantes. A partir de la versión 3.0, el sistema ha migrado de una arquitectura híbrida (Templates + JS) a una arquitectura **SPA (Single Page Application)** moderna, eliminando la deuda técnica de Jinja2 en el portal de empleados.
+Pronto es una plataforma integral para la gestión de restaurantes basada en microservicios Flask y una SPA moderna. El sistema se divide en tres capas principales: Core API, Aplicaciones Operativas (BFF) y Frontend Estático.
 
 ## Estructura del Proyecto
 
-### 1. `pronto-static/` (Frontend Moderno)
-El corazón de la interfaz de usuario.
-- **Tecnología**: Vue 3 (Composition API), Vite, Pinia (State Management), TypeScript.
-- **Arquitectura SPA**: 
-  - Un único punto de entrada (`index.html`) servido por Flask.
-  - **Vue Router**: Gestiona la navegación del personal (Waiter, Kitchen, Cashier, Admin) de forma fluida.
-  - **Pinia Stores**: Mantiene el estado global (Órdenes, Sesiones, Configuración) sincronizado mediante `RealtimeClient`.
-  - **Nginx-SPA**: Configuración optimizada para manejar History Mode y Proxy API.
-
-### 2. `pronto-employees/` (BFF & API Backend)
-Actúa como un Backend-for-Frontend (BFF) para el panel de personal.
+### 1. `pronto-api/` (Core API - Port 6082)
+El corazón del sistema y la única fuente de verdad para la lógica de negocio.
 - **Tecnología**: Flask (Python 3.11+).
 - **Responsabilidades**:
-  - Servir el cascarón de la SPA.
-  - Exponer endpoints JSON estandarizados en `/api/*`.
-  - **Autenticación**: 100% Stateless mediante JWT en HTTP-only cookies. Se prohíbe el uso de `flask.session`.
-  - **Seguridad**: Implementación estricta de `ScopeGuard` y `CSRF` mediante cabeceras `X-CSRFToken`.
+  - Gestión centralizada de Órdenes, Menús, Mesas y Sesiones.
+  - Autenticación unificada de Empleados y Clientes.
+  - Validación de reglas de negocio complejas (OrderStateMachine).
+  - Integración con proveedores de pago (Stripe, Clip).
 
-### 3. `pronto-libs` (Shared Logic & Models)
-Núcleo común de lógica de negocio.
-- **Modelos**: SQLAlchemy ORM (PostgreSQL 16).
-- **Servicios Estandarizados**: Todas las funciones en `pronto_shared.services` devuelven objetos `success_response` o `error_response` definidos en `serializers.py`.
-- **Canonicidad**: Uso exclusivo de `CanonicalWorkflowStatus` para transiciones de estados de órdenes.
+### 2. `pronto-static/` (Frontend Moderno - Port 9088)
+Servidor Nginx que entrega los assets compilados de Vue 3.
+- **Tecnología**: Vue 3 (Composition API), Vite, Pinia, TypeScript.
+- **Single Source of Truth**: Todos los CSS compartidos, componentes base y lógica de red (`RealtimeClient`) residen aquí.
 
-### 4. `pronto-client/` (Frontend Cliente)
+### 3. `pronto-employees/` (BFF & SPA Shell - Port 6081)
+Actúa como cascarón para el panel de personal y Backend-for-Frontend especializado.
+- **Responsabilidades**:
+  - Servir el `index.html` que inicializa la SPA de empleados.
+  - **Proxy Seguro**: Redirige peticiones de la SPA hacia `pronto-api` inyectando contextos de seguridad.
+  - **Aislamiento de Scope**: Utiliza cookies con nombres específicos (ej. `access_token_waiter`) para permitir múltiples sesiones abiertas en diferentes pestañas (Multi-Console).
+
+### 4. `pronto-client/` (Frontend Cliente - Port 6080)
 Aplicación para comensales (QR Menu & Ordering).
 - **Tecnología**: Flask + TypeScript.
+- **Estado**: Híbrido. Utiliza templates Jinja2 para el renderizado inicial y TypeScript para el carrito y comunicación en tiempo real.
 
-## Componentes de Infraestructura
+### 5. `pronto-libs/` (Shared Logic)
+Librería común (`pronto_shared`) instalada en todos los servicios. Contiene modelos SQLAlchemy, utilidades de seguridad y middleware de JWT.
 
-### Base de Datos (PostgreSQL & Redis)
-- **PostgreSQL**: Persistencia relacional de menús, empleados y órdenes.
-- **Redis**: Caché de alto rendimiento, gestión de PII temporal y bus de mensajes para notificaciones.
+## Seguridad y Autenticación Multi-Consola
 
-### Comunicación en Tiempo Real
-- **SSE (Server-Sent Events)**: Utilizado por la SPA para recibir actualizaciones de órdenes y llamadas de clientes de forma instantánea sin polling excesivo.
+### Lógica de Redirección
+El sistema implementa una protección estricta contra la confusión de scopes:
+1. Al acceder a `/<scope>/login`, el servidor verifica si existe una cookie de sesión específica para ese scope.
+2. Si el usuario ya está autenticado en ese contexto, es redirigido automáticamente a su `/dashboard`.
+3. Si el usuario intenta acceder a un login de un scope diferente (ej. de Waiter a Chef), el sistema detecta el cambio de contexto y permite la nueva autenticación sin cerrar la sesión anterior, manteniendo el aislamiento mediante cookies prefijadas.
 
-## Flujos Críticos Modernizados
+### Validación de Perímetro (ScopeGuard)
+Todas las rutas de empleados están protegidas por `ScopeGuard` en `pronto_shared`. Este middleware valida:
+- Existencia de JWT.
+- Que el `active_scope` del token coincida con el segmento de URL solicitado.
+- Prevención de escalación horizontal entre departamentos.
 
-### 1. Gestión de Órdenes (SPA Flow)
-`Vue Component` -> `Pinia Store` -> `authenticatedFetch` -> `Employee API` -> `Shared Service` -> `DB` -> `SSE Broadcast` -> `Vue Reactive Update`.
-
-### 2. Autenticación Stateless
-- El usuario hace Login -> El servidor responde con un JWT.
-- El navegador almacena el JWT en una cookie segura.
-- Todas las peticiones API incluyen el token automáticamente.
-- El servidor valida el `active_scope` contra la URL solicitada.
+## Comunicación en Tiempo Real
+- **Supabase Realtime**: Reemplaza la dependencia local de Redis Streams para notificaciones globales de nuevas órdenes y llamadas de clientes.
+- **SSE (Server-Sent Events)**: Utilizado para actualizaciones reactivas en las tablas de control.
 
 ## Estándares de Calidad
-- **Zero Technical Debt**: Eliminación total de assets inline (CSS/JS).
-- **Type Safety**: Uso de MyPy en Backend y TypeScript en Frontend.
-- **Linter**: `ruff` para Python, `eslint` para Vue.
-- **Standardized API**: Respuesta uniforme `{success: bool, data: any, error: string|null}`.
+- **Type Safety**: TypeScript obligatorio en nuevos componentes.
+- **Parity Check**: Validación automática de que los endpoints consumidos por el frontend existen en la Core API.
+- **Zero Inline (Target)**: Se busca la eliminación total de scripts/estilos inline en favor de assets externos servidos por `pronto-static`.

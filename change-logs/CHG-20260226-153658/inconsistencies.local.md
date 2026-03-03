@@ -1,0 +1,1 @@
+- BLOCKER: rol no canónico admin_roles

@@ -1,8 +1,9 @@
 # Frontend Bug: Playwright cannot interact with Guest Browsing flow
 
 **Date:** 2026-02-22
-**Status:** Open
+**Status:** RESUELTO (WONTFIX)
 **Reporter:** Gemini Agent
+**Fecha Resolución:** 2026-02-26
 
 ## Summary
 
@@ -116,3 +117,11 @@ A frontend developer should investigate why the application's structure or rende
 - Ensuring stable and unique IDs for critical interactive elements.
 - Investigating the timing of Vue component mounting and visibility.
 - Checking for multiple or nested Vue applications that could be confusing the selector engine.
+
+## Resolución (2026-02-26)
+
+**WONTFIX**: Este issue documenta un script de test ad-hoc con selectores obsoletos
+(`#item-modal`, `.product-card .btn-add`) que no existen en el frontend actual. No es un
+bug de la aplicación sino un test mal escrito. Además, según AGENTS.md §19, el flujo
+guest es transicional hacia login obligatorio — los tests canónicos de Playwright viven
+en `pronto-tests/` y ya cubren auth y menú con selectores vigentes.

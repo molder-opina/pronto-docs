@@ -158,3 +158,61 @@
 2026-02-25 | ERR-20260225-001 | Multi-console sessions: cookies namespaced por scope (waiter/chef/cashier/admin/system), proxy técnico deprecated, frontend scope-aware | RESUELTO | pronto-libs, pronto-api, pronto-employees, pronto-static, pronto-client
 2026-02-25 | BUG-20260225-002 | Client orders.py propagaba cookie JWT genérica (eliminado) | RESUELTO | pronto-client
 2026-02-25 | BUG-20260225-003 | Client sessions usaba cookie genérica access_token (renombrado a pronto_client_session) | RESUELTO | pronto-api
+2026-02-26 | AUDIT-20260221-001 | Auditoría frontend - código vanilla e inline scripts | pending-commit | pronto-libs, pronto-client, pronto-static
+2026-02-26 | PLAYWRIGHT-GUEST-20260222 | Playwright cannot interact with Guest Browsing flow (WONTFIX) | n/a | pronto-tests
+2026-02-26 | ERR-20260223-CART-DOUBLE-TOGGLE-CLICK | Carrito no abre por doble binding de click | v1.0216 | pronto-client, pronto-static
+2026-02-26 | ERR-20260226-STATIC-PATHS | Rutas incorrectas placeholder y logo | v1.0217 | pronto-client, pronto-static
+2026-02-26 | ERR-20260226-ALERT-BLOCKING | 47 alert() bloqueantes reemplazados por showToast | v1.0217 | pronto-static
+2026-02-26 | BUG-20260226-ROUTE-01 | Uso de <int:call_id> para WaiterCall viola estándar de tipos | RESUELTO | pronto-client
+2026-02-26 | BUG-20260226-ROLE-01 | Rol no canónico admin_roles viola AGENTS.md sección 4 | RESUELTO | pronto-libs, pronto-static
+2026-02-26 | BUG-20260226-CODE-03 | Magic string "paid" en payments.py viola Gate H | RESUELTO | pronto-api
+2026-02-26 | BUG-20260226-VERSION-01 | PRONTO_SYSTEM_VERSION no sincronizado entre .env y .env.example | RESUELTO | root
+2026-02-26 | AUDIT-20260226-001 | Auditoría integral PRONTO - todos los gates validados | RESUELTO | all
+2026-03-03 | ERR-20260303-ADMIN-SIDEBAR-THEME-INCONSISTENCY | Sidebar de admin usa diseño azul hardcodeado y no respeta el tema configurable | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-ADMIN-DASHBOARD-SIDEBAR-TAB-STRUCTURE | Admin mezcla tableros operativos y gestión en el sidebar en lugar de concentrarlos como tabs del dashboard | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-ADMIN-DASHBOARD-LAYOUT-CONSISTENCY-REOPEN-01 | Reapertura: rutas internas de gestión en admin pierden el shell visual del dashboard | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-ADMIN-TABS-SIDEBAR-REOPEN-02 | Reapertura: tabs de admin no gobiernan completamente el shell lateral en vistas internas | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-ADMIN-EMPLOYEES-VIEW-NOT-RENDERING-ABC | Vista de Empleados en admin no muestra correctamente el ABC de personal en el panel derecho | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-ADMIN-EMPLOYEES-SIDEBAR-MODULES-VISIBLE | Sidebar sigue mostrando módulos de operación dentro de Empleados en admin | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-ADMIN-ROLES-RBAC-VIEW-MISALIGNED | Vista de Roles y Permisos en admin no refleja el RBAC real ni explica el acceso efectivo por rol | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-ADMIN-ROLES-SIDEBAR-REOPEN-01 | Reapertura: Roles y Permisos en admin sigue mostrando módulos operativos en el sidebar lateral | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-ADMIN-SYSTEM-SETTINGS-NOT-LOADING | Vista de Configuración en admin no carga los parámetros del sistema | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-DASHBOARD-MODULE-SCROLL-BLOCKED-MODIFIERS | Vistas largas del dashboard no permiten scroll vertical en Aditamientos | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-ADMIN-EMPLOYEES-VIEW-UNSTYLED-TAILWIND-CLASSES | Vista de Empleados en admin renderiza HTML casi crudo por depender de clases utilitarias inexistentes | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-ADMIN-EMPLOYEES-API-500-LIST-ORDERING | Endpoint de empleados en admin responde 500 al listar personal | local-uncommitted | pronto-libs, pronto-api
+2026-03-03 | ERR-20260303-EMPLOYEES-SHELL-MAIN-CSS-LINK-WRONG-DIRECTORY-REOPEN-01 | Reapertura: shell SSR de employees sigue resolviendo el CSS principal desde base incorrecta | local-uncommitted | pronto-employees
+2026-03-03 | ERR-20260303-ADMIN-CASHIER-BOARD-UNSTYLED-LAYOUT | Vista de Caja en admin renderiza layout roto y elementos sobredimensionados | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-ADMIN-NAVIGATION-COCINA-CAJA-SHOULD-BE-PRIMARY | Cocina y Caja siguen mezcladas como tabs del dashboard en lugar de vivir en navegación principal | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-ADMIN-WAITER-TAB-LABEL-SHOULD-BE-MESERO | Tab principal del tablero administrativo muestra "Tablero" en lugar de "Mesero" | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-ADMIN-DASHBOARD-TABS-WRONG-SET-FOR-ADMIN-VIEWS | Tabs del dashboard en admin muestran módulos operativos dentro de vistas administrativas | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-ADMIN-ROLES-ROUTE-REDIRECT-AND-API-404-REOPEN-01 | Reapertura: vista de Roles redirige al dashboard base y consume endpoint legacy inexistente | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-EMPLOYEES-SHELL-MAIN-CSS-LINK-WRONG-DIRECTORY | Shell SSR de employees enlaza la hoja principal desde assets_js_employees en lugar de assets_css_employees | local-uncommitted | pronto-employees
+2026-03-03 | ERR-20260303-ADMIN-WAITER-TABLE-MODAL-USES-ASSIGNED-TABLES-ONLY | Modal de mesa en admin consulta solo mesas asignadas y no encuentra la mesa de la orden | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-WAITER-MESAS-TAB-BROKEN-LAYOUT-AND-NAN-TOTALS | Tab Mesas de mesero en admin y waiter muestra layout roto, zona incorrecta y totales NaN | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-ADMIN-ROLES-SHOULD-HIDE-CUSTOM-ROLE-MANAGEMENT | Vista de Roles y Permisos expone roles personalizados y acciones de gestión no soportadas por el proyecto | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-ADMIN-EMPLOYEES-ROLES-RESPONSE-SHAPE-MISMATCH | EmployeesManager interpreta mal la respuesta de roles y cae en fallback innecesario | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-ADMIN-SYSTEM-SETTINGS-FLAT-MAP-SHAPE-NOT-RENDERED | Vista de Configuración en admin no renderiza parámetros cuando /admin/api/config devuelve mapa plano | local-uncommitted | pronto-static, pronto-employees
+2026-03-03 | ERR-20260303-ADMIN-REPORTS-MANAGER-WRONG-ENDPOINT-CONTRACT | Vista de Reportes en admin consulta `/api/reports` inexistente y no usa el contrato real de analytics | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-EMPLOYEE-ANALYTICS-WAITER-TIPS-NAME-ENCRYPTED-ATTRIBUTE | Analytics de meseros usa `Employee.name_encrypted` aunque el modelo actual ya no tiene ese atributo | local-uncommitted | pronto-libs, pronto-employees
+2026-03-03 | ERR-20260303-ADMIN-EMPLOYEES-ROLES-LOADER-REOPEN-01 | Reapertura: EmployeesManager sigue siendo frágil ante variaciones del envelope de roles | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-KITCHEN-BOARD-DUPLICATES-READY-ORDERS-AND-BADGE-MISMATCH | Tablero de Cocina mezcla órdenes listas en Activas y Seguimiento con badge inconsistente | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-ADMIN-DASHBOARD-TABS-PRODUCTS-MODIFIERS-SWITCH-TO-KITCHEN-GROUP | Productos y Aditamientos en admin cambian al grupo de tabs de Cocina en lugar del grupo de Meseros | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-ADMIN-KITCHEN-TABS-SHARE-PRODUCTS-MODIFIERS-ROUTES-WITH-WAITER | Tabs de Cocina comparten rutas de Productos y Aditamientos con Meseros y rompen el foco del shell | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-ADMIN-KITCHEN-MODIFIERS-LEGACY-ROUTE-KEEPS-WAITER-FOCUS | Aditamientos de Cocina sigue entrando por la ruta compartida modifiers y conserva foco de Meseros | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-EMPLOYEE-DEACTIVATION-NOT-ENFORCED-AT-CONSOLE-LOGIN | Desactivación de empleado no está verificada al iniciar sesión en consolas | local-uncommitted | pronto-employees, pronto-api, pronto-libs, pronto-static
+2026-03-03 | ERR-20260303-ADMIN-EMPLOYEES-DELETE-REDIRECTS-TO-403 | Acción Eliminar en Empleados redirige a authorization-error 403 desde admin | local-uncommitted | pronto-static, pronto-employees, pronto-api
+2026-03-03 | ERR-20260303-ADMIN-EMPLOYEES-EDIT-MODAL-MISSING-ROLE-OPTIONS | Modal de editar empleado no muestra roles actuales en el combo | local-uncommitted | pronto-static, pronto-employees, pronto-api
+2026-03-03 | ERR-20260303-ADMIN-EMPLOYEES-SCOPE-LEAKS-SYSTEM-ACCOUNTS | Panel de empleados en admin expone cuentas y rol system | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-ADMIN-EMPLOYEES-VIEW-SHOULD-ONLY-SHOW-EMPLOYEES-TAB | Vista de empleados en admin muestra tabs administrativos adicionales | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-ADMIN-ROLES-VIEW-SHOULD-ONLY-SHOW-ROLES-TAB | Vista de roles en admin muestra tabs administrativos adicionales | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-ADMIN-REPORTS-VIEW-SHOULD-ONLY-SHOW-REPORTS-TAB | Vista de reportes en admin muestra tabs administrativos adicionales | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-ADMIN-CONFIG-VIEW-SHOULD-ONLY-SHOW-CONFIG-TAB | Vista de configuración en admin muestra tabs administrativos adicionales | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-ADMIN-CONFIG-ITEMS-LACK-EXPLICIT-EDIT-ACTION | Parámetros de configuración no muestran botón explícito de editar por opción | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-ADMIN-CONFIG-COLOR-PARAMETERS-LACK-COLOR-PICKER | Parámetros de color en configuración no muestran selector visual de color | local-uncommitted | pronto-static
+2026-03-03 | ERR-20260303-ADMIN-CONFIG-SECONDS-PARAMETERS-LACK-SECONDS-VALIDATION | Parámetros de segundos en configuración no validan valores coherentes | local-uncommitted | pronto-static
+2026-03-03 | 20260303_admin_config_currency_code_should_be_select | currency_code se edita como texto libre en configuración administrativa | N/A | pronto-static
+2026-03-03 | 20260303_admin_config_currency_symbol_should_be_select | currency_symbol se edita como texto libre en configuración administrativa | N/A | pronto-static
+2026-03-03 | 20260303_admin_config_font_family_should_use_static_catalog | font_family_body y font_family_headings se editan como texto libre | N/A | pronto-static
+2026-03-03 | 20260303_admin_config_toggle_not_persisting_uuid_routes | Los toggles de configuración en /admin no persisten al guardar usando IDs UUID | N/A | pronto-employees, pronto-libs
+2026-03-03 | 20260303_admin_config_restaurant_logo_url_should_use_file_picker | restaurant_logo_url se edita como texto libre en configuración administrativa | N/A | pronto-static
+2026-03-03 | ERR-20260303-TABLE-BASE-PREFIX-NOT-APPLIED-AND-TABLE-CREATE-FAILS | El prefijo base de mesa no se aplicaba al crear mesas y la creación fallaba por UUID nulo | local-uncommitted | pronto-libs, pronto-employees

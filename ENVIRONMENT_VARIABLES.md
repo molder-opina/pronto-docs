@@ -294,24 +294,15 @@ TAX_RATE=0.16
 
 ---
 
-### STATIC_BASE_URL
-**Propósito**: URL base para archivos estáticos  
-**Tipo**: String (URL)  
-**Obligatoria**: ❌ No  
-**Archivo**: `.env`  
-**Valor por defecto**: `http://static:80`
+### PRONTO_STATIC_PUBLIC_HOST
+**Propósito**: URL pública del servidor de assets.  
+**Valor por defecto**: `http://localhost:9088`
 
-**Ejemplos**:
-```bash
-# Docker Compose
-STATIC_BASE_URL=http://static:80
+---
 
-# Producción
-STATIC_BASE_URL=https://cdn.example.com
-
-# Desarrollo local
-STATIC_BASE_URL=http://localhost:9088
-```
+### PRONTO_API_BASE_URL
+**Propósito**: URL de la API canónica (Port 6082).  
+**Valor por defecto**: `http://localhost:6082`
 
 ---
 

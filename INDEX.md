@@ -1,463 +1,167 @@
-# Pronto Platform Documentation Index
+# Pronto Documentation Index
 
-## Overview
+> Última actualización: 2026-03-03
 
-This index provides a comprehensive overview of all Pronto platform documentation. Each project has its own dedicated documentation folder with detailed information about architecture, usage, deployment, and maintenance.
-
-## Documentation Structure
+## Estructura de Documentación
 
 ```
 pronto-docs/
-├── ARCHITECTURE_OVERVIEW.md       # Overall system architecture
-├── estructura-directorios.md         # Directory structure reference
-├── estructura-routes-api.md         # API routes documentation
-├── ENVIRONMENT_VARIABLES.md          # Environment variables guide
-├── LOGGING_STANDARD.md               # Logging standard
-├── pronto-clients/                  # Client application docs
-├── pronto-employees/                # Employee application docs
-├── pronto-api/                      # API gateway docs
-├── pronto-libs/                     # Shared library docs
-├── pronto-postgresql/               # Database service docs
-├── pronto-redis/                    # Cache service docs
-├── pronto-scripts/                  # Utility scripts docs
-├── pronto-static/                   # Static assets docs
-├── pronto-tests/                    # Testing framework docs
-└── pronto-backups/                  # Backup system docs
+├── infraestructura/    # Despliegue, variables de entorno, configuración
+├── proyecto/           # Estado, planes, change-logs
+├── funcionalidad/      # Features, implementaciones
+├── flujos-negocio/     # Reglas de negocio, procesos
+├── estructura/         # Arquitectura, modularización
+├── seguridad/          # Autenticación, CSRF, cookies
+├── testing/            # QA, checklists, tests
+├── modulos/            # Documentación por módulo
+├── planes/             # Planes de migración, refactor
+├── contratos/          # OpenAPI, schemas SQL
+├── errors/             # Errores activos
+├── archive/            # Bugs resueltos históricos
+└── tmp/                # Archivos temporales
 ```
 
-## Project Documentation
+---
 
-### 1. Pronto-Clients
+## Documentación Principal
 
-**Port:** 6080
-**Purpose:** Customer-facing application for menu browsing, ordering, and checkout
+### Infraestructura
 
-**Documentation:**
-- [Full Documentation](pronto-clients/README.md)
+| Archivo | Descripción |
+|---------|-------------|
+| [DEPLOYMENT_STEPS.md](DEPLOYMENT_STEPS.md) | Pasos para despliegue |
+| [ENVIRONMENT_VARIABLES.md](ENVIRONMENT_VARIABLES.md) | Variables de entorno |
+| [PROXY_CONFIGURATION.md](PROXY_CONFIGURATION.md) | Configuración de proxy |
+| [SRE_RECOMMENDATIONS.md](SRE_RECOMMENDATIONS.md) | Recomendaciones SRE |
 
-**Key Features:**
-- Menu browsing and filtering
-- Cart management and checkout
-- Payment processing (Stripe, Cash)
-- Order tracking and status updates
-- Feedback system
-- Waiter call functionality
+### Estructura
 
-**Technologies:**
-- Flask (Python)
-- TypeScript/Vite (Frontend)
-- JWT authentication
-- PostgreSQL database
+| Archivo | Descripción |
+|---------|-------------|
+| [ARCHITECTURE_OVERVIEW.md](ARCHITECTURE_OVERVIEW.md) | Arquitectura del sistema |
+| [MONOREPO.md](MONOREPO.md) | Estructura del monorepo |
+| [CSS_MODULAR_ARCHITECTURE.md](CSS_MODULAR_ARCHITECTURE.md) | Arquitectura CSS |
+| [TYPESCRIPT_MODULAR_ARCHITECTURE.md](TYPESCRIPT_MODULAR_ARCHITECTURE.md) | Arquitectura TypeScript |
+| [MODULARIZATION_SUMMARY.md](MODULARIZATION_SUMMARY.md) | Resumen de modularización |
 
-### 2. Pronto-Employees
+### Seguridad
 
-**Port:** 6081
-**Purpose:** Employee dashboard for waiters, chefs, cashiers, and administrators
+| Archivo | Descripción |
+|---------|-------------|
+| [IDENTITY.md](IDENTITY.md) | Identidad y autenticación |
+| [architecture/AUTH_ARCHITECTURE.md](architecture/AUTH_ARCHITECTURE.md) | Arquitectura de auth |
 
-**Documentation:**
-- [Full Documentation](pronto-employees/README.md)
+### Flujos de Negocio
 
-**Key Features:**
-- Multi-role console selector
-- Order management and processing
-- Menu management
-- Employee management
-- Table assignments
-- Analytics and reporting
-- Business settings
+| Archivo | Descripción |
+|---------|-------------|
+| [BUSINESS_FLOWS.md](BUSINESS_FLOWS.md) | Flujos principales |
+| [ORDER_VS_SESSION_IDS.md](ORDER_VS_SESSION_IDS.md) | Órdenes vs sesiones |
 
-**Role Consoles:**
-- Waiter Console - Table service and order taking
-- Chef Console - Kitchen order management
-- Cashier Console - Payment processing
-- Admin Console - Full system administration
-- System Console - System administration and maintenance
+### Funcionalidad
 
-**Technologies:**
-- Flask (Python)
-- TypeScript/Vite (Frontend)
-- JWT authentication with RBAC
-- PostgreSQL database
-
-### 3. Pronto-API
-
-**Port:** 6082
-**Purpose:** Unified API gateway and core service
-
-**Documentation:**
-- [Full Documentation](pronto-api/README.md)
-
-**Key Features:**
-- Centralized API endpoint
-- JWT authentication middleware
-- CORS management
-- Health checks
-- Error handling
-
-**Technologies:**
-- Flask (Python)
-- pronto-shared library
-
-### 4. Pronto-Shared Library
-
-**Version:** 1.0.0
-**Purpose:** Shared components, models, and services for all Pronto applications
-
-**Documentation:**
-- [Full Documentation](pronto-libs/README.md)
-
-**Key Components:**
-- SQLAlchemy models
-- Business logic services
-- JWT authentication
-- Permissions system
-- Database connection management
-- Error handling
-- Logging configuration
-
-**Services:**
-- Order service
-- Menu service
-- Employee service
-- Feedback service
-- Payment services
-- Analytics service
-- Report generation
-
-**Technologies:**
-- Python 3.11+
-- SQLAlchemy ORM
-- PyJWT
-- Pydantic
-
-### 5. Pronto-PostgreSQL
-
-**Port:** 5432
-**Version:** PostgreSQL 16
-**Purpose:** Persistent data storage for the platform
-
-**Documentation:**
-- [Full Documentation](pronto-postgresql/README.md)
-
-**Key Features:**
-- Relational database schema
-- Data persistence
-- Transaction support
-- Data integrity constraints
-
-**Key Tables:**
-- Authentication (employees, roles, permissions)
-- Customers & Sessions
-- Orders & Items
-- Menu (categories, items, modifiers)
-- Tables & Areas
-- Payments
-- Promotions & Discounts
-- Feedback
-- Business configuration
-
-**Technologies:**
-- PostgreSQL 16
-- Docker Compose
-- Alembic migrations
-
-### 6. Pronto-Redis
-
-**Port:** 6379
-**Purpose:** In-memory caching and session management
-
-**Documentation:**
-- [Full Documentation](pronto-redis/README.md)
-
-**Key Features:**
-- Session caching
-- Menu caching
-- Real-time data storage
-- Performance optimization
-
-**Use Cases:**
-- Session storage
-- Menu caching
-- Rate limiting
-- Real-time features
-- Temporary data storage
-
-**Technologies:**
-- Redis 7.x
-- Docker
-
-### 7. Pronto-Scripts
-
-**Purpose:** Utility scripts and deployment tools
-
-**Documentation:**
-- [Full Documentation](pronto-scripts/README.md)
-
-**Key Scripts:**
-- Service start/stop/rebuild
-- Database backup/restore
-- Deployment scripts
-- Test runners
-- Maintenance scripts
-
-**Categories:**
-- Development scripts
-- Database scripts
-- Deployment scripts
-- Testing scripts
-
-**Platform:**
-- Bash shell scripts
-- Linux/macOS compatible
-
-### 8. Pronto-Static
-
-**Port:** 9088
-**Purpose:** Static asset hosting and frontend build
-
-**Documentation:**
-- [Full Documentation](pronto-static/README.md)
-
-**Key Features:**
-- CSS optimization
-- JavaScript bundling
-- Image optimization
-- Asset caching
-- Nginx serving
-
-**Build Targets:**
-- Employees App (dashboard, base)
-- Clients App (base, menu, thank-you)
-
-**Asset Organization:**
-- Client-specific CSS modules
-- Employee-specific CSS modules
-- Component styles
-- Utility styles
-- JavaScript bundles
-- Static images
-
-**Technologies:**
-- Nginx
-- Vite
-- Vue.js
-- TypeScript
-
-### 9. Pronto-Tests
-
-**Purpose:** Comprehensive testing framework
-
-**Documentation:**
-- [Full Documentation](pronto-tests/README.md)
-
-**Test Types:**
-- **Unit Tests** - Individual component tests
-- **Integration Tests** - Service interaction tests
-- **E2E Tests** - Full user flow tests
-
-**Test Categories:**
-- Customer flow tests
-- Employee flow tests
-- Admin flow tests
-- Payment flow tests
-- API integration tests
-- Performance tests
-
-**Test Frameworks:**
-- Playwright (E2E)
-- pytest (unit/integration)
-
-**Coverage:**
-- Line coverage: 80%+
-- Branch coverage: 75%+
-- Function coverage: 85%+
-
-### 10. Pronto-Backups
-
-**Purpose:** Automated backup and disaster recovery
-
-**Documentation:**
-- [Full Documentation](pronto-backups/README.md)
-
-**Key Features:**
-- Full system backups
-- Database backups
-- Redis data backups
-- Static asset backups
-- Configuration backups
-
-**Backup Format:**
-- Compressed tar.gz archives
-- Named with timestamp
-- Includes all system data
-
-**Backup Contents:**
-- PostgreSQL data
-- Redis data
-- Static assets
-- Application configurations
-- Docker volumes
-
-**Backup Strategy:**
-- Daily automated backups
-- Weekly full backups
-- Monthly archival
-- Off-site storage support
-
-## General Documentation
-
-### Architecture Overview
-- **File:** ARCHITECTURE_OVERVIEW.md
-- **Content:** Overall system architecture, component overview, and data flow
-
-### Directory Structure
-- **File:** estructura-directorios.md
-- **Content:** Detailed directory structure for all Pronto applications
-
-### API Routes
-- **File:** estructura-routes-api.md
-- **Content:** Complete API endpoint documentation
-
-### Environment Variables
-- **File:** ENVIRONMENT_VARIABLES.md
-- **Content:** Comprehensive environment variable reference
-
-### Logging Standard
-- **File:** LOGGING_STANDARD.md
-- **Content:** Standardized logging format and practices
-
-## Getting Started
-
-### Quick Start Guide
-
-1. **Clone the repository:**
-```bash
-git clone https://github.com/your-org/pronto-docs.git
-cd pronto-docs
-```
-
-2. **Choose your project:**
-```bash
-cd pronto-clients/  # For customer application
-cd pronto-employees/ # For employee application
-# etc.
-```
-
-3. **Read the documentation:**
-- Each project has its own README.md with detailed information
-- Follow installation and setup instructions
-- Refer to troubleshooting section if needed
-
-### Development Workflow
-
-1. **Setup:**
-   - Install dependencies for your chosen project
-   - Configure environment variables
-   - Start required services (PostgreSQL, Redis)
-
-2. **Development:**
-   - Run the development server
-   - Make changes
-   - Test your changes
-
-3. **Testing:**
-   - Run unit tests
-   - Run integration tests
-   - Run E2E tests
-
-4. **Deployment:**
-   - Follow deployment instructions in project docs
-   - Use pronto-scripts for deployment automation
-
-## Architecture Diagram
-
-```
-┌─────────────────┐
-│  Pronto-Clients │  (Port 6080)
-│  Customer App   │
-└────────┬────────┘
-         │
-         ├─────────────────────┐
-         │                     │
-┌────────▼────────┐   ┌──────▼──────────┐
-│ Pronto-API     │   │ Pronto-PostgreSQL│
-│ Gateway (6082) │◄──┤ Database (5432) │
-└───────┬────────┘   └─────────────────┘
-        │
-        ├─────────────────────┐
-        │                     │
-┌───────▼─────────┐   ┌───▼───────────┐
-│ Pronto-Employees │   │ Pronto-Redis   │
-│ Dashboard (6081)│   │ Cache (6379)  │
-└───────┬─────────┘   └────────────────┘
-        │
-        ├─────────────────────┐
-        │                     │
-┌───────▼─────────┐   ┌───▼───────────┐
-│ Pronto-Static   │   │ Pronto-Backups │
-│ Assets (9088)  │   │ Backup System  │
-└─────────────────┘   └────────────────┘
-
-┌─────────────────┐
-│ Pronto-Shared  │
-│  Library       │
-└─────────────────┘
-
-┌─────────────────┐
-│ Pronto-Scripts │
-│  Utilities     │
-└─────────────────┘
-
-┌─────────────────┐
-│ Pronto-Tests   │
-│  Testing       │
-└─────────────────┘
-```
-
-## Technology Stack
-
-### Backend
-- **Python 3.11+** - Primary backend language
-- **Flask** - Web framework
-- **SQLAlchemy** - ORM
-- **Alembic** - Database migrations
-- **PyJWT** - JWT authentication
-- **Redis** - Caching and sessions
-
-### Frontend
-- **TypeScript** - Type-safe JavaScript
-- **Vue.js 3.5+** - Frontend framework
-- **Vite** - Build tool
-- **Nginx** - Static asset serving
-
-### Database
-- **PostgreSQL 16** - Primary database
-- **Redis 7.x** - Cache and sessions
+| Archivo | Descripción |
+|---------|-------------|
+| [LOGGING_STANDARD.md](LOGGING_STANDARD.md) | Estándar de logging |
+| [FLOW_DIAGRAMS.md](FLOW_DIAGRAMS.md) | Diagramas de flujo |
+| [features/](features/) | Documentación de features |
 
 ### Testing
-- **Playwright** - E2E testing
-- **pytest** - Unit and integration testing
-- **Coverage:** pytest-cov
 
-### Deployment
-- **Docker** - Containerization
-- **Docker Compose** - Orchestration
-- **Bash Scripts** - Automation
+| Archivo | Descripción |
+|---------|-------------|
+| [QA_TEST_GUIDE.md](QA_TEST_GUIDE.md) | Guía de QA |
+| [CHECKLIST-PRONTO-CLIENT.md](CHECKLIST-PRONTO-CLIENT.md) | Checklist cliente |
+| [CHECKLIST-PRONTO-EMPLOYEES.md](CHECKLIST-PRONTO-EMPLOYEES.md) | Checklist empleados |
+| [qa/](qa/) | Reportes de QA |
 
-## Support and Contributing
+### Módulos
 
-### Getting Help
-- Check project-specific documentation first
-- Review troubleshooting sections
-- Check common issues and solutions
-- Refer to related documentation
+| Archivo | Descripción |
+|---------|-------------|
+| [pronto-static.md](pronto-static.md) | Documentación frontend |
+| [pronto-employees.md](pronto-employees.md) | Documentación backend |
+| [pronto-libs.md](pronto-libs.md) | Documentación librerías |
+| [pronto-tests.md](pronto-tests.md) | Documentación tests |
 
-### Contributing
-- Follow code standards in each project
-- Write tests for new features
-- Update documentation
-- Follow PR guidelines
+### Contratos
 
-### Contact
-- For questions or issues, refer to the main project documentation
-- Contact the development team for platform-level issues
+| Carpeta | Descripción |
+|---------|-------------|
+| [contracts/](contracts/) | OpenAPI specs, SQL schemas |
+| [contracts/*/openapi.yaml](contracts/) | Especificaciones API |
+| [contracts/*/db_schema.sql](contracts/) | Schemas de BD |
+
+### Errores
+
+| Carpeta | Descripción |
+|---------|-------------|
+| [errors/](errors/) | Errores activos |
+| [archive/](archive/) | Bugs resueltos históricos |
+
+---
+
+## Quick Start
+
+1. **Para entender el proyecto:** Leer [project-overview.md](../pronto-prompts/project-overview.md)
+2. **Para desplegar:** Leer [DEPLOYMENT_STEPS.md](DEPLOYMENT_STEPS.md)
+3. **Para configurar:** Leer [ENVIRONMENT_VARIABLES.md](ENVIRONMENT_VARIABLES.md)
+4. **Para la arquitectura:** Leer [ARCHITECTURE_OVERVIEW.md](ARCHITECTURE_OVERVIEW.md)
+
+---
+
+## Contribuir a la Documentación
+
+### Convenciones de Nombres
+
+- Usar `UPPERCASE_WITH_UNDERSCORES.md` para documentos principales
+- Usar `kebab-case.md` para documentos específicos
+- Crear carpetas para categorías
+
+### Estructura de Documento
+
+```markdown
+# Título
+
+> Breve descripción
+
+## Secciones
+
+### Subsecciones
+
+## Referencias
+
+- [Documento relacionado](path/to/doc.md)
+```
+
+### Actualizar Este Índice
+
+Cuando agregues documentación nueva:
+1. Agregar entrada en la sección correspondiente
+2. Actualizar fecha de última modificación
+3. Commit con mensaje: `docs: add/update [documento]`
+
+---
+
+## Archivos Temporales
+
+Archivos movidos a `tmp/` por considerarlos temporales o desactualizados:
+- `despliegue-con-correcciones.md`
+- `estructura-directorios.md`
+- `estructura-routes-api.md`
+- `concurrency-testing.md`
+- `audit-agent-guide.md`
+
+---
+
+## Archivados
+
+- `archive/resolved/` - 342 documentos de bugs resueltos
+- `archive/audits/` - Reportes de auditoría
+- `archive/findings-autonomas/` - Hallazgos autónomos
+
+---
+
+## Contacto
+
+Para dudas sobre la documentación, revisar [pronto-prompts/project-overview.md](../pronto-prompts/project-overview.md)

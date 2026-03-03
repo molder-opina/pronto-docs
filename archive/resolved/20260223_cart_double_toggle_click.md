@@ -13,4 +13,7 @@ RESULTADO_ESPERADO: El panel del carrito debe abrirse y permanecer visible tras 
 UBICACION: pronto-client/src/pronto_clients/templates/base.html, pronto-static/src/vue/clients/entrypoints/base.ts
 EVIDENCIA: Reporte visual del usuario y revisión de código con dos listeners activos sobre [data-toggle-cart] con claves de dataset distintas.
 HIPOTESIS_CAUSA: Doble binding sobre el mismo botón; ambos ejecutan toggle y el segundo revierte el estado del primero.
-ESTADO: ABIERTO
+ESTADO: RESUELTO
+SOLUCION: Eliminado el inline script de legacy cart fallback de base.html (versión 1.0216). El binding duplicado sobre [data-toggle-cart] ya no existe. Ahora solo queda el handler único en base.ts → initCartBindings() que usa bindOnce con guardia cartToggleBound.
+COMMIT: (incluido en cambio de versión 1.0215→1.0216)
+FECHA_RESOLUCION: 2026-02-26

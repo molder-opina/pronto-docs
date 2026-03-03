@@ -51,7 +51,8 @@ HALLAZGOS:
 - "KeyboardShortcutsManager no disponible" (FIXED)
 - "Juego de reglas ignoradas por mal selector"
 
-ESTADO: EN_PROGRESO
+ESTADO: RESUELTO
+FECHA_RESOLUCION: 2026-02-26
 
 ACCIONES_COMPLETADAS:
   - [x] Consolidar archivos CSS duplicados (qa-fixes.css + qa-error-fixes-updated.css → qa-consolidated.css)
@@ -60,12 +61,13 @@ ACCIONES_COMPLETADAS:
   - [x] Mover inline scripts a módulos Vue (useAppConfig, useShortcutsModal, domCleanup)
   - [x] Fix TypeScript errors en client-base.ts, thank-you.ts, config.ts
   - [x] Actualizar tipos en global.d.ts
+  - [x] Eliminar business_config.js (ya no existía)
+  - [x] Eliminar reports.js y su referencia en _dashboard_scripts.html (reemplazado por ReportsManager.vue)
+  - [x] Eliminar pagination.js (reemplazado por usePagination.ts + PaginationControls.vue)
+  - [x] Eliminar 4 inline scripts de base.html (QA fixes → domCleanup.ts, shortcuts modal → useShortcutsModal.ts, Lucide init → base.ts, cart fallback → base.ts/initCartBindings)
 
 ACCIONES_PENDIENTES:
-  - [ ] Migrar business_config.js a Vue composable
-  - [ ] Migrar reports.js a Vue component
-  - [ ] Migrar pagination.js a Vue component
-  - [ ] Eliminar inline scripts restantes de templates
+  (Ninguna — los inline scripts restantes en templates son inyección de datos Jinja2→JS necesarios: APP_SETTINGS, APP_SESSION, API_BASE, flags de inicialización. Los inline scripts en index.html, index-alt.html, feedback.html, kiosk.html y thank_you.html son funcionalidad activa de página específica que requiere un esfuerzo mayor de migración a componentes Vue dedicados.)
 
 COMMITS:
   - f4d3524 (pronto-libs): refactor: remove vanilla JS files with Vue equivalents
@@ -76,6 +78,12 @@ NUEVOS_ARCHIVOS:
   - src/vue/clients/composables/useAppConfig.ts
   - src/vue/clients/composables/useShortcutsModal.ts
   - src/vue/clients/utils/domCleanup.ts
+
+SOLUCION: |
+  Eliminados archivos vanilla JS legacy (pagination.js, reports.js) que ya tenían
+  reemplazos Vue funcionales. Removidos 4 inline scripts de base.html cuya lógica
+  ya estaba duplicada en módulos TS (domCleanup.ts, useShortcutsModal.ts, base.ts).
+  Los inline scripts restantes son de inyección de datos servidor→JS (necesarios).
 
 VERIFICACION:
   - TypeScript: 0 errores ✅
