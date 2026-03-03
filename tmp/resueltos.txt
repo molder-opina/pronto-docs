@@ -224,3 +224,5 @@
 2026-03-03 | 20260303_waiter_authorization_error_after_admin_logout | /waiter caía en authorization-error y seguía inicializando runtime autenticado tras salir de admin | a41a5ab | pronto-static, pronto-tests
 2026-03-03 | 20260303_waiter_authorization_error_after_admin_logout_reopen_01 | Botón Ir a Login en authorization-error relanzaba loop de 403 en waiter | a5a32db | pronto-static, pronto-tests
 2026-03-03 | 20260303_scoped_authorization_error_routes_missing_for_chef_cashier | Chef y cashier podían caer en authorization-error waiter o ser redirigidos al login equivocado | cb65c97/bd5134a/db3ebe9/980e920 | pronto-static, pronto-employees, pronto-libs, pronto-tests
+2026-03-03 | 20260303_admin_realtime_endpoints_timeout_in_loop | Shell de /admin dispara realtime en loop contra endpoints que responden 504 | 386f27b/b7d5535 | pronto-static, pronto-scripts
+2026-03-03 | 20260303_admin_reports_chartjs_not_loaded | Reportes en /admin no carga Chart.js y queda degradado | 386f27b/b7d5535 | pronto-static, pronto-scripts
