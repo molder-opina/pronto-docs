@@ -222,4 +222,4 @@
 2026-03-03 | 20260303_operational_boards_missing_filters_button_and_floating_form | Los tableros operativos perdieron el botón de filtros y el formulario flotante | local-uncommitted | pronto-static, pronto-tests
 2026-03-03 | 20260303_waiter_mesas_order_pills_misaligned | Las órdenes dentro de las tarjetas de mesa se veían desalineadas en el tab Mesas | local-uncommitted | pronto-static
 2026-03-03 | 20260303_waiter_authorization_error_after_admin_logout | /waiter caía en authorization-error y seguía inicializando runtime autenticado tras salir de admin | a41a5ab | pronto-static, pronto-tests
-2026-03-03 | 20260303_waiter_authorization_error_after_admin_logout_reopen_01 | Botón Ir a Login en authorization-error relanzaba loop de 403 en waiter | pending | pronto-static, pronto-tests
+2026-03-03 | 20260303_waiter_authorization_error_after_admin_logout_reopen_01 | Botón Ir a Login en authorization-error relanzaba loop de 403 en waiter | a5a32db | pronto-static, pronto-tests

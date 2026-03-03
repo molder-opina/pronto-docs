@@ -17,5 +17,5 @@ EVIDENCIA: Reporte de usuario con URL final `http://localhost:6081/waiter/author
 HIPOTESIS_CAUSA: El botón navega directo a `/${scope}/login`, lo que permite que cualquier cookie stale de ese scope reactive la ruta protegida o un redirect automático antes de que el usuario vea el formulario.
 ESTADO: RESUELTO
 SOLUCION: El botón `Ir a Login` de `AuthorizationError.vue` ahora pasa por `/${scope}/logout` en lugar de navegar directamente a `/${scope}/login`. De esa forma se eliminan primero las cookies namespaced del scope activo y el usuario aterriza en una pantalla de login limpia, sin reactivar un redirect stale hacia `/waiter/dashboard`. Se validó manualmente dentro de la SPA empujando la ruta `authorization-error` y pulsando el botón, y también se agregó una prueba Playwright específica.
-COMMIT: pronto-static pending / pronto-tests pending
+COMMIT: pronto-static a5a32db / pronto-tests 35fea35
 FECHA_RESOLUCION: 2026-03-03
