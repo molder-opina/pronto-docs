@@ -221,3 +221,4 @@
 2026-03-03 | 20260303_admin_config_shows_system_keys_that_403_on_save | Panel admin de configuración mostraba llaves system y Guardar terminaba en 403 | local-uncommitted | pronto-employees, pronto-static, pronto-tests
 2026-03-03 | 20260303_operational_boards_missing_filters_button_and_floating_form | Los tableros operativos perdieron el botón de filtros y el formulario flotante | local-uncommitted | pronto-static, pronto-tests
 2026-03-03 | 20260303_waiter_mesas_order_pills_misaligned | Las órdenes dentro de las tarjetas de mesa se veían desalineadas en el tab Mesas | local-uncommitted | pronto-static
+2026-03-03 | 20260303_waiter_authorization_error_after_admin_logout | /waiter caía en authorization-error y seguía inicializando runtime autenticado tras salir de admin | a41a5ab | pronto-static, pronto-tests
