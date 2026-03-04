@@ -1,2 +1,3 @@
 2026-03-03 | 20260303_scoped_logout_hangs_without_redirect | Logout por consola se queda colgado y no aterriza en login | b765299,c9d60e0,dc6bc64 | pronto-static,pronto-tests,pronto-scripts,pronto-docs
 2026-03-03 | 20260303_employee_sidebar_missing_after_spa_login | El layout lateral no aparece tras login SPA hasta recargar la página | 69098e8,6542df8,88bd82b | pronto-static,pronto-tests,pronto-scripts,pronto-docs
+2026-03-03 | 20260303_sessions_tabs_active_state_is_not_visually_clear | Los tabs de Caja y Cierres no dejan claro cuál opción está seleccionada | 5fb3c6e,d6177fe,8d33e3d | pronto-static,pronto-tests,pronto-scripts,pronto-docs
