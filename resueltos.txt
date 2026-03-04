@@ -5,3 +5,4 @@
 2026-03-03 | 20260303_waiter_sidebar_should_hide_management_modules_and_show_sessions_tab | Waiter muestra módulos de gestión en sidebar y no incluye Caja y Cierres en tabs | 0f78619,e5f3371 | pronto-static,pronto-scripts,pronto-docs
 2026-03-03 | 20260303_waiter_request_payment_import_error_and_realtime_proxy_timeout | La acción Solicitar pago de mesero falla y realtime scoped entra en timeout | db28ce9,4edc94f,2720172 | pronto-employees,pronto-static,pronto-tests,pronto-docs,pronto-scripts
 2026-03-04 | 20260304-waiter-legacy-realtime-poller-and-request-payment-reopen | Waiter sigue disparando poller legacy realtime y request-payment vuelve a fallar en runtime | 393e82d,a2d3451,026ae28 | pronto-static, pronto-employees
+2026-03-04 | 20260304_profile_modal_missing_assigned_email | El modal Editar perfil no muestra el correo asignado por administrador | b9025e6 | pronto-employees,pronto-docs,pronto-scripts
