@@ -28,8 +28,8 @@ ESTADO: RESUELTO
 SOLUCION:
 Se eliminó el acceso browser directo a `http://localhost:6082` para la app cliente en desarrollo. `pronto-static` ahora resuelve `service=api` como same-origin (`/api/*`), delegando transporte al BFF técnico SSR de `pronto-client` en `:6080`. Además se reforzó cobertura Playwright para asegurar que el menú no dispare requests cross-origin a `:6082` ni warnings de CORS en consola.
 COMMIT:
-- pronto-static: PENDIENTE_COMMIT
-- pronto-tests: PENDIENTE_COMMIT
-- pronto-scripts: PENDIENTE_COMMIT
-- pronto-docs: PENDIENTE_COMMIT
+- pronto-static: 14194b3
+- pronto-tests: 037f3c5
+- pronto-scripts: 1cd5d66
+- pronto-docs: 5957df0
 FECHA_RESOLUCION: 2026-03-04
