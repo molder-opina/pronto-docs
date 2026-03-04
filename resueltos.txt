@@ -1,0 +1,1 @@
+2026-03-03 | 20260303_scoped_logout_hangs_without_redirect | Logout por consola se queda colgado y no aterriza en login | b765299,c9d60e0,dc6bc64 | pronto-static,pronto-tests,pronto-scripts,pronto-docs
