@@ -27,10 +27,10 @@ ESTADO: RESUELTO
 SOLUCION:
 Se movió el contrato del modal de perfil a rutas canónicas `GET/PUT /api/me/preferences` y `PUT /api/me/password` en `pronto-api`. `pronto-static` ahora consume `/<scope>/api/me/*` vía proxy scopeado, y `pronto-employees` dejó de implementar localmente `employees/me/preferences` y `employees/me/password`. Además se corrigió la carga de `PRONTO_API_URL` en `pronto-employees` para que el proxy realmente apunte a `pronto-api`.
 COMMIT:
-- pronto-api: PENDIENTE_COMMIT
-- pronto-employees: PENDIENTE_COMMIT
-- pronto-static: PENDIENTE_COMMIT
-- pronto-tests: PENDIENTE_COMMIT
-- pronto-scripts: PENDIENTE_COMMIT
-- pronto-docs: PENDIENTE_COMMIT
+- pronto-api: ff97d91
+- pronto-employees: df92545
+- pronto-static: 6003b87
+- pronto-tests: 981b150
+- pronto-scripts: 764d76a
+- pronto-docs: e562408
 FECHA_RESOLUCION: 2026-03-04
