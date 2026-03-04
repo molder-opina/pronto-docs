@@ -36,5 +36,5 @@ COMMIT:
 - pronto-client: 7021822
 - pronto-tests: b003c5a
 - pronto-scripts: b3dd475
-- pronto-docs: PENDIENTE_COMMIT
+- pronto-docs: 8c487f9
 FECHA_RESOLUCION: 2026-03-04
