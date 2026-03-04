@@ -3,3 +3,4 @@
 2026-03-03 | 20260303_sessions_tabs_active_state_is_not_visually_clear | Los tabs de Caja y Cierres no dejan claro cuál opción está seleccionada | 5fb3c6e,d6177fe,8d33e3d | pronto-static,pronto-tests,pronto-scripts,pronto-docs
 2026-03-03 | 20260303_waiter_sidebar_duplicates_meseros_in_operation_group | El sidebar de mesero duplica Meseros en navegación principal y en Operación | ae59949,8d5e5a2 | pronto-static,pronto-scripts,pronto-docs
 2026-03-03 | 20260303_waiter_sidebar_should_hide_management_modules_and_show_sessions_tab | Waiter muestra módulos de gestión en sidebar y no incluye Caja y Cierres en tabs | 0f78619,e5f3371 | pronto-static,pronto-scripts,pronto-docs
+2026-03-03 | 20260303_waiter_request_payment_import_error_and_realtime_proxy_timeout | La acción Solicitar pago de mesero falla y realtime scoped entra en timeout | db28ce9,4edc94f,2720172 | pronto-employees,pronto-static,pronto-tests,pronto-docs,pronto-scripts
