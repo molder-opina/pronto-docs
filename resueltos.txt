@@ -1,1 +1,2 @@
 2026-03-03 | 20260303_scoped_logout_hangs_without_redirect | Logout por consola se queda colgado y no aterriza en login | b765299,c9d60e0,dc6bc64 | pronto-static,pronto-tests,pronto-scripts,pronto-docs
+2026-03-03 | 20260303_employee_sidebar_missing_after_spa_login | El layout lateral no aparece tras login SPA hasta recargar la página | 69098e8,6542df8,88bd82b | pronto-static,pronto-tests,pronto-scripts,pronto-docs
