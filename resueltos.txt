@@ -9,3 +9,14 @@
 2026-03-04 | 20260304_employee_profile_password_endpoint_missing | El modal Editar perfil no puede actualizar contraseña porque falta el endpoint | 034f2bf,2373870,9cb0699 | pronto-employees,pronto-tests,pronto-docs,pronto-scripts
 2026-03-04 | 20260304_client_menu_uses_employee_http_and_wrong_bff_routes | La página cliente usa el wrapper HTTP de empleados y resuelve mal atajos/sesión al BFF equivocado | 6942544,339a224,e90598f | pronto-static,pronto-tests,pronto-docs,pronto-scripts
 2026-03-04 | ERR-20260304-AUTH-ERROR-SCOPE-REDIRECT | Las rutas /chef|/cashier/authorization-error redirigen a login antes de renderizar la pantalla de acceso denegado | NO_COMMIT_LOCAL | pronto-static,pronto-tests,pronto-docs,pronto-scripts
+2026-03-04 | BUG-20260226-SEC-01 | Secretos hardcodeados en scripts de verificación | NO_COMMIT_LOCAL | pronto-scripts
+2026-03-04 | PARITY_CHECK_WRAPPER_NOT_FOUND | Fallo en auditoría de paridad de API (Employees) por ruta de wrapper HTTP incorrecta | NO_COMMIT_LOCAL | pronto-scripts,pronto-ai
+2026-03-04 | PENDING_SCHEMA_MIGRATION | Migración de V6 marcada como pendiente en la auditoría de esquema | NO_COMMIT_LOCAL | pronto-scripts
+2026-03-04 | RUNTIME_DDL_VIOLATION | Violación de regla de arquitectura (NO DDL at runtime) en pronto_shared | NO_COMMIT_LOCAL | pronto-libs
+2026-03-04 | OBSOLETE_BASH_TEST_SUITE | Suite de pruebas bash (test-all.sh) rota por incompatibilidad con seguridad V6 | NO_COMMIT_LOCAL | pronto-scripts
+2026-03-04 | CODE-20260303-003 | Código muerto detectado en utilidades compartidas del frontend | NO_COMMIT_LOCAL | pronto-static
+2026-03-04 | DOCS-20260303-001 | Discrepancia en documentación para decorador de autenticación web | NO_COMMIT_LOCAL | pronto-docs,pronto-employees
+2026-03-04 | SEC-20260303-001 | Exposición de auto-login de kioscos sin secreto obligatorio | NO_COMMIT_LOCAL | pronto-client
+2026-03-04 | ERR-20260304-WAITER-BELL-AUTH-ASSIGNMENT | Flujo de campanita no cumple gating por login ni señalización clara de mesas sin mesero asignado | NO_COMMIT_LOCAL | pronto-static,pronto-api,pronto-client,pronto-libs
+2026-03-04 | ERR-20260303-ADMIN-CASHIER-SESSIONS-SIDEBAR-NOT-ACTIVE | Caja no permanece activa en el lateral al entrar a Caja y Cierres | NO_COMMIT_LOCAL | pronto-static
+2026-03-04 | 20260304_pronto_client_sessions_shortcuts_business_logic_moved_to_api | pronto-client mantenía lógica de negocio en sessions/table-context y shortcuts | 7021822,f8fa002,85a5e58,b003c5a,b3dd475,PENDIENTE_COMMIT | pronto-client,pronto-api,pronto-libs,pronto-tests,pronto-scripts,pronto-docs
