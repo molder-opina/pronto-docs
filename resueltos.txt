@@ -23,3 +23,11 @@
 2026-03-04 | 20260304_pronto_client_sessions_shortcuts_business_logic_moved_to_api | pronto-client mantenía lógica de negocio en sessions/table-context y shortcuts | 7021822,f8fa002,85a5e58,b003c5a,b3dd475,8c487f9 | pronto-client,pronto-api,pronto-libs,pronto-tests,pronto-scripts,pronto-docs
 2026-03-04 | 20260304_employee_profile_preferences_still_live_in_pronto_employees | El perfil de empleado seguía usando funcionalidad local en pronto-employees | ff97d91,df92545,6003b87,981b150,764d76a,e562408 | pronto-api,pronto-employees,pronto-static,pronto-tests,pronto-scripts,pronto-docs
 2026-03-04 | 20260304_client_cors_preflight_blocks_menu_and_orders | Cliente en 6080 fallaba por CORS preflight al llamar directo a 6082 con X-PRONTO-CUSTOMER-REF | 14194b3,037f3c5,1cd5d66,5957df0 | pronto-static,pronto-tests,pronto-scripts,pronto-docs
+2026-03-04 | 20260304_client_login_modal_low_contrast | Modal de login cliente 6080 con bajo contraste y legibilidad deficiente | NO_COMMIT_LOCAL | pronto-client,pronto-docs
+2026-03-04 | 20260304_client_menu_image_overflow_due_missing_menu_imports | Imagen gigante en menú cliente por colapso de estilos importados | NO_COMMIT_LOCAL | pronto-client,pronto-static,pronto-docs
+2026-03-04 | 20260304_client_checkout_preference_buttons_unstyled | Botones de método de pago se renderizan sin estilos en cliente 6080 | NO_COMMIT_LOCAL | pronto-client,pronto-static,pronto-docs
+2026-03-04 | 20260304_client_cart_panel_unstyled_and_expanded | Cart panel cliente se renderiza expandido dentro de la página | NO_COMMIT_LOCAL | pronto-client,pronto-static,pronto-docs
+2026-03-05 | ERR-CLIENT-DETAILS-CONTRAST-20260305 | Tab Detalles en cliente muestra texto con bajo contraste | NO_COMMIT_LOCAL | pronto-client,pronto-docs
+2026-03-05 | ERR-CLIENT-BLANK-PARTIAL-RENDER-20260305 | Render parcial en cliente 6080 con cuerpo gris y componentes sin estilo | NO_COMMIT_LOCAL | pronto-client,pronto-docs
+2026-03-05 | ERR-CLIENT-CART-BLOCKED-BY-PROFILE-OVERLAY-20260305 | Botón de carrito bloqueado por overlay del modal de perfil | NO_COMMIT_LOCAL | pronto-client,pronto-docs
+2026-03-05 | ERR-CLIENT-LOGIN-CSRF-20260305 | Login cliente falla con CSRF Error en modal de perfil | NO_COMMIT_LOCAL | pronto-static,pronto-client,pronto-docs
