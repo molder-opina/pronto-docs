@@ -30,7 +30,7 @@ employee_id: { { employee_id } },
 role_capabilities: { { role_capabilities | tojson } },
 can_process_payments: { { 'true' if can_process_payments else 'false' } },
 day_periods: { { day_periods | tojson } },
-paid_orders_retention_minutes: { { paid_orders_retention_minutes } },
+orders_paid_window_minutes: { { orders_paid_window_minutes } },
 payment_action_delay_seconds: { { payment_action_delay_seconds } },
 
 // DESPUÉS (CORRECTO):
@@ -39,7 +39,7 @@ employee_id: {{ employee_id }},
 role_capabilities: {{ role_capabilities | tojson }},
 can_process_payments: {{ 'true' if can_process_payments else 'false' }},
 day_periods: {{ day_periods | tojson }},
-paid_orders_retention_minutes: {{ paid_orders_retention_minutes }},
+orders_paid_window_minutes: {{ orders_paid_window_minutes }},
 payment_action_delay_seconds: {{ payment_action_delay_seconds }},
 ```
 
@@ -325,7 +325,7 @@ Después del fix, `window.APP_DATA` ahora contiene:
   },
   can_process_payments: true,
   day_periods: [...],
-  paid_orders_retention_minutes: 60,
+  orders_paid_window_minutes: 15,
   payment_action_delay_seconds: 3,
   table_base_prefix: "Mesa"
 }

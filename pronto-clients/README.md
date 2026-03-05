@@ -180,7 +180,7 @@ pronto-client/
 - `default_country_code` - Default country code (e.g., +52)
 - `phone_country_options` - Available phone country options
 - `checkout_default_method` - Default checkout method (cash/card)
-- `checkout_prompt_duration_seconds` - Checkout prompt duration
+- `client.checkout.redirect_seconds` - Checkout prompt duration
 - `waiter_call_sound` - Waiter call sound effect
 - `waiter_call_cooldown_seconds` - Waiter call cooldown period
 

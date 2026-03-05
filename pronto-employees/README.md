@@ -366,12 +366,12 @@ Each role has scoped API endpoints that are validated against the JWT scope:
 - `currency_symbol` - Currency symbol (e.g., $)
 - `currency_locale` - Currency locale (e.g., es-MX)
 - `checkout_default_method` - Default checkout method
-- `checkout_prompt_duration_seconds` - Checkout prompt duration
-- `paid_orders_window_minutes` - Paid orders retention window
+- `client.checkout.redirect_seconds` - Checkout prompt duration
+- `orders.paid_window_minutes` - Paid orders retention window
 - `realtime_poll_interval_ms` - Realtime poll interval
 - `waiter_notification_timeout` - Waiter notification timeout
 - `table_base_prefix` - Table name prefix (e.g., M)
-- `items_per_page` - Items per page for pagination
+- `system.api.items_per_page` - Items per page for pagination
 
 ## Database Integration
 

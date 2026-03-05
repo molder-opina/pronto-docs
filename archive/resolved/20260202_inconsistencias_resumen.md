@@ -18,7 +18,7 @@ Se detectaron **11 inconsistencias** en la documentación del proyecto PRONTO:
 
 ### 1. ✅ PostgreSQL versión 16-alpine (Corregido)
 **Archivo:** `pronto-ai/AGENTS.md:47`
-**Cambio:** `postgres:13-alpine` → `postgres:16-alpine`
+**Cambio:** `postgres:<legacy>` → `postgres:16-alpine`
 **Estado:** Completado
 
 ### 2. ✅ Python 3.11+ requerido (Corregido)

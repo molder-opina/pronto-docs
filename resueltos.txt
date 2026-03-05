@@ -31,3 +31,46 @@
 2026-03-05 | ERR-CLIENT-BLANK-PARTIAL-RENDER-20260305 | Render parcial en cliente 6080 con cuerpo gris y componentes sin estilo | NO_COMMIT_LOCAL | pronto-client,pronto-docs
 2026-03-05 | ERR-CLIENT-CART-BLOCKED-BY-PROFILE-OVERLAY-20260305 | Botón de carrito bloqueado por overlay del modal de perfil | NO_COMMIT_LOCAL | pronto-client,pronto-docs
 2026-03-05 | ERR-CLIENT-LOGIN-CSRF-20260305 | Login cliente falla con CSRF Error en modal de perfil | NO_COMMIT_LOCAL | pronto-static,pronto-client,pronto-docs
+2026-03-05 | SEC-20260303-004 | Validación de scope tipo fail-open en jwt_middleware.py | NO_COMMIT_LOCAL | pronto-libs,pronto-docs
+2026-03-05 | CODE-20260303-015 | Desajuste de namespaces en contrato de configuración vs semilla | NO_COMMIT_LOCAL | pronto-libs,pronto-scripts,pronto-docs
+2026-03-05 | CODE-20260303-017 | Código inalcanzable en load_config en config.py | NO_COMMIT_LOCAL | pronto-libs,pronto-docs
+2026-03-05 | CODE-20260303-016 | NameError en servicio de memoria del orquestador | NO_COMMIT_LOCAL | pronto-libs,pronto-docs
+2026-03-05 | TEST-20260303-002 | Scripts de prueba y monitoreo con rutas incorrectas | NO_COMMIT_LOCAL | pronto-scripts,pronto-docs
+2026-03-05 | CODE-20260303-014 | Constantes de límite de propina conflictivas en constants.py | NO_COMMIT_LOCAL | pronto-libs,pronto-docs
+2026-03-05 | AUDIT-20260303-SCRIPTS-MASTER | Master Checklist - Auditoría Archivo por Archivo de pronto-scripts | NO_COMMIT_LOCAL | pronto-scripts,pronto-docs
+2026-03-05 | CODE-20260303-018 | Duplicación de lógica de analítica en analytics_service_new.py | NO_COMMIT_LOCAL | pronto-libs
+2026-03-05 | CODE-20260303-025 | Violaciones de estándares de codificación en pronto-api | NO_COMMIT_LOCAL | pronto-api
+2026-03-05 | CODE-20260303-023 | Lógica de base de datos pesada en archivos de rutas | NO_COMMIT_LOCAL | pronto-api
+2026-03-05 | ARCH-20260303-006 | Violación crítica de aislamiento de API (API Isolation) | NO_COMMIT_LOCAL | pronto-client, pronto-employees
+2026-03-05 | CODE-20260303-024 | Fuga de lógica de negocio en rutas de empleados (pronto-api) | NO_COMMIT_LOCAL | pronto-api
+2026-03-05 | CODE-20260303-022 | Reinvención de serializadores en rutas de API (pronto-api) | NO_COMMIT_LOCAL | pronto-api
+2026-03-05 | AUDIT-20260303-API-MASTER | Master Checklist - Auditoría Archivo por Archivo de pronto-api | NO_COMMIT_LOCAL | pronto-api
+2026-03-05 | ARCH-20260303-012 | Duplicación de orquestación de pedidos entre clientes y empleados | NO_COMMIT_LOCAL | pronto-api
+2026-03-05 | CODE-20260303-008 | Duplicación masiva de lógica de login en pronto-employees | NO_COMMIT_LOCAL | pronto-employees
+2026-03-05 | ARCH-20260303-008 | Duplicación de lógica de autenticación en pronto_shared | NO_COMMIT_LOCAL | pronto-libs
+2026-03-05 | SEC-20260303-003 | Archivos de backup reales persistidos en el repositorio | NO_COMMIT_LOCAL | pronto-backups
+2026-03-05 | ARCH-20260303-001 | Fuga de lógica de negocio en Blueprints de API | NO_COMMIT_LOCAL | pronto-client
+2026-03-05 | AUDIT-20260303-CLIENT-MASTER | Master Checklist - Auditoría Archivo por Archivo de pronto-client | NO_COMMIT_LOCAL | pronto-client
+2026-03-05 | REL-20260303-001 | Punto único de fallo (SPOF) en dependencia de Redis para sesiones de cliente | NO_COMMIT_LOCAL | pronto-client
+2026-03-05 | CODE-20260303-011 | Falta de utilidades centralizadas de formateo de fecha/hora | NO_COMMIT_LOCAL | pronto-libs
+2026-03-05 | CODE-20260303-013 | Uso masivo de datetime.utcnow() deprecado | NO_COMMIT_LOCAL | pronto-root
+2026-03-05 | AUDIT-20260303-EMPLOYEES-MASTER | Master Checklist - Auditoría Archivo por Archivo de pronto-employees | NO_COMMIT_LOCAL | pronto-employees
+2026-03-05 | CODE-20260303-019 | Duplicación de helper _ensure_session en servicios | NO_COMMIT_LOCAL | pronto-libs
+2026-03-05 | ARCH-20260303-002 | Duplicación de lógica en clientes HTTP del frontend | NO_COMMIT_LOCAL | pronto-static
+2026-03-05 | CODE-20260303-020 | Duplicación de composable useMenu en el frontend | NO_COMMIT_LOCAL | pronto-static
+2026-03-05 | CODE-20260303-012 | Datos de negocio hardcodeados en seed.py | NO_COMMIT_LOCAL | pronto-libs
+2026-03-05 | CODE-20260303-006 | Acumulación de archivos temporales y huérfanos en la raíz del proyecto | NO_COMMIT_LOCAL | pronto-root
+2026-03-05 | CODE-20260303-001 | Archivos de servicio con tamaño excesivo candidatos a modularización | NO_COMMIT_LOCAL | pronto-libs
+2026-03-05 | CODE-20260303-021 | Lógica de UI legacy (manipulación directa del DOM) en proyecto Vue | NO_COMMIT_LOCAL | pronto-static
+2026-03-05 | ARCH-20260303-009 | Residuos de frontend legacy dentro de pronto_shared | NO_COMMIT_LOCAL | pronto-libs
+2026-03-05 | AUDIT-20260303-LIBS-MASTER | Master Checklist - Auditoría Archivo por Archivo de pronto-libs | NO_COMMIT_LOCAL | pronto-libs
+2026-03-05 | ARCH-20260303-011 | Monolito models.py candidato a modularización en paquete | NO_COMMIT_LOCAL | pronto-libs
+2026-03-05 | DATA-20260303-003 | Inconsistencia de tipo en Notification.recipient_id (Integer vs UUID) | NO_COMMIT_LOCAL | pronto-libs
+2026-03-05 | ARCH-20260303-007 | Triplicación de servicios de notificación con lógica redundante | NO_COMMIT_LOCAL | pronto-libs
+2026-03-05 | CODE-20260303-010 | Duplicación de lógica de listado de órdenes entre API y BFF | NO_COMMIT_LOCAL | pronto-api, pronto-employees
+2026-03-05 | CODE-20260303-009 | Violación de nomenclatura en scripts de pronto-scripts/bin | NO_COMMIT_LOCAL | pronto-scripts
+2026-03-05 | ARCH-20260303-010 | Acoplamiento de sistema de archivos entre backend y frontend | NO_COMMIT_LOCAL | pronto-libs
+2026-03-05 | CODE-20260303-007 | Violación de P0: Escritura directa de payment_status fuera de la máquina de estados | NO_COMMIT_LOCAL | pronto-libs
+2026-03-05 | AUDIT-20260303-STATIC-MASTER | Master Checklist - Auditoría Archivo por Archivo de pronto-static | NO_COMMIT_LOCAL | pronto-static
+2026-03-05 | AUDIT-20260303-TESTS-MASTER | Master Checklist - Auditoría Archivo por Archivo de pronto-tests | NO_COMMIT_LOCAL | pronto-tests
+2026-03-05 | 20260304_business_logic_embedded_in_pronto_client_and_pronto_employees_api | Lógica de negocio embebida en rutas /api de SSR | NO_COMMIT_LOCAL | pronto-client, pronto-employees, pronto-api, pronto-libs
