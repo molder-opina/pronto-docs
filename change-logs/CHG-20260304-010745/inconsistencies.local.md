@@ -1,0 +1,2 @@
+- BLOCKER: rol no canónico admin_roles
+- BLOCKER: referencia a Postgres 13

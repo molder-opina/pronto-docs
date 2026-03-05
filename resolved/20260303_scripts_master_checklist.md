@@ -39,7 +39,7 @@ ACCIONES_PENDIENTES:
   - Ninguna. Auditoría de pronto-scripts completada.
 
 SOLUCION: |
-  Auditoría finalizada. La automatización del proyecto es una de sus mayores fortalezas. Los problemas detectados son de carácter cosmético (nomenclatura) o de sincronización de rutas tras cambios estructurales.
+  Auditoría finalizada. La automatización del proyecto es una de sus mayores fortalezas. Sin embargo, se detectaron fallos de portabilidad (macOS vs Linux) en comandos como `sed` y variables no definidas en `rebuild.sh` (OPS-20260303-SCRIPTS-PORTABILITY).
 
 COMMIT: NO_COMMIT_LOCAL
 FECHA_RESOLUCION: 2026-03-03
