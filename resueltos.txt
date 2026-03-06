@@ -97,3 +97,4 @@
 2026-03-06 | OPS-20260306-003 | Login de employees queda en 'Iniciando Pronto...' por loop masivo de /api/auth/me | e8ea298 | pronto-static,pronto-tests
 2026-03-06 | OPS-20260306-004 | Specs Playwright de employees asumen forma rígida de URL dashboard | 6d17ea2 | pronto-tests,pronto-static
 2026-03-06 | CODE-20260303-032 | Acceso directo a window.APP_CONFIG rompe encapsulamiento de Vue | 65327b3,70c1631 | pronto-static
+2026-03-06 | OPS-20260303-AUDIT-TOOLS | Desactualización y falta de integración de herramientas de auditoría | PENDING_AFINACIONFINALV1 | pronto-scripts,pronto-prompts

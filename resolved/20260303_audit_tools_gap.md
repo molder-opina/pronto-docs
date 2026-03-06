@@ -20,7 +20,10 @@ UBICACION: |
   - `pronto-audit/`
   - `pronto-prompts/`
 
-ESTADO: ABIERTO
+ESTADO: RESUELTO
+SOLUCION: Se actualizó `pronto-prompts/project-overview.md` para reflejar arquitectura vigente (`pronto-api` como autoridad `/api/*` y rol técnico de proxy en employees) y se integró la auditoría al flujo operativo en `pronto-scripts/bin/up.sh` y `pronto-scripts/bin/rebuild.sh` mediante ejecución opcional por `PRONTO_RUN_AUDIT_ON_BOOT=1`, además de exponer comando canónico `pronto-full-audit.sh` en salida.
+COMMIT: PENDING_AFINACIONFINALV1
+FECHA_RESOLUCION: 2026-03-06
 
 ACCIONES_PENDIENTES:
   - [ ] Revisar la lógica de los agentes en `pronto-audit/src/pronto_audit/agents/`.
