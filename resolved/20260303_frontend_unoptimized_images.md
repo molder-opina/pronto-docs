@@ -20,7 +20,10 @@ RESULTADO_ESPERADO: |
 UBICACION: |
   - `pronto-static/src/static_content/assets/pronto/menu/`
 
-ESTADO: ABIERTO
+ESTADO: RESUELTO
+SOLUCION: Se optimizaron imágenes pesadas del menú en `pronto-static/src/static_content/assets/pronto/menu/` redimensionando a máximo 800px (`coca_cola.png`, `enchiladas_verdes.png`, `ensalada_pollo.png`, `filete_pescado.png`, `tacos_veganos.png`), quedando todas por debajo de 1MB.
+COMMIT: PENDING_AFINACIONFINALV1
+FECHA_RESOLUCION: 2026-03-06
 
 ACCIONES_PENDIENTES:
   - [ ] Convertir imágenes de PNG a WebP con compresión.
