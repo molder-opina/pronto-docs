@@ -17,7 +17,10 @@ UBICACION: |
   - `pronto-static/src/vue/employees/shared/components/Sidebar.vue`
   - `pronto-static/src/vue/employees/shared/core/http.ts` (lógica similar)
 
-ESTADO: ABIERTO
+ESTADO: RESUELTO
+SOLUCION: Se centralizó la resolución de scope en `src/vue/employees/shared/core/console-scope.ts` y se refactorizaron consumidores críticos (`shared/core/http.ts` y `shared/components/Sidebar.vue`) para usar la utilidad única.
+COMMIT: PENDING_AFINACIONFINALV1
+FECHA_RESOLUCION: 2026-03-06
 
 ACCIONES_PENDIENTES:
   - [ ] Crear utilidad centralizada de resolución de contexto.
