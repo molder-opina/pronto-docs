@@ -18,7 +18,10 @@ UBICACION: |
   - `pronto-static/src/vue/employees/shared/store/config.ts`
   - `pronto-static/src/vue/clients/modules/client-profile.ts`
 
-ESTADO: ABIERTO
+ESTADO: RESUELTO
+SOLUCION: Se redujo el acceso directo a globals en los puntos críticos reportados: `Sidebar.vue` y `http.ts` consumen resolución centralizada de scope (`shared/core/console-scope.ts`), `config.ts` evita fallback de lectura directa para normalización de assets, y `client-profile.ts` reemplaza uso de `window.APP_SESSION` por helpers del composable `useAppConfig` (`getAppSessionCustomer`/`setAppSessionCustomer`).
+COMMIT: 65327b3,70c1631
+FECHA_RESOLUCION: 2026-03-06
 
 ACCIONES_PENDIENTES:
   - [ ] Asegurar que `ConfigStore` cargue todos los valores necesarios de `window.APP_CONFIG`.
