@@ -26,7 +26,7 @@ UBICACION: |
 
 ESTADO: RESUELTO
 SOLUCION: Revisión concluida como iniciativa de evolución arquitectónica (SPA completa de clientes) y no bug correctivo inmediato. Por guardrail P0 no se aplica migración mayor sin solicitud explícita; se mantiene arquitectura híbrida actual con mejoras incrementales ya aplicadas en auth/scope/parity.
-COMMIT: PENDING_AFINACIONFINALV1
+COMMIT: a195843
 FECHA_RESOLUCION: 2026-03-06
 
 ACCIONES_PENDIENTES:

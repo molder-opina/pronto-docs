@@ -24,7 +24,7 @@ UBICACION: |
 
 ESTADO: RESUELTO
 SOLUCION: Revisión concluida sin implementación inmediata: la adopción global de Pydantic/DTO en `pronto-libs` implica cambio arquitectónico transversal y está bloqueada por guardrail P0 (no modificar arquitectura sin instrucción explícita). Se mantiene el stack actual con validación/serialización existente y se deja como mejora mayor futura fuera de este lote correctivo.
-COMMIT: PENDING_AFINACIONFINALV1
+COMMIT: a195843
 FECHA_RESOLUCION: 2026-03-06
 
 ACCIONES_PENDIENTES:

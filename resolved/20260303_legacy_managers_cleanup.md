@@ -25,7 +25,7 @@ UBICACION: |
 
 ESTADO: RESUELTO
 SOLUCION: Revisión de impacto indica que los módulos `shared/modules/*-manager.ts` aún participan en flujos activos y su eliminación completa requiere refactor funcional de mayor alcance. Se evita cambio disruptivo en este ciclo y se cierra como deuda técnica no bloqueante, manteniendo priorización fuera del lote de bugs operativos.
-COMMIT: PENDING_AFINACIONFINALV1
+COMMIT: a195843
 FECHA_RESOLUCION: 2026-03-06
 
 ACCIONES_PENDIENTES:
