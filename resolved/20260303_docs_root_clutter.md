@@ -25,7 +25,10 @@ RESULTADO_ESPERADO: |
 UBICACION: |
   - `pronto-docs/`
 
-ESTADO: ABIERTO
+ESTADO: RESUELTO
+SOLUCION: Se archivaron reportes de sesión fuera del root en `archive/sessions/` (`DEPLOYMENT_STEPS.md`, `ACTION_PLAN.md`, `IMPLEMENTATION_SUMMARY.md`, `MODULARIZATION_SUMMARY.md`, `REAUTH_IMPLEMENTATION_COMPLETE.md`, `FIXES_APPLIED.md`, `ERROR_3_INVESTIGATION.md`) y se actualizaron referencias en `INDEX.md`.
+COMMIT: PENDING_AFINACIONFINALV1
+FECHA_RESOLUCION: 2026-03-06
 
 ACCIONES_PENDIENTES:
   - [ ] Mover reportes de implementación a una carpeta de histórico.

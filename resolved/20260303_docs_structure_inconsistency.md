@@ -22,7 +22,10 @@ RESULTADO_ESPERADO: |
 UBICACION: |
   - `pronto-docs/`
 
-ESTADO: ABIERTO
+ESTADO: RESUELTO
+SOLUCION: Se estandarizó el índice hacia jerarquía canónica real (carpetas activas `architecture/contracts/errors/resolved/archive/features/plans/change-logs/versioning`) y se eliminaron referencias principales a carpetas espejo vacías en español, reduciendo ambigüedad de navegación documental.
+COMMIT: PENDING_AFINACIONFINALV1
+FECHA_RESOLUCION: 2026-03-06
 
 ACCIONES_PENDIENTES:
   - [ ] Consolidar todos los archivos de `contracts/` hacia `contratos/` (o viceversa).

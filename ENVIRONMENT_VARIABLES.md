@@ -1,6 +1,6 @@
 # Guía de Variables de Entorno - Pronto App
 
-**Última actualización**: 2026-01-30
+**Última actualización**: 2026-03-06
 
 Esta guía documenta todas las variables de entorno utilizadas en el proyecto Pronto, su propósito, valores por defecto y cómo configurarlas.
 
@@ -631,14 +631,30 @@ echo "HANDOFF_PEPPER=<valor-generado>" >> .env
 
 ---
 
+## 🔄 Variables agregadas (sincronizadas con `pronto_shared/config.py`)
+
+Variables relevantes incorporadas en la carga de `AppConfig` y que deben existir en `.env` cuando aplique:
+
+- `SUPABASE_URL`
+- `SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `STORAGE_BUCKET_AVATARS`
+- `STORAGE_BUCKET_MENU`
+- `STORAGE_BUCKET_LOGS`
+- `NGINX_HOST`
+- `NGINX_PORT`
+- `AUTO_READY_QUICK_SERVE`
+
+Nota: las variables de orquestación AI (`OLLAMA_*`, `QDRANT_*`) viven fuera del runtime base de `pronto_shared/config.py` y deben documentarse por módulo cuando aplique.
+
 ## 📚 Referencias
 
-- **Documentación JWT**: `docs/JWT_IMPLEMENTATION_REVIEW.md`
-- **Análisis de Variables**: `docs/ENV_VARIABLES_ANALYSIS.md`
-- **Plan de Acción**: `docs/ACTION_PLAN.md`
-- **Código de Validación**: `build/shared/config.py`
+- **Documentación JWT**: `JWT_IMPLEMENTATION_REVIEW.md`
+- **Análisis de Variables**: `ENV_VARIABLES_ANALYSIS.md`
+- **Plan de Acción (histórico)**: `archive/sessions/ACTION_PLAN.md`
+- **Código de Validación**: `../pronto-libs/src/pronto_shared/config.py`
 
 ---
 
-**Última actualización**: 2026-01-30  
-**Versión**: 1.0
+**Última actualización**: 2026-03-06  
+**Versión**: 1.1

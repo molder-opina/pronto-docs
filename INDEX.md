@@ -6,18 +6,15 @@
 
 ```
 pronto-docs/
-├── infraestructura/    # Despliegue, variables de entorno, configuración
-├── proyecto/           # Estado, planes, change-logs
-├── funcionalidad/      # Features, implementaciones
-├── flujos-negocio/     # Reglas de negocio, procesos
-├── estructura/         # Arquitectura, modularización
-├── seguridad/          # Autenticación, CSRF, cookies
-├── testing/            # QA, checklists, tests
-├── modulos/            # Documentación por módulo
-├── planes/             # Planes de migración, refactor
-├── contratos/          # OpenAPI, schemas SQL
+├── architecture/       # Arquitectura técnica y decisiones de diseño
+├── contracts/          # OpenAPI, schemas SQL, contratos públicos
 ├── errors/             # Errores activos
-├── archive/            # Bugs resueltos históricos
+├── resolved/           # Errores resueltos vigentes
+├── archive/            # Históricos (audits, findings, sesiones)
+├── features/           # Documentación por feature
+├── plans/              # Planes de migración/refactor
+├── change-logs/        # Cambios y notas evolutivas
+├── versioning/         # Bitácora de versionado AI
 └── tmp/                # Archivos temporales
 ```
 
@@ -29,7 +26,7 @@ pronto-docs/
 
 | Archivo | Descripción |
 |---------|-------------|
-| [DEPLOYMENT_STEPS.md](DEPLOYMENT_STEPS.md) | Pasos para despliegue |
+| [archive/sessions/DEPLOYMENT_STEPS.md](archive/sessions/DEPLOYMENT_STEPS.md) | Pasos históricos de despliegue |
 | [ENVIRONMENT_VARIABLES.md](ENVIRONMENT_VARIABLES.md) | Variables de entorno |
 | [PROXY_CONFIGURATION.md](PROXY_CONFIGURATION.md) | Configuración de proxy |
 | [SRE_RECOMMENDATIONS.md](SRE_RECOMMENDATIONS.md) | Recomendaciones SRE |
@@ -42,7 +39,7 @@ pronto-docs/
 | [MONOREPO.md](MONOREPO.md) | Estructura del monorepo |
 | [CSS_MODULAR_ARCHITECTURE.md](CSS_MODULAR_ARCHITECTURE.md) | Arquitectura CSS |
 | [TYPESCRIPT_MODULAR_ARCHITECTURE.md](TYPESCRIPT_MODULAR_ARCHITECTURE.md) | Arquitectura TypeScript |
-| [MODULARIZATION_SUMMARY.md](MODULARIZATION_SUMMARY.md) | Resumen de modularización |
+| [archive/sessions/MODULARIZATION_SUMMARY.md](archive/sessions/MODULARIZATION_SUMMARY.md) | Resumen histórico de modularización |
 
 ### Seguridad
 
@@ -104,7 +101,7 @@ pronto-docs/
 ## Quick Start
 
 1. **Para entender el proyecto:** Leer [project-overview.md](../pronto-prompts/project-overview.md)
-2. **Para desplegar:** Leer [DEPLOYMENT_STEPS.md](DEPLOYMENT_STEPS.md)
+2. **Para desplegar:** Leer [archive/sessions/DEPLOYMENT_STEPS.md](archive/sessions/DEPLOYMENT_STEPS.md)
 3. **Para configurar:** Leer [ENVIRONMENT_VARIABLES.md](ENVIRONMENT_VARIABLES.md)
 4. **Para la arquitectura:** Leer [ARCHITECTURE_OVERVIEW.md](ARCHITECTURE_OVERVIEW.md)
 
@@ -156,9 +153,10 @@ Archivos movidos a `tmp/` por considerarlos temporales o desactualizados:
 
 ## Archivados
 
-- `archive/resolved/` - 342 documentos de bugs resueltos
+- `archive/resolved/` - documentos de bugs resueltos
 - `archive/audits/` - Reportes de auditoría
 - `archive/findings-autonomas/` - Hallazgos autónomos
+- `archive/sessions/` - reportes históricos de implementación/sesión
 
 ---
 

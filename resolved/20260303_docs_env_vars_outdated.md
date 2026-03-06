@@ -22,7 +22,10 @@ RESULTADO_ESPERADO: |
 UBICACION: |
   - `pronto-docs/ENVIRONMENT_VARIABLES.md`
 
-ESTADO: ABIERTO
+ESTADO: RESUELTO
+SOLUCION: Se actualizó `ENVIRONMENT_VARIABLES.md` con variables faltantes de `AppConfig` (Supabase/Storage/Nginx/AUTO_READY_QUICK_SERVE), se corrigieron rutas de referencia al código real (`pronto-libs/src/pronto_shared/config.py`) y se refrescó fecha/versión del documento.
+COMMIT: PENDING_AFINACIONFINALV1
+FECHA_RESOLUCION: 2026-03-06
 
 ACCIONES_PENDIENTES:
   - [ ] Sincronizar la lista de variables con `pronto_shared/config.py`.
