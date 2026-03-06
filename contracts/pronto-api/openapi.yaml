@@ -33,6 +33,206 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
+  /api/menu:
+    get:
+      summary: Runtime catálogo (taxonomy + catalog_items + quick_filters)
+      description: "No construye home publicada. La home productiva se sirve desde snapshot estático."
+      responses:
+        "200":
+          description: Catálogo runtime
+  /api/menu-categories:
+    get:
+      summary: Listar taxonomía de categorías y subcategorías
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200":
+          description: OK
+    post:
+      summary: Crear categoría
+      security: [{ bearerAuth: [] }]
+      responses:
+        "201":
+          description: Created
+  /api/menu-categories/{category_id}:
+    put:
+      summary: Actualizar categoría
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - in: path
+          name: category_id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: OK
+    delete:
+      summary: Eliminar categoría
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - in: path
+          name: category_id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: OK
+  /api/menu-subcategories:
+    get:
+      summary: Listar subcategorías
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200":
+          description: OK
+    post:
+      summary: Crear subcategoría
+      security: [{ bearerAuth: [] }]
+      responses:
+        "201":
+          description: Created
+  /api/menu-subcategories/{subcategory_id}:
+    put:
+      summary: Actualizar subcategoría
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - in: path
+          name: subcategory_id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: OK
+    delete:
+      summary: Eliminar subcategoría
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - in: path
+          name: subcategory_id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: OK
+  /api/menu-labels:
+    get:
+      summary: Listar labels comerciales
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200":
+          description: OK
+    post:
+      summary: Crear label comercial
+      security: [{ bearerAuth: [] }]
+      responses:
+        "201":
+          description: Created
+  /api/menu-labels/{label_id}:
+    put:
+      summary: Actualizar label comercial
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - in: path
+          name: label_id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: OK
+    delete:
+      summary: Eliminar label comercial
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - in: path
+          name: label_id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: OK
+  /api/menu-home-modules:
+    get:
+      summary: Listar módulos home draft (admin)
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200":
+          description: OK
+    post:
+      summary: Crear módulo home draft
+      security: [{ bearerAuth: [] }]
+      responses:
+        "201":
+          description: Created
+  /api/menu-home-modules/preview:
+    get:
+      summary: Preview dinámico draft para admin
+      description: "Contrato de preview administrativo; no usado por cliente publicado."
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200":
+          description: OK
+  /api/menu-home-modules/published:
+    get:
+      summary: Snapshot publicado actual (admin)
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200":
+          description: OK
+  /api/menu-home-modules/publish:
+    post:
+      summary: Publicación atómica de snapshot home
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200":
+          description: Publicación exitosa
+        "403":
+          description: Sin permiso menu.home.publish
+        "409":
+          description: Publish lock activo
+        "500":
+          description: Falla de publish con rollback
+  /api/menu-home-modules/reorder:
+    put:
+      summary: Reordenar módulos home
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200":
+          description: OK
+        "409":
+          description: Conflicto de versión draft
+  /api/menu-home-modules/{module_id}:
+    put:
+      summary: Actualizar módulo home draft
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - in: path
+          name: module_id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: OK
+    delete:
+      summary: Eliminar módulo home draft
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - in: path
+          name: module_id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: OK
+  /api/menu-home-modules/{module_id}/products:
+    put:
+      summary: Asignar productos manuales a módulo
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - in: path
+          name: module_id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: OK
 components:
   securitySchemes:
     bearerAuth:

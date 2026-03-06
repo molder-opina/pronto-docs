@@ -59,6 +59,12 @@
 2026-03-05 | AUDIT-20260303-EMPLOYEES-MASTER | Master Checklist - Auditoría Archivo por Archivo de pronto-employees | NO_COMMIT_LOCAL | pronto-employees
 2026-03-05 | CODE-20260303-019 | Duplicación de helper _ensure_session en servicios | NO_COMMIT_LOCAL | pronto-libs
 2026-03-06 | CODE-20260306-001 | Duplicación de helper _ensure_session en servicios de analytics | NO_COMMIT_LOCAL | pronto-libs,pronto-docs
+2026-03-06 | TEST-20260306-001 | conftest.py resuelve mal repo root y rompe imports de api_app en suites JWT | NO_COMMIT_LOCAL | pronto-tests,pronto-docs
+2026-03-06 | AUTH-20260306-001 | jwt_service no serializa employee_id UUID en access/refresh tokens | NO_COMMIT_LOCAL | pronto-libs,pronto-tests,pronto-docs
+2026-03-06 | AUTH-20260306-002 | Refresh tokens se emiten sin iss/aud y decode_token los rechaza | NO_COMMIT_LOCAL | pronto-libs,pronto-api,pronto-tests,pronto-docs
+2026-03-06 | TEST-20260306-002 | db_session aborta transacción al truncar tablas ausentes y contamina tests | NO_COMMIT_LOCAL | pronto-tests,pronto-docs
+2026-03-06 | TEST-20260306-003 | Suites JWT de scope/roles siguen apuntando a rutas scopeadas legacy e imports obsoletos | NO_COMMIT_LOCAL | pronto-tests,pronto-docs
+2026-03-06 | TEST-20260306-004 | test_auth_api.py sigue esperando shape legacy de login y logout sin X-App-Context | NO_COMMIT_LOCAL | pronto-tests,pronto-docs
 2026-03-05 | ARCH-20260303-002 | Duplicación de lógica en clientes HTTP del frontend | NO_COMMIT_LOCAL | pronto-static
 2026-03-05 | CODE-20260303-020 | Duplicación de composable useMenu en el frontend | NO_COMMIT_LOCAL | pronto-static
 2026-03-05 | CODE-20260303-012 | Datos de negocio hardcodeados en seed.py | NO_COMMIT_LOCAL | pronto-libs

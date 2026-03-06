@@ -1,6 +1,18 @@
 --
 -- PostgreSQL database dump
 --
+-- v4 MENU HOME SNAPSHOT NOTE (2026-03-06):
+-- Migration `20260306_05__menu_home_snapshot_architecture.sql` añade/ajusta:
+--   - pronto_menu_subcategories
+--   - pronto_product_labels
+--   - pronto_product_label_map
+--   - pronto_menu_home_modules
+--   - pronto_menu_home_module_products
+--   - pronto_menu_home_publication_state
+--   - pronto_menu_home_snapshots
+--   - columnas nuevas en pronto_menu_items:
+--       menu_category_id, menu_subcategory_id, item_kind, is_active, sort_order
+-- Este archivo debe regenerarse en próximo dump `pg_dump --schema-only`.
 
 \restrict mVqIlXsd5ycKpp8He73DQTt8XoXQm0Qm0PmxJqt1CNNNR4k4ARSSLdQZc4TmvTe
 
@@ -3420,4 +3432,3 @@ ALTER TABLE ONLY public.pronto_waiter_table_assignments
 --
 
 \unrestrict mVqIlXsd5ycKpp8He73DQTt8XoXQm0Qm0PmxJqt1CNNNR4k4ARSSLdQZc4TmvTe
-

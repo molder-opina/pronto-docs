@@ -3,6 +3,13 @@ info:
   title: Pronto Client BFF API
   version: "1.0.0"
 paths:
+  /api/menu:
+    get:
+      summary: Runtime catálogo (taxonomy + catalog_items + quick_filters)
+      description: "La homepage publicada NO se construye desde este endpoint."
+      responses:
+        "200":
+          description: Catálogo runtime
   /api/sessions/table-context:
     get:
       summary: Obtener contexto de mesa de la sesión de cliente

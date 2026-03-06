@@ -1,6 +1,13 @@
 --
 -- PostgreSQL database dump
 --
+-- v4 MENU HOME SNAPSHOT NOTE (2026-03-06):
+-- Cliente consume home publicada desde artefacto estático:
+-- `assets/pronto/menu/home-published.json`.
+-- Persistencia/candados de publicación vive en tablas:
+--   pronto_menu_home_publication_state
+--   pronto_menu_home_snapshots
+-- y metadatos de módulos/labels/taxonomía asociados.
 
 \restrict mVqIlXsd5ycKpp8He73DQTt8XoXQm0Qm0PmxJqt1CNNNR4k4ARSSLdQZc4TmvTe
 
@@ -3420,4 +3427,3 @@ ALTER TABLE ONLY public.pronto_waiter_table_assignments
 --
 
 \unrestrict mVqIlXsd5ycKpp8He73DQTt8XoXQm0Qm0PmxJqt1CNNNR4k4ARSSLdQZc4TmvTe
-
