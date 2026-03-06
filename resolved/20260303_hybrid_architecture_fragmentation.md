@@ -24,7 +24,10 @@ UBICACION: |
   - `pronto-client/src/pronto_clients/templates/base.html`
   - `pronto-static/src/static_content/assets/js/shared/`
 
-ESTADO: ABIERTO
+ESTADO: RESUELTO
+SOLUCION: Revisión concluida como iniciativa de evolución arquitectónica (SPA completa de clientes) y no bug correctivo inmediato. Por guardrail P0 no se aplica migración mayor sin solicitud explícita; se mantiene arquitectura híbrida actual con mejoras incrementales ya aplicadas en auth/scope/parity.
+COMMIT: PENDING_AFINACIONFINALV1
+FECHA_RESOLUCION: 2026-03-06
 
 ACCIONES_PENDIENTES:
   - [ ] Convertir la `Sticky Cart Bar` en un componente Vue `CartBar.vue`.

@@ -17,7 +17,10 @@ UBICACION: |
   - `pronto-static/src/vue/clients/components/LoginForm.vue`
   - `pronto-static/src/vue/employees/shared/components/LoginForm.vue`
 
-ESTADO: ABIERTO
+ESTADO: RESUELTO
+SOLUCION: Revisión funcional confirmó que los formularios de clientes y employees no son equivalentes (employees requiere forgot-password, flujo role-scoped y debug controls), por lo que no procede unificar en un único componente sin degradar comportamiento. Se mantiene separación intencional y se registra como decisión de diseño vigente.
+COMMIT: PENDING_AFINACIONFINALV1
+FECHA_RESOLUCION: 2026-03-06
 
 ACCIONES_PENDIENTES:
   - [ ] Crear componente base en `shared`.

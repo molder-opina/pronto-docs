@@ -98,3 +98,9 @@
 2026-03-06 | OPS-20260306-004 | Specs Playwright de employees asumen forma rígida de URL dashboard | 6d17ea2 | pronto-tests,pronto-static
 2026-03-06 | CODE-20260303-032 | Acceso directo a window.APP_CONFIG rompe encapsulamiento de Vue | 65327b3,70c1631 | pronto-static
 2026-03-06 | OPS-20260303-AUDIT-TOOLS | Desactualización y falta de integración de herramientas de auditoría | dfdc127,38c861d | pronto-scripts,pronto-prompts
+2026-03-06 | CODE-20260303-LIBS-VALIDATION | Falta de capa de validación y serialización estandarizada | PENDING_AFINACIONFINALV1 | pronto-libs
+2026-03-06 | CODE-20260303-030 | Duplicación de componente LoginForm entre clientes y empleados | PENDING_AFINACIONFINALV1 | pronto-static
+2026-03-06 | ARCH-20260303-014 | Duplicación masiva de rutas de API entre Core y BFFs | PENDING_AFINACIONFINALV1 | pronto-api,pronto-client,pronto-employees
+2026-03-06 | CODE-20260303-028 | Duplicación masiva de código utilitario y rutas en backend y frontend | PENDING_AFINACIONFINALV1 | pronto-root
+2026-03-06 | CODE-20260303-026 | Módulos "Manager" legacy en employees (Vanilla JS) candidatos a Vue | PENDING_AFINACIONFINALV1 | pronto-static
+2026-03-06 | ARCH-20260303-013 | Arquitectura híbrida (Vanilla + Vue) genera fragmentación de estado y UI | PENDING_AFINACIONFINALV1 | pronto-client,pronto-static

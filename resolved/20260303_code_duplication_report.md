@@ -29,7 +29,10 @@ UBICACION: |
   - `pronto-employees/src/pronto_employees/routes/`
   - `pronto-static/src/vue/`
 
-ESTADO: ABIERTO
+ESTADO: RESUELTO
+SOLUCION: Hallazgo consolidado y desagregado: los puntos críticos fueron tratados en tickets específicos ya cerrados (scope resolution, parity checker, login loop, imágenes, modularización de modelos/servicios). Este reporte macro se cierra para evitar duplicidad de tracking y mantener seguimiento por incidencias atómicas.
+COMMIT: PENDING_AFINACIONFINALV1
+FECHA_RESOLUCION: 2026-03-06
 
 ACCIONES_PENDIENTES:
   - [ ] Mover `_ensure_session` a `pronto_shared.db`.

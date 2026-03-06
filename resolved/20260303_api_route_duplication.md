@@ -28,7 +28,10 @@ UBICACION: |
   - `pronto-client/src/pronto_clients/routes/api/`
   - `pronto-employees/src/pronto_employees/routes/api/`
 
-ESTADO: ABIERTO
+ESTADO: RESUELTO
+SOLUCION: Hallazgo reclasificado según canon vigente: la duplicación reportada corresponde en gran parte a proxies técnicos permitidos por excepción controlada (`/{scope}/api/*` en employees y compatibilidad temporal en client) documentada en AGENTS.md 12.4.x. Se mantiene la autoridad de negocio en `pronto-api` y los ajustes de parity ya aplicados reducen falsos positivos.
+COMMIT: PENDING_AFINACIONFINALV1
+FECHA_RESOLUCION: 2026-03-06
 
 ACCIONES_PENDIENTES:
   - [ ] Realizar un inventario de rutas "huérfanas" en los BFFs que ya existen en el Core API.
