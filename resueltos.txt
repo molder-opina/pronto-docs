@@ -58,6 +58,7 @@
 2026-03-05 | CODE-20260303-013 | Uso masivo de datetime.utcnow() deprecado | NO_COMMIT_LOCAL | pronto-root
 2026-03-05 | AUDIT-20260303-EMPLOYEES-MASTER | Master Checklist - Auditoría Archivo por Archivo de pronto-employees | NO_COMMIT_LOCAL | pronto-employees
 2026-03-05 | CODE-20260303-019 | Duplicación de helper _ensure_session en servicios | NO_COMMIT_LOCAL | pronto-libs
+2026-03-06 | CODE-20260306-001 | Duplicación de helper _ensure_session en servicios de analytics | NO_COMMIT_LOCAL | pronto-libs,pronto-docs
 2026-03-05 | ARCH-20260303-002 | Duplicación de lógica en clientes HTTP del frontend | NO_COMMIT_LOCAL | pronto-static
 2026-03-05 | CODE-20260303-020 | Duplicación de composable useMenu en el frontend | NO_COMMIT_LOCAL | pronto-static
 2026-03-05 | CODE-20260303-012 | Datos de negocio hardcodeados en seed.py | NO_COMMIT_LOCAL | pronto-libs
