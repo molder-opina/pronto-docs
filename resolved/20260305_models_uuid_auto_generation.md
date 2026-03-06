@@ -13,4 +13,7 @@ RESULTADO_ESPERADO: El ID debería generarse automáticamente con uuid.uuid4
 UBICACION: pronto-libs/src/pronto_shared/models/menu_models.py, user_models.py, order_models.py
 EVIDENCIA: Los tests fallan con FlushError al crear registros sin ID explícito
 HIPOTESIS_CAUSA: Los modelos usan UUID(as_uuid=True) pero no tienen default=uuid.uuid4 en la columna primary key
-ESTADO: ABIERTO
+ESTADO: RESUELTO
+SOLUCION: Se agregaron defaults UUID (`default=uuid.uuid4`) en modelos con PK UUID sin generación local (categorías/ítems/modificadores de menú, customer y entidades de orden), eliminando `NULL identity key` al persistir desde tests.
+COMMIT: fea629d
+FECHA_RESOLUCION: 2026-03-05

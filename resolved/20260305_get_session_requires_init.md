@@ -12,4 +12,7 @@ RESULTADO_ESPERADO: Los servicios deberían funcionar en contexto de tests
 UBICACION: pronto-libs/src/pronto_shared/db.py, servicios en pronto-libs
 EVIDENCIA: 17 tests de menu_validation.py fallan
 HIPOTESIS_CAUSA: Los servicios dependen del engine inicializado globalmente pero los tests no lo inicializan
-ESTADO: ABIERTO
+ESTADO: RESUELTO
+SOLUCION: Se inicializa el engine de DB en tests con fixture `init_db_engine` autouse (`pronto-tests/conftest.py`), evitando `Session factory unavailable` al invocar servicios que usan `get_session()`.
+COMMIT: cf34451
+FECHA_RESOLUCION: 2026-03-05

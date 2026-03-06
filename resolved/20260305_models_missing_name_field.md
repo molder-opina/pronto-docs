@@ -12,4 +12,7 @@ RESULTADO_ESPERADO: Los modelos deberían tener el campo 'name' o los tests debe
 UBICACION: pronto-libs/src/pronto_shared/models/user_models.py
 EVIDENCIA: Tests test_create_employee, test_create_customer fallan porque usan .name
 HIPOTESIS_CAUSA: Los modelos fueron refactorizados para usar first_name/last_name pero el código legacy usa 'name'
-ESTADO: ABIERTO
+ESTADO: RESUELTO
+SOLUCION: Se confirma compatibilidad mediante propiedades híbridas `name` en `Customer` y `Employee` (con getter/setter), manteniendo modelo canónico `first_name`/`last_name` sin romper tests legacy.
+COMMIT: cf34451
+FECHA_RESOLUCION: 2026-03-05

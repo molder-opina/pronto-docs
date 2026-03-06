@@ -12,4 +12,7 @@ RESULTADO_ESPERADO: Las relaciones deberían estar correctamente configuradas
 UBICACION: pronto-libs/src/pronto_shared/models/order_models.py
 EVIDENCIA: Warning aparece en todos los tests
 HIPOTESIS_CAUSA: Las relaciones Payment.session y DiningSession.payments ambas mapean la misma foreign key
-ESTADO: ABIERTO
+ESTADO: RESUELTO
+SOLUCION: Se alinearon relaciones SQLAlchemy con `back_populates` en `Payment.session` y `DiningSession.payments`, eliminando el warning de mapeo conflictivo sobre `session_id`.
+COMMIT: fea629d
+FECHA_RESOLUCION: 2026-03-05

@@ -13,4 +13,7 @@ RESULTADO_ESPERADO: Cada llamada a validate_create debería empezar con una list
 UBICACION: pronto-libs/src/pronto_shared/services/menu_validation.py
 EVIDENCIA: Tests test_validate_name, test_validate_price, etc. fallan porque la segunda llamada a validate_create() acumula errores
 HIPOTESIS_CAUSA: El validador no limpia self.errors al inicio de cada validate_create()
-ESTADO: ABIERTO
+ESTADO: RESUELTO
+SOLUCION: Se reinicia `self.errors` al inicio de `validate_create`, `validate_update` y `validate_delete` para evitar acumulación de errores entre invocaciones.
+COMMIT: fea629d
+FECHA_RESOLUCION: 2026-03-05

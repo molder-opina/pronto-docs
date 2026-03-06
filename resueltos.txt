@@ -78,3 +78,9 @@
 2026-03-05 | TEST-008 | Employee requiere employee_code pero tests no lo proporcionan | NO_COMMIT_LOCAL | pronto-tests
 2026-03-05 | TEST-006 | Fixtures de tests usan nombres de modelos incorrectos | NO_COMMIT_LOCAL | pronto-tests
 2026-03-05 | AUDIT-20260303-DOCS-MASTER | Master Checklist - Auditoría de pronto-docs | NO_COMMIT_LOCAL | pronto-docs
+2026-03-05 | TEST-001 | MenuValidator acumula errores entre llamadas | fea629d | pronto-libs,pronto-tests
+2026-03-05 | TEST-002 | Modelos con primary key UUID no generan ID automáticamente | fea629d | pronto-libs,pronto-tests
+2026-03-05 | TEST-003 | Modelos Employee y Customer no tienen campo 'name' | cf34451 | pronto-libs,pronto-tests
+2026-03-05 | TEST-004 | Tabla pronto_order_modifications no existe en la base de datos | 4a9a30b | pronto-scripts,pronto-libs,pronto-tests
+2026-03-05 | TEST-005 | get_session en servicios no funciona sin app context | cf34451 | pronto-tests
+2026-03-05 | TEST-007 | Warning de relación duplicada en DiningSession.payments | fea629d | pronto-libs
