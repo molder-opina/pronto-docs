@@ -19,7 +19,10 @@ UBICACION: |
   - `pronto-ai/AGENTS.md`
   - `pronto-libs/src/pronto_shared/services/rbac_service.py`
 
-ESTADO: ABIERTO
+ESTADO: RESUELTO
+SOLUCION: Se alineó `pronto-ai/AGENTS.md` con la arquitectura vigente: se retiró la prohibición de permission systems y se dejó explícito el uso canónico de RBAC (`SystemRole/SystemPermission` + `RBACService`) con roles canónicos inmutables.
+COMMIT: cb9e586
+FECHA_RESOLUCION: 2026-03-05
 
 ACCIONES_PENDIENTES:
   - [ ] Decidir si el sistema RBAC es el estándar oficial.

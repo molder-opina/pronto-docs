@@ -38,6 +38,7 @@
 2026-03-05 | CODE-20260303-016 | NameError en servicio de memoria del orquestador | NO_COMMIT_LOCAL | pronto-libs,pronto-docs
 2026-03-05 | TEST-20260303-002 | Scripts de prueba y monitoreo con rutas incorrectas | NO_COMMIT_LOCAL | pronto-scripts,pronto-docs
 2026-03-05 | CODE-20260303-014 | Constantes de límite de propina conflictivas en constants.py | NO_COMMIT_LOCAL | pronto-libs,pronto-docs
+2026-03-06 | OPS-20260306-001 | Imports huérfanos en API de employees y falso positivo en routes-only/parity | NO_COMMIT_LOCAL | pronto-employees,pronto-scripts,pronto-docs
 2026-03-05 | AUDIT-20260303-SCRIPTS-MASTER | Master Checklist - Auditoría Archivo por Archivo de pronto-scripts | NO_COMMIT_LOCAL | pronto-scripts,pronto-docs
 2026-03-05 | CODE-20260303-018 | Duplicación de lógica de analítica en analytics_service_new.py | NO_COMMIT_LOCAL | pronto-libs
 2026-03-05 | CODE-20260303-025 | Violaciones de estándares de codificación en pronto-api | NO_COMMIT_LOCAL | pronto-api
@@ -84,3 +85,6 @@
 2026-03-05 | TEST-004 | Tabla pronto_order_modifications no existe en la base de datos | 4a9a30b | pronto-scripts,pronto-libs,pronto-tests
 2026-03-05 | TEST-005 | get_session en servicios no funciona sin app context | cf34451 | pronto-tests
 2026-03-05 | TEST-007 | Warning de relación duplicada en DiningSession.payments | fea629d | pronto-libs
+2026-03-05 | OPS-20260303-SCRIPTS-PORTABILITY | Falta de portabilidad y consistencia en shell scripts (macOS vs Linux) | c0407fe | pronto-scripts
+2026-03-05 | CODE-20260303-LIBS-RBAC | Contradicción de fuente de verdad sobre el sistema de permisos (RBAC) | cb9e586 | pronto-ai,pronto-libs
+2026-03-05 | ARCH-20260303-LIBS-REDUNDANCY | Redundancia y duplicación crítica en servicios de pronto_shared | fea629d | pronto-libs

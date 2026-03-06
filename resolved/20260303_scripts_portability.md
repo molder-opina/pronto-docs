@@ -24,7 +24,10 @@ UBICACION: |
   - `pronto-scripts/bin/rebuild.sh`
   - `pronto-scripts/bin/lib/os_detect.sh`
 
-ESTADO: ABIERTO
+ESTADO: RESUELTO
+SOLUCION: Se implementó `bin/lib/os_detect.sh` con detección de SO y helper `sed_inplace`, y se normalizó su uso en `bin/up.sh` y `bin/rebuild.sh`; además se definió `ENV_FILE_DOT` en `rebuild.sh` para evitar referencia indefinida.
+COMMIT: c0407fe
+FECHA_RESOLUCION: 2026-03-05
 
 ACCIONES_PENDIENTES:
   - [ ] Poblar `os_detect.sh` con lógica de detección de SO (uname).

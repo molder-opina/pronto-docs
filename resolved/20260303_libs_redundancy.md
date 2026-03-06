@@ -29,7 +29,10 @@ UBICACION: |
   - `pronto-libs/src/pronto_shared/auth/`
   - `pronto-libs/src/pronto_shared/models.py`
 
-ESTADO: ABIERTO
+ESTADO: RESUELTO
+SOLUCION: Verificación y consolidación aplicadas: `models.py` monolítico fue retirado en favor de `pronto_shared/models/`, el servicio de auth quedó unificado bajo `services/auth_service.py` (facade + core), y los duplicados legacy de notificaciones reportados (`notifications.py`) ya no existen en el árbol activo.
+COMMIT: fea629d
+FECHA_RESOLUCION: 2026-03-05
 
 ACCIONES_PENDIENTES:
   - [ ] Refactorizar `AuthService` unificado.
