@@ -7,7 +7,7 @@ TITULO: Master Checklist - Auditoría Archivo por Archivo de pronto-libs
 DESCRIPCION: |
   Este archivo rastrea el progreso de la auditoría detallada de cada archivo fuente en `pronto-libs/src/pronto_shared`. 
 
-ESTADO: COMPLETADO
+ESTADO: RESUELTO
 
 CHECKLIST_AUDITORIA:
   **Core & Utilities**

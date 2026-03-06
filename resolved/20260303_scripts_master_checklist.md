@@ -7,7 +7,7 @@ TITULO: Master Checklist - Auditoría Archivo por Archivo de pronto-scripts
 DESCRIPCION: |
   Rastreo de la auditoría detallada de los scripts operativos y de mantenimiento.
 
-ESTADO: COMPLETADO
+ESTADO: RESUELTO
 
 CHECKLIST_AUDITORIA:
   **Ciclo de Vida (Raíz bin)**

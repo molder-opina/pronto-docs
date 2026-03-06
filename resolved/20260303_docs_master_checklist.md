@@ -7,7 +7,7 @@ TITULO: Master Checklist - Auditoría de pronto-docs
 DESCRIPCION: |
   Rastreo de la auditoría detallada de la documentación del proyecto.
 
-ESTADO: COMPLETADO
+ESTADO: RESUELTO
 
 CHECKLIST_AUDITORIA:
   **Organización**

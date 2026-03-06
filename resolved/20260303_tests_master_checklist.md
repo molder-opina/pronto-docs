@@ -7,7 +7,7 @@ TITULO: Master Checklist - Auditoría Archivo por Archivo de pronto-tests
 DESCRIPCION: |
   Rastreo de la auditoría detallada de la suite de pruebas en `pronto-tests`.
 
-ESTADO: COMPLETADO
+ESTADO: RESUELTO
 
 CHECKLIST_AUDITORIA:
   **Configuración y Runners**

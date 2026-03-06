@@ -7,7 +7,7 @@ TITULO: Master Checklist - Auditoría Archivo por Archivo de pronto-client
 DESCRIPCION: |
   Rastreo de la auditoría detallada de cada archivo fuente en `pronto-client/src/pronto_clients`.
 
-ESTADO: COMPLETADO
+ESTADO: RESUELTO
 
 CHECKLIST_AUDITORIA:
   - [x] `__init__.py` (Limpio)

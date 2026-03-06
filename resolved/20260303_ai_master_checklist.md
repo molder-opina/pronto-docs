@@ -7,7 +7,7 @@ TITULO: Master Checklist - Auditoría de pronto-ai
 DESCRIPCION: |
   Rastreo de la auditoría detallada del ecosistema de IA del proyecto.
 
-ESTADO: COMPLETADO
+ESTADO: RESUELTO
 
 CHECKLIST_AUDITORIA:
   - [x] `AGENTS.md` (Ok, detectada contradicción RBAC CODE-20260303-LIBS-RBAC)

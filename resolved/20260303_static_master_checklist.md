@@ -7,7 +7,7 @@ TITULO: Master Checklist - Auditoría Archivo por Archivo de pronto-static
 DESCRIPCION: |
   Rastreo de la auditoría detallada de los archivos en `pronto-static`.
 
-ESTADO: COMPLETADO
+ESTADO: RESUELTO
 
 CHECKLIST_AUDITORIA:
   **Raíz y Configuración**

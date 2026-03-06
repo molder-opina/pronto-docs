@@ -7,7 +7,7 @@ TITULO: Master Checklist - Auditoría Archivo por Archivo de pronto-employees
 DESCRIPCION: |
   Rastreo de la auditoría detallada de cada archivo fuente en `pronto-employees/src/pronto_employees`.
 
-ESTADO: COMPLETADO
+ESTADO: RESUELTO
 
 CHECKLIST_AUDITORIA:
   - [x] `__init__.py` (Limpio)

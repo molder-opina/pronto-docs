@@ -28,6 +28,7 @@
 2026-03-04 | 20260304_client_checkout_preference_buttons_unstyled | Botones de método de pago se renderizan sin estilos en cliente 6080 | NO_COMMIT_LOCAL | pronto-client,pronto-static,pronto-docs
 2026-03-04 | 20260304_client_cart_panel_unstyled_and_expanded | Cart panel cliente se renderiza expandido dentro de la página | NO_COMMIT_LOCAL | pronto-client,pronto-static,pronto-docs
 2026-03-05 | ERR-CLIENT-DETAILS-CONTRAST-20260305 | Tab Detalles en cliente muestra texto con bajo contraste | NO_COMMIT_LOCAL | pronto-client,pronto-docs
+2026-03-05 | TEST-20260305-001 | Tests unitarios fallan por modelos sin UUID y get_session sin init | N/A | pronto-tests,pronto-libs
 2026-03-05 | ERR-CLIENT-BLANK-PARTIAL-RENDER-20260305 | Render parcial en cliente 6080 con cuerpo gris y componentes sin estilo | NO_COMMIT_LOCAL | pronto-client,pronto-docs
 2026-03-05 | ERR-CLIENT-CART-BLOCKED-BY-PROFILE-OVERLAY-20260305 | Botón de carrito bloqueado por overlay del modal de perfil | NO_COMMIT_LOCAL | pronto-client,pronto-docs
 2026-03-05 | ERR-CLIENT-LOGIN-CSRF-20260305 | Login cliente falla con CSRF Error en modal de perfil | NO_COMMIT_LOCAL | pronto-static,pronto-client,pronto-docs
@@ -74,3 +75,6 @@
 2026-03-05 | AUDIT-20260303-STATIC-MASTER | Master Checklist - Auditoría Archivo por Archivo de pronto-static | NO_COMMIT_LOCAL | pronto-static
 2026-03-05 | AUDIT-20260303-TESTS-MASTER | Master Checklist - Auditoría Archivo por Archivo de pronto-tests | NO_COMMIT_LOCAL | pronto-tests
 2026-03-05 | 20260304_business_logic_embedded_in_pronto_client_and_pronto_employees_api | Lógica de negocio embebida en rutas /api de SSR | NO_COMMIT_LOCAL | pronto-client, pronto-employees, pronto-api, pronto-libs
+2026-03-05 | TEST-008 | Employee requiere employee_code pero tests no lo proporcionan | NO_COMMIT_LOCAL | pronto-tests
+2026-03-05 | TEST-006 | Fixtures de tests usan nombres de modelos incorrectos | NO_COMMIT_LOCAL | pronto-tests
+2026-03-05 | AUDIT-20260303-DOCS-MASTER | Master Checklist - Auditoría de pronto-docs | NO_COMMIT_LOCAL | pronto-docs

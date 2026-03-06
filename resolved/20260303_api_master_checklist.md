@@ -7,7 +7,7 @@ TITULO: Master Checklist - Auditoría Archivo por Archivo de pronto-api
 DESCRIPCION: |
   Este archivo rastrea el progreso de la auditoría detallada de cada archivo fuente en `pronto-api/src`. 
 
-ESTADO: COMPLETADO
+ESTADO: RESUELTO
 
 CHECKLIST_AUDITORIA:
   - [x] `api_app/__init__.py` (Limpio)
