@@ -19,7 +19,7 @@ UBICACION: |
 
 ESTADO: RESUELTO
 SOLUCION: Se centralizó la resolución de scope en `src/vue/employees/shared/core/console-scope.ts` y se refactorizaron consumidores críticos (`shared/core/http.ts` y `shared/components/Sidebar.vue`) para usar la utilidad única.
-COMMIT: PENDING_AFINACIONFINALV1
+COMMIT: 65327b3
 FECHA_RESOLUCION: 2026-03-06
 
 ACCIONES_PENDIENTES:

@@ -91,4 +91,4 @@
 2026-03-06 | DOCS-20260303-004 | Guía de variables de entorno (ENVIRONMENT_VARIABLES.md) desactualizada | a11132c | pronto-docs
 2026-03-06 | DOCS-20260303-003 | Acumulación de reportes de sesiones pasadas en la raíz de pronto-docs | a11132c | pronto-docs
 2026-03-06 | DOCS-20260303-002 | Estructura de directorios inconsistente y duplicada en pronto-docs | a11132c | pronto-docs
-2026-03-06 | CODE-20260303-031 | Lógica de resolución de scope fragmentada y redundante | PENDING_AFINACIONFINALV1 | pronto-static
+2026-03-06 | CODE-20260303-031 | Lógica de resolución de scope fragmentada y redundante | 65327b3 | pronto-static
