@@ -94,3 +94,4 @@
 2026-03-06 | CODE-20260303-031 | Lógica de resolución de scope fragmentada y redundante | 65327b3 | pronto-static
 2026-03-06 | PERF-20260303-002 | Imágenes de menú sin optimizar (>1MB) impactan rendimiento | 639645e | pronto-static
 2026-03-06 | OPS-20260306-002 | Parity de employees ignora rutas scopeadas del proxy y KDSBoard llama método inexistente | df92ef4,26b6d58 | pronto-scripts,pronto-static,pronto-employees
+2026-03-06 | OPS-20260306-003 | Login de employees queda en 'Iniciando Pronto...' por loop masivo de /api/auth/me | e8ea298 | pronto-static,pronto-tests
