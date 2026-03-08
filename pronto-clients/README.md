@@ -106,8 +106,8 @@ pronto-client/
 - `GET /api/business_info` - Get business information
 - `GET /api/business_info/hours` - Get business hours
 
-### Health (`/api/health`)
-- `GET /api/health` - Health check endpoint
+### Health (`/health`)
+- `GET /health` - Health check endpoint
 
 ### Debug (`/api/debug`)
 - `GET /api/debug/info` - Debug information
