@@ -127,6 +127,7 @@
 2026-03-06 | TEST-20260306-037 | FeedbackQuestion exportado desde business_models está desalineado del schema real | 1eba18d | pronto-libs,pronto-api,pronto-tests
 
 2026-03-08 | LIBS-20260308-MENU-CATEGORY-SCHEMA-LAG | MenuCategory exportado no refleja slug y revision exigidos por el schema actual | 1eba18d | pronto-libs,pronto-docs
+2026-03-08 | LIBS-20260308-INVOICE-MODEL-SCHEMA-LAG | Invoice canónico arrastra drift de schema y duplica tax fields en order_models.py | 934265d | pronto-libs,pronto-docs
 2026-03-06 | TEST-20260306-038 | pronto_test quedó sin aplicar la migración de facturapi_customer_id en pronto_customers | 4b22f32 | pronto-scripts,pronto-libs,pronto-tests
 2026-03-06 | TEST-20260306-039 | 20260306_06__create_invoices_table.sql falla al reintentar por trigger existente | NO_COMMIT_LOCAL | pronto-scripts,pronto-tests
 2026-03-06 | TEST-20260306-040 | live config tests asumen credenciales seed no portables en entorno live | NO_COMMIT_LOCAL | pronto-tests
