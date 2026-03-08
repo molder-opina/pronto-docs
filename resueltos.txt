@@ -178,7 +178,8 @@
 2026-03-07 | API-20260307-007 | endpoints admin de invoices no exigen JWT/scope de forma efectiva | NO_COMMIT_LOCAL | pronto-api
 2026-03-07 | API-20260307-009 | /api/business-info expone endpoint público sin autenticación | NO_COMMIT_LOCAL | pronto-api
 2026-03-07 | API-20260307-010 | config expone múltiples endpoints públicos sin autenticación | NO_COMMIT_LOCAL | pronto-api
-2026-03-07 | CLIENT-20260307-007 | rutas web publicas sin enforcement de autenticacion | NO_COMMIT_LOCAL | pronto-client
+2026-03-07 | CLIENT-20260307-007 | rutas web publicas sin enforcement de autenticacion | b976433 | pronto-client
+2026-03-08 | CLIENT-20260308-BUSINESS-INFO-PUBLIC-DRIFT | business_info del cliente depende de /api/public/* y home seguia accesible sin sesion | b976433 | pronto-client,pronto-docs
 2026-03-07 | EMP-20260307-003 | sessions proxy expone endpoints de mutacion sin jwt_required | NO_COMMIT_LOCAL | pronto-employees
 2026-03-07 | EMP-20260307-004 | endpoints publicos en config y stats fuera de excepciones permitidas | NO_COMMIT_LOCAL | pronto-employees
 2026-03-07 | EMP-20260307-005 | proxies usan hosts de upstream hardcodeados en vez de configuracion canonica | NO_COMMIT_LOCAL | pronto-employees
