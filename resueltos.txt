@@ -38,6 +38,7 @@
 2026-03-05 | CODE-20260303-016 | NameError en servicio de memoria del orquestador | NO_COMMIT_LOCAL | pronto-libs,pronto-docs
 2026-03-05 | TEST-20260303-002 | Scripts de prueba y monitoreo con rutas incorrectas | NO_COMMIT_LOCAL | pronto-scripts,pronto-docs
 2026-03-05 | CODE-20260303-014 | Constantes de límite de propina conflictivas en constants.py | NO_COMMIT_LOCAL | pronto-libs,pronto-docs
+2026-03-08 | API-20260308-EMP-AUTH-OS-IMPORT | employees auth rompe create_app por os no importado en rate_limit | 74cf5de,b268f1d | pronto-api,pronto-tests,pronto-docs
 2026-03-06 | OPS-20260306-001 | Imports huérfanos en API de employees y falso positivo en routes-only/parity | NO_COMMIT_LOCAL | pronto-employees,pronto-scripts,pronto-docs
 2026-03-05 | AUDIT-20260303-SCRIPTS-MASTER | Master Checklist - Auditoría Archivo por Archivo de pronto-scripts | NO_COMMIT_LOCAL | pronto-scripts,pronto-docs
 2026-03-05 | CODE-20260303-018 | Duplicación de lógica de analítica en analytics_service_new.py | NO_COMMIT_LOCAL | pronto-libs
