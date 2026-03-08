@@ -102,7 +102,7 @@
 2026-03-07 | TEST-20260306-007 | Copias auth/JWT bajo api/api-tests siguen desalineadas del contrato actual | NO_COMMIT_LOCAL | pronto-tests,pronto-docs
 2026-03-07 | TEST-20260306-008 | test_session_management.py usa modelos/rutas legacy y no cubre el contrato real de sesiones | NO_COMMIT_LOCAL | pronto-tests,pronto-docs
 2026-03-07 | EMP-20260307-009 | pronto-employees mantiene logica de negocio y DB en rutas API locales | NO_COMMIT_LOCAL | pronto-employees,pronto-docs
-2026-03-07 | LIBS-20260307-005 | pronto-libs mantiene estáticos (JS/CSS) fuera de pronto-static | NO_COMMIT_LOCAL | pronto-libs,pronto-docs
+2026-03-07 | LIBS-20260307-005 | pronto-libs mantiene estáticos (JS/CSS) fuera de pronto-static | afa7192 | pronto-libs,pronto-docs
 2026-03-07 | LIBS-20260307-003 | waiter-board usa estados legacy no canónicos y strings mágicos | NO_COMMIT_LOCAL | pronto-libs,pronto-docs
 2026-03-07 | STA-20260307-001 | existen scripts vanilla e inline handlers en static_content/shared | NO_COMMIT_LOCAL | pronto-static,pronto-client,pronto-docs
 2026-03-07 | EMP-20260307-010 | frontend employees usa rutas de cocina/pago que no existen en el backend canónico | NO_COMMIT_LOCAL | pronto-static,pronto-docs
@@ -237,7 +237,9 @@
 2026-03-07 | PRONTO-CLIENT-001 | pronto-client implementa lógica de negocio con escritura directa a DB | 1.0403 | pronto-client
 2026-03-07 | API-20260307-008 | webhooks procesa eventos sin verificar firma y usa print en manejo de errores | NO_COMMIT_LOCAL | pronto-api
 2026-03-07 | EMP-20260307-006 | modulos deprecated mantienen sunset TBD sin fecha de retiro explicita | NO_COMMIT_LOCAL | pronto-employees
-2026-03-07 | LIBS-20260307-001 | Script en pronto-libs referencia legacy_mysql prohibido por guardrails | NO_COMMIT_LOCAL | pronto-libs
+2026-03-07 | LIBS-20260307-001 | Script en pronto-libs referencia legacy_mysql prohibido por guardrails | afa7192 | pronto-libs
+
+2026-03-08 | LIBS-20260308-I18N-LOCALE-NORMALIZATION | I18nService no normaliza variantes de locale como es-MX o en_US | c4522c7 | pronto-libs,pronto-docs
 2026-03-07 | STA-20260307-003 | artefactos temporales y reportes fuera de carpeta canonica tmp | NO_COMMIT_LOCAL | pronto-static
 2026-03-07 | STA-20260307-004 | arbol node_modules aparece como residuo versionable por gap en gitignore | NO_COMMIT_LOCAL | pronto-static
 2026-03-07 | LIBS-20260307-002 | order_service_impl modifica payment_status fuera de autoridad canónica | NO_COMMIT_LOCAL | pronto-libs
