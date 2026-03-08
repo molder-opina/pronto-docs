@@ -65,6 +65,128 @@
 2026-03-06 | TEST-20260306-002 | db_session aborta transacción al truncar tablas ausentes y contamina tests | NO_COMMIT_LOCAL | pronto-tests,pronto-docs
 2026-03-06 | TEST-20260306-003 | Suites JWT de scope/roles siguen apuntando a rutas scopeadas legacy e imports obsoletos | NO_COMMIT_LOCAL | pronto-tests,pronto-docs
 2026-03-06 | TEST-20260306-004 | test_auth_api.py sigue esperando shape legacy de login y logout sin X-App-Context | NO_COMMIT_LOCAL | pronto-tests,pronto-docs
+2026-03-06 | TEST-20260306-005 | test_employee_auth.py apunta a SSR console routes/imports legacy pero corre contra api_app | NO_COMMIT_LOCAL | pronto-tests,pronto-docs
+2026-03-06 | TEST-20260306-006 | test_jwt_refresh.py bajo api/api-tests mantiene contrato legacy de refresh employees | NO_COMMIT_LOCAL | pronto-tests,pronto-docs
+2026-03-06 | TEST-20260306-009 | Duplicación de Invoice en business_models.py rompe imports de pytest | NO_COMMIT_LOCAL | pronto-libs,pronto-tests
+2026-03-06 | TEST-20260306-010 | test_split_bill usa contratos obsoletos de Table, MenuItem y auth | NO_COMMIT_LOCAL | pronto-tests
+2026-03-06 | TEST-20260306-012 | SplitBill create falla porque el modelo no expone relación people | NO_COMMIT_LOCAL | pronto-libs,pronto-api
+2026-03-06 | TEST-20260306-013 | Reapertura de duplicación de Invoice al importar conftest.py | NO_COMMIT_LOCAL | pronto-libs,pronto-tests
+2026-03-06 | TEST-20260306-011 | Modelo Order referencia served_at pero la BD de pruebas no expone esa columna | NO_COMMIT_LOCAL | pronto-libs,pronto-scripts,pronto-tests
+2026-03-06 | TEST-20260306-014 | Seed de employee_preferences corre antes de que exista la tabla | NO_COMMIT_LOCAL | pronto-scripts,pronto-tests
+2026-03-06 | TEST-20260306-015 | Schema base de modifiers/modifier_groups carece de columnas esperadas por seed y ORM | NO_COMMIT_LOCAL | pronto-scripts,pronto-libs,pronto-tests
+2026-03-06 | TEST-20260306-016 | Migración de waiter_table_assignments altera antes de crear la tabla | NO_COMMIT_LOCAL | pronto-scripts,pronto-tests
+2026-03-06 | TEST-20260306-017 | Migración add_missing_indices apunta a columnas y tablas inexistentes | NO_COMMIT_LOCAL | pronto-scripts,pronto-tests
+2026-03-06 | TEST-20260306-018 | Migración areas_integer_id falla cuando pronto_areas está vacía | NO_COMMIT_LOCAL | pronto-scripts,pronto-tests
+2026-03-06 | TEST-20260306-019 | Migración create_invoices_table usa session_id en lugar de dining_session_id | NO_COMMIT_LOCAL | pronto-scripts,pronto-libs,pronto-tests
+2026-03-08 | CLI-20260308-011 | BFF cliente lista órdenes en /api/customers/orders pero el API canónico vive en /api/customer/orders | 3cc0011 | pronto-client,pronto-docs
+2026-03-08 | CLI-20260308-012 | BFF cliente no expone request-check para sesiones de órdenes del cliente | 3cc0011 | pronto-client,pronto-docs
+2026-03-08 | API-20260308-013 | crear orden cliente con modificador requerido faltante devuelve 500 en lugar de error de validación | eeb1e2e | pronto-api,pronto-libs,pronto-docs
+2026-03-08 | CLI-20260308-014 | BFF cliente de órdenes envuelve respuestas upstream con success_response y altera el contrato real | 3cc0011 | pronto-client,pronto-docs
+2026-03-08 | TEST-20260308-026 | Playwright cliente menu-runtime aún espera .menu-page aunque el SSR actual exige login previo | 491a50f | pronto-tests,pronto-docs
+2026-03-08 | TEST-20260308-027 | e2e cliente sigue esperando cambio exitoso de mesa tras open_session aunque el runtime actual devuelve 409 | 491a50f | pronto-tests,pronto-docs
+2026-03-07 | TEST-20260307-021 | fixtures/tests de menú crean MenuCategory sin slug y rompen el esquema actual | NO_COMMIT_LOCAL | pronto-tests
+2026-03-07 | TEST-20260307-022 | e2e Python cliente aún usa /api/auth/register en lugar de /api/client-auth/register | NO_COMMIT_LOCAL | pronto-tests
+2026-03-07 | CLI-20260307-002 | proxy BFF auth de pronto-client está montado sin prefijo /client-auth | NO_COMMIT_LOCAL | pronto-client,pronto-docs
+2026-03-07 | CLI-20260307-003 | proxy BFF de auth cliente no reenvía X-CSRFToken al pronto-api | NO_COMMIT_LOCAL | pronto-client,pronto-docs
+2026-03-07 | CLI-20260307-004 | proxy BFF auth cliente no reenvía cookies/session ni propaga Set-Cookie del upstream | NO_COMMIT_LOCAL | pronto-client,pronto-docs
+2026-03-07 | CLI-20260307-005 | endpoint /api/client-auth/csrf del BFF genera CSRF local en lugar de proxyear el del API | NO_COMMIT_LOCAL | pronto-client,pronto-docs
+2026-03-07 | CLI-20260307-006 | proxy cliente de /api/feedback/questions usa método upstream incorrecto | NO_COMMIT_LOCAL | pronto-client,pronto-docs
+2026-03-07 | CLI-20260307-007 | proxies técnicos del cliente no reenvían cookies/session al upstream de forma consistente | NO_COMMIT_LOCAL | pronto-client,pronto-docs
+2026-03-07 | CLI-20260307-008 | proxy cliente de table-context apunta a una ruta inexistente en el backend | NO_COMMIT_LOCAL | pronto-client,pronto-docs
+2026-03-07 | TEST-20260307-023 | e2e cliente no reutiliza customer_ref devuelto por register para rutas protegidas | NO_COMMIT_LOCAL | pronto-tests
+2026-03-07 | CLI-20260307-009 | BFF cliente no expone GET /api/sessions/table-context | NO_COMMIT_LOCAL | pronto-client,pronto-docs
+2026-03-07 | CLI-20260307-010 | proxy de sesiones cliente no propaga Set-Cookie del upstream | NO_COMMIT_LOCAL | pronto-client,pronto-docs
+2026-03-07 | TEST-20260307-024 | e2e cliente aún espera conflicto 409 al cambiar table-context después de open_session | NO_COMMIT_LOCAL | pronto-tests
+2026-03-07 | TEST-20260307-025 | script test_multi_console_auth.py es colectado por pytest como tests parametrizados inválidos | NO_COMMIT_LOCAL | pronto-tests
+2026-03-07 | TEST-20260306-007 | Copias auth/JWT bajo api/api-tests siguen desalineadas del contrato actual | NO_COMMIT_LOCAL | pronto-tests,pronto-docs
+2026-03-07 | TEST-20260306-008 | test_session_management.py usa modelos/rutas legacy y no cubre el contrato real de sesiones | NO_COMMIT_LOCAL | pronto-tests,pronto-docs
+2026-03-07 | EMP-20260307-009 | pronto-employees mantiene logica de negocio y DB en rutas API locales | NO_COMMIT_LOCAL | pronto-employees,pronto-docs
+2026-03-07 | LIBS-20260307-005 | pronto-libs mantiene estáticos (JS/CSS) fuera de pronto-static | NO_COMMIT_LOCAL | pronto-libs,pronto-docs
+2026-03-07 | LIBS-20260307-003 | waiter-board usa estados legacy no canónicos y strings mágicos | NO_COMMIT_LOCAL | pronto-libs,pronto-docs
+2026-03-07 | STA-20260307-001 | existen scripts vanilla e inline handlers en static_content/shared | NO_COMMIT_LOCAL | pronto-static,pronto-client,pronto-docs
+2026-03-07 | EMP-20260307-010 | frontend employees usa rutas de cocina/pago que no existen en el backend canónico | NO_COMMIT_LOCAL | pronto-static,pronto-docs
+2026-03-07 | CLI-20260307-001 | frontend cliente usa prefijos auth/session/waiter-calls legacy y rompe API parity | NO_COMMIT_LOCAL | pronto-static,pronto-client,pronto-docs
+2026-03-06 | TEST-20260306-020 | test_menu_validation_api usa fixture removida admin_token y contrato viejo | NO_COMMIT_LOCAL | pronto-tests
+2026-03-06 | TEST-20260306-021 | test_recommendations_api usa fixture removida y contrato legacy de recommendations | NO_COMMIT_LOCAL | pronto-tests
+2026-03-06 | TEST-20260306-022 | BusinessScheduleService consulta columna id inexistente | NO_COMMIT_LOCAL | pronto-libs,pronto-tests
+2026-03-06 | TEST-20260306-023 | /api/business-info rompe cuando BusinessInfoService devuelve data nula | NO_COMMIT_LOCAL | pronto-api,pronto-libs,pronto-tests
+2026-03-06 | TEST-20260306-024 | recommendation_service no expone los símbolos que importan los routes | NO_COMMIT_LOCAL | pronto-libs,pronto-api,pronto-tests
+2026-03-06 | TEST-20260306-025 | sample_menu_item omite campos requeridos menu_category_id y menu_subcategory_id | NO_COMMIT_LOCAL | pronto-tests
+2026-03-06 | TEST-20260306-026 | MenuValidator sigue exigiendo category legacy aunque lleguen UUIDs canónicos | NO_COMMIT_LOCAL | pronto-libs,pronto-tests
+2026-03-06 | TEST-20260306-027 | create_menu_item llama a API removida de DayPeriodService | NO_COMMIT_LOCAL | pronto-libs,pronto-tests
+2026-03-06 | TEST-20260306-028 | AnalyticsService devuelve success_response y los routes de reports vuelven a envolver la respuesta | NO_COMMIT_LOCAL | pronto-libs,pronto-api,pronto-tests
+2026-03-06 | TEST-20260306-029 | EmployeeAnalytics usa firma legacy de SQLAlchemy case() y rompe waiter-performance | NO_COMMIT_LOCAL | pronto-libs,pronto-api,pronto-tests
+2026-03-06 | TEST-20260306-030 | Analytics tests usan response.json() en vez de get_json() para Flask | NO_COMMIT_LOCAL | pronto-tests
+2026-03-06 | TEST-20260306-031 | /api/reports/* devuelve 500 cuando start/end no son ISO válidos | NO_COMMIT_LOCAL | pronto-api,pronto-tests
+2026-03-06 | TEST-20260306-032 | serialize_order asume created_at no nulo y rompe serialización fallback | NO_COMMIT_LOCAL | pronto-libs,pronto-tests
+2026-03-06 | TEST-20260306-033 | unit tests de masking esperan contrato viejo de mask_email y mask_phone | NO_COMMIT_LOCAL | pronto-tests
+2026-03-06 | TEST-20260306-034 | serialize_customer deja phone sin máscara cuando el email anónimo empieza con anonimo+ | NO_COMMIT_LOCAL | pronto-libs,pronto-tests
+2026-03-06 | TEST-20260306-035 | serialize_order no cae a session.customer cuando order.customer no está seteado | NO_COMMIT_LOCAL | pronto-libs,pronto-tests
+2026-03-06 | TEST-20260306-036 | unit tests crean MenuItem solo con category_id y rompen con schema actual | NO_COMMIT_LOCAL | pronto-tests
+2026-03-06 | TEST-20260306-037 | FeedbackQuestion exportado desde business_models está desalineado del schema real | NO_COMMIT_LOCAL | pronto-libs,pronto-api,pronto-tests
+2026-03-06 | TEST-20260306-038 | pronto_test quedó sin aplicar la migración de facturapi_customer_id en pronto_customers | NO_COMMIT_LOCAL | pronto-scripts,pronto-libs,pronto-tests
+2026-03-06 | TEST-20260306-039 | 20260306_06__create_invoices_table.sql falla al reintentar por trigger existente | NO_COMMIT_LOCAL | pronto-scripts,pronto-tests
+2026-03-06 | TEST-20260306-040 | live config tests asumen credenciales seed no portables en entorno live | NO_COMMIT_LOCAL | pronto-tests
+2026-03-06 | TEST-20260306-041 | 20260206_01__business_info_table.sql asume default serial en pronto_business_info.id | NO_COMMIT_LOCAL | pronto-scripts,pronto-client
+2026-03-06 | TEST-20260306-042 | 0398__qa_menu_catalog.sql inserta pronto_menu_items con contrato viejo | NO_COMMIT_LOCAL | pronto-scripts,pronto-client
+2026-03-06 | TEST-20260306-043 | live client table-context test asume al menos dos mesas activas en pronto_tables | NO_COMMIT_LOCAL | pronto-tests
+2026-03-06 | TEST-20260306-044 | Phase 1 unit skips dependen de harness stale y tests placeholder | NO_COMMIT_LOCAL | pronto-tests
+2026-03-06 | TEST-20260306-045 | test_tax_validation usa XAXX010101000 con expectativas contradictorias | NO_COMMIT_LOCAL | pronto-tests
+2026-03-06 | TEST-20260306-046 | tests directos de MenuValidator siguen skippeados por bug stale de acumulación de errores | NO_COMMIT_LOCAL | pronto-tests
+2026-03-06 | TEST-20260306-047 | MenuValidator usa Decimal.InvalidOperation y rompe validación de precio inválido | NO_COMMIT_LOCAL | pronto-libs,pronto-tests
+2026-03-06 | TEST-20260306-048 | tests CRUD de menu_service siguen skippeados por harness stale y payloads legacy | NO_COMMIT_LOCAL | pronto-tests
+2026-03-06 | TEST-20260306-049 | test de cancel_order wrapper sigue skippeado por harness stale de sesión | NO_COMMIT_LOCAL | pronto-tests
+2026-03-06 | TEST-20260306-050 | cancel_order falla por import faltante de mark_order_cancelled | NO_COMMIT_LOCAL | pronto-libs,pronto-tests
+2026-03-06 | TEST-20260306-051 | pronto-migrate --apply falla en 20260307_01 por conflicto entre constraint e índice uq_menu_categories_slug | NO_COMMIT_LOCAL | pronto-scripts
+2026-03-06 | TEST-20260306-052 | pronto-init --apply bloquea 0398__qa_menu_catalog por keywords prohibidas en 40_seeds | NO_COMMIT_LOCAL | pronto-scripts
+2026-03-07 | TEST-20260307-053 | employees config proxy reenvía Authorization vacío y rompe /<scope>/api/config tras login web | NO_COMMIT_LOCAL | pronto-employees,pronto-tests
+2026-03-07 | TEST-20260307-054 | DB live queda sin llaves canónicas de system settings tras migrate/init | NO_COMMIT_LOCAL | pronto-scripts,pronto-tests
+2026-03-07 | TEST-20260307-055 | admin no puede actualizar system.api.items_per_page aunque el bootstrap público depende de esa llave | NO_COMMIT_LOCAL | pronto-api,pronto-tests
+2026-03-07 | TEST-20260307-056 | pronto-apps.sh usa sustitución anidada inválida para resolver puertos en print_status | NO_COMMIT_LOCAL | root,pronto-scripts
+2026-03-07 | TEST-20260307-057 | pronto-dev.sh falla tarde con puertos ocupados y no aborta explícitamente si Postgres no queda listo | NO_COMMIT_LOCAL | root,pronto-scripts
+2026-03-07 | TEST-20260307-058 | start-api.sh falta en root y la copia versionada falla tarde por conflictos de puertos | NO_COMMIT_LOCAL | root,pronto-scripts
+2026-03-07 | TEST-20260307-059 | pronto-scripts/bin/down.sh usa mapfile y falla en macOS con Bash 3.2 | NO_COMMIT_LOCAL | pronto-scripts
+2026-03-07 | TEST-20260307-060 | generate-product-images --dry-run intenta escribir en /var/www y falla sin permisos | NO_COMMIT_LOCAL | pronto-scripts
+2026-03-07 | TEST-20260307-061 | generate-product-images usa ${category,,} y rompe en macOS con Bash 3.2 | NO_COMMIT_LOCAL | pronto-scripts
+2026-03-07 | TEST-20260307-062 | summarize_services en stack_helpers usa local -n y es incompatible con Bash 3.2 | NO_COMMIT_LOCAL | pronto-scripts
+2026-03-07 | TEST-20260307-063 | generate-product-images usa 6081/api/menu por defecto y cae en 404 en vez de usar la API canónica | NO_COMMIT_LOCAL | pronto-scripts
+2026-03-07 | TEST-20260307-064 | generate-product-images parsea un shape legacy de /api/menu y termina con cero productos | NO_COMMIT_LOCAL | pronto-scripts
+2026-03-07 | TEST-20260307-065 | check-seed-status usa base/health incorrectos y parsea shape legacy del menú | NO_COMMIT_LOCAL | pronto-scripts
+2026-03-07 | TEST-20260307-066 | cleanup-old-sessions usa endpoint API inexistente, auto-instala dependencias y comunica mal su semántica | NO_COMMIT_LOCAL | pronto-scripts
+2026-03-07 | TEST-20260307-067 | cleanup-old-sessions --dry-run hereda hostnames Docker y falla desde el host local | NO_COMMIT_LOCAL | pronto-scripts
+2026-03-07 | TEST-20260307-068 | clean-sessions.py ignora REDIS_PASSWORD y emite warning innecesario en --all --dry-run | NO_COMMIT_LOCAL | pronto-scripts
+2026-03-07 | TEST-20260307-069 | cleanup-old-sessions solo carga pronto-scripts/.env y pierde REDIS_PASSWORD del root | NO_COMMIT_LOCAL | root,pronto-scripts
+2026-03-07 | CLIENT-20260307-001 | routes/api/__init__.py quedo truncado sin api_bp ni registro de blueprints | NO_COMMIT_LOCAL | pronto-client
+2026-03-07 | CLIENT-20260307-002 | SyntaxError en business_info.py por parentesis extra | NO_COMMIT_LOCAL | pronto-client
+2026-03-07 | CLIENT-20260307-003 | support.py usa success_response sin importarlo | NO_COMMIT_LOCAL | pronto-client
+2026-03-07 | CLIENT-20260307-004 | tables.py referencia request sin import | NO_COMMIT_LOCAL | pronto-client
+2026-03-07 | CLIENT-20260307-005 | frontend invoca /api/auth/csrf pero no existe endpoint backend | NO_COMMIT_LOCAL | pronto-client
+2026-03-07 | CLIENT-20260307-006 | fetch a /api usa credentials same-origin en vez de include | NO_COMMIT_LOCAL | pronto-client
+2026-03-07 | CLIENT-20260307-008 | proxy API usa host hardcodeado http://api:5000 en multiples modulos | NO_COMMIT_LOCAL | pronto-client
+2026-03-07 | CLIENT-20260307-009 | debug_panel.html contiene llamadas a endpoints legacy/no definidos | NO_COMMIT_LOCAL | pronto-client
+2026-03-07 | CLIENT-20260307-010 | superficie de health duplicada con /health y /api/health | NO_COMMIT_LOCAL | pronto-client
+2026-03-07 | API-20260307-001 | waiter_calls usa variable customer_ref no definida y rompe endpoints | NO_COMMIT_LOCAL | pronto-api
+2026-03-07 | API-20260307-002 | waiter_calls usa datetime/timezone sin imports requeridos | NO_COMMIT_LOCAL | pronto-api
+2026-03-07 | API-20260307-005 | client_auth interpreta X-PRONTO-CUSTOMER-REF como customer_id y rompe contrato de auth | NO_COMMIT_LOCAL | pronto-api
+2026-03-07 | API-20260307-006 | invoices expone mutaciones/lecturas sin auth robusta y permite operar sobre terceros | NO_COMMIT_LOCAL | pronto-api
+2026-03-07 | API-20260307-008A | split_bills cliente permite acceso débil e IDOR sobre sesiones/divisiones ajenas | NO_COMMIT_LOCAL | pronto-api
+2026-03-07 | API-20260307-008B | split_bills muta payment_status directamente en la ruta cliente | NO_COMMIT_LOCAL | pronto-api
+2026-03-07 | API-20260307-007 | endpoints admin de invoices no exigen JWT/scope de forma efectiva | NO_COMMIT_LOCAL | pronto-api
+2026-03-07 | API-20260307-009 | /api/business-info expone endpoint público sin autenticación | NO_COMMIT_LOCAL | pronto-api
+2026-03-07 | API-20260307-010 | config expone múltiples endpoints públicos sin autenticación | NO_COMMIT_LOCAL | pronto-api
+2026-03-07 | CLIENT-20260307-007 | rutas web publicas sin enforcement de autenticacion | NO_COMMIT_LOCAL | pronto-client
+2026-03-07 | EMP-20260307-003 | sessions proxy expone endpoints de mutacion sin jwt_required | NO_COMMIT_LOCAL | pronto-employees
+2026-03-07 | EMP-20260307-004 | endpoints publicos en config y stats fuera de excepciones permitidas | NO_COMMIT_LOCAL | pronto-employees
+2026-03-07 | EMP-20260307-005 | proxies usan hosts de upstream hardcodeados en vez de configuracion canonica | NO_COMMIT_LOCAL | pronto-employees
+2026-03-07 | EMP-20260307-008 | proxy_console_api permite admin/system en scope distinto en vez de bloquear mismatch | NO_COMMIT_LOCAL | pronto-employees
+2026-03-07 | EMP-20260307-001 | registro de api_bp por scope genera prefijos duplicados /{scope}/api/api/* | NO_COMMIT_LOCAL | pronto-employees
+2026-03-07 | EMP-20260307-002 | promociones expone POST PUT DELETE sin autenticacion obligatoria | NO_COMMIT_LOCAL | pronto-employees
+2026-03-07 | STA-20260307-006 | frontend employees depende de endpoint publico /api/public/stats | NO_COMMIT_LOCAL | pronto-static
+2026-03-07 | STA-20260307-002 | StaffLogin usa fetch directo a /api/public/stats y bypass del wrapper oficial | NO_COMMIT_LOCAL | pronto-static
+2026-03-07 | TEST-20260307-061 | auth.spec.ts de employees espera redirects legacy de dashboard | NO_COMMIT_LOCAL | pronto-tests
+2026-03-07 | EMP-20260307-007 | artefacto temporal de plan en ruta invalida dentro del repo | NO_COMMIT_LOCAL | pronto-employees
+2026-03-07 | LIBS-20260307-006 | Residuo db_schema.sql en root de pronto-libs viola regla de archivos de datos en root | NO_COMMIT_LOCAL | pronto-libs
+2026-03-07 | STA-20260307-005 | script shell con naming no canonico (create_avatar.sh) | NO_COMMIT_LOCAL | pronto-static
 2026-03-05 | ARCH-20260303-002 | Duplicación de lógica en clientes HTTP del frontend | NO_COMMIT_LOCAL | pronto-static
 2026-03-05 | CODE-20260303-020 | Duplicación de composable useMenu en el frontend | NO_COMMIT_LOCAL | pronto-static
 2026-03-05 | CODE-20260303-012 | Datos de negocio hardcodeados en seed.py | NO_COMMIT_LOCAL | pronto-libs
@@ -111,3 +233,11 @@
 2026-03-06 | CODE-20260303-028 | Duplicación masiva de código utilitario y rutas en backend y frontend | a195843 | pronto-root
 2026-03-06 | CODE-20260303-026 | Módulos "Manager" legacy en employees (Vanilla JS) candidatos a Vue | a195843 | pronto-static
 2026-03-06 | ARCH-20260303-013 | Arquitectura híbrida (Vanilla + Vue) genera fragmentación de estado y UI | a195843 | pronto-client,pronto-static
+2026-03-07 | PRONTO-CLIENT-001 | pronto-client implementa lógica de negocio con escritura directa a DB | 1.0403 | pronto-client
+2026-03-07 | API-20260307-008 | webhooks procesa eventos sin verificar firma y usa print en manejo de errores | NO_COMMIT_LOCAL | pronto-api
+2026-03-07 | EMP-20260307-006 | modulos deprecated mantienen sunset TBD sin fecha de retiro explicita | NO_COMMIT_LOCAL | pronto-employees
+2026-03-07 | LIBS-20260307-001 | Script en pronto-libs referencia legacy_mysql prohibido por guardrails | NO_COMMIT_LOCAL | pronto-libs
+2026-03-07 | STA-20260307-003 | artefactos temporales y reportes fuera de carpeta canonica tmp | NO_COMMIT_LOCAL | pronto-static
+2026-03-07 | STA-20260307-004 | arbol node_modules aparece como residuo versionable por gap en gitignore | NO_COMMIT_LOCAL | pronto-static
+2026-03-07 | LIBS-20260307-002 | order_service_impl modifica payment_status fuera de autoridad canónica | NO_COMMIT_LOCAL | pronto-libs
+2026-03-07 | LIBS-20260307-004 | waiter-board muta workflow_status/payment_status localmente en cliente | NO_COMMIT_LOCAL | pronto-libs
