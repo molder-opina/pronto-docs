@@ -258,3 +258,4 @@
 2026-03-07 | LIBS-20260307-002 | order_service_impl modifica payment_status fuera de autoridad canónica | NO_COMMIT_LOCAL | pronto-libs
 2026-03-07 | LIBS-20260307-004 | waiter-board muta workflow_status/payment_status localmente en cliente | NO_COMMIT_LOCAL | pronto-libs
 2026-03-09 | NAMING-20260309-001 | Inconsistencias transversales de nomenclatura de archivos y scripts en el monorepo | NO_COMMIT_LOCAL | pronto-client,pronto-employees,pronto-static,pronto-tests,pronto-scripts,pronto-docs
+2026-03-09 | API-20260309-NESTED-TRAZABILIDAD-TUPLES | Múltiples rutas retornaban `trazabilidad_error` con tuplas anidadas y rompían respuestas Flask | pronto-api:1c5387c;pronto-employees:489790e;pronto-tests:c8f292c;pronto-client:69a3f21;pronto-static:cc90357;pronto-scripts:4d155c7 | pronto-api,pronto-employees,pronto-tests,pronto-client,pronto-static,pronto-scripts
