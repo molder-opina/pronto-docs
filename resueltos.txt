@@ -1,3 +1,12 @@
+2026-03-09 | CLIENT-20260309-001 | /api/business-info en pronto-client exige autenticación aunque la navegación informativa del cliente es pública | NO_COMMIT_LOCAL | pronto-client,pronto-docs
+2026-03-09 | TESTS-20260309-001 | pronto-tests mezcla specs duplicados y specs especulativos en el lote local | NO_COMMIT_LOCAL | pronto-tests,pronto-docs
+2026-03-09 | SESS-20260309-001 | SessionStatus canónico no refleja estados activos usados por DiningSession | NO_COMMIT_LOCAL | pronto-libs,pronto-api,pronto-scripts,pronto-docs
+2026-03-09 | LIBS-20260309-001 | delete_role y delete_table permiten eliminar recursos aún en uso | NO_COMMIT_LOCAL | pronto-libs,pronto-docs
+2026-03-09 | STA-20260309-001 | reaparecen artefactos versionados y queda incompleto el rename canónico create-avatar.sh | NO_COMMIT_LOCAL | pronto-static,pronto-docs
+2026-03-09 | DOCS-20260309-001 | Outputs generados en pronto-docs/audits/ai contaminan git status y no son documentación canónica | NO_COMMIT_LOCAL | pronto-docs
+2026-03-09 | INIT-20260309-001 | pronto-init confunde ON DELETE/ON UPDATE de FKs con DML prohibido en init | NO_COMMIT_LOCAL | pronto-scripts,pronto-docs
+2026-03-09 | RULES-20260309-002 | pronto-no-legacy bloquea rutas canónicas /api/waiter-calls/* como si fueran legacy | NO_COMMIT_LOCAL | pronto-scripts,pronto-docs
+2026-03-09 | RULES-20260309-001 | pronto-rules-check falla por depender de ALLOWED_SESSION_KEYS en un archivo eliminado | NO_COMMIT_LOCAL | pronto-scripts,pronto-docs
 2026-03-03 | 20260303_scoped_logout_hangs_without_redirect | Logout por consola se queda colgado y no aterriza en login | b765299,c9d60e0,dc6bc64 | pronto-static,pronto-tests,pronto-scripts,pronto-docs
 2026-03-03 | 20260303_employee_sidebar_missing_after_spa_login | El layout lateral no aparece tras login SPA hasta recargar la página | 69098e8,6542df8,88bd82b | pronto-static,pronto-tests,pronto-scripts,pronto-docs
 2026-03-03 | 20260303_sessions_tabs_active_state_is_not_visually_clear | Los tabs de Caja y Cierres no dejan claro cuál opción está seleccionada | 5fb3c6e,d6177fe,8d33e3d | pronto-static,pronto-tests,pronto-scripts,pronto-docs

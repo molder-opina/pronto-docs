@@ -436,7 +436,7 @@ ALTER TABLE public.pronto_dining_sessions OWNER TO pronto;
 -- Name: COLUMN pronto_dining_sessions.status; Type: COMMENT; Schema: public; Owner: pronto
 --
 
-COMMENT ON COLUMN public.pronto_dining_sessions.status IS 'Session status: open, active, awaiting_tip, awaiting_payment, awaiting_payment_confirmation, closed, paid';
+COMMENT ON COLUMN public.pronto_dining_sessions.status IS 'Session status: open, active, awaiting_tip, awaiting_payment, awaiting_payment_confirmation, merged, closed, paid';
 
 
 --
