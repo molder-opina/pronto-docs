@@ -2,7 +2,7 @@
 
 ## Overview
 
-Pronto-Static provides static asset hosting for the Pronto platform. It serves optimized CSS, JavaScript, images, and other frontend assets for pronto-clients and pronto-employees applications.
+Pronto-Static provides static asset hosting for the Pronto platform. It serves optimized CSS, JavaScript, images, and other frontend assets for `pronto-client` and `pronto-employees` applications.
 
 **Port:** 9088
 **Technology:** Nginx, Vite, Vue.js
@@ -420,9 +420,9 @@ ls -la src/static_content/assets/css/clients/
 ## Related Documentation
 
 - [Architecture Overview](../ARCHITECTURE_OVERVIEW.md)
-- [Directory Structure](../estructura-directorios.md)
+- [System Modules Index](../modules.yml)
 - [CSS Modular Architecture](../CSS_MODULAR_ARCHITECTURE.md)
-- [Pronto-Clients](../pronto-clients/)
+- [Pronto-Client](../pronto-clients/)
 - [Pronto-Employees](../pronto-employees/)
 
 ## Contact

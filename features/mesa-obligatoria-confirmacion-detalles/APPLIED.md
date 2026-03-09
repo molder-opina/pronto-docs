@@ -22,7 +22,7 @@
 
 ## Validacion ejecutada
 
-- `./pronto-tests/bin/pronto-tests-check` -> OK
+- `pronto-tests/bin/pronto-tests-check` -> OK
 - `./pronto-scripts/bin/pronto-api-parity-check employees` -> OK
 - `./pronto-scripts/bin/pronto-api-parity-check clients` -> OK (tras correcciones de paridad)
 - `./pronto-scripts/bin/pronto-rules-check changed` -> FAIL por baseline global de `pronto-no-legacy` (fuera del alcance funcional de este fix)

@@ -25,7 +25,7 @@ N/A
 ## Contratos Públicos
 - Cookies: `pronto-docs/contracts/pronto-client/cookies.md`.
 - CSRF: `pronto-docs/contracts/pronto-client/csrf.md`.
-- Redis Keys: `pronto-docs/contracts/pronto-client/redis_keys.md`.
+- Redis Keys: `pronto-docs/contracts/pronto-client/redis-keys.md`.
 - Events: `pronto-docs/contracts/pronto-client/events.md`.
 
 ## Matriz de Dependencias

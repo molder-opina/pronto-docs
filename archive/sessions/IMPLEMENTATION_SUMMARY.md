@@ -84,7 +84,7 @@ Valores agregados en `pronto_config`:
 
 ### 5. Documentación
 - ✅ `docs/cleanup_report.md` - Reporte de código no usado
-- ✅ `docs/feedback_system_implementation.md` - Documentación completa del sistema
+- ✅ `docs/feedback-system-implementation.md` - Documentación completa del sistema
 
 ---
 

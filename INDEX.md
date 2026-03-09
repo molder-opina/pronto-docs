@@ -1,6 +1,6 @@
 # Pronto Documentation Index
 
-> Última actualización: 2026-03-03
+> Última actualización: 2026-03-09
 
 ## Estructura de Documentación
 
@@ -61,6 +61,19 @@ pronto-docs/
 |---------|-------------|
 | [LOGGING_STANDARD.md](LOGGING_STANDARD.md) | Estándar de logging |
 | [FLOW_DIAGRAMS.md](FLOW_DIAGRAMS.md) | Diagramas de flujo |
+| [SYSTEM_ROUTES_SPEC.md](SYSTEM_ROUTES_SPEC.md) | Especificación consolidada de rutas web, API y proxy del sistema |
+| [SYSTEM_ROUTES_MATRIX.md](SYSTEM_ROUTES_MATRIX.md) | Matriz operativa de rutas con auth, CSRF, actor y uso |
+| [SYSTEM_ROUTES_CATALOG.md](SYSTEM_ROUTES_CATALOG.md) | Catálogo por familias de rutas con módulos origen y propósito |
+| [SYSTEM_ROUTES_ENDPOINTS.md](SYSTEM_ROUTES_ENDPOINTS.md) | Índice de anexos endpoint por endpoint del `url_map` actual |
+| [API_CONSUMPTION_MASTER.md](API_CONSUMPTION_MASTER.md) | README maestro que conecta curl, Postman, Insomnia y rutas del sistema |
+| [API_DOMAINS_INDEX.md](API_DOMAINS_INDEX.md) | Índice documental por dominios funcionales de API |
+| [domains/README.md](domains/README.md) | Fichas cortas por dominio funcional de API |
+| [domains/admin-rbac.md](domains/admin-rbac.md) | Ficha operativa del dominio Admin / RBAC |
+| [contracts/README.md](contracts/README.md) | Índice general de contratos públicos por superficie |
+| [contracts/CONVENTIONS.md](contracts/CONVENTIONS.md) | Convenciones y semántica de los archivos estándar de contracts |
+| [contracts/pronto-api/README.md](contracts/pronto-api/README.md) | Índice de contratos públicos y operativos de pronto-api |
+| [pronto-api/POSTMAN_USAGE.md](pronto-api/POSTMAN_USAGE.md) | Guía de colección Postman y environment para consumir PRONTO |
+| [pronto-api/INSOMNIA_USAGE.md](pronto-api/INSOMNIA_USAGE.md) | Guía de colección Insomnia para consumir PRONTO |
 | [features/](features/) | Documentación de features |
 
 ### Testing
@@ -76,6 +89,11 @@ pronto-docs/
 
 | Archivo | Descripción |
 |---------|-------------|
+| [pronto-ai.md](pronto-ai.md) | Resumen operativo del subsistema AI |
+| [pronto-backups.md](pronto-backups.md) | Resumen operativo de backups por cambio |
+| [pronto-docs.md](pronto-docs.md) | Resumen operativo de la superficie documental |
+| [pronto-postgresql.md](pronto-postgresql.md) | Resumen operativo del datastore PostgreSQL |
+| [pronto-redis.md](pronto-redis.md) | Resumen operativo de Redis |
 | [pronto-static.md](pronto-static.md) | Documentación frontend |
 | [pronto-employees.md](pronto-employees.md) | Documentación backend |
 | [pronto-libs.md](pronto-libs.md) | Documentación librerías |
@@ -128,7 +146,7 @@ pronto-docs/
 
 ## Referencias
 
-- [Documento relacionado](path/to/doc.md)
+- [Documento relacionado](ARCHITECTURE_OVERVIEW.md)
 ```
 
 ### Actualizar Este Índice

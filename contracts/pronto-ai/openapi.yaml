@@ -1,0 +1,6 @@
+openapi: 3.0.0
+info:
+  title: Pronto AI Surface
+  version: "1.0.0"
+  description: Superficie declarativa de agentes, prompts, políticas y skills; no expone API HTTP de negocio propia.
+paths: {}

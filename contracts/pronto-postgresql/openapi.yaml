@@ -1,0 +1,6 @@
+openapi: 3.0.0
+info:
+  title: Pronto PostgreSQL Surface
+  version: "1.0.0"
+  description: Superficie de datastore PostgreSQL documentada; no expone API HTTP de negocio propia.
+paths: {}

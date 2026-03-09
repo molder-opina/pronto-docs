@@ -320,7 +320,7 @@ psql -h localhost -U pronto -d pronto
 #### Service Won't Start
 ```bash
 # Check service logs
-docker logs pronto-clients
+docker logs pronto-client
 docker logs pronto-employees
 docker logs pronto-api
 
@@ -375,9 +375,9 @@ lsof -i :6082
 ## Related Documentation
 
 - [Architecture Overview](../ARCHITECTURE_OVERVIEW.md)
-- [Directory Structure](../estructura-directorios.md)
-- [Deployment Steps](../DEPLOYMENT_STEPS.md)
-- [Pronto-Clients](../pronto-clients/)
+- [System Modules Index](../modules.yml)
+- [Historical Deployment Steps](../archive/sessions/DEPLOYMENT_STEPS.md)
+- [Pronto-Client](../pronto-clients/)
 - [Pronto-Employees](../pronto-employees/)
 - [Pronto-API](../pronto-api/)
 

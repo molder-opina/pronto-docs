@@ -167,7 +167,7 @@
 2026-03-07 | TEST-20260307-065 | check-seed-status usa base/health incorrectos y parsea shape legacy del menú | NO_COMMIT_LOCAL | pronto-scripts
 2026-03-07 | TEST-20260307-066 | cleanup-old-sessions usa endpoint API inexistente, auto-instala dependencias y comunica mal su semántica | NO_COMMIT_LOCAL | pronto-scripts
 2026-03-07 | TEST-20260307-067 | cleanup-old-sessions --dry-run hereda hostnames Docker y falla desde el host local | NO_COMMIT_LOCAL | pronto-scripts
-2026-03-07 | TEST-20260307-068 | clean-sessions.py ignora REDIS_PASSWORD y emite warning innecesario en --all --dry-run | NO_COMMIT_LOCAL | pronto-scripts
+2026-03-07 | TEST-20260307-068 | clean_sessions.py ignora REDIS_PASSWORD y emite warning innecesario en --all --dry-run | NO_COMMIT_LOCAL | pronto-scripts
 2026-03-07 | TEST-20260307-069 | cleanup-old-sessions solo carga pronto-scripts/.env y pierde REDIS_PASSWORD del root | NO_COMMIT_LOCAL | root,pronto-scripts
 2026-03-07 | CLIENT-20260307-001 | routes/api/__init__.py quedo truncado sin api_bp ni registro de blueprints | NO_COMMIT_LOCAL | pronto-client
 2026-03-07 | CLIENT-20260307-002 | SyntaxError en business_info.py por parentesis extra | NO_COMMIT_LOCAL | pronto-client
@@ -257,3 +257,4 @@
 2026-03-07 | STA-20260307-004 | arbol node_modules aparece como residuo versionable por gap en gitignore | NO_COMMIT_LOCAL | pronto-static
 2026-03-07 | LIBS-20260307-002 | order_service_impl modifica payment_status fuera de autoridad canónica | NO_COMMIT_LOCAL | pronto-libs
 2026-03-07 | LIBS-20260307-004 | waiter-board muta workflow_status/payment_status localmente en cliente | NO_COMMIT_LOCAL | pronto-libs
+2026-03-09 | NAMING-20260309-001 | Inconsistencias transversales de nomenclatura de archivos y scripts en el monorepo | NO_COMMIT_LOCAL | pronto-client,pronto-employees,pronto-static,pronto-tests,pronto-scripts,pronto-docs

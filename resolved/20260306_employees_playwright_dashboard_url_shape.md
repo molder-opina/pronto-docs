@@ -22,7 +22,7 @@ RESULTADO_ESPERADO:
   con ambas formas soportadas de ruta (`/<scope>/dashboard` y `/dashboard/*`).
 UBICACION:
   - `pronto-tests/tests/functionality/ui/playwright-tests/employees/orders.spec.ts`
-  - `pronto-tests/tests/functionality/e2e/chef_notifications.spec.ts`
+  - `pronto-tests/tests/functionality/e2e/chef-notifications.spec.ts`
   - `pronto-tests/tests/functionality/ui/playwright-tests/employees/login-redirect-fix.spec.ts`
 EVIDENCIA:
   - Timeout en `waitForURL(/\/waiter\/dashboard/)` con navegación real a `/dashboard/waiter`

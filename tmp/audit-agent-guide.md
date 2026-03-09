@@ -21,21 +21,21 @@ El **Audit Agent** es un agente especializado que realiza revisiones de código 
 
 ```bash
 # Audita archivos en staging area
-./bin/agents/audit_agent.sh
+./bin/agents/audit-agent.sh
 ```
 
 ### Auditar archivos específicos
 
 ```bash
 # Audita archivos específicos
-./bin/agents/audit_agent.sh build/shared/jwt_middleware.py build/shared/security.py
+./bin/agents/audit-agent.sh build/shared/jwt_middleware.py build/shared/security.py
 ```
 
 ### Auditar todos los archivos
 
 ```bash
 # Audita todos los archivos Python en build/
-./bin/agents/audit_agent.sh --all-files
+./bin/agents/audit-agent.sh --all-files
 ```
 
 ## Criterios de Revisión
@@ -135,7 +135,7 @@ repos:
     hooks:
       - id: audit-agent
         name: Multi-Model Code Audit
-        entry: ./bin/agents/audit_agent.sh
+        entry: ./bin/agents/audit-agent.sh
         language: script
         pass_filenames: true
         types: [python, javascript, typescript]
@@ -152,7 +152,7 @@ MINIMAX_API_KEY=...
 GLM4_API_KEY=...
 ```
 
-Luego actualiza las funciones en `audit_agent.sh`:
+Luego actualiza las funciones en `audit-agent.sh`:
 
 ```bash
 call_claude() {
@@ -180,7 +180,7 @@ vim build/shared/jwt_middleware.py
 git add build/shared/jwt_middleware.py
 
 # Auditar
-./bin/agents/audit_agent.sh
+./bin/agents/audit-agent.sh
 
 # Revisar reporte
 cat .audit_reports/audit_20260130_225000.md
@@ -193,7 +193,7 @@ git commit -m "Refactor JWT middleware"
 
 ```bash
 # Auditar todos los archivos de shared services
-./bin/agents/audit_agent.sh build/shared/services/*.py
+./bin/agents/audit-agent.sh build/shared/services/*.py
 
 # Revisar reporte
 cat .audit_reports/audit_20260130_225100.md
@@ -203,7 +203,7 @@ cat .audit_reports/audit_20260130_225100.md
 
 ```bash
 # Auditar todo el código Python
-./bin/agents/audit_agent.sh --all-files
+./bin/agents/audit-agent.sh --all-files
 
 # Revisar reporte
 cat .audit_reports/audit_20260130_225200.md

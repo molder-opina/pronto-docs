@@ -20,7 +20,7 @@ Servicio Redis 7 para cache, streams y eventos.
 - [❓] Definir TTLs canónicos por key.
 
 ## Contratos Públicos
-- Redis Keys: `pronto-docs/contracts/pronto-redis/redis_keys.md`.
+- Redis Keys: `pronto-docs/contracts/pronto-redis/redis-keys.md`.
 
 ## Matriz de Dependencias
 ```yaml

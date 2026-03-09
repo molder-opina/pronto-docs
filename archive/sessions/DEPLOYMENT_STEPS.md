@@ -227,7 +227,7 @@ docker-compose restart clients-app employees-app
 
 ### Docs
 9. `docs/cleanup_report.md` - Reporte de código no usado
-10. `docs/feedback_system_implementation.md` - Especificaciones técnicas
+10. `docs/feedback-system-implementation.md` - Especificaciones técnicas
 11. `docs/DEPLOYMENT_STEPS.md` - Este archivo
 12. `docs/IMPLEMENTATION_SUMMARY.md` - Resumen de implementación
 

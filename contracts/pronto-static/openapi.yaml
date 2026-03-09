@@ -1,0 +1,48 @@
+openapi: 3.0.0
+info:
+  title: Pronto Static Asset Surface
+  version: "1.0.0"
+  description: Superficie build-only de assets Vue y artefactos publicados por nginx/static.
+paths:
+  /assets/css/{asset}:
+    get:
+      summary: Obtener bundle CSS publicado
+      parameters:
+        - in: path
+          name: asset
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: CSS servido por static host
+  /assets/js/{asset}:
+    get:
+      summary: Obtener bundle JS publicado
+      parameters:
+        - in: path
+          name: asset
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: JS servido por static host
+  /assets/images/{asset}:
+    get:
+      summary: Obtener imagen o recurso gráfico publicado
+      parameters:
+        - in: path
+          name: asset
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Imagen servida por static host
+  /assets/pronto/menu/home-published.json:
+    get:
+      summary: Obtener artefacto publicado de homepage/menu
+      responses:
+        "200":
+          description: Artefacto publicado para consumo UI

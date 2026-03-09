@@ -29,8 +29,8 @@ CHECKLIST_AUDITORIA:
   - [x] `tests/functionality/api/analytics/test_analytics_api.py` (Ok)
 
   **Pruebas E2E / UI (Playwright)**
-  - [x] `tests/functionality/e2e/test_login_flows.spec.ts` (Ok, excelente diseño)
-  - [x] `tests/functionality/e2e/test_multi_console_navigation.spec.ts` (Ok)
+  - [x] `tests/functionality/e2e/test-login-flows.spec.ts` (Ok, excelente diseño)
+  - [x] `tests/functionality/e2e/test-multi-console-navigation.spec.ts` (Ok)
 
 ACCIONES_PENDIENTES:
   - Ninguna. Auditoría de pronto-tests completada.

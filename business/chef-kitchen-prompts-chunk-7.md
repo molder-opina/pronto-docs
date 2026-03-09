@@ -1,0 +1,1 @@
+- As a chef, I need to get an immediate notification, with a sound, whenever a new order is placed so I can start preparing it.

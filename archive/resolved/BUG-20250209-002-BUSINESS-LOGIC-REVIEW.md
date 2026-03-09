@@ -447,34 +447,34 @@ idempotente: sí (create_order con idempotency_key)
 ### 3.1 Módulo Órdenes
 - [ ] openapi.yaml existe y cubre endpoints usados por UI
 - [ ] events.md documenta eventos (order.created, order.paid, etc.)
-- [ ] redis_keys.md: prefijos y TTL
+- [ ] redis-keys.md: prefijos y TTL
 - [ ] db_schema.sql: schema-only Postgres 16
 - [ ] cookies.md + csrf.md si aplica
 
 ### 3.2 Módulo Pagos
 - [ ] openapi.yaml cubre /api/payments/*
 - [ ] events.md: payment.completed, payment.failed
-- [ ] redis_keys.md: pronto:payments:<id> TTL 24h
+- [ ] redis-keys.md: pronto:payments:<id> TTL 24h
 - [ ] db_schema.sql: payments table
 - [ ] Stripe webhooks documentados
 
 ### 3.3 Módulo Menú
 - [ ] openapi.yaml: GET /api/menu
 - [ ] events.md: menu.updated
-- [ ] redis_keys.md: pronto:menu:* TTL 1h
+- [ ] redis-keys.md: pronto:menu:* TTL 1h
 - [ ] db_schema.sql: products, modifiers, categories, product_modifiers
 
 ### 3.4 Módulo Sesiones Cliente
 - [ ] openapi.yaml: POST /api/sessions, POST /api/client/auth/*
 - [ ] events.md: session.created, session.closed
-- [ ] redis_keys.md: pronto:client:session:<uuid> TTL 60m
+- [ ] redis-keys.md: pronto:client:session:<uuid> TTL 60m
 - [ ] db_schema.sql: dining_sessions
 - [ ] PII en deny list (pii.yml)
 
 ### 3.5 Módulo Empleados
 - [ ] openapi.yaml: /api/auth/*, /api/employees/*
 - [ ] events.md: employee.login, employee.shift.*
-- [ ] redis_keys.md: nope (JWT, no sesión)
+- [ ] redis-keys.md: nope (JWT, no sesión)
 - [ ] db_schema.sql: employees, roles
 - [ ] JWT tokens documentados
 

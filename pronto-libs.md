@@ -22,7 +22,7 @@ Librería compartida con modelos, servicios, seguridad y eventos. Fuente única 
 - [❓] Generar `db_schema.sql` via pg_dump.
 
 ## Contratos Públicos
-- Redis Keys: `pronto-docs/contracts/pronto-libs/redis_keys.md`.
+- Redis Keys: `pronto-docs/contracts/pronto-libs/redis-keys.md`.
 - Events: `pronto-docs/contracts/pronto-libs/events.md`.
 - DB Schema: `pronto-docs/contracts/pronto-libs/db_schema.sql`.
 

@@ -43,7 +43,7 @@
 - [x] 25. `src/pronto_clients/templates/debug_panel.html`
 - [x] 26. `src/pronto_clients/templates/error.html`
 - [x] 27. `src/pronto_clients/templates/feedback.html`
-- [x] 28. `src/pronto_clients/templates/index-alt.html`
+- [x] 28. `src/pronto_clients/templates/index_alt.html`
 - [x] 29. `src/pronto_clients/templates/index.html`
 - [x] 30. `src/pronto_clients/templates/thank_you.html`
 
@@ -108,7 +108,7 @@ PRONTO-CLIENT usa templates HTML para SSR fallback:
 | `thank_you.html` | Post-checkout |
 | `error.html` | Error page |
 | `debug_panel.html` | Debug panel |
-| `index-alt.html` | Alternative landing |
+| `index_alt.html` | Alternative landing |
 
 **Validación:**
 - [x] No hay JS inline en templates

@@ -126,7 +126,7 @@ Asegurar la correcta implementación y documentación del sistema de autenticaci
    - Soluciones comunes
    
 5. ✅ **BONUS: Crear Deployment Agent**
-   - `bin/agents/deployment_agent.sh` creado
+   - `bin/agents/deployment-agent.sh` creado
    - Valida cambios que requieren init
    - 8 validaciones diferentes
    - Integrado en pre-commit
@@ -136,7 +136,7 @@ Asegurar la correcta implementación y documentación del sistema de autenticaci
 - `ARCHITECTURE.md` (actualizado)
 - `docs/ENVIRONMENT_VARIABLES.md` (nuevo)
 - `docs/PRECOMMIT_AGENTS_GUIDE.md` (nuevo)
-- `bin/agents/deployment_agent.sh` (nuevo)
+- `bin/agents/deployment-agent.sh` (nuevo)
 - `.pre-commit-config.yaml` (actualizado)
 
 ### Métricas
@@ -176,7 +176,7 @@ Asegurar la correcta implementación y documentación del sistema de autenticaci
 |------|----------|----------|
 | **Tests** | 3 | test_jwt_*.py |
 | **Documentación** | 4 | ENVIRONMENT_VARIABLES.md, PRECOMMIT_AGENTS_GUIDE.md, SPRINT_*.md |
-| **Scripts** | 2 | backup-env.sh, deployment_agent.sh |
+| **Scripts** | 2 | backup-env.sh, deployment-agent.sh |
 | **TOTAL** | **9** | **Nuevos archivos** |
 
 ### Archivos Modificados

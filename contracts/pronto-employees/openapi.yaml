@@ -1,0 +1,205 @@
+openapi: 3.0.0
+info:
+  title: Pronto Employees SSR and Proxy API
+  version: "1.0.0"
+paths:
+  /{scope}/login:
+    post:
+      summary: Login web por scope de employee
+      parameters:
+        - in: path
+          name: scope
+          required: true
+          schema:
+            type: string
+            enum: [waiter, chef, cashier, admin, system]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EmployeeScopeLoginRequest"
+      responses:
+        "200": { description: Login exitoso }
+        "401": { description: Credenciales inválidas }
+  /{scope}/logout:
+    post:
+      summary: Logout web por scope de employee
+      parameters:
+        - in: path
+          name: scope
+          required: true
+          schema:
+            type: string
+            enum: [waiter, chef, cashier, admin, system]
+      responses:
+        "200":
+          description: Logout exitoso
+  /{scope}/api/orders:
+    get:
+      summary: Proxy scope-aware de órdenes
+      parameters:
+        - in: path
+          name: scope
+          required: true
+          schema:
+            type: string
+            enum: [waiter, chef, cashier, admin, system]
+      responses:
+        "200": { description: Proxy exitoso }
+        "403": { description: SCOPE_MISMATCH }
+  /{scope}/api/menu:
+    get:
+      summary: Proxy scope-aware de catálogo operativo
+      parameters:
+        - in: path
+          name: scope
+          required: true
+          schema:
+            type: string
+            enum: [waiter, chef, cashier, admin, system]
+      responses:
+        "200":
+          description: Proxy exitoso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProxySuccessResponse"
+  /{scope}/api/table-assignments/my-tables:
+    get:
+      summary: Proxy scope-aware de mesas asignadas
+      parameters:
+        - in: path
+          name: scope
+          required: true
+          schema:
+            type: string
+            enum: [waiter, chef, cashier, admin, system]
+      responses:
+        "200":
+          description: Proxy exitoso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TableAssignmentListResponse"
+  /{scope}/api/reports/kpis:
+    get:
+      summary: Proxy scope-aware de KPIs
+      parameters:
+        - in: path
+          name: scope
+          required: true
+          schema:
+            type: string
+            enum: [waiter, chef, cashier, admin, system]
+      responses:
+        "200":
+          description: Proxy exitoso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProxySuccessResponse"
+  /{scope}/api/employees/roles:
+    get:
+      summary: Proxy scope-aware de roles de employees
+      parameters:
+        - in: path
+          name: scope
+          required: true
+          schema:
+            type: string
+            enum: [waiter, chef, cashier, admin, system]
+      responses:
+        "200":
+          description: Roles disponibles
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EmployeeRoleListResponse"
+  /{scope}/api/branding/config:
+    get:
+      summary: Proxy scope-aware de branding config
+      parameters:
+        - in: path
+          name: scope
+          required: true
+          schema:
+            type: string
+            enum: [waiter, chef, cashier, admin, system]
+      responses:
+        "200":
+          description: Proxy exitoso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProxySuccessResponse"
+  /{scope}/api/realtime/orders:
+    get:
+      summary: Proxy scope-aware del feed realtime de órdenes
+      parameters:
+        - in: path
+          name: scope
+          required: true
+          schema:
+            type: string
+            enum: [waiter, chef, cashier, admin, system]
+      responses:
+        "200":
+          description: Proxy exitoso
+components:
+  schemas:
+    EmployeeScopeLoginRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+    ProxySuccessResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        data:
+          type: object
+          additionalProperties: true
+    EmployeeRoleSummary:
+      type: object
+      properties:
+        role:
+          type: string
+        label:
+          type: string
+          nullable: true
+    EmployeeRoleListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/EmployeeRoleSummary"
+    TableAssignmentSummary:
+      type: object
+      properties:
+        table_id:
+          type: string
+          format: uuid
+        number:
+          type: string
+          nullable: true
+        area_id:
+          type: integer
+          nullable: true
+    TableAssignmentListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/TableAssignmentSummary"

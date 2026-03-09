@@ -24,7 +24,7 @@ API REST unificada. Flask app factory, JWT, CORS y healthcheck. Usa Postgres y R
 
 ## Contratos Públicos
 - OpenAPI: `pronto-docs/contracts/pronto-api/openapi.yaml`.
-- Redis Keys: `pronto-docs/contracts/pronto-libs/redis_keys.md`.
+- Redis Keys: `pronto-docs/contracts/pronto-libs/redis-keys.md`.
 - Events: `pronto-docs/contracts/pronto-libs/events.md`.
 - DB Schema: `pronto-docs/contracts/pronto-api/db_schema.sql`.
 

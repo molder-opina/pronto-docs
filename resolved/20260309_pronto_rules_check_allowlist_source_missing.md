@@ -17,7 +17,7 @@ RESULTADO_ESPERADO:
   El script debe validar reglas reales sin depender de archivos eliminados ni de referencias stale.
 UBICACION:
   - pronto-scripts/bin/pronto-rules-check
-  - pronto-scripts/prompts/audits/client_audit.md
+  - pronto-scripts/prompts/audits/client-audit.md
   - AGENTS.md
 EVIDENCIA:
   - `python3 -m py_compile pronto-scripts/bin/pronto-rules-check` => OK
@@ -27,6 +27,6 @@ HIPOTESIS_CAUSA:
   El guardrail y un prompt asociado quedaron desalineados tras el refactor de sesión cliente hacia la allowlist declarada en `AGENTS.md`.
 ESTADO: RESUELTO
 SOLUCION:
-  Se actualizó `pronto-rules-check` para resolver la allowlist desde `AGENTS.md`, se amplió la inspección a `session.get(...)`, y se corrigió el prompt `pronto-scripts/prompts/audits/client_audit.md` para referenciar la fuente canónica vigente. Las únicas menciones restantes a `customer_session.py` son históricas en `pronto-client/DEBT_REPORT.md`.
+  Se actualizó `pronto-rules-check` para resolver la allowlist desde `AGENTS.md`, se amplió la inspección a `session.get(...)`, y se corrigió el prompt `pronto-scripts/prompts/audits/client-audit.md` para referenciar la fuente canónica vigente. Las únicas menciones restantes a `customer_session.py` son históricas en `pronto-client/DEBT_REPORT.md`.
 COMMIT: NO_COMMIT_LOCAL
 FECHA_RESOLUCION: 2026-03-09

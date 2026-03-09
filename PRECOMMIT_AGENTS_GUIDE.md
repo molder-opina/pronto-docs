@@ -14,18 +14,18 @@ El proyecto incluye **14 agentes especializados** que revisan el código antes d
 |--------|-------|---------|---------|
 | Developer | 👨‍💻 | `bin/agents/developer.sh` | Código Python |
 | Designer | 👩‍🎨 | `bin/agents/designer.sh` | UI/UX y assets |
-| DB Specialist | 🗄️ | `bin/agents/db_specialist.sh` | Base de datos |
+| DB Specialist | 🗄️ | `bin/agents/db-specialist.sh` | Base de datos |
 | Sysadmin | 🛡️ | `bin/agents/sysadmin.sh` | Seguridad y config |
-| QA/Tester | 🧪 | `bin/agents/qa_tester.sh` | Tests |
+| QA/Tester | 🧪 | `bin/agents/qa-tester.sh` | Tests |
 | Scribe | ✍️ | `bin/agents/scribe.sh` | Documentación |
-| Container Specialist | 🐳 | `bin/agents/container_specialist.sh` | Docker |
-| Business Expert | 🍽️ | `bin/agents/business_expert.sh` | Lógica de negocio |
-| Waiter | 🤵 | `bin/agents/waiter_agent.sh` | Console waiter |
-| Admin | 👨‍💼 | `bin/agents/admin_agent.sh` | Console admin |
-| Cashier | 💰 | `bin/agents/cashier_agent.sh` | Console cashier |
+| Container Specialist | 🐳 | `bin/agents/container-specialist.sh` | Docker |
+| Business Expert | 🍽️ | `bin/agents/business-expert.sh` | Lógica de negocio |
+| Waiter | 🤵 | `bin/agents/waiter-agent.sh` | Console waiter |
+| Admin | 👨‍💼 | `bin/agents/admin-agent.sh` | Console admin |
+| Cashier | 💰 | `bin/agents/cashier-agent.sh` | Console cashier |
 | Super Admin | 👑 | `bin/agents/system_agent.sh` | Sistema y seguridad |
-| Chef | 👨‍🍳 | `bin/agents/chef_agent.sh` | Console chef |
-| **Deployment** | 🚀 | `bin/agents/deployment_agent.sh` | **Scripts de init** |
+| Chef | 👨‍🍳 | `bin/agents/chef-agent.sh` | Console chef |
+| **Deployment** | 🚀 | `bin/agents/deployment-agent.sh` | **Scripts de init** |
 
 ---
 
@@ -130,7 +130,7 @@ def create_order(data):
 
 ## 🗄️ DB Specialist Agent
 
-**Archivo**: `bin/agents/db_specialist.sh`
+**Archivo**: `bin/agents/db-specialist.sh`
 
 ### Validaciones
 
@@ -237,7 +237,7 @@ echo "Deploying..."
 
 ## 🧪 QA/Tester Agent
 
-**Archivo**: `bin/agents/qa_tester.sh`
+**Archivo**: `bin/agents/qa-tester.sh`
 
 ### Validaciones
 
@@ -290,7 +290,7 @@ describe('Orders', () => {  // ✅ Sin .only
 
 ## 🐳 Container Specialist Agent
 
-**Archivo**: `bin/agents/container_specialist.sh`
+**Archivo**: `bin/agents/container-specialist.sh`
 
 ### Validaciones
 
@@ -350,7 +350,7 @@ RUN apt-get update && apt-get install -y python3 \
 
 ## 🍽️ Business Expert Agent
 
-**Archivo**: `bin/agents/business_expert.sh`
+**Archivo**: `bin/agents/business-expert.sh`
 
 ### Validaciones
 
@@ -383,7 +383,7 @@ RUN apt-get update && apt-get install -y python3 \
 
 ## 🤵 Waiter Agent
 
-**Archivo**: `bin/agents/waiter_agent.sh`
+**Archivo**: `bin/agents/waiter-agent.sh`
 
 ### Validaciones
 
@@ -412,7 +412,7 @@ RUN apt-get update && apt-get install -y python3 \
 
 ## 👨‍💼 Admin Agent
 
-**Archivo**: `bin/agents/admin_agent.sh`
+**Archivo**: `bin/agents/admin-agent.sh`
 
 ### Validaciones
 
@@ -443,7 +443,7 @@ RUN apt-get update && apt-get install -y python3 \
 
 ## 💰 Cashier Agent
 
-**Archivo**: `bin/agents/cashier_agent.sh`
+**Archivo**: `bin/agents/cashier-agent.sh`
 
 ### Validaciones
 
@@ -521,7 +521,7 @@ def create_app():
 
 ## 👨‍🍳 Chef Agent
 
-**Archivo**: `bin/agents/chef_agent.sh`
+**Archivo**: `bin/agents/chef-agent.sh`
 
 ### Validaciones
 
@@ -550,7 +550,7 @@ def create_app():
 
 ## 🚀 Deployment Agent
 
-**Archivo**: `bin/agents/deployment_agent.sh`
+**Archivo**: `bin/agents/deployment-agent.sh`
 
 ### Validaciones
 
@@ -563,7 +563,7 @@ def create_app():
 
 **Solución**:
 ```bash
-# Actualizar bin/init/03_seed_params.sh o 04_deploy.sh
+# Actualizar bin/init/03-seed-params.sh o 04-deploy.sh
 # para incluir la migración
 ```
 
@@ -576,7 +576,7 @@ def create_app():
 
 **Solución**:
 ```bash
-# Asegurar que bin/init/02_apply_envs.sh valide las nuevas variables
+# Asegurar que bin/init/02-apply-envs.sh valide las nuevas variables
 # o que validate_required_env_vars() las incluya
 ```
 
@@ -589,7 +589,7 @@ def create_app():
 
 **Solución**:
 ```bash
-# Actualizar bin/init/04_deploy.sh para incluir el nuevo servicio
+# Actualizar bin/init/04-deploy.sh para incluir el nuevo servicio
 # Documentar en docs/DEPLOYMENT.md
 ```
 
@@ -602,7 +602,7 @@ def create_app():
 
 **Solución**:
 ```bash
-# Actualizar bin/init/03_seed_params.sh con seed data
+# Actualizar bin/init/03-seed-params.sh con seed data
 # o load_seed_data() si es necesario
 ```
 
@@ -654,10 +654,10 @@ def create_app():
 
 **Scripts requeridos**:
 - `bin/init/init.sh`
-- `bin/init/01_backup_envs.sh`
-- `bin/init/02_apply_envs.sh`
-- `bin/init/03_seed_params.sh`
-- `bin/init/04_deploy.sh`
+- `bin/init/01-backup-envs.sh`
+- `bin/init/02-apply-envs.sh`
+- `bin/init/03-seed-params.sh`
+- `bin/init/04-deploy.sh`
 
 **Acción**: Bloquea si faltan scripts
 

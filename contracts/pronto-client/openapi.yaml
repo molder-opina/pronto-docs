@@ -3,6 +3,109 @@ info:
   title: Pronto Client BFF API
   version: "1.0.0"
 paths:
+  /api/client-auth/csrf:
+    get:
+      summary: Obtener token CSRF para flujos cliente
+      responses:
+        "200":
+          description: Token CSRF emitido
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CsrfResponse"
+  /api/client-auth/login:
+    post:
+      summary: Login cliente vía BFF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ClientLoginRequest"
+      responses:
+        "200":
+          description: Login exitoso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessAuthResponse"
+        "401":
+          description: Credenciales inválidas
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/client-auth/register:
+    post:
+      summary: Registro cliente vía BFF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ClientRegisterRequest"
+      responses:
+        "201":
+          description: Registro exitoso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessAuthResponse"
+        "400":
+          description: Error de validación
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: Conflicto de registro
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/client-auth/logout:
+    post:
+      summary: Logout cliente vía BFF
+      responses:
+        "200":
+          description: Logout exitoso
+  /api/client-auth/me:
+    get:
+      summary: Resolver cliente autenticado en sesión/BFF
+      responses:
+        "200":
+          description: Cliente autenticado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessAuthResponse"
+        "401":
+          description: No autenticado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    put:
+      summary: Actualizar perfil cliente autenticado vía BFF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ClientProfileUpdateRequest"
+      responses:
+        "200":
+          description: Perfil actualizado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessAuthResponse"
+        "400":
+          description: Request inválido
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
   /api/menu:
     get:
       summary: Runtime catálogo (taxonomy + catalog_items + quick_filters)
@@ -10,6 +113,36 @@ paths:
       responses:
         "200":
           description: Catálogo runtime
+  /api/menu/categories:
+    get:
+      summary: Obtener categorías de menú vía BFF cliente
+      responses:
+        "200":
+          description: Categorías de menú
+  /api/menu/items:
+    get:
+      summary: Obtener items de menú vía BFF cliente
+      responses:
+        "200":
+          description: Items de menú
+  /api/sessions/me:
+    get:
+      summary: Obtener sesión actual del cliente vía BFF
+      responses:
+        "200":
+          description: Sesión actual
+  /api/sessions/open:
+    post:
+      summary: Abrir sesión cliente vía BFF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OpenSessionRequest"
+      responses:
+        "200":
+          description: Sesión abierta
   /api/sessions/table-context:
     get:
       summary: Obtener contexto de mesa de la sesión de cliente
@@ -53,6 +186,19 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
+  /api/sessions/{session_id}/timeout:
+    get:
+      summary: Consultar timeout de sesión vía BFF
+      parameters:
+        - in: path
+          name: session_id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Timeout o estado temporal de sesión
   /api/orders:
     post:
       summary: Crear orden de cliente con gate de mesa
@@ -77,8 +223,226 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
+  /api/customer/orders:
+    get:
+      summary: Listar órdenes del cliente autenticado
+      responses:
+        "200":
+          description: Lista de órdenes
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CustomerOrderListResponse"
+    post:
+      summary: Crear orden cliente vía endpoint canónico BFF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateOrderRequest"
+      responses:
+        "201":
+          description: Orden creada
+        "400":
+          description: Error de validación
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/customer/orders/session/{session_id}/request-check:
+    post:
+      summary: Solicitar cuenta/check para una sesión vía BFF
+      parameters:
+        - in: path
+          name: session_id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Cuenta solicitada
+  /api/orders/{order_id}:
+    get:
+      summary: Obtener detalle de orden vía BFF
+      parameters:
+        - in: path
+          name: order_id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Detalle de orden
+  /api/orders/{order_id}/items:
+    post:
+      summary: Agregar item a orden vía BFF
+      parameters:
+        - in: path
+          name: order_id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Item agregado
+  /api/orders/{order_id}/items/{item_id}:
+    delete:
+      summary: Eliminar item de orden vía BFF
+      parameters:
+        - in: path
+          name: order_id
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - in: path
+          name: item_id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Item eliminado
+  /api/orders/send-confirmation:
+    post:
+      summary: Enviar confirmación de orden vía BFF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Confirmación enviada
+  /api/customer/payments/sessions/{session_id}/checkout:
+    get:
+      summary: Obtener checkout de sesión cliente
+      parameters:
+        - in: path
+          name: session_id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Checkout de sesión
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CheckoutResponse"
+  /api/customer/payments/sessions/{session_id}/pay:
+    post:
+      summary: Pagar sesión cliente vía BFF
+      parameters:
+        - in: path
+          name: session_id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PaySessionRequest"
+      responses:
+        "200":
+          description: Pago procesado
+        "400":
+          description: Request inválido
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
 components:
   schemas:
+    CsrfResponse:
+      type: object
+      properties:
+        csrf_token:
+          type: string
+    ClientLoginRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+    ClientRegisterRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        name:
+          type: string
+        phone:
+          type: string
+          nullable: true
+    ClientProfileUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        phone:
+          type: string
+          nullable: true
+        tax_id:
+          type: string
+          nullable: true
+        tax_name:
+          type: string
+          nullable: true
+        tax_address:
+          type: string
+          nullable: true
+        tax_email:
+          type: string
+          format: email
+          nullable: true
+        tax_regime:
+          type: string
+          nullable: true
+    ClientProfile:
+      type: object
+      properties:
+        customer_id:
+          type: string
+          format: uuid
+        email:
+          type: string
+          format: email
+          nullable: true
+        full_name:
+          type: string
+          nullable: true
+    OpenSessionRequest:
+      type: object
+      properties:
+        table_id:
+          type: string
+          format: uuid
     TableContext:
       type: object
       properties:
@@ -151,6 +515,63 @@ components:
             table_context:
               $ref: "#/components/schemas/TableContext"
         error:
+          nullable: true
+    SuccessAuthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          type: object
+          properties:
+            customer:
+              $ref: "#/components/schemas/ClientProfile"
+    OrderSummary:
+      type: object
+      properties:
+        order_id:
+          type: string
+        workflow_status:
+          type: string
+        payment_status:
+          type: string
+        total:
+          type: number
+          nullable: true
+    CustomerOrderListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/OrderSummary"
+    CheckoutResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        data:
+          type: object
+          properties:
+            session_id:
+              type: string
+              format: uuid
+            subtotal:
+              type: number
+            total:
+              type: number
+            payment_status:
+              type: string
+    PaySessionRequest:
+      type: object
+      properties:
+        payment_method:
+          type: string
+        payment_method_id:
+          type: string
           nullable: true
     ErrorResponse:
       type: object

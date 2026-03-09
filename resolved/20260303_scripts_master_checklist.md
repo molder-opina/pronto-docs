@@ -23,16 +23,16 @@ CHECKLIST_AUDITORIA:
   - [x] `bin/validate-seed.sh` (Ok, detectado desajuste DATA-20260303-001)
   - [x] `bin/validate-system.sh` (Ok)
   - [x] `bin/validate-components.sh` (Ok)
-  - [x] `bin/maintenance/pronto_guard.sh` (Ok, reportado TEST-20260303-002)
+  - [x] `bin/maintenance/pronto-guard.sh` (Ok, reportado TEST-20260303-002)
 
   **Base de Datos y Utilidades Python**
-  - [x] `bin/python/validate-database.py` (Ok)
-  - [x] `bin/python/check-employees.py` (Ok)
-  - [x] `bin/python/clean-orders.py` (Ok)
+  - [x] `bin/python/validate_database.py` (Ok)
+  - [x] `bin/python/check_employees.py` (Ok)
+  - [x] `bin/python/clean_orders.py` (Ok)
 
   **Agentes de Pre-commit**
   - [x] `bin/agents/developer.sh` (Ok)
-  - [x] `bin/agents/db_specialist.sh` (Ok)
+  - [x] `bin/agents/db-specialist.sh` (Ok)
   - [x] `bin/agents/scribe.sh` (Ok)
 
 ACCIONES_PENDIENTES:

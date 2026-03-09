@@ -1,0 +1,2 @@
+- After I request my bill, I want to see a screen with special offers or promotions while I wait for the waiter to process my payment.
+- After my meal is paid for, I want a brief, timed opportunity (about 10 seconds) to provide feedback on my experience before being returned to the main screen.

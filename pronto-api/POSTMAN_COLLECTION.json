@@ -1,0 +1,219 @@
+{
+  "info": {
+    "name": "PRONTO - API, Client BFF y Employees Proxy",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Colección base para consumir PRONTO en local. Cubre ejemplos directos contra pronto-api (:6082), BFF de cliente (:6080) y proxy scope-aware de employees (:6081)."
+  },
+  "item": [
+    {
+      "name": "API directa (:6082)",
+      "item": [
+        {
+          "name": "Health",
+          "request": {"method": "GET", "header": [], "url": "{{api_base_url}}/health"}
+        },
+        {
+          "name": "Menú runtime",
+          "request": {"method": "GET", "header": [{"key": "X-Correlation-ID", "value": "{{correlation_id}}"}], "url": "{{api_base_url}}/api/menu"}
+        },
+        {
+          "name": "Abrir sesión de mesa",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "X-Correlation-ID", "value": "{{correlation_id}}"}
+            ],
+            "body": {"mode": "raw", "raw": "{\n  \"table_id\": \"{{table_id}}\"\n}"},
+            "url": "{{api_base_url}}/api/sessions/open"
+          }
+        },
+        {
+          "name": "Login employee",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "X-Correlation-ID", "value": "{{correlation_id}}"}
+            ],
+            "body": {"mode": "raw", "raw": "{\n  \"email\": \"{{employee_email}}\",\n  \"password\": \"{{employee_password}}\",\n  \"scope\": \"{{employee_scope}}\"\n}"},
+            "url": "{{api_base_url}}/api/auth/login"
+          }
+        },
+        {
+          "name": "Listar órdenes",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "X-Correlation-ID", "value": "{{correlation_id}}"}],
+            "url": "{{api_base_url}}/api/orders"
+          }
+        },
+        {
+          "name": "Crear orden cliente",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "X-CSRFToken", "value": "{{csrf_token}}"},
+              {"key": "X-PRONTO-CUSTOMER-REF", "value": "{{customer_ref}}"},
+              {"key": "X-Correlation-ID", "value": "{{correlation_id}}"}
+            ],
+            "body": {"mode": "raw", "raw": "{\n  \"items\": [\n    {\n      \"menu_item_id\": \"{{menu_item_id}}\",\n      \"quantity\": 1\n    }\n  ]\n}"},
+            "url": "{{api_base_url}}/api/customer/orders"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Client BFF (:6080)",
+      "item": [
+        {
+          "name": "Obtener CSRF cliente",
+          "request": {"method": "GET", "header": [], "url": "{{client_base_url}}/api/client-auth/csrf"}
+        },
+        {
+          "name": "Login cliente",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "X-CSRFToken", "value": "{{csrf_token}}"}
+            ],
+            "body": {"mode": "raw", "raw": "{\n  \"email\": \"{{customer_email}}\",\n  \"password\": \"{{customer_password}}\"\n}"},
+            "url": "{{client_base_url}}/api/client-auth/login"
+          }
+        },
+        {
+          "name": "Business info",
+          "request": {"method": "GET", "header": [], "url": "{{client_base_url}}/api/business-info"}
+        },
+        {
+          "name": "Crear orden cliente vía BFF",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "X-CSRFToken", "value": "{{csrf_token}}"}
+            ],
+            "body": {"mode": "raw", "raw": "{\n  \"items\": [\n    {\n      \"menu_item_id\": \"{{menu_item_id}}\",\n      \"quantity\": 1\n    }\n  ]\n}"},
+            "url": "{{client_base_url}}/api/customer/orders"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Employees proxy (:6081)",
+      "item": [
+        {
+          "name": "Listar órdenes vía proxy scope-aware",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "X-Correlation-ID", "value": "{{correlation_id}}"}],
+            "url": "{{employees_base_url}}/{{employee_scope}}/api/orders"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {"name": "API · Login employee", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}, {"key": "X-Correlation-ID", "value": "{{correlation_id}}"}], "body": {"mode": "raw", "raw": "{\n  \"email\": \"{{employee_email}}\",\n  \"password\": \"{{employee_password}}\",\n  \"scope\": \"{{employee_scope}}\"\n}"}, "url": "{{api_base_url}}/api/auth/login"}},
+        {"name": "API · Auth me", "request": {"method": "GET", "header": [{"key": "X-Correlation-ID", "value": "{{correlation_id}}"}], "url": "{{api_base_url}}/api/auth/me"}},
+        {"name": "Client · Obtener CSRF", "request": {"method": "GET", "header": [], "url": "{{client_base_url}}/api/client-auth/csrf"}},
+        {"name": "Client · Register", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}, {"key": "X-CSRFToken", "value": "{{csrf_token}}"}], "body": {"mode": "raw", "raw": "{\n  \"name\": \"{{customer_name}}\",\n  \"email\": \"{{customer_email}}\",\n  \"password\": \"{{customer_password}}\"\n}"}, "url": "{{client_base_url}}/api/client-auth/register"}},
+        {"name": "Client · Login", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}, {"key": "X-CSRFToken", "value": "{{csrf_token}}"}], "body": {"mode": "raw", "raw": "{\n  \"email\": \"{{customer_email}}\",\n  \"password\": \"{{customer_password}}\"\n}"}, "url": "{{client_base_url}}/api/client-auth/login"}},
+        {"name": "Client · Me", "request": {"method": "GET", "header": [], "url": "{{client_base_url}}/api/client-auth/me"}}
+      ]
+    },
+    {
+      "name": "Menu",
+      "item": [
+        {"name": "API · Menu", "request": {"method": "GET", "header": [{"key": "X-Correlation-ID", "value": "{{correlation_id}}"}], "url": "{{api_base_url}}/api/menu"}},
+        {"name": "API · Popular items", "request": {"method": "GET", "header": [{"key": "X-Correlation-ID", "value": "{{correlation_id}}"}], "url": "{{api_base_url}}/api/menu-items/popular"}},
+        {"name": "API · Item detail", "request": {"method": "GET", "header": [{"key": "X-Correlation-ID", "value": "{{correlation_id}}"}], "url": "{{api_base_url}}/api/menu-items/{{menu_item_id}}"}},
+        {"name": "Client · Menu", "request": {"method": "GET", "header": [], "url": "{{client_base_url}}/api/menu"}},
+        {"name": "Client · Categories", "request": {"method": "GET", "header": [], "url": "{{client_base_url}}/api/menu/categories"}},
+        {"name": "Proxy · Menu", "request": {"method": "GET", "header": [{"key": "X-Correlation-ID", "value": "{{correlation_id}}"}], "url": "{{employees_base_url}}/{{employee_scope}}/api/menu"}}
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {"name": "API · List employee orders", "request": {"method": "GET", "header": [{"key": "X-Correlation-ID", "value": "{{correlation_id}}"}], "url": "{{api_base_url}}/api/orders"}},
+        {"name": "API · Create customer order", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}, {"key": "X-CSRFToken", "value": "{{csrf_token}}"}, {"key": "X-PRONTO-CUSTOMER-REF", "value": "{{customer_ref}}"}, {"key": "X-Correlation-ID", "value": "{{correlation_id}}"}], "body": {"mode": "raw", "raw": "{\n  \"items\": [\n    {\n      \"menu_item_id\": \"{{menu_item_id}}\",\n      \"quantity\": 1\n    }\n  ]\n}"}, "url": "{{api_base_url}}/api/customer/orders"}},
+        {"name": "API · Request check", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}, {"key": "X-CSRFToken", "value": "{{csrf_token}}"}, {"key": "X-PRONTO-CUSTOMER-REF", "value": "{{customer_ref}}"}], "body": {"mode": "raw", "raw": "{}"}, "url": "{{api_base_url}}/api/customer/orders/session/{{session_id}}/request-check"}},
+        {"name": "Client · Create order", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}, {"key": "X-CSRFToken", "value": "{{csrf_token}}"}], "body": {"mode": "raw", "raw": "{\n  \"items\": [\n    {\n      \"menu_item_id\": \"{{menu_item_id}}\",\n      \"quantity\": 1\n    }\n  ]\n}"}, "url": "{{client_base_url}}/api/customer/orders"}},
+        {"name": "Client · Get order", "request": {"method": "GET", "header": [], "url": "{{client_base_url}}/api/orders/{{order_id}}"}},
+        {"name": "Proxy · Orders", "request": {"method": "GET", "header": [{"key": "X-Correlation-ID", "value": "{{correlation_id}}"}], "url": "{{employees_base_url}}/{{employee_scope}}/api/orders"}}
+      ]
+    },
+    {
+      "name": "Sessions",
+      "item": [
+        {"name": "API · Open session", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}, {"key": "X-Correlation-ID", "value": "{{correlation_id}}"}], "body": {"mode": "raw", "raw": "{\n  \"table_id\": \"{{table_id}}\"\n}"}, "url": "{{api_base_url}}/api/sessions/open"}},
+        {"name": "API · Session me", "request": {"method": "GET", "header": [], "url": "{{api_base_url}}/api/sessions/me"}},
+        {"name": "Client · Session me", "request": {"method": "GET", "header": [], "url": "{{client_base_url}}/api/sessions/me"}},
+        {"name": "Client · Table context", "request": {"method": "GET", "header": [], "url": "{{client_base_url}}/api/sessions/table-context"}},
+        {"name": "Proxy · Sessions all", "request": {"method": "GET", "header": [{"key": "X-Correlation-ID", "value": "{{correlation_id}}"}], "url": "{{employees_base_url}}/{{employee_scope}}/api/sessions/all"}}
+      ]
+    },
+    {
+      "name": "Payments",
+      "item": [
+        {"name": "API · Checkout", "request": {"method": "GET", "header": [{"key": "X-PRONTO-CUSTOMER-REF", "value": "{{customer_ref}}"}], "url": "{{api_base_url}}/api/customer/payments/sessions/{{session_id}}/checkout"}},
+        {"name": "API · Pay session", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}, {"key": "X-CSRFToken", "value": "{{csrf_token}}"}, {"key": "X-PRONTO-CUSTOMER-REF", "value": "{{customer_ref}}"}], "body": {"mode": "raw", "raw": "{\n  \"payment_method\": \"cash\"\n}"}, "url": "{{api_base_url}}/api/customer/payments/sessions/{{session_id}}/pay"}},
+        {"name": "Client · Methods", "request": {"method": "GET", "header": [], "url": "{{client_base_url}}/api/methods"}},
+        {"name": "Client · Pay stripe", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}, {"key": "X-CSRFToken", "value": "{{csrf_token}}"}], "body": {"mode": "raw", "raw": "{\n  \"payment_method_id\": \"{{payment_method_id}}\"\n}"}, "url": "{{client_base_url}}/api/sessions/{{session_id}}/pay/stripe"}},
+        {"name": "Proxy · Employee session pay", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}, {"key": "X-CSRFToken", "value": "{{csrf_token}}"}], "body": {"mode": "raw", "raw": "{\n  \"payment_method\": \"cash\"\n}"}, "url": "{{employees_base_url}}/{{employee_scope}}/api/sessions/{{session_id}}/pay"}}
+      ]
+    },
+    {
+      "name": "Invoices",
+      "item": [
+        {"name": "API · Client invoices", "request": {"method": "GET", "header": [{"key": "X-PRONTO-CUSTOMER-REF", "value": "{{customer_ref}}"}], "url": "{{api_base_url}}/api/client/invoices"}},
+        {"name": "API · Request invoice", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}, {"key": "X-CSRFToken", "value": "{{csrf_token}}"}, {"key": "X-PRONTO-CUSTOMER-REF", "value": "{{customer_ref}}"}], "body": {"mode": "raw", "raw": "{\n  \"session_id\": \"{{session_id}}\",\n  \"rfc\": \"{{invoice_rfc}}\",\n  \"legal_name\": \"{{invoice_legal_name}}\",\n  \"email\": \"{{customer_email}}\"\n}"}, "url": "{{api_base_url}}/api/client/invoices/request"}},
+        {"name": "API · Admin invoices", "request": {"method": "GET", "header": [{"key": "X-Correlation-ID", "value": "{{correlation_id}}"}], "url": "{{api_base_url}}/api/admin/invoices"}}
+      ]
+    },
+    {
+      "name": "Reports",
+      "item": [
+        {"name": "API · KPIs", "request": {"method": "GET", "header": [{"key": "X-Correlation-ID", "value": "{{correlation_id}}"}], "url": "{{api_base_url}}/api/reports/kpis"}},
+        {"name": "API · Sales", "request": {"method": "GET", "header": [{"key": "X-Correlation-ID", "value": "{{correlation_id}}"}], "url": "{{api_base_url}}/api/reports/sales"}},
+        {"name": "Proxy · KPIs", "request": {"method": "GET", "header": [{"key": "X-Correlation-ID", "value": "{{correlation_id}}"}], "url": "{{employees_base_url}}/{{employee_scope}}/api/reports/kpis"}}
+      ]
+    },
+    {
+      "name": "Admin / RBAC",
+      "item": [
+        {"name": "API · System permissions", "request": {"method": "GET", "header": [{"key": "X-Correlation-ID", "value": "{{correlation_id}}"}], "url": "{{api_base_url}}/api/admin/permissions/system"}},
+        {"name": "API · Employees", "request": {"method": "GET", "header": [{"key": "X-Correlation-ID", "value": "{{correlation_id}}"}], "url": "{{api_base_url}}/api/employees"}},
+        {"name": "Proxy · Roles", "request": {"method": "GET", "header": [{"key": "X-Correlation-ID", "value": "{{correlation_id}}"}], "url": "{{employees_base_url}}/admin/api/employees/roles"}}
+      ]
+    },
+    {
+      "name": "Tables / Areas",
+      "item": [
+        {"name": "API · Tables", "request": {"method": "GET", "header": [{"key": "X-Correlation-ID", "value": "{{correlation_id}}"}], "url": "{{api_base_url}}/api/tables"}},
+        {"name": "API · Areas", "request": {"method": "GET", "header": [{"key": "X-Correlation-ID", "value": "{{correlation_id}}"}], "url": "{{api_base_url}}/api/areas"}},
+        {"name": "Proxy · My tables", "request": {"method": "GET", "header": [{"key": "X-Correlation-ID", "value": "{{correlation_id}}"}], "url": "{{employees_base_url}}/{{employee_scope}}/api/table-assignments/my-tables"}}
+      ]
+    },
+    {
+      "name": "Notifications / Realtime",
+      "item": [
+        {"name": "API · Waiter pending", "request": {"method": "GET", "header": [{"key": "X-Correlation-ID", "value": "{{correlation_id}}"}], "url": "{{api_base_url}}/api/notifications/waiter/pending"}},
+        {"name": "API · Realtime orders", "request": {"method": "GET", "header": [{"key": "X-Correlation-ID", "value": "{{correlation_id}}"}], "url": "{{api_base_url}}/api/realtime/orders"}},
+        {"name": "API · Realtime notifications", "request": {"method": "GET", "header": [{"key": "X-Correlation-ID", "value": "{{correlation_id}}"}], "url": "{{api_base_url}}/api/realtime/notifications"}}
+      ]
+    },
+    {
+      "name": "Branding / Config",
+      "item": [
+        {"name": "API · Public config", "request": {"method": "GET", "header": [], "url": "{{api_base_url}}/api/config/public"}},
+        {"name": "API · Branding config", "request": {"method": "GET", "header": [{"key": "X-Correlation-ID", "value": "{{correlation_id}}"}], "url": "{{api_base_url}}/api/branding/config"}},
+        {"name": "Proxy · Branding config", "request": {"method": "GET", "header": [{"key": "X-Correlation-ID", "value": "{{correlation_id}}"}], "url": "{{employees_base_url}}/{{employee_scope}}/api/branding/config"}}
+      ]
+    }
+  ]
+}

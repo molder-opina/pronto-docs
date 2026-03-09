@@ -1,0 +1,6 @@
+openapi: 3.0.0
+info:
+  title: Pronto Tests Surface
+  version: "1.0.0"
+  description: Superficie de harness y artefactos de prueba; no expone API de negocio propia.
+paths: {}

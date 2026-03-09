@@ -34,7 +34,7 @@ deps:
 ```
 
 ## Operación / Ejecución
-- Ejecutar desde raíz: `./pronto-scripts/bin/<script>`.
+- Ejecutar desde raíz: `pronto-scripts/bin/<script>`.
 
 ## Validaciones / Tests
 - Scripts deben ser idempotentes.

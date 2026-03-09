@@ -10,7 +10,7 @@
       "ports": [6082],
       "compose_files": ["./docker-compose.yml", "./docker-compose.api.yml"],
       "contracts_path": "./pronto-docs/contracts/pronto-api",
-      "tests_path": "./pronto-tests/pronto-api",
+      "tests_path": "./pronto-tests",
       "healthchecks": [
         {"kind": "http", "target": "http://localhost:6082/health"}
       ],
@@ -34,7 +34,7 @@
       "ports": [6080],
       "compose_files": ["./docker-compose.yml", "./docker-compose.client.yml"],
       "contracts_path": "./pronto-docs/contracts/pronto-client",
-      "tests_path": "./pronto-tests/pronto-client",
+      "tests_path": "./pronto-tests",
       "healthchecks": [
         {"kind": "http", "target": "http://localhost:6080/health"}
       ],
@@ -57,7 +57,7 @@
       "ports": [6081],
       "compose_files": ["./docker-compose.yml", "./docker-compose.employees.yml"],
       "contracts_path": "./pronto-docs/contracts/pronto-employees",
-      "tests_path": "./pronto-tests/pronto-employees",
+      "tests_path": "./pronto-tests",
       "healthchecks": [
         {"kind": "http", "target": "http://localhost:6081/health"}
       ],
@@ -80,7 +80,7 @@
       "ports": [9088],
       "compose_files": ["./docker-compose.yml", "./docker-compose.employees.yml"],
       "contracts_path": "./pronto-docs/contracts/pronto-static",
-      "tests_path": "./pronto-tests/pronto-static",
+      "tests_path": "./pronto-tests",
       "healthchecks": [
         {"kind": "http", "target": "http://localhost:9088/"}
       ],
@@ -103,7 +103,7 @@
       "ports": "none",
       "compose_files": [],
       "contracts_path": "./pronto-docs/contracts/pronto-libs",
-      "tests_path": "./pronto-tests/pronto-libs",
+      "tests_path": "./pronto-tests",
       "healthchecks": [],
       "owns_paths": ["pronto-libs"],
       "shared_paths": ["pronto-libs/src/pronto_shared"],
@@ -124,7 +124,7 @@
       "ports": [5432],
       "compose_files": ["./docker-compose.yml", "./docker-compose.infra.yml"],
       "contracts_path": "./pronto-docs/contracts/pronto-postgresql",
-      "tests_path": "./pronto-tests/pronto-postgresql",
+      "tests_path": "./pronto-tests",
       "healthchecks": [
         {"kind": "cmd", "target": "pg_isready -U pronto -h localhost -p 5432"}
       ],
@@ -145,7 +145,7 @@
       "ports": [6379],
       "compose_files": ["./docker-compose.yml", "./docker-compose.infra.yml"],
       "contracts_path": "./pronto-docs/contracts/pronto-redis",
-      "tests_path": "./pronto-tests/pronto-redis",
+      "tests_path": "./pronto-tests",
       "healthchecks": [
         {"kind": "cmd", "target": "redis-cli -h localhost -p 6379 ping | grep -qx PONG"}
       ],
@@ -166,7 +166,7 @@
       "ports": "none",
       "compose_files": [],
       "contracts_path": "./pronto-docs/contracts/pronto-scripts",
-      "tests_path": "./pronto-tests/pronto-scripts",
+      "tests_path": "./pronto-tests",
       "healthchecks": [],
       "owns_paths": ["pronto-scripts"],
       "shared_paths": [],

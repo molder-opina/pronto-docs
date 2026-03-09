@@ -66,7 +66,7 @@ Se ha implementado exitosamente un sistema de reautenticación rápida para syst
 ### Documentación
 
 - ✅ `IMPLEMENTACION_REAUTH.md` - Documentación completa del sistema
-- ✅ `scripts/apply_reauth_implementation.sh` - Script de verificación
+- ✅ `scripts/apply-reauth-implementation.sh` - Script de verificación
 
 ---
 

@@ -1,0 +1,6 @@
+- As a waiter, I want to be able to enable or disable automatic table assignment in my preferences. When enabled, any table I accept an order from that doesn't have a waiter should be assigned to me.
+- When I need to move a customer's session from one table to another, the system must prevent me from moving them to a table that is already occupied.
+- When merging two or more tables, the system must ensure the operation is all-or-nothing. If the merge fails for any reason, no tables should be partially merged.
+- As a waiter, I need the ability to move a customer's entire order and session from their current table to a new one.
+- I need to be able to merge the bills from two or more different tables into a single bill for a group that wants to pay together.
+- I need a way to split a customer's bill. The system should let me split it by individual items, or divide the total cost equally among a number of people.

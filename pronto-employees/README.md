@@ -17,29 +17,20 @@ pronto-employees/
 ├── src/
 │   └── pronto_employees/
 │       ├── app.py              # Flask application factory
-│       ├── routes/             # HTTP route handlers
-│       │   ├── dashboard.py    # Dashboard views
-│       │   ├── auth.py         # Authentication routes
-│       │   ├── roles.py        # Role management
-│       │   ├── api_legacy.py   # Legacy API endpoints
-│       │   ├── api_scoped.py   # Scoped API endpoints
-│       │   ├── api/            # REST API endpoints (25+ modules)
-│       │   ├── waiter/         # Waiter-specific routes
-│       │   ├── chef/           # Chef-specific routes
-│       │   ├── cashier/        # Cashier-specific routes
-│       │   ├── admin/          # Admin-specific routes
-│       │   └── system/         # System admin routes
+│       ├── routes/
+│       │   ├── api/            # Proxy scope-aware y utilidades web
+│       │   ├── waiter/         # Rutas waiter
+│       │   ├── chef/           # Rutas chef
+│       │   ├── cashier/        # Rutas cashier
+│       │   ├── admin/          # Rutas admin
+│       │   └── system/         # Rutas system
 │       ├── decorators/         # Authentication decorators
 │       └── utils/              # Utility functions
-├── templates/                  # Jinja2 HTML templates
-
-├── check_db.py                 # Database checker
-├── reset_passwords.py         # Password reset utility
-├── list_employees.py          # Employee lister
-├── verify_hash_check.py        # Hash verification
-├── inspect_security.py         # Security inspector
-├── pyproject.toml             # Python project configuration
-└── Dockerfile                 # Container configuration
+├── tests/                      # Regression/security tests del servicio
+├── docs/                       # Documentación local del servicio
+├── tools/                      # Tooling operativo local
+├── requirements.txt            # Python dependencies
+└── Dockerfile                  # Container configuration
 ```
 
 ## Role-Based Interfaces
@@ -51,272 +42,79 @@ pronto-employees/
 ### Waiter Console (`/waiter`)
 - `GET /waiter` - Waiter dashboard
 - `GET /waiter/dashboard` - Main waiter dashboard
-- `GET /waiter/orders` - Active orders management
-- `GET /waiter/sessions` - Table session management
-- `GET /waiter/menu` - Menu viewing
-- `POST /waiter/auth/login` - Waiter login
-- `POST /waiter/auth/logout` - Waiter logout
+- `GET /waiter/api/<path:subpath>` - Proxy técnico hacia `pronto-api`
+- `GET|POST /waiter/login` - Waiter login web
+- `GET|POST /waiter/logout` - Waiter logout web
 
 ### Chef Console (`/chef`)
 - `GET /chef` - Chef dashboard
 - `GET /chef/dashboard` - Kitchen orders display
-- `GET /chef/orders` - Order queue management
-- `GET /chef/orders/<order_id>` - Order details
-- `PUT /chef/orders/<order_id>/status` - Update order status
-- `POST /chef/auth/login` - Chef login
-- `POST /chef/auth/logout` - Chef logout
+- `GET /chef/api/<path:subpath>` - Proxy técnico hacia `pronto-api`
+- `GET|POST /chef/login` - Chef login web
+- `GET|POST /chef/logout` - Chef logout web
 
 ### Cashier Console (`/cashier`)
 - `GET /cashier` - Cashier dashboard
 - `GET /cashier/dashboard` - Payment management
-- `GET /cashier/orders` - Orders requiring payment
-- `POST /cashier/orders/<order_id>/pay` - Process payment
-- `POST /cashier/auth/login` - Cashier login
-- `POST /cashier/auth/logout` - Cashier logout
+- `GET /cashier/api/<path:subpath>` - Proxy técnico hacia `pronto-api`
+- `GET|POST /cashier/login` - Cashier login web
+- `GET|POST /cashier/logout` - Cashier logout web
 
 ### Admin Console (`/admin`)
 - `GET /admin` - Admin dashboard
 - `GET /admin/dashboard` - Administrative overview
-- `GET /admin/employees` - Employee management
-- `GET /admin/menu` - Menu management
-- `GET /admin/settings` - System settings
-- `GET /admin/reports` - Business reports
-- `POST /admin/auth/login` - Admin login
-- `POST /admin/auth/logout` - Admin logout
+- `GET /admin/api/<path:subpath>` - Proxy técnico hacia `pronto-api`
+- `GET|POST /admin/login` - Admin login web
+- `GET|POST /admin/logout` - Admin logout web
 
 ### System Console (`/system`)
 - `GET /system` - System admin dashboard
 - `GET /system/login` - System login
 - `POST /system/login` - System login
-- `GET /system/health` - System health check
-- `POST /system/auth/login` - System admin login
+- `GET /system/api/<path:subpath>` - Proxy técnico hacia `pronto-api`
+- `GET|POST /system/logout` - System logout web
 
 ## API Endpoints
 
-### Authentication (`/api/auth`)
-- `POST /api/auth/login` - Employee login
-- `POST /api/auth/logout` - Employee logout
-- `POST /api/auth/reauth` - Re-authenticate session
-- `POST /api/auth/verify` - Verify authentication status
+Este servicio **no es la API de negocio canónica**; su superficie `/.../api/*` es un proxy scope-aware hacia `pronto-api`.
 
-### Orders (`/api/orders`)
-- `GET /api/orders` - List orders (with filters)
-- `GET /api/orders/<order_id>` - Get order details
-- `PUT /api/orders/<order_id>` - Update order
-- `DELETE /api/orders/<order_id>` - Delete order
-- `POST /api/orders/<order_id>/status` - Update order status
-- `POST /api/orders/<order_id>/assign` - Assign order to employee
-- `GET /api/orders/metrics` - Get order metrics
+### Superficies web por scope
+- `/{scope}/login` y `/{scope}/logout` para web auth por consola
+- `/{scope}/dashboard` para entrada SSR de cada consola
+- `/{scope}/api`, `/{scope}/api/`, `/{scope}/api/<path:subpath>` para proxy técnico transport-only
 
-### Sessions (`/api/sessions`)
-- `GET /api/sessions` - List active sessions
-- `GET /api/sessions/<session_id>` - Get session details
-- `POST /api/sessions` - Create new session
-- `PUT /api/sessions/<session_id>` - Update session
-- `DELETE /api/sessions/<session_id>` - Close session
-- `POST /api/sessions/<session_id>/merge` - Merge sessions
-- `POST /api/sessions/<session_id>/split` - Split session
-- `GET /api/sessions/<session_id>/orders` - Get session orders
+### Endpoints proxied representativos
+- `/{scope}/api/orders`
+- `/{scope}/api/sessions`
+- `/{scope}/api/employees/roles`
+- `/{scope}/api/reports/kpis`
+- `/{scope}/api/branding/config`
 
-### Menu (`/api/menu`)
-- `GET /api/menu` - Get full menu
-- `GET /api/menu/categories` - Get menu categories
-- `GET /api/menu/items` - Get menu items
-- `POST /api/menu/categories` - Create category
-- `PUT /api/menu/categories/<id>` - Update category
-- `DELETE /api/menu/categories/<id>` - Delete category
-- `POST /api/menu/items` - Create menu item
-- `PUT /api/menu/items/<id>` - Update menu item
-- `DELETE /api/menu/items/<id>` - Delete menu item
-- `POST /api/menu/items/<id>/image` - Upload item image
+### Reglas operativas
+- El proxy conserva aislamiento por scope (`waiter`, `chef`, `cashier`, `admin`, `system`)
+- La lógica de negocio vive en `pronto-api`
+- Las mutaciones a `/{scope}/api/*` deben propagar CSRF y correlation ID
 
-### Employees (`/api/employees`)
-- `GET /api/employees` - List employees
-- `GET /api/employees/<employee_id>` - Get employee details
-- `POST /api/employees` - Create employee
-- `PUT /api/employees/<employee_id>` - Update employee
-- `DELETE /api/employees/<employee_id>` - Delete employee
-- `POST /api/employees/<employee_id>/reset-password` - Reset password
-- `GET /api/employees/<employee_id>/permissions` - Get employee permissions
-
-### Tables (`/api/tables`)
-- `GET /api/tables` - List all tables
-- `GET /api/tables/<table_id>` - Get table details
-- `POST /api/tables` - Create table
-- `PUT /api/tables/<table_id>` - Update table
-- `DELETE /api/tables/<table_id>` - Delete table
-- `POST /api/tables/<table_id>/assign` - Assign to employee
-- `POST /api/tables/<table_id>/release` - Release from employee
-
-### Customers (`/api/customers`)
-- `GET /api/customers` - List customers
-- `GET /api/customers/<customer_id>` - Get customer details
-- `PUT /api/customers/<customer_id>` - Update customer
-- `GET /api/customers/<customer_id>/orders` - Get customer orders
-
-### Roles (`/api/roles`)
-- `GET /api/roles` - List all roles
-- `GET /api/roles/<role_name>` - Get role details
-- `GET /api/roles/<role_name>/permissions` - Get role permissions
-- `PUT /api/roles/<role_name>/permissions` - Update role permissions
-
-### Promotions (`/api/promotions`)
-- `GET /api/promotions` - List promotions
-- `GET /api/promotions/<promotion_id>` - Get promotion details
-- `POST /api/promotions` - Create promotion
-- `PUT /api/promotions/<promotion_id>` - Update promotion
-- `DELETE /api/promotions/<promotion_id>` - Delete promotion
-- `POST /api/promotions/<promotion_id>/activate` - Activate promotion
-- `POST /api/promotions/<promotion_id>/deactivate` - Deactivate promotion
-
-### Discount Codes (`/api/discount_codes`)
-- `GET /api/discount_codes` - List discount codes
-- `GET /api/discount_codes/<code>` - Get code details
-- `POST /api/discount_codes` - Create discount code
-- `PUT /api/discount_codes/<code>` - Update discount code
-- `DELETE /api/discount_codes/<code>` - Delete discount code
-
-### Modifiers (`/api/modifiers`)
-- `GET /api/modifiers` - List modifiers
-- `GET /api/modifiers/<modifier_id>` - Get modifier details
-- `POST /api/modifiers` - Create modifier
-- `PUT /api/modifiers/<modifier_id>` - Update modifier
-- `DELETE /api/modifiers/<modifier_id>` - Delete modifier
-
-### Waiter Calls (`/api/waiter_calls`)
-- `GET /api/waiter_calls` - List active waiter calls
-- `GET /api/waiter_calls/<call_id>` - Get call details
-- `DELETE /api/waiter_calls/<call_id>` - Dismiss call
-- `POST /api/waiter_calls/<call_id>/respond` - Respond to call
-
-### Reports (`/api/reports`)
-- `GET /api/reports/sales` - Sales report
-- `GET /api/reports/orders` - Orders report
-- `GET /api/reports/employees` - Employee performance report
-- `GET /api/reports/customers` - Customer report
-- `GET /api/reports/items` - Item performance report
-- `GET /api/reports/tips` - Tips report
-
-### Analytics (`/api/analytics`)
-- `GET /api/analytics/dashboard` - Dashboard analytics
-- `GET /api/analytics/sales` - Sales analytics
-- `GET /api/analytics/traffic` - Traffic analytics
-- `GET /api/analytics/performance` - Performance analytics
-
-### Feedback (`/api/feedback`)
-- `GET /api/feedback` - List feedback
-- `GET /api/feedback/<feedback_id>` - Get feedback details
-- `POST /api/feedback/<feedback_id>/respond` - Respond to feedback
-- `DELETE /api/feedback/<feedback_id>` - Delete feedback
-
-### Settings (`/api/settings`)
-- `GET /api/settings` - Get all settings
-- `GET /api/settings/<key>` - Get setting value
-- `PUT /api/settings/<key>` - Update setting value
-- `POST /api/settings/reset` - Reset settings to defaults
-
-### Business Info (`/api/business_info`)
-- `GET /api/business_info` - Get business information
-- `PUT /api/business_info` - Update business information
-- `GET /api/business_info/hours` - Get business hours
-- `PUT /api/business_info/hours` - Update business hours
-
-### Branding (`/api/branding`)
-- `GET /api/branding` - Get branding settings
-- `PUT /api/branding` - Update branding settings
-- `POST /api/branding/logo` - Upload logo
-- `POST /api/branding/colors` - Update color scheme
-
-### Images (`/api/images`)
-- `POST /api/images/upload` - Upload image
-- `GET /api/images/<image_id>` - Get image
-- `DELETE /api/images/<image_id>` - Delete image
-- `POST /api/images/<image_id>/optimize` - Optimize image
-
-### Admin Config (`/api/admin_config`)
-- `GET /api/admin_config` - Get admin configuration
-- `PUT /api/admin_config` - Update admin configuration
-- `POST /api/admin_config/backup` - Backup configuration
-- `POST /api/admin_config/restore` - Restore configuration
-
-### Realtime (`/api/realtime`)
-- `GET /api/realtime/orders` - Long-poll order events
-- `GET /api/realtime/notifications` - Long-poll staff notifications
-
-### Areas (`/api/areas`)
-- `GET /api/areas` - List areas
-- `GET /api/areas/<area_id>` - Get area details
-- `POST /api/areas` - Create area
-- `PUT /api/areas/<area_id>` - Update area
-- `DELETE /api/areas/<area_id>` - Delete area
-
-### Day Periods (`/api/day_periods`)
-- `GET /api/day_periods` - List day periods
-- `GET /api/day_periods/<period_id>` - Get period details
-- `POST /api/day_periods` - Create day period
-- `PUT /api/day_periods/<period_id>` - Update day period
-- `DELETE /api/day_periods/<period_id>` - Delete day period
-
-### Table Assignments (`/api/table_assignments`)
-- `GET /api/table_assignments` - List table assignments
-- `POST /api/table_assignments` - Create assignment
-- `PUT /api/table_assignments/<id>` - Update assignment
-- `DELETE /api/table_assignments/<id>` - Delete assignment
-
-### Notifications (`/api/notifications`)
-- `POST /api/notifications/waiter/call` - Create waiter call
-- `GET /api/notifications/waiter/pending` - List pending waiter calls
-- `POST /api/notifications/waiter/confirm/<id>` - Confirm waiter call
-- `POST /api/notifications/admin/call` - Create admin call
-
-### Config (`/api/config`)
-- `GET /api/config` - Get application config
-- `GET /api/config/features` - Get feature flags
-- `PUT /api/config/features` - Update feature flags
-
-### Debug (`/api/debug`)
-- `GET /api/debug/info` - Debug information
-- `GET /api/debug/session` - Debug session data
-- `GET /api/debug/permissions` - Debug permissions
-- `GET /api/debug/database` - Debug database queries
-- `POST /api/debug/fix` - Fix common issues
+### Documentación canónica
+- Inventario endpoint por endpoint: `../routes/pronto-employees-endpoints.md`
+- Contrato web/proxy: `../contracts/pronto-employees/openapi.yaml`
+- Matriz/índice global: `../SYSTEM_ROUTES_MATRIX.md`, `../API_DOMAINS_INDEX.md`
 
 ## Scoped API Endpoints
 
-Each role has scoped API endpoints that are validated against the JWT scope:
+Cada consola usa el mismo patrón:
 
-### Waiter Scoped API (`/waiter/api`)
-- Inherits all `/api/*` endpoints
-- Only accessible with `waiter` scope in JWT
-- Waiter-specific permission checks applied
-
-### Chef Scoped API (`/chef/api`)
-- Inherits all `/api/*` endpoints
-- Only accessible with `chef` scope in JWT
-- Chef-specific permission checks applied
-
-### Cashier Scoped API (`/cashier/api`)
-- Inherits all `/api/*` endpoints
-- Only accessible with `cashier` scope in JWT
-- Cashier-specific permission checks applied
-
-### Admin Scoped API (`/admin/api`)
-- Inherits all `/api/*` endpoints
-- Only accessible with `admin` scope in JWT
-- Admin-specific permission checks applied
-
-### System Scoped API (`/system/api`)
-- Inherits all `/api/*` endpoints
-- Only accessible with `system` scope in JWT
-- System admin-specific permission checks applied
+- `/{scope}/api/*` reenvía hacia `pronto-api`
+- el proxy valida que el `jwt_role` coincida con el scope URL
+- las cookies de auth son namespaced por consola (`access_token_{scope}`, `refresh_token_{scope}`)
+- el proxy propaga `X-Correlation-ID`, `X-CSRFToken`, `Content-Type` y `Content-Length`
 
 ## Security Features
 
 ### Authentication
 - **JWT-based authentication** with role-based access control (RBAC)
-- **Multi-scope sessions** for different employee roles
-- **Session management** with automatic token refresh
-- **Logout and re-authentication** support
+- **Cookies namespaced por scope** para aislar `waiter`, `chef`, `cashier`, `admin` y `system`
+- **Web auth por consola** vía `/{scope}/login` y `/{scope}/logout`
 
 ### Authorization
 - **Permission system** with granular permissions
@@ -331,9 +129,10 @@ Each role has scoped API endpoints that are validated against the JWT scope:
 - **CORS** restricted to allowed origins
 
 ### CSRF Protection
-- **CSRF protection** enabled for all non-API routes
-- **API routes exempt** from CSRF (JWT used instead)
-- **CSRF token validity** set to 1 hour
+- **CSRF protection** enabled en la capa web/proxy
+- **Mutaciones a `/{scope}/api/*`** deben enviar `X-CSRFToken`
+- **Login por scope** es excepción controlada documentada en guardrails
+- **El proxy** reenvía `X-CSRFToken` hacia `pronto-api` cuando corresponde
 
 ### Audit Middleware
 - **Audit logging** for all actions
@@ -475,25 +274,7 @@ Standard error format:
 
 ## Utility Scripts
 
-### check_db.py
-- **Purpose:** Check database connectivity and schema
-- **Usage:** `python check_db.py`
-
-### reset_passwords.py
-- **Purpose:** Reset employee passwords
-- **Usage:** `python reset_passwords.py --email <email> --password <password>`
-
-### list_employees.py
-- **Purpose:** List all employees in the system
-- **Usage:** `python list_employees.py`
-
-### verify_hash_check.py
-- **Purpose:** Verify password hash checks
-- **Usage:** `python verify_hash_check.py`
-
-### inspect_security.py
-- **Purpose:** Inspect security configuration
-- **Usage:** `python inspect_security.py`
+Use el tooling vigente del servicio bajo `tools/` y los scripts operativos compartidos documentados en `../contracts/pronto-scripts/files.md`.
 
 ## Development
 
@@ -501,13 +282,12 @@ Standard error format:
 ```bash
 # Install dependencies
 pip install -r requirements.txt
-npm install
 
 # Start development server
 python -m pronto_employees
 
-# Build frontend
-npm run build
+# Frontend/static build lives in pronto-static
+cd ../pronto-static && npm install && npm run build
 ```
 
 ### Docker Development
@@ -591,7 +371,7 @@ pytest --cov=pronto_employees
 ### Internal Services
 - **pronto-shared** - Shared models and services
 - **pronto-api** - Unified API gateway
-- **pronto-clients** - Customer app integration
+- **pronto-client** - Customer app integration
 
 ## Troubleshooting
 
@@ -655,12 +435,12 @@ pytest --cov=pronto_employees
 ## Related Documentation
 
 - [Architecture Overview](../ARCHITECTURE_OVERVIEW.md)
-- [Directory Structure](../estructura-directorios.md)
-- [API Routes Documentation](../estructura-routes-api.md)
+- [System Modules Index](../modules.yml)
+- [System Routes Catalog](../SYSTEM_ROUTES_CATALOG.md)
 - [Environment Variables](../ENVIRONMENT_VARIABLES.md)
 - [Logging Standard](../LOGGING_STANDARD.md)
-- [Permissions System](../PERMISSIONS_SYSTEM.md)
-- [Pronto-Clients](../pronto-clients/)
+- [Admin / RBAC Domain](../domains/admin-rbac.md)
+- [Pronto-Client](../pronto-clients/)
 - [Pronto-API](../pronto-api/)
 - [Pronto-Shared](../pronto-libs/)
 

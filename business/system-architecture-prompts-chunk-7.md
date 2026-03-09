@@ -1,0 +1,9 @@
+- The system must enforce a strict order lifecycle using a state machine. An order must progress through the states: new, queued, preparing, ready, delivered, paid. Any deviation from the defined transitions is forbidden.
+- All changes to order and payment status must be handled exclusively by the central `OrderStateMachine` service. Direct database writes to these fields are prohibited.
+- The system's architecture must be enforced by automated gates. For example, changes to infrastructure code, use of forbidden patterns like `flask.session` for employees, or undocumented functional changes will be automatically rejected.
+- All endpoints must be secure by default, requiring authentication. CSRF protection must not be disabled.
+- The system will maintain a version number that is automatically incremented by any AI-assisted code change, and a log of these changes will be kept.
+- All API endpoints must be exposed via a canonical `/api/*` path, with routing handled by hostname. The frontend must use a dedicated wrapper for API calls that manages CSRF tokens.
+- Route parameters for entities must match their database model types (UUIDs for major entities like Orders, integers for lookups like Roles).
+- Every request must be tagged with a unique `X-Correlation-ID` that is present in all structured JSON logs for traceability.
+- A strict 'ticket-before-fix' process is mandatory for all bugs, enforced by an agent, to ensure a complete audit trail of all issues and their resolutions.

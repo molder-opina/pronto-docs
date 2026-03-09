@@ -40,6 +40,37 @@ paths:
       responses:
         "200":
           description: Catálogo runtime
+  /api/menu-items/popular:
+    get:
+      summary: Obtener items populares del menú
+      responses:
+        "200":
+          description: Lista de items populares
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MenuItemListResponse"
+  /api/menu-items/{item_id}:
+    get:
+      summary: Obtener detalle de item del menú
+      parameters:
+        - in: path
+          name: item_id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: Detalle del item
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MenuItemDetailResponse"
+        "404":
+          description: Item no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
   /api/menu-categories:
     get:
       summary: Listar taxonomía de categorías y subcategorías
@@ -233,6 +264,531 @@ paths:
       responses:
         "200":
           description: OK
+  /api/auth/login:
+    post:
+      summary: Login de empleado por scope
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EmployeeLoginRequest"
+      responses:
+        "200":
+          description: Login exitoso
+        "401":
+          description: Credenciales inválidas
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/auth/me:
+    get:
+      summary: Perfil autenticado del employee JWT
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200":
+          description: Perfil autenticado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthMeResponse"
+        "401":
+          description: No autenticado
+  /api/auth/refresh:
+    post:
+      summary: Refrescar access token de employee
+      description: Alias legacy disponible también bajo `/api/employees/auth/refresh`.
+      responses:
+        "200":
+          description: Token refrescado
+        "400":
+          description: Scope/header inválido
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: Refresh token inválido o ausente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/auth/logout:
+    post:
+      summary: Cerrar sesión de employee
+      description: Alias legacy disponible también bajo `/api/employees/auth/logout`.
+      responses:
+        "200":
+          description: Logout exitoso
+  /api/client-auth/login:
+    post:
+      summary: Login de cliente canónico en pronto-api
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ClientApiLoginRequest"
+      responses:
+        "200":
+          description: Login exitoso
+        "400":
+          description: Request inválido
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: Credenciales inválidas
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/client-auth/register:
+    post:
+      summary: Registro de cliente canónico en pronto-api
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ClientApiRegisterRequest"
+      responses:
+        "201":
+          description: Registro exitoso
+        "400":
+          description: Request inválido
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: Conflicto de registro
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/client-auth/me:
+    get:
+      summary: Obtener perfil actual del cliente
+      responses:
+        "200":
+          description: Perfil actual del cliente
+        "401":
+          description: No autenticado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    put:
+      summary: Actualizar perfil actual del cliente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ClientApiProfileUpdateRequest"
+      responses:
+        "200":
+          description: Perfil actualizado
+        "400":
+          description: Request inválido
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: No autenticado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/client-auth/logout:
+    post:
+      summary: Logout de cliente canónico en pronto-api
+      parameters:
+        - in: header
+          name: X-PRONTO-CUSTOMER-REF
+          required: false
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: Logout exitoso
+  /api/sessions/open:
+    post:
+      summary: Abrir sesión de mesa (excepción pública controlada)
+      description: Requiere table_id válido. Es la única excepción pública controlada para bootstrap de dining session.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OpenSessionRequest"
+      responses:
+        "201":
+          description: Sesión abierta
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SessionResponse"
+        "400":
+          description: table_id inválido o faltante
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/sessions/me:
+    get:
+      summary: Resolver sesión activa del cliente
+      description: Usa el contexto de cliente/sesión activo del flujo web o BFF.
+      responses:
+        "200":
+          description: Sesión activa o vacía
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SessionResponse"
+  /api/orders:
+    get:
+      summary: Listado operativo de órdenes para employees
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200":
+          description: Lista de órdenes
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EmployeeOrderListResponse"
+  /api/orders/{order_id}/accept:
+    post:
+      summary: Aceptar orden por mesero
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - in: path
+          name: order_id
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Orden aceptada
+        "409":
+          description: Transición inválida
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/orders/{order_id}/kitchen-start:
+    post:
+      summary: Iniciar preparación en cocina
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - in: path
+          name: order_id
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Preparación iniciada
+        "409":
+          description: Transición inválida
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/customer/orders/session/{session_id}/request-check:
+    post:
+      summary: Solicitar cuenta para una sesión cliente
+      parameters:
+        - in: path
+          name: session_id
+          required: true
+          schema: { type: string, format: uuid }
+        - in: header
+          name: X-PRONTO-CUSTOMER-REF
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: Cuenta solicitada
+        "400":
+          description: Request inválido
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/customer/payments/sessions/{session_id}/checkout:
+    get:
+      summary: Obtener resumen de checkout de sesión cliente
+      parameters:
+        - in: path
+          name: session_id
+          required: true
+          schema: { type: string, format: uuid }
+        - in: header
+          name: X-PRONTO-CUSTOMER-REF
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: Checkout de sesión
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CheckoutResponse"
+  /api/customer/payments/sessions/{session_id}/pay:
+    post:
+      summary: Pagar sesión cliente
+      parameters:
+        - in: path
+          name: session_id
+          required: true
+          schema: { type: string, format: uuid }
+        - in: header
+          name: X-PRONTO-CUSTOMER-REF
+          required: true
+          schema: { type: string, format: uuid }
+        - in: header
+          name: X-CSRFToken
+          required: false
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PaySessionRequest"
+      responses:
+        "200":
+          description: Pago procesado
+        "400":
+          description: Request inválido
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/client/invoices:
+    get:
+      summary: Listar facturas del cliente autenticado
+      parameters:
+        - in: header
+          name: X-PRONTO-CUSTOMER-REF
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: Lista de facturas del cliente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InvoiceListResponse"
+  /api/client/invoices/request:
+    post:
+      summary: Solicitar factura de una sesión
+      parameters:
+        - in: header
+          name: X-PRONTO-CUSTOMER-REF
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InvoiceRequest"
+      responses:
+        "200":
+          description: Solicitud de factura procesada
+        "400":
+          description: Datos fiscales o request inválido
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/admin/invoices:
+    get:
+      summary: Listado administrativo de facturas
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200":
+          description: Lista administrativa de facturas
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InvoiceListResponse"
+  /api/admin/permissions/system:
+    get:
+      summary: Listar permisos canónicos del sistema
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200":
+          description: Lista de permisos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PermissionListResponse"
+  /api/employees:
+    get:
+      summary: Listar empleados
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200":
+          description: Lista de empleados
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EmployeeSummaryListResponse"
+  /api/employees/roles:
+    get:
+      summary: Listar roles de employees
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200":
+          description: Lista de roles
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoleListResponse"
+  /api/tables:
+    get:
+      summary: Listar mesas
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200":
+          description: Lista de mesas
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TableListResponse"
+  /api/areas:
+    get:
+      summary: Listar áreas
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200":
+          description: Lista de áreas
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AreaListResponse"
+  /api/notifications/waiter/pending:
+    get:
+      summary: Notificaciones pendientes para waiter
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200":
+          description: Lista de pendientes
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotificationListResponse"
+  /api/realtime/orders:
+    get:
+      summary: Feed realtime de órdenes
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200":
+          description: Feed realtime disponible
+  /api/realtime/notifications:
+    get:
+      summary: Feed realtime de notificaciones
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200":
+          description: Feed realtime de notificaciones disponible
+  /api/reports/kpis:
+    get:
+      summary: Obtener KPIs operativos
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200":
+          description: KPIs operativos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReportResponse"
+  /api/reports/sales:
+    get:
+      summary: Obtener reporte de ventas
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200":
+          description: Reporte de ventas
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReportResponse"
+  /api/reports/top-products:
+    get:
+      summary: Obtener productos top
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200":
+          description: Reporte top-products
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReportResponse"
+  /api/sessions/{session_id}/pay:
+    post:
+      summary: Cobrar sesión desde flujo employee/admin
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - in: path
+          name: session_id
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PaySessionRequest"
+      responses:
+        "200":
+          description: Cobro procesado
+        "400":
+          description: Request inválido
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/branding/config:
+    get:
+      summary: Obtener configuración de branding
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200":
+          description: Configuración de branding
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BrandingConfigResponse"
+  /api/config/public:
+    get:
+      summary: Obtener configuración pública consumible por UI
+      responses:
+        "200":
+          description: Configuración pública
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PublicConfigResponse"
+  /api/public/settings/{key}:
+    get:
+      summary: Obtener setting público por clave
+      parameters:
+        - in: path
+          name: key
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Setting público
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PublicSettingResponse"
 components:
   securitySchemes:
     bearerAuth:
@@ -298,3 +854,338 @@ components:
             table_locked:
               type: boolean
               nullable: true
+    EmployeeLoginRequest:
+      type: object
+      required: [email, password, scope]
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        scope:
+          type: string
+          enum: [waiter, chef, cashier, admin, system]
+    ClientApiLoginRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+    ClientApiRegisterRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        name:
+          type: string
+        first_name:
+          type: string
+        phone:
+          type: string
+          nullable: true
+    ClientApiProfileUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        phone:
+          type: string
+          nullable: true
+        tax_id:
+          type: string
+          nullable: true
+        tax_name:
+          type: string
+          nullable: true
+        tax_address:
+          type: string
+          nullable: true
+        tax_email:
+          type: string
+          format: email
+          nullable: true
+        tax_regime:
+          type: string
+          nullable: true
+    EmployeeProfile:
+      type: object
+      properties:
+        employee_id:
+          type: string
+        role:
+          type: string
+        active_scope:
+          type: string
+        email:
+          type: string
+          format: email
+    AuthMeResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          $ref: "#/components/schemas/EmployeeProfile"
+    OpenSessionRequest:
+      type: object
+      required: [table_id]
+      properties:
+        table_id:
+          type: string
+          format: uuid
+    SessionResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        data:
+          type: object
+          properties:
+            session_id:
+              type: string
+              format: uuid
+            table_id:
+              type: string
+              format: uuid
+              nullable: true
+            status:
+              type: string
+              enum: [open, active, awaiting_tip, awaiting_payment, paid]
+    EmployeeOrderSummary:
+      type: object
+      properties:
+        order_id:
+          type: string
+        workflow_status:
+          type: string
+        payment_status:
+          type: string
+        table_id:
+          type: string
+          format: uuid
+          nullable: true
+    EmployeeOrderListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/EmployeeOrderSummary"
+    CheckoutResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        data:
+          type: object
+          properties:
+            session_id:
+              type: string
+              format: uuid
+            subtotal:
+              type: number
+            total:
+              type: number
+            payment_status:
+              type: string
+    PaySessionRequest:
+      type: object
+      properties:
+        payment_method:
+          type: string
+          example: cash
+        payment_method_id:
+          type: string
+          nullable: true
+    MenuItemDetailResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        data:
+          type: object
+          additionalProperties: true
+    MenuItemListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        data:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+    InvoiceRequest:
+      type: object
+      properties:
+        session_id:
+          type: string
+          format: uuid
+        rfc:
+          type: string
+        legal_name:
+          type: string
+        email:
+          type: string
+          format: email
+    InvoiceListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        data:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+    PermissionListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              description:
+                type: string
+                nullable: true
+    EmployeeSummaryListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              employee_id:
+                type: string
+              role:
+                type: string
+              email:
+                type: string
+                format: email
+                nullable: true
+    RoleListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              role_id:
+                type: integer
+              name:
+                type: string
+              description:
+                type: string
+                nullable: true
+    TableSummary:
+      type: object
+      properties:
+        table_id:
+          type: string
+          format: uuid
+        number:
+          type: string
+          nullable: true
+        area_id:
+          type: integer
+          nullable: true
+    TableListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/TableSummary"
+    AreaSummary:
+      type: object
+      properties:
+        area_id:
+          type: integer
+        name:
+          type: string
+    AreaListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/AreaSummary"
+    NotificationListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              notification_id:
+                type: integer
+              message:
+                type: string
+              status:
+                type: string
+                nullable: true
+    BrandingConfigResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        data:
+          type: object
+          additionalProperties: true
+    PublicConfigResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        data:
+          type: object
+          additionalProperties: true
+    PublicSettingResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        data:
+          type: object
+          properties:
+            key:
+              type: string
+            value:
+              nullable: true
+    ReportResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        data:
+          type: object
+          additionalProperties: true

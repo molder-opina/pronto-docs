@@ -58,7 +58,7 @@ CONTRATOS PUBLICOS:
 Estructura en pronto-docs/contracts/<mod>/
 
 1. openapi.yaml (si aplica)
-2. redis_keys.md
+2. redis-keys.md
 3. events.md
 4. db_schema.sql (generado con pg_dump --schema-only)
 5. files.md (si aplica)

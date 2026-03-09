@@ -116,7 +116,7 @@ rg -n "credentials:\\s*['\\\"]same-origin['\\\"]" pronto-static/src/vue
 # Resultado: ✅ PASS
 
 # Gate 2: fetch mutador directo
-rg -n "fetch\\(.*/api/.*method:\\s*['\\\"](POST|PUT|PATCH|DELETE)" pronto-static/src/vue
+rg -n 'fetch\\(.*/api/.*method:' pronto-static/src/vue
 # Resultado: ✅ PASS
 
 # Gate 3: axios mutador directo

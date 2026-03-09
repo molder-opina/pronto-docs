@@ -25,7 +25,7 @@
 
 **Documentación:**
 14. ✅ `docs/cleanup_report.md` - Análisis de código no usado
-15. ✅ `docs/feedback_system_implementation.md` - Especificaciones técnicas
+15. ✅ `docs/feedback-system-implementation.md` - Especificaciones técnicas
 16. ✅ `docs/IMPLEMENTATION_SUMMARY.md` - Resumen de implementación
 17. ✅ `docs/DEPLOYMENT_STEPS.md` - Pasos de deployment
 18. ✅ `docs/FINAL_STATUS.md` - Este archivo

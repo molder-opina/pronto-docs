@@ -1,12 +1,12 @@
-# Pronto-Clients Documentation
+# Pronto-Client Documentation
 
 ## Overview
 
-Pronto-Clients is the customer-facing application that enables diners to browse menus, place orders, and manage their dining experience through QR codes. It provides a streamlined, self-service interface for restaurant customers.
+Pronto-Client is the customer-facing application that enables diners to browse menus, place orders, and manage their dining experience through QR codes. It provides a streamlined, self-service interface for restaurant customers.
 
 **Port:** 6080
 **Framework:** Flask (Python), TypeScript (Frontend)
-**Authentication:** JWT-based authentication
+**Authentication:** Customer session/BFF auth via `client-auth`, CSRF and `X-PRONTO-CUSTOMER-REF`
 
 ## Architecture
 
@@ -17,107 +17,41 @@ pronto-client/
 ├── src/
 │   └── pronto_clients/
 │       ├── app.py              # Flask application factory
-│       ├── wsgi.py             # WSGI entry point
-│       ├── routes/             # HTTP route handlers
-│       │   ├── web.py          # HTML template routes
-│       │   └── api/            # REST API endpoints
+│       ├── routes/
+│       │   ├── web.py          # HTML/SSR routes
+│       │   └── api/            # BFF/proxy endpoints for cliente
 │       ├── services/           # Business logic layer
 │       └── utils/              # Utility functions
-├── static/                     # Frontend assets
-├── templates/                  # Jinja2 HTML templates
-├── config/                     # Configuration files
-├── pyproject.toml             # Python project configuration
-├── package.json               # Node.js/Frontend dependencies
-└── Dockerfile                 # Container configuration
+├── tests/                      # Regression/API tests del servicio
+├── requirements.txt            # Python dependencies
+├── Dockerfile                  # Container configuration
+└── README.md                   # Service README
 ```
+
+Static assets no viven aquí: la fuente única de estáticos es `pronto-static`.
 
 ## API Endpoints
 
-### Authentication (`/api/auth`)
-- `POST /api/auth/login` - Customer login with email/phone
-- `POST /api/auth/register` - Customer registration
-- `POST /api/auth/verify` - Verify phone/email
-- `POST /api/auth/logout` - Customer logout
+Este servicio expone un **BFF/SSR cliente**; la lógica de negocio canónica vive en `pronto-api`.
 
-### Orders (`/api/orders`)
-- `POST /api/orders` - Create a new order (max 50 items)
-- `GET /api/orders/<order_id>` - Get order details
-- `GET /api/orders/session/<session_id>` - Get orders for a session
-- `PUT /api/orders/<order_id>` - Update order
-- `DELETE /api/orders/<order_id>` - Cancel order
-- `POST /api/orders/<order_id>/feedback` - Submit feedback
+### Superficies BFF principales
+- **Auth cliente:** `/api/client-auth/csrf`, `/api/client-auth/login`, `/api/client-auth/register`, `/api/client-auth/logout`, `/api/client-auth/me`
+- **Menu/config:** `/api/menu`, `/api/menu/categories`, `/api/menu/items`, `/api/config/public`
+- **Sesiones cliente:** `/api/sessions/open`, `/api/sessions/me`, `/api/sessions/table-context`, `/api/sessions/<uuid:session_id>/timeout`
+- **Órdenes cliente:** `/api/customer/orders`, `/api/customer/orders/session/<session_id>/request-check`, `/api/orders/<uuid:order_id>`, `/api/orders/<uuid:order_id>/items`, `/api/orders/send-confirmation`
+- **Pagos cliente:** `/api/sessions/<uuid:session_id>/pay`, `/api/sessions/<uuid:session_id>/pay/cash`, `/api/sessions/<uuid:session_id>/pay/clip`, `/api/sessions/<uuid:session_id>/pay/stripe`, `/api/methods`
+- **Split bills / waiter calls:** `/api/sessions/<uuid:session_id>/split-bill`, `/api/split-bills/*`, `/api/call-waiter`, `/api/cancel`, `/api/status/<int:call>`
+- **Soporte y feedback:** `/api`, `/api/feedback/*`, `/api/shortcuts`
 
-### Menu (`/api/menu`)
-- `GET /api/menu` - Fetch menu categories and items
-- `GET /api/menu/categories` - Get menu categories
-- `GET /api/menu/items` - Get menu items with modifiers
+### Web routes principales
+- `GET /` - Menu/landing SSR
+- `GET /checkout` - Checkout SSR
+- `GET /thank-you` - Confirmación SSR
 
-### Sessions (`/api/sessions`)
-- `POST /api/sessions` - Create dining session
-- `GET /api/sessions/<session_id>` - Get session details
-- `PUT /api/sessions/<session_id>` - Update session
-- `POST /api/sessions/<session_id>/merge` - Merge sessions
-- `POST /api/sessions/<session_id>/split` - Split session into multiple bills
-
-### Payments (`/api/payments`)
-- `POST /api/payments` - Initiate payment (cash/credit)
-- `GET /api/payments/<payment_id>` - Get payment status
-- `POST /api/payments/stripe` - Process Stripe payment
-- `POST /api/payments/cash` - Process cash payment
-
-### Stripe Payments (`/api/stripe_payments`)
-- `POST /api/stripe_payments/create-intent` - Create Stripe payment intent
-- `POST /api/stripe_payments/confirm` - Confirm Stripe payment
-- `POST /api/stripe_payments/cancel` - Cancel Stripe payment
-
-### Split Bills (`/api/split_bills`)
-- `POST /api/split_bills` - Split bill by items or amount
-- `GET /api/split_bills/<session_id>` - Get split bill options
-- `POST /api/split_bills/apply` - Apply split to session
-
-### Feedback (`/api/feedback`)
-- `POST /api/feedback` - Submit feedback form
-- `GET /api/feedback/<feedback_id>` - Get feedback details
-- `POST /api/feedback/email` - Submit feedback via email
-
-### Promotions (`/api/promotions`)
-- `GET /api/promotions` - Get active promotions
-- `GET /api/promotions/<promotion_id>` - Get promotion details
-- `POST /api/promotions/<promotion_id>/apply` - Apply promotion to order
-
-### Support (`/api/support`)
-- `POST /api/support` - Request support
-- `GET /api/support/tickets` - Get support tickets
-
-### Waiter Calls (`/api/call-waiter`)
-- `POST /api/call-waiter` - Call waiter
-- `GET /api/call-waiter/status/<call_id>` - Get waiter call status
-- `GET /api/notifications/waiter/status/<call_id>` - Get waiter call status
-
-### Shortcuts (`/api/shortcuts`)
-- `GET /api/shortcuts` - Get app shortcuts
-- `POST /api/shortcuts/track` - Track shortcut usage
-
-### Config (`/api/config`)
-- `GET /api/config` - Get app configuration
-- `GET /api/config/business` - Get business info
-
-### Business Info (`/api/business_info`)
-- `GET /api/business_info` - Get business information
-- `GET /api/business_info/hours` - Get business hours
-
-### Health (`/health`)
-- `GET /health` - Health check endpoint
-
-### Debug (`/api/debug`)
-- `GET /api/debug/info` - Debug information
-- `GET /api/debug/session` - Debug session data
-- `POST /api/debug/fix` - Fix common issues
-
-### Web Routes
-- `GET /` - Main customer menu page
-- `GET /checkout` - Checkout page
-- `GET /thank-you` - Order confirmation page
+### Documentación canónica
+- Inventario endpoint por endpoint: `../routes/pronto-client-endpoints.md`
+- Contrato BFF: `../contracts/pronto-client/openapi.yaml`
+- Superficies por dominio: `../domains/README.md`
 
 ## Services
 
@@ -141,7 +75,9 @@ pronto-client/
 ## Security Features
 
 ### Authentication
-- **JWT-based authentication** instead of server-side sessions
+- **BFF de autenticación cliente** bajo `/api/client-auth/*`
+- **CSRF** obligatorio en mutaciones
+- **Propagación** de identidad cliente vía `X-PRONTO-CUSTOMER-REF` hacia `pronto-api`
 - **CSRF Protection** enabled for all non-API routes
 - **Rate Limiting** on order creation (10 requests/60 seconds)
 
@@ -187,17 +123,13 @@ pronto-client/
 ## Frontend Architecture
 
 ### TypeScript/Vite Setup
-- **Build tool:** Vite
-- **Entry points:**
-  - `static/js/src/entrypoints/base.ts` - Base client functionality
-  - `static/js/src/entrypoints/menu.ts` - Menu page logic
-  - `static/js/src/entrypoints/thank-you.ts` - Thank you page logic
+- **Build tool:** Vite en `pronto-static`
+- **Entry points canónicos:** `pronto-static/src/vue/clients/entrypoints/base.ts`, `menu.ts`, `thank-you.ts`
 
 ### Static Assets
-- **CSS:** Organized in `static/css/` with shared and client-specific styles
-- **JavaScript:** TypeScript compiled via Vite
-- **Images:** Served from `pronto-static` container
-- **Assets paths:** Configured via `PRONTO_STATIC_CONTAINER_HOST`
+- **CSS/JS/Images:** viven exclusivamente en `pronto-static`
+- **El SSR cliente consume** assets vía variables de template (`assets_css_clients`, `assets_js_clients`, `assets_images`, `restaurant_assets`, `static_host_url`)
+- **La home publicada** consume snapshots estáticos servidos por el static host
 
 ### Template Structure
 - `templates/index.html` - Main menu page
@@ -257,22 +189,21 @@ Standard error format:
 ```bash
 # Install dependencies
 pip install -r requirements.txt
-npm install
 
 # Start development server
 python -m pronto_clients
 
-# Build frontend
-npm run build
+# Frontend/static build lives in pronto-static
+cd ../pronto-static && npm install && npm run build
 ```
 
 ### Docker Development
 ```bash
 # Build container
-docker build -t pronto-clients .
+docker build -t pronto-client .
 
 # Run container
-docker run -p 6080:6080 pronto-clients
+docker run -p 6080:6080 pronto-client
 ```
 
 ### Testing
@@ -398,8 +329,8 @@ pytest --cov=pronto_clients
 ## Related Documentation
 
 - [Architecture Overview](../ARCHITECTURE_OVERVIEW.md)
-- [Directory Structure](../estructura-directorios.md)
-- [API Routes Documentation](../estructura-routes-api.md)
+- [System Modules Index](../modules.yml)
+- [System Routes Catalog](../SYSTEM_ROUTES_CATALOG.md)
 - [Environment Variables](../ENVIRONMENT_VARIABLES.md)
 - [Logging Standard](../LOGGING_STANDARD.md)
 - [Pronto-Employees](../pronto-employees/)
@@ -408,4 +339,4 @@ pytest --cov=pronto_clients
 
 ## Contact
 
-For questions or issues related to pronto-clients, please refer to the main project documentation or contact the development team.
+For questions or issues related to pronto-client, please refer to the main project documentation or contact the development team.

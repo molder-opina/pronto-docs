@@ -24,7 +24,7 @@ UBICACION:
   - `pronto-static/src/vue/employees/shared/router/index.ts`
   - `pronto-static/src/vue/employees/App.vue`
   - `pronto-tests/tests/functionality/ui/playwright-tests/employees/orders.spec.ts`
-  - `pronto-tests/tests/functionality/e2e/chef_notifications.spec.ts`
+  - `pronto-tests/tests/functionality/e2e/chef-notifications.spec.ts`
 EVIDENCIA:
   - Snapshot Playwright: `Iniciando Pronto...`
   - Inspección con Playwright: `http://localhost:6081/chef/api/auth/me` respondió 401 más de 2000 veces en ~4s

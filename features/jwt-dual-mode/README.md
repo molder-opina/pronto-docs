@@ -117,4 +117,4 @@ npm test
 ## Related Documentation
 
 - [PLAN.md](PLAN.md) - Implementation plan
-- [AGENTS.md](../../AGENTS.md) - Development guidelines
+- [AGENTS.md](../../../AGENTS.md) - Development guidelines

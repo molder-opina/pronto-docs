@@ -1,0 +1,1 @@
+- As an administrator, I need a global setting to control whether waiters are allowed to process payments or if that function should be restricted to cashiers and admins.

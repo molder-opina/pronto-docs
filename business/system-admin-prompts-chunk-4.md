@@ -1,0 +1,24 @@
+
+# System Administration & Developer Experience Prompts (Chunk 4)
+
+## System Initialization and Configuration
+
+- **Prompt:** "As a developer, I need to be able to introspect the application's routes without starting all the services like database and environment validation. Implement a `PRONTO_ROUTES_ONLY=1` mode in `create_app()` that only registers routes and blueprints, deferring all side-effects (DB init, env validation, etc.) to a separate `init_runtime(app)` function. This will ensure a faster, more reliable, and deterministic development and CI/CD process."
+- **Prompt:** "To ensure application stability and predictable behavior, the global `window.APP_CONFIG` must be initialized once, correctly, and remain unchanged thereafter. We must eliminate any 'patch' scripts that modify this configuration at runtime and instead fix the underlying legacy code that causes the configuration to be overwritten."
+
+## Authentication and Security
+
+- **Prompt:** "To enhance security, a user's session in the system administration console (`/system`) must be completely isolated. When navigating to any other part of the application, such as the waiter or chef consoles, the user must be required to provide separate login credentials for that specific context. Remove all `reauth` or `handoff` functionality from the `/system` scope to prevent any cross-scope access."
+- **Prompt:** "For security and standardization, all system login and reauthentication processes must use the `POST /system/login` endpoint. The non-standard `/system/system_login` endpoint must be removed, and all authentication handoffs (e.g., from token reauthentication) must be consolidated into the single, correct `/system/login` route."
+- **Prompt:** "The highest privilege administrative role in the system must be consistently named 'system'. Conduct a global search and replace to eliminate all legacy role names like 'super admin', 'superadmin', or 'super_admin' from the codebase, documentation, tests, and scripts to ensure a single, canonical name for this role."
+- **Prompt:** "To enforce clear separation of concerns and enhance security, the customer-facing API (`pronto-client`) must be strictly prohibited from performing any table management operations like updating or deleting tables. Identify and remove any legacy frontend code making such calls, and eliminate the corresponding 'dummy' API endpoints (`PUT/DELETE /tables/<id>`) on the backend to maintain a clean and secure API."
+
+## API and Frontend Architecture
+
+- **Prompt:** "To ensure the stability and completeness of the application, we must implement an automated 'API parity check' in our CI/CD pipeline. This check will fail if the frontend code contains calls to API endpoints that are not implemented in the backend. This will prevent broken features from reaching production and enforce a 1:1 correspondence between frontend calls and backend implementations."
+- **Prompt:** "All frontend API interactions within the employee application (`pronto-static/vue/employees`) must use the provided `http.ts` wrapper. This is mandatory for uniform security (CSRF, auth), error handling, and maintainability. Refactor any direct `fetch` or `axios` calls to use the `requestJSON` function from the wrapper."
+- **Prompt:** "To ensure all communication between the customer's device and our servers is secure and reliable, all API requests from the customer application (`pronto-static/vue/clients`) must be channeled through the standardized `http.ts` wrapper. This will provide consistent handling of sessions, security tokens, and errors for every customer action."
+- **Prompt:** "Eliminate all inline JavaScript that makes direct API calls from HTML templates (e.g., `index_alt.html`). All data fetching, such as loading the list of tables, must be moved into the centralized API handling module (`http.ts`) and must use a consistent `credentials: 'include'` policy for all requests to ensure a maintainable and secure application."
+- **Prompt:** "To create a visually consistent and maintainable user interface, we must eliminate all inline CSS overrides and the use of `!important` (e.g., in `base.html`). All styling issues must be addressed by refactoring our core CSS files (`main-ux.css`), ensuring a clean, predictable, and scalable visual architecture."
+- **Prompt:** "The application must use a consistent and correct path for all static assets. The canonical prefix is `/assets/`. All references to incorrect paths like `/static/` must be updated, and any hardcoded URLs for assets must be replaced with dynamic and correct paths."
+- **Prompt:** "To ensure a professional and complete user experience, all UI elements must display correctly. If a specific image or icon is unavailable, a suitable placeholder image must be automatically rendered instead of a broken image link. Ensure all referenced placeholder files exist and are correctly linked."

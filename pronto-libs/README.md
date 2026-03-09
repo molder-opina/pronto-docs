@@ -2,7 +2,7 @@
 
 ## Overview
 
-Pronto-Shared is the core shared library for the Pronto platform. It provides common functionality, models, services, and utilities that are used across all Pronto applications (pronto-clients, pronto-employees, pronto-api).
+Pronto-Shared is the core shared library for the Pronto platform. It provides common functionality, models, services, and utilities that are used across all Pronto applications (`pronto-client`, `pronto-employees`, `pronto-api`).
 
 **Version:** 1.0.0
 **Python:** 3.14+
@@ -695,7 +695,7 @@ csrf.exempt(api_bp)
 from pronto_shared.config import load_config, read_bool, validate_required_env_vars
 
 # Load configuration
-config = load_config("pronto-clients")
+config = load_config("pronto-client")
 
 # Read boolean value
 debug = read_bool("DEBUG_MODE", "false")
@@ -748,7 +748,7 @@ Standard error codes and messages:
 from pronto_shared.logging_config import configure_logging
 
 # Configure logging
-configure_logging("pronto-clients", "INFO")
+configure_logging("pronto-client", "INFO")
 ```
 
 #### Log Format
@@ -973,11 +973,11 @@ def update_settings():
 ## Related Documentation
 
 - [Architecture Overview](../ARCHITECTURE_OVERVIEW.md)
-- [Directory Structure](../estructura-directorios.md)
-- [API Routes Documentation](../estructura-routes-api.md)
+- [System Modules Index](../modules.yml)
+- [System Routes Catalog](../SYSTEM_ROUTES_CATALOG.md)
 - [Environment Variables](../ENVIRONMENT_VARIABLES.md)
 - [Logging Standard](../LOGGING_STANDARD.md)
-- [Pronto-Clients](../pronto-clients/)
+- [Pronto-Client](../pronto-clients/)
 - [Pronto-Employees](../pronto-employees/)
 - [Pronto-API](../pronto-api/)
 

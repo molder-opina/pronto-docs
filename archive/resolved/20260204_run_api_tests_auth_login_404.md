@@ -7,7 +7,7 @@ TITULO: run_api_tests.py --auth-mode falla login (404 Recurso no encontrado)
 DESCRIPCION: Al ejecutar el runner unificado de API tests en modo autenticado, el paso de login a empleados falla con respuesta de error "Recurso no encontrado". Esto impide validar endpoints autenticados y oculta regresiones de auth/roles.
 PASOS_REPRODUCIR:
 1) Levantar servicios (api) en http://localhost:6082
-2) Ejecutar: pronto-scripts/pronto-api/run_tests.sh --auth-mode
+2) Ejecutar: pronto-scripts/pronto-api/run-tests.sh --auth-mode
 RESULTADO_ACTUAL:
 Login fallido con payload: {'data': None, 'error': 'Recurso no encontrado', 'status': 'error'}
 RESULTADO_ESPERADO:
@@ -16,7 +16,7 @@ UBICACION:
 pronto-scripts/pronto-api/scripts/run_api_tests.py
 EVIDENCIA:
 Comando:
-cd pronto-scripts/pronto-api && bash run_tests.sh --auth-mode
+cd pronto-scripts/pronto-api && bash run-tests.sh --auth-mode
 Salida:
 ✗ Login fallido: {'data': None, 'error': 'Recurso no encontrado', 'status': 'error'}
 HIPOTESIS_CAUSA:

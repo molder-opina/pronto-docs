@@ -14,21 +14,23 @@ Pronto-Tests provides comprehensive testing framework for Pronto platform. It in
 
 ```
 pronto-tests/
-├── .git/                     # Git repository
-├── docs/                      # Test documentation
-├── e2e/                       # End-to-end tests
-├── tests/                      # Test specifications
-├── scripts/                    # Test scripts
-├── unit/                       # Unit tests
-├── .gitignore                  # Git ignore file
-├── playwright.config.ts        # Playwright configuration
+├── tests/
+│   ├── functionality/         # API, integration, UI, E2E y unit funcional
+│   ├── accessibility/         # Axe / accessibility checks
+│   ├── design/                # Diseño, screenshots y reportes visuales
+│   └── unit/                  # Unit tests compartidos del workspace
+├── scripts/
+│   └── run-tests.sh           # Runner principal {all|functionality|performance|design}
+├── playwright.config.ts       # Playwright configuration
+├── pytest.ini                 # Pytest configuration
+├── package.json               # Tooling frontend para Playwright
 └── README.md                  # This file
 ```
 
 ## Test Structure
 
 ### E2E Tests
-Located in `e2e/` directory, these tests simulate real user interactions across the entire platform.
+Located canonically in `tests/functionality/e2e/`; these tests simulate real user interactions across the entire platform.
 
 #### Test Categories
 - **Customer Flow** - Browse menu, add items, checkout
@@ -37,7 +39,7 @@ Located in `e2e/` directory, these tests simulate real user interactions across 
 - **Payment Flow** - Process payments, handle refunds
 
 ### Integration Tests
-Located in `tests/` directory, these tests verify interactions between components and services.
+Located canonically in `tests/functionality/integration/`; these tests verify interactions between components and services.
 
 #### Test Categories
 - **API Integration** - Test API endpoints
@@ -46,7 +48,7 @@ Located in `tests/` directory, these tests verify interactions between component
 - **External Services** - Test third-party integrations
 
 ### Unit Tests
-Located in `unit/` directory, these tests verify individual functions and components in isolation.
+Primary functional unit coverage lives in `tests/functionality/unit/`, while shared workspace unit checks also exist under `tests/unit/`.
 
 #### Test Categories
 - **Model Tests** - Test SQLAlchemy models
@@ -143,24 +145,18 @@ npx playwright install
 ### Run All Tests
 
 ```bash
-# Run all tests
-npm test
-
-# Run with coverage
-npm test -- --coverage
-
-# Run in headless mode
-npm test -- --headless
+# Canonical aggregated runner
+./scripts/run-tests.sh all
 ```
 
 ### Run E2E Tests
 
 ```bash
 # Run all E2E tests
-npx playwright test
+npx playwright test tests/functionality/e2e/
 
 # Run specific test file
-npx playwright test tests/customer-flow.spec.ts
+npx playwright test tests/functionality/e2e/<file>.spec.ts
 
 # Run tests in specific browser
 npx playwright test --project=chromium
@@ -176,29 +172,29 @@ npx playwright test --debug
 
 ```bash
 # Run all integration tests
-pytest tests/integration/
+pytest tests/functionality/integration/
 
 # Run specific test file
-pytest tests/integration/test_api.py
+pytest tests/functionality/integration/<file>.py
 
 # Run with coverage
-pytest tests/integration/ --cov=src --cov-report=html
+pytest tests/functionality/integration/ --cov --cov-report=html
 ```
 
 ### Run Unit Tests
 
 ```bash
-# Run all unit tests
-pytest unit/
+# Functional unit suite
+pytest tests/functionality/unit/
 
-# Run specific test file
-pytest unit/test_models.py
+# Shared workspace unit suite
+pytest tests/unit/
 
 # Run with coverage
-pytest unit/ --cov=src --cov-report=html
+pytest tests/functionality/unit/ --cov --cov-report=html
 
 # Run specific test
-pytest unit/test_models.py::test_employee_creation
+pytest tests/unit/<file>.py::<test_name>
 ```
 
 ## Test Scripts
@@ -206,14 +202,14 @@ pytest unit/test_models.py::test_employee_creation
 ### Available Scripts
 
 #### `scripts/run-tests.sh`
-Runs test suite based on environment.
+Runs the canonical aggregated test suite.
 
 **Usage:**
 ```bash
-./scripts/run-tests.sh --suite unit
-./scripts/run-tests.sh --suite integration
-./scripts/run-tests.sh --suite e2e
-./scripts/run-tests.sh --suite all
+./scripts/run-tests.sh all
+./scripts/run-tests.sh functionality
+./scripts/run-tests.sh performance
+./scripts/run-tests.sh design
 ```
 
 #### `scripts/setup-test-env.sh`
@@ -493,7 +489,7 @@ npx playwright test --workers=1
 
 - [Architecture Overview](../ARCHITECTURE_OVERVIEW.md)
 - [QA Test Guide](../QA_TEST_GUIDE.md)
-- [Pronto-Clients](../pronto-clients/)
+- [Pronto-Client](../pronto-clients/)
 - [Pronto-Employees](../pronto-employees/)
 - [Pronto-API](../pronto-api/)
 

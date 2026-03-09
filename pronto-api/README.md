@@ -6,7 +6,7 @@ Pronto-API is the unified REST API gateway and core service for the Pronto platf
 
 **Port:** 6082
 **Framework:** Flask (Python)
-**Authentication:** JWT-based authentication
+**Authentication:** JWT employee auth + customer auth/header surfaces (`client-auth`, `X-PRONTO-CUSTOMER-REF`)
 **Purpose:** Unified API gateway and core service
 
 ## Architecture
@@ -63,28 +63,19 @@ pronto-api/
 }
 ```
 
-### Notifications
-- `POST /api/notifications/waiter/call` - Create waiter call
-- `GET /api/notifications/waiter/pending` - List pending waiter calls
-- `POST /api/notifications/waiter/confirm/<id>` - Confirm waiter call
-- `POST /api/notifications/admin/call` - Create admin call
+### Superficies canónicas más importantes
+- **Employee auth:** `/api/auth/login`, `/api/auth/me`, `/api/auth/refresh`, `/api/auth/logout`
+- **Client auth:** `/api/client-auth/login`, `/api/client-auth/register`, `/api/client-auth/me`, `/api/client-auth/logout`
+- **Menu y catálogo:** `/api/menu`, `/api/menu-items/popular`, `/api/menu-items/{item_id}`
+- **Órdenes / sesiones / pagos:** `/api/orders`, `/api/orders/{order_id}/accept`, `/api/orders/{order_id}/kitchen-start`, `/api/sessions/{session_id}/pay`, `/api/customer/payments/sessions/{session_id}/checkout`, `/api/customer/payments/sessions/{session_id}/pay`
+- **Facturas:** `/api/client/invoices`, `/api/client/invoices/request`, `/api/admin/invoices`
+- **Operación admin/employee:** `/api/admin/permissions/system`, `/api/employees`, `/api/employees/roles`, `/api/tables`, `/api/areas`, `/api/reports/kpis`
+- **Realtime / config pública:** `/api/realtime/orders`, `/api/realtime/notifications`, `/api/config/public`, `/api/public/settings/{key}`
 
-### Menu
-- `GET /api/menu` - List menu categories and items
-- `GET /api/products` - Alias of `/api/menu`
-
-### Orders
-- `POST /api/orders` - Create order
-- `GET /api/orders` - List orders (filters by status/recency)
-- `POST /api/orders/<id>/cancel` - Cancel order
-- `POST /api/orders/<id>/modify` - Create modification request
-- `POST /api/modifications/<id>/approve` - Approve modification
-- `POST /api/modifications/<id>/reject` - Reject modification
-- `GET /api/modifications/<id>` - Get modification details
-- `POST /api/orders/<id>/request-check` - Request payment for order
-
-### Promotions
-- `GET /api/promotions` - List promotions
+### Documentación canónica
+- Inventario endpoint por endpoint: `../routes/pronto-api-endpoints-01.md` … `../routes/pronto-api-endpoints-06.md`
+- Contrato OpenAPI manual: `../contracts/pronto-api/openapi.yaml`
+- Requests listos para consumo: `POSTMAN_USAGE.md`, `INSOMNIA_USAGE.md`
 
 ## Configuration
 
@@ -110,8 +101,9 @@ pronto-api/
 ## Security Features
 
 ### Authentication
-- **JWT-based authentication** via `pronto-shared.jwt_middleware`
-- **Token validation** on all API endpoints
+- **JWT employee auth** via `pronto-shared.jwt_middleware`
+- **Client auth surfaces** bajo `/api/client-auth/*`
+- **Context propagation** para clientes vía `X-PRONTO-CUSTOMER-REF`
 - **User context** injection via `get_current_user()`
 
 ### Security Headers
@@ -266,7 +258,7 @@ Currently, metrics collection is handled by individual services. Pronto-API serv
 
 ### Internal Services
 - **pronto-shared** - Shared models, services, and utilities
-- **pronto-clients** - Customer-facing application (port 6080)
+- **pronto-client** - Customer-facing application (port 6080)
 - **pronto-employees** - Employee dashboard (port 6081)
 - **pronto-static** - Static assets hosting
 
@@ -397,11 +389,11 @@ Standard error format:
 ## Related Documentation
 
 - [Architecture Overview](../ARCHITECTURE_OVERVIEW.md)
-- [Directory Structure](../estructura-directorios.md)
-- [API Routes Documentation](../estructura-routes-api.md)
+- [System Modules Index](../modules.yml)
+- [System Routes Catalog](../SYSTEM_ROUTES_CATALOG.md)
 - [Environment Variables](../ENVIRONMENT_VARIABLES.md)
 - [Logging Standard](../LOGGING_STANDARD.md)
-- [Pronto-Clients](../pronto-clients/)
+- [Pronto-Client](../pronto-clients/)
 - [Pronto-Employees](../pronto-employees/)
 - [Pronto-Shared](../pronto-libs/)
 
