@@ -1,4 +1,25 @@
 2026-03-09 | CLIENT-20260309-001 | /api/business-info en pronto-client exige autenticación aunque la navegación informativa del cliente es pública | NO_COMMIT_LOCAL | pronto-client,pronto-docs
+2026-03-09 | BUG-20260309-E2E-CHECKOUT-SESSION-REHYDRATION | Pedir cuenta desde el mini-tracker falla cuando el cliente sigue autenticado pero se perdió el session_id local | NO_COMMIT_LOCAL | pronto-static,pronto-docs
+2026-03-09 | BUG-20260309-E2E-TABLE-NUMBER-DESYNC | El flujo cliente/sesión puede desincronizar table_id y table_number y mostrar una mesa incorrecta en órdenes y notificaciones | NO_COMMIT_LOCAL | pronto-api,pronto-libs,pronto-static,pronto-docs
+2026-03-09 | BUG-20260309-E2E-EMPLOYEE-STALE-REFRESH | Los tableros de empleados pueden quedar stale tras acciones de workflow por mezcla de realtime parcial y fetch cacheable | NO_COMMIT_LOCAL | pronto-static,pronto-docs
+2026-03-09 | BUG-20260309-PRONTO-STATIC-LEGACY-BRIDGES | pronto-static mantiene bridges legacy duplicados o muertos en cart/tables/waiter | NO_COMMIT_LOCAL | pronto-static,pronto-docs
+2026-03-09 | BUG-20260309-WAITER-BOARD-SAFE-MODULARIZATION | WaiterBoard.vue concentra helpers puros y lógica derivada de mesas en un archivo monolítico | NO_COMMIT_LOCAL | pronto-static,pronto-docs
+2026-03-09 | BUG-20260309-CLIENT-BASE-TRACKER-MODULARIZATION | client-base.ts concentra lógica de tracker/historial UI que puede modularizarse sin tocar sesión ni proxies | NO_COMMIT_LOCAL | pronto-static,pronto-docs
+2026-03-09 | BUG-20260309-CLIENT-BASE-BUSINESS-HOURS-UI-MODULARIZATION | client-base.ts mantiene la UI de horarios del negocio embebida en el entrypoint cliente | NO_COMMIT_LOCAL | pronto-static,pronto-docs
+2026-03-09 | BUG-20260309-CLIENT-BASE-CHECKOUT-ACCORDION-UI-MODULARIZATION | client-base.ts mantiene la UI de accordion de checkout embebida en el entrypoint cliente | NO_COMMIT_LOCAL | pronto-static,pronto-docs
+2026-03-09 | BUG-20260309-CLIENT-BASE-VIEW-TABS-UI-MODULARIZATION | client-base.ts mantiene la UI de tabs/vistas embebida en el entrypoint cliente | NO_COMMIT_LOCAL | pronto-static,pronto-docs
+2026-03-09 | BUG-20260309-CLIENT-BASE-STICKY-CART-UI-MODULARIZATION | client-base.ts mantiene la UI del sticky cart y snackbar undo embebida en el entrypoint cliente | NO_COMMIT_LOCAL | pronto-static,pronto-docs
+2026-03-09 | BUG-20260309-CLIENT-BASE-DETAILS-ORDERS-UI-MODULARIZATION | client-base.ts mantiene render DOM del panel de detalles/órdenes embebido en el entrypoint cliente | NO_COMMIT_LOCAL | pronto-static,pronto-docs
+2026-03-09 | BUG-20260309-CLIENT-BASE-MINI-TRACKER-UI-MODULARIZATION | client-base.ts mantiene la UI del mini-tracker embebida en el entrypoint cliente | NO_COMMIT_LOCAL | pronto-static,pronto-docs
+2026-03-09 | BUG-20260309-CLIENT-BASE-UI-FORMATTERS-MODULARIZATION | client-base.ts mantiene formatters/render helpers puros embebidos en el entrypoint cliente | NO_COMMIT_LOCAL | pronto-static,pronto-docs
+2026-03-09 | BUG-20260309-CLIENT-BASE-CONFETTI-ANIMATIONS-UI-MODULARIZATION | client-base.ts mantiene la UI de confetti/animations embebida en el entrypoint cliente | NO_COMMIT_LOCAL | pronto-static,pronto-docs
+2026-03-09 | BUG-20260309-CLIENT-BASE-NOTIFICATION-UI-MODULARIZATION | client-base.ts mantiene la UI de notificaciones embebida en el entrypoint cliente | NO_COMMIT_LOCAL | pronto-static,pronto-docs
+2026-03-09 | BUG-20260309-CLIENT-BASE-CANCEL-ORDER-MODAL-UI-MODULARIZATION | client-base.ts mantiene la UI del modal de cancelación embebida en el entrypoint cliente | NO_COMMIT_LOCAL | pronto-static,pronto-docs
+2026-03-09 | BUG-20260309-CLIENT-BASE-VIEW-NAVIGATION-UI-WRAPPERS-MODULARIZATION | client-base.ts mantiene wrappers pequeños de navegación/view UI embebidos en el entrypoint cliente | NO_COMMIT_LOCAL | pronto-static,pronto-docs
+2026-03-09 | BUG-20260309-CLIENT-BASE-GLOBAL-LOADING-UI-SHELL-MODULARIZATION | client-base.ts mantiene la capa UI del global loading embebida en el entrypoint cliente | NO_COMMIT_LOCAL | pronto-static,pronto-docs
+2026-03-09 | BUG-20260309-CLIENT-BASE-WAITER-BUTTON-UI-MODULARIZATION | client-base.ts mantiene la UI del botón de mesero embebida en el entrypoint cliente | NO_COMMIT_LOCAL | pronto-static,pronto-docs
+2026-03-09 | BUG-20260309-CLIENT-BASE-WAITER-BELL-AUDIO-UI-MODULARIZATION | client-base.ts mantiene la UI/audio de campana de mesero embebida en el entrypoint cliente | NO_COMMIT_LOCAL | pronto-static,pronto-docs
+2026-03-09 | BUG-20260309-CLIENT-BASE-WAITER-CALL-FLOW-REFACTOR | client-base.ts mantiene el flujo operativo de llamada al mesero embebido en el entrypoint cliente | NO_COMMIT_LOCAL | pronto-static,pronto-docs
 2026-03-09 | TESTS-20260309-001 | pronto-tests mezcla specs duplicados y specs especulativos en el lote local | NO_COMMIT_LOCAL | pronto-tests,pronto-docs
 2026-03-09 | SESS-20260309-001 | SessionStatus canónico no refleja estados activos usados por DiningSession | NO_COMMIT_LOCAL | pronto-libs,pronto-api,pronto-scripts,pronto-docs
 2026-03-09 | LIBS-20260309-001 | delete_role y delete_table permiten eliminar recursos aún en uso | NO_COMMIT_LOCAL | pronto-libs,pronto-docs
