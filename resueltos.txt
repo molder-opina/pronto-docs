@@ -289,3 +289,4 @@
 2026-03-10 | BUG-20260310-PRONTO-STATIC-EMPLOYEES-MISSING-FLOATING-PANEL-COMPONENT | `KitchenBoard.vue` importa `FloatingPanel.vue` inexistente y rompe `build:employees` | NO_COMMIT_LOCAL | pronto-static
 2026-03-10 | BUG-20260310-PRONTO-STATIC-KITCHEN-BOARD-FILTERS-MODAL-RUNTIME-DRIFT | `KitchenBoard.vue` usaba `FloatingFiltersModal` con props/events incompatibles y dejó roto el flujo de filtros/tracking | NO_COMMIT_LOCAL | pronto-static
 2026-03-10 | LIBS-20260310-BACKUP-FILE-AND-UUID-TYPING-DRIFT | `pronto-libs` mantenía un `.bak` dentro de `src/` y type hints `int` para `order_id/session_id` en servicios sobre entidades UUID | NO_COMMIT_LOCAL | pronto-libs,pronto-docs,pronto-scripts
+2026-03-10 | LIBS-20260310-DINING-SESSION-REFACTOR-RESIDUALS | `dining_session_service_impl.py` mantenía helpers sin consumidores reales y `close_session` no normalizaba UUIDs desde rutas string | NO_COMMIT_LOCAL | pronto-libs,pronto-docs
