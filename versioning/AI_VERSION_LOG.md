@@ -1122,3 +1122,10 @@ Registro incremental obligatorio de cambios aplicados por agentes AI.
   AGENTE: Codex (GPT-5)
   MODULOS: pronto-api, pronto-static, pronto-docs, root, pronto-scripts/pronto-root
   RESUMEN: Ejecución big-bang de deuda técnica con D0 por bug: hardening RBAC canónico (sin CRUD de roles custom en `employees` API), corrección de `sync-canonical-types` por naming real de script, saneamiento de compilación Vue employees/clients (SFCs rotos, entrypoints/módulos faltantes y compatibilidad de stores), eliminación de módulos legacy pendientes en employees Vue, documentación `BUG-001..BUG-010` con evidencia transversal y actualización de versión de sistema.
+
+- FECHA: 2026-03-14
+  VERSION_ANTERIOR: 1.0675
+  VERSION_NUEVA: 1.0676
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-api, pronto-client, pronto-static, pronto-docs, root, pronto-scripts/pronto-root
+  RESUMEN: Implementación de carrito transaccional temporal para cliente con submit idempotente: `POST /api/customer/orders` ahora soporta replay por `X-Idempotency-Key`; se añadieron endpoints `customer/orders/cart*` sobre `customer_session_store`; el BFF de cliente reenvía `X-Idempotency-Key` y proxya cart routes; `cartStore` Vue integra merge por firma de item, sync backend y submit idempotente; checkout migra a `cartStore.submitCart()`.
