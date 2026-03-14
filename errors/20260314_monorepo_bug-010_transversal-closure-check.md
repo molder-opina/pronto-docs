@@ -19,8 +19,8 @@
 ## Gates ejecutados
 - `./pronto-scripts/bin/pronto-rules-check full` ✅
 - `./pronto-scripts/bin/pronto-no-legacy` ✅
-- `./pronto-scripts/bin/pronto-migrate --check` ❌ (`DATABASE_URL` faltante)
-- `./pronto-scripts/bin/pronto-init --check` ❌ (`DATABASE_URL` faltante)
+- `./pronto-scripts/bin/pronto-migrate --check` ❌ (`pending=8 drift=0`, migraciones pendientes)
+- `./pronto-scripts/bin/pronto-init --check` ❌ (hereda `pronto_migrate_check` con `pending=8`)
 - Playwright objetivo propuesto en plan (`vue-rendering.spec.ts`, `vue-integrity.spec.ts`) ❌ (no existen en `pronto-tests`)
 - Validación equivalente ejecutada:
   - `employees/auth.spec.ts` ✅
