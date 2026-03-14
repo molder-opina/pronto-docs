@@ -1129,3 +1129,10 @@ Registro incremental obligatorio de cambios aplicados por agentes AI.
   AGENTE: Codex (GPT-5)
   MODULOS: pronto-api, pronto-client, pronto-static, pronto-docs, root, pronto-scripts/pronto-root
   RESUMEN: Implementación de carrito transaccional temporal para cliente con submit idempotente: `POST /api/customer/orders` ahora soporta replay por `X-Idempotency-Key`; se añadieron endpoints `customer/orders/cart*` sobre `customer_session_store`; el BFF de cliente reenvía `X-Idempotency-Key` y proxya cart routes; `cartStore` Vue integra merge por firma de item, sync backend y submit idempotente; checkout migra a `cartStore.submitCart()`.
+
+- FECHA: 2026-03-14
+  VERSION_ANTERIOR: 1.0676
+  VERSION_NUEVA: 1.0677
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-scripts, pronto-libs, pronto-api, pronto-docs, root, pronto-scripts/pronto-root
+  RESUMEN: Se implementó capa canónica DB para carrito transaccional: DDL de `pronto_carts`/`pronto_cart_items` en init + migración `20260314_01__create_cart_tables.sql`; nuevos modelos `Cart/CartItem` y `cart_service` en `pronto-libs` (normalización, snapshot de líneas, replay idempotente y mirror de compatibilidad a `customer_session_store`); refactor de `customer/orders.py` para usar servicio canónico en GET/PUT/abandon/submit; documentación D0 del bug en `pronto-docs/errors/20260314_bug_cart_db_canonical.md`.
