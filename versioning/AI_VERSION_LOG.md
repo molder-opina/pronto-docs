@@ -1136,3 +1136,31 @@ Registro incremental obligatorio de cambios aplicados por agentes AI.
   AGENTE: Codex (GPT-5)
   MODULOS: pronto-scripts, pronto-libs, pronto-api, pronto-docs, root, pronto-scripts/pronto-root
   RESUMEN: Se implementó capa canónica DB para carrito transaccional: DDL de `pronto_carts`/`pronto_cart_items` en init + migración `20260314_01__create_cart_tables.sql`; nuevos modelos `Cart/CartItem` y `cart_service` en `pronto-libs` (normalización, snapshot de líneas, replay idempotente y mirror de compatibilidad a `customer_session_store`); refactor de `customer/orders.py` para usar servicio canónico en GET/PUT/abandon/submit; documentación D0 del bug en `pronto-docs/errors/20260314_bug_cart_db_canonical.md`.
+
+- FECHA: 2026-03-14
+  VERSION_ANTERIOR: 1.0677
+  VERSION_NUEVA: 1.0678
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-scripts
+  RESUMEN: Hardening de migraciones legacy para PostgreSQL idempotente: se corrigieron scripts con sintaxis MySQL/DDL no repetible (`add_accepted_at`, `add_missing_timestamps`, `add_partial_delivery_fields`, `add_payment_meta`, `add_store_cancel_reason_config`, `add_waiter_config`, `apply_all_migrations`, `create_support_table`) y se dejó `pronto-migrate --apply` estable en `pronto` y `pronto_test`.
+
+- FECHA: 2026-03-14
+  VERSION_ANTERIOR: 1.0678
+  VERSION_NUEVA: 1.0679
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-libs
+  RESUMEN: Corrección integral de flujos de estado y ticket: `request-check` migrado a ORM canónico sin SQL textual, transición quick-serve `queued->ready` habilitada, acciones `deliver/pay` alineadas con side-effects, soporte de aliases legacy controlados y reparación de generación de ticket (relación `DiningSession.employee`, carga de relaciones y campos de items/modifiers).
+
+- FECHA: 2026-03-14
+  VERSION_ANTERIOR: 1.0679
+  VERSION_NUEVA: 1.0680
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, pronto-tests
+  RESUMEN: Canonización de rutas cliente en store Vue (`/api/customer/orders/session/{id}` y `/session/{id}/request-check`), eliminación de catches silenciosos y hardening de smoke/e2e para flujo real (CSRF obligatorio en mutaciones, resolución robusta de `order_id`, transiciones por estado y fallback ticket).
+
+- FECHA: 2026-03-14
+  VERSION_ANTERIOR: 1.0680
+  VERSION_NUEVA: 1.0681
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-docs, root, pronto-scripts/pronto-root
+  RESUMEN: Registro D0 por funcionalidad en `pronto-docs/errors/` para BUG-010 por repo, consolidación de evidencia de validación (gates/parity/tests/migrate/init en verde) y sincronización de `PRONTO_SYSTEM_VERSION` en root y backup versionado.
