@@ -4,7 +4,7 @@ Registro incremental obligatorio de cambios aplicados por agentes AI.
 
 | FECHA | VERSION_ANTERIOR | VERSION_NUEVA | AGENTE | MODULOS | RESUMEN |
 |---|---|---|---|---|---|
-| 2026-03-10 | 1.0615 | 1.0616 | Augment Agent | root(.env,.env.example), pronto-libs, pronto-tests, pronto-docs, pronto-scripts/pronto-root | Se completó el cierre de `menu_service_impl.py` como shim legacy explícito: se eliminaron helpers privados duplicados del runtime, el archivo quedó reducido a 95 líneas con solo aliases de compatibilidad hacia `menu_query_service.py`, `menu_mutation_service.py`, `menu_label_service.py` y `menu_commercial_service.py`, y los tests de helpers se movieron a `test_menu_mutation_service_helpers.py`. También se limpió `test_menu_validation.py` para dejar de parchear símbolos muertos del `impl`. Validación verde: `py_compile`, `25 passed` en unit tests de `pronto-libs` y `19 passed` en `test_menu_validation.py` + `test_menu_home_dedupe_policy.py`. |
+| 2026-03-12 | 1.0671 | 1.0672 | opencode | pronto-libs, pronto-api, pronto-static, pronto-scripts | Implementación completa del sistema de entrega parcial y cancelación por item para restaurantes pequeños/medianos |
 | 2026-03-10 | 1.0614 | 1.0615 | Augment Agent | root(.env,.env.example), pronto-libs, pronto-docs, pronto-scripts/pronto-root | Se movió la implementación real de `update_menu_item_prep_time` y `get_item_schedules` a `menu_label_service.py`; `menu_service_impl.py` ahora conserva esos símbolos solo como aliases mínimos importados desde `menu_label_service.py`. Se actualizó `test_menu_query_facade.py` para fijar esa compatibilidad. Validación verde: `py_compile`, `25 passed` en unit tests de `pronto-libs` y `19 passed` en `test_menu_validation.py` + `test_menu_home_dedupe_policy.py`. |
 | 2026-03-10 | 1.0613 | 1.0614 | Augment Agent | root(.env,.env.example), pronto-libs, pronto-tests, pronto-docs, pronto-scripts/pronto-root | Se movió la implementación real del CRUD de ítems a `menu_mutation_service.py`: `create_menu_item`, `update_menu_item` y `delete_menu_item` ya no delegan al `impl`, mientras `menu_service_impl.py` conserva esos símbolos solo como compatibilidad mínima importada desde `menu_mutation_service.py`. Se actualizaron `test_menu_query_facade.py` y `pronto-tests/tests/functionality/unit/test_menu_validation.py` para reflejar la nueva autoridad. Validación verde: `py_compile`, `25 passed` en unit tests de `pronto-libs` y `19 passed` en `test_menu_validation.py` + `test_menu_home_dedupe_policy.py`. |
 | 2026-03-10 | 1.0612 | 1.0613 | Augment Agent | root(.env,.env.example), pronto-libs, pronto-docs, pronto-scripts/pronto-root | Se adelgazó `menu_service_impl.py` tras salir del wiring público: se reemplazaron wrappers triviales hacia `menu_query_service.py` y `menu_commercial_service.py` por aliases nominales a nivel módulo, se eliminó `_parse_group_selection_type` del `impl` y el import muerto de `json`. El archivo bajó de 922 a 728 líneas y conserva solo 5 funciones públicas reales (`create_menu_item`, `update_menu_item`, `delete_menu_item`, `update_menu_item_prep_time`, `get_item_schedules`). Validación verde: `py_compile`, `25 passed` en unit tests de `pronto-libs` y `19 passed` en `test_menu_validation.py` + `test_menu_home_dedupe_policy.py`. |
@@ -733,3 +733,392 @@ Registro incremental obligatorio de cambios aplicados por agentes AI.
   AGENTE: Codex (GPT-5)
   MODULOS: pronto-api, pronto-static, pronto-employees-system
   RESUMEN: Se agrega módulo de Infraestructura en consola /system con endpoints de operaciones (scripts, static upload/list/delete, sync, nginx restart, health checks, estado PostgreSQL/Redis/contenedores) y vista UI dedicada con manejo explícito de disponibilidad de runtime de contenedores.
+- FECHA: 2026-03-10
+  VERSION_ANTERIOR: 1.0616
+  VERSION_NUEVA: 1.0617
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-client, pronto-static
+  RESUMEN: Rediseño del modal de producto en cliente: bloque de precio compacto y fijo al fondo, total en chip pequeño, extras resaltados visualmente y estado dinámico de extras para mejorar visibilidad sin ocupar gran parte del formulario.
+- FECHA: 2026-03-10
+  VERSION_ANTERIOR: 1.0617
+  VERSION_NUEVA: 1.0618
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-client, pronto-static
+  RESUMEN: Rediseño integral del modal de producto estilo food-ordering: header con precio jerárquico, imagen compacta con overlay, extras sin hints con scroll interno, footer sticky con cantidad+total y CTA dominante, además de microanimaciones de apertura y tap feedback.
+- FECHA: 2026-03-10
+  VERSION_ANTERIOR: 1.0618
+  VERSION_NUEVA: 1.0619
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-client, pronto-static
+  RESUMEN: Fix de selección de aditamientos para eliminar visualización infinita (∞): se calcula máximo efectivo acotado en modal cliente SSR, modal Vue de clientes y vistas de administración de grupos/modificadores; se mantiene ∞ únicamente en promociones/cupones donde aplica semántica de sin tope.
+- FECHA: 2026-03-10
+  VERSION_ANTERIOR: 1.0619
+  VERSION_NUEVA: 1.0620
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Ajuste visual del carrito lateral para miniaturas compactas: se reduce tamaño de imagen de items, controles y tipografía en cart panel con overrides robustos para evitar que imágenes grandes rompan el layout.
+- FECHA: 2026-03-10
+  VERSION_ANTERIOR: 1.0620
+  VERSION_NUEVA: 1.0621
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-docs, pronto-scripts
+  RESUMEN: Se crea documento canónico de reglas de auditoría UX/frontend (`pronto-docs/audits/frontend-ux-rules.md`) y se integra como gate obligatorio en prompts de auditoría (`client-audit.md`, `static-audit.md`) para exigir validación por RULE_ID con evidencia.
+
+| 2026-03-10 | 1.0621 | 1.0622 | OpenCode | pronto-docs/standards, AGENTS.md, .env, .env.example, pronto-scripts/pronto-root | Se documenta baseline completo de reglas de diseño frontend en `pronto-docs/standards/frontend-design-rules.md` con especificaciones detalladas para aplicaciones cliente y empleados (layouts, colores, tipografía, componentes, interacciones, accesibilidad). Se actualiza AGENTS.md con nueva sección #22 que exige documentación de cambios de diseño y valida cumplimiento antes de commit.
+- FECHA: 2026-03-10
+  VERSION_ANTERIOR: 1.0621
+  VERSION_NUEVA: 1.0622
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-api
+  RESUMEN: Fix para 400 en POST /api/customer/orders cuando frontend envía código de mesa (ej. M1) en lugar de UUID: backend ahora acepta referencia textual de mesa y resuelve `pronto_tables.table_number` de forma canónica antes de validar/crear la orden.
+- FECHA: 2026-03-10
+  VERSION_ANTERIOR: 1.0622
+  VERSION_NUEVA: 1.0623
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-api, pronto-client
+  RESUMEN: Fix adicional de creación de orden cliente: en `/api/customer/orders` se desactiva requisito de contacto (`require_contact=False`) para flujo de mesa autenticado por customer_ref; además se añade logging de diagnóstico en checkout frontend para mostrar status/payload/response cuando falle la orden.
+- FECHA: 2026-03-10
+  VERSION_ANTERIOR: 1.0623
+  VERSION_NUEVA: 1.0624
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Fix de UX en botón "Ir a pagar" del carrito: `proceedToCheckout()` deja de solicitar `requestCheck`/sesión activa y ahora navega correctamente a la vista `Detalles` para confirmar pedido; evita error "No hay sesión activa" al pasar desde carrito a checkout.
+- FECHA: 2026-03-10
+  VERSION_ANTERIOR: 1.0624
+  VERSION_NUEVA: 1.0625
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Se corrigen bloqueos de compilación en frontend cliente (`client-profile.ts` con bloque residual inválido y `use-app-config.ts` con declaraciones/export duplicados), se recompila assets de clientes y queda publicado el flujo de carrito donde "Ir a pagar" navega a `Detalles` sin exigir sesión activa en ese paso.
+- FECHA: 2026-03-10
+  VERSION_ANTERIOR: 1.0625
+  VERSION_NUEVA: 1.0626
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-client
+  RESUMEN: Fix en normalización de aditamientos del modal legacy (`index.html`) para soportar ambos contratos de API (`min_selection/max_selection` y `min_required/max_allowed`), inferir selección única cuando `is_multiple_choice=false`/`selection_type=single`, desactivar "No lleve" por defecto en grupos obligatorios y mapear precio desde `price_adjustment|price`; corrige caso de bebidas mostrado como `0/3` y permite solo una talla obligatoria.
+- FECHA: 2026-03-10
+  VERSION_ANTERIOR: 1.0626
+  VERSION_NUEVA: 1.0627
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Fix de render en pestaña Órdenes del cliente legacy: `client-mini-tracker.ts` ahora actualiza paneles `active-orders-list` y `checkout-history-container` en cada refresh (éxito/error/sin sesión), reconectando helpers `buildActiveOrdersHtml` y `buildCheckoutHistoryHtml`; evita vista vacía con badge activo.
+- FECHA: 2026-03-10
+  VERSION_ANTERIOR: 1.0627
+  VERSION_NUEVA: 1.0628
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Fix de hidratación de tabs tras refresh: `initClientBase()` ahora ejecuta `refreshActiveOrders()` después de bind inicial para recuperar órdenes activas desde backend y reactivar automáticamente la pestaña `Detalles` cuando aplica; evita que quede inhabilitada al recargar con orden activa.
+- FECHA: 2026-03-10
+  VERSION_ANTERIOR: 1.0628
+  VERSION_NUEVA: 1.0629
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-client
+  RESUMEN: Fix para errores 401 en `/api/sessions/table-context`: el BFF ahora reenvía `X-PRONTO-CUSTOMER-REF` usando fallback desde `session["customer_ref"]` cuando el header no viene del navegador, y el frontend evita llamadas de persist/load de contexto de mesa cuando no existe `customer_ref` válido.
+- FECHA: 2026-03-10
+  VERSION_ANTERIOR: 1.0629
+  VERSION_NUEVA: 1.0630
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-client
+  RESUMEN: Fix de persistencia de sesión tras hard refresh: en BFF `/api/client-auth/*` ahora se sincroniza `session["customer_ref"]` de Flask al hacer login/register usando el `customer_ref` devuelto por pronto-api (payload directo o `data.customer_ref`), y en logout se limpia `customer_ref` + `dining_session_id`; evita estado “deslogueado” al recargar.
+- FECHA: 2026-03-10
+  VERSION_ANTERIOR: 1.0630
+  VERSION_NUEVA: 1.0631
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Persistencia del tab activo de cliente en refresh: `client-navigation` guarda la vista (`menu|details|orders`) en `sessionStorage` y `applyInitialViewFromUrlUi` la restaura cuando no hay `?view=` en URL; así el usuario permanece en el mismo tab tras recargar.
+- FECHA: 2026-03-10
+  VERSION_ANTERIOR: 1.0631
+  VERSION_NUEVA: 1.0632
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, pronto-client
+  RESUMEN: Fix para órdenes activas no visibles tras confirmar pedido: `client-session-auth` ahora persiste/rehidrata `session_id` en `sessionStorage` (con prioridad a sesión server) para que mini-tracker consulte `/api/orders` con sesión válida inmediatamente; además BFF de creación de órdenes sincroniza `session["dining_session_id"]` desde respuesta upstream al crear orden, asegurando persistencia tras refresh.
+- FECHA: 2026-03-10
+  VERSION_ANTERIOR: 1.0632
+  VERSION_NUEVA: 1.0633
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-client
+  RESUMEN: Fix visual de franja blanca al final de la página: se añade override final en `base.html` para remover `padding-bottom` residual del `body` en desktop (`@media (min-width: 769px) { body { padding-bottom: 0 !important; } }`), eliminando el espacio fantasma debajo del footer sin afectar móvil.
+- FECHA: 2026-03-10
+  VERSION_ANTERIOR: 1.0633
+  VERSION_NUEVA: 1.0634
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-client, pronto-static
+  RESUMEN: Ajustes UX en cliente: se corrige superposición del botón `← Volver` con el título en perfil (`profile-header--personal-info`), se elimina salto visual al abrir `?view=orders`/`?view=details` inicializando tab y secciones desde SSR (`initial-view-*`), y se estabiliza modal de historial para abrir centrado con `.order-history-modal.is-open` en modo flex; además se duplican tiempos de notificaciones (info 4s, success 6s, warning/error 10s).
+- FECHA: 2026-03-10
+  VERSION_ANTERIOR: 1.0634
+  VERSION_NUEVA: 1.0635
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Fix robusto para órdenes activas no visibles en cliente: `client-mini-tracker` ahora normaliza respuestas de órdenes en múltiples formatos (`orders`, `data.orders`, array), usa estado canónico (`getTrackerStatus`) para contar activas/render, y agrega fallback a `/api/customer/orders` cuando consulta por `session_id` regresa vacío, evitando panel vacío con pedido confirmado.
+
+- FECHA: 2026-03-10
+  VERSION_ANTERIOR: 1.0635
+  VERSION_NUEVA: 1.0636
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: UX de checkout en cliente: el bloque "Orden Actual" ahora se oculta completamente cuando el carrito está vacío y reaparece automáticamente al agregar productos; se agregan pruebas unitarias en cart store para validar visibilidad del acordeón vacío/no vacío.
+
+- FECHA: 2026-03-10
+  VERSION_ANTERIOR: 1.0636
+  VERSION_NUEVA: 1.0637
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-client, pronto-static
+  RESUMEN: Se agrega buscador en tab Órdenes del cliente: input de búsqueda en encabezado de Órdenes Activas y filtro en tiempo real por folio/estado/producto (sin recarga), aplicando a panel de órdenes activas e historial mostrado en Detalles; incluye pruebas unitarias del helper de filtrado y actualización de mocks en mini-tracker.
+
+- FECHA: 2026-03-10
+  VERSION_ANTERIOR: 1.0637
+  VERSION_NUEVA: 1.0638
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Fix en llamada al mesero cuando hay mesa seleccionada pero sin session_id: se agrega fallback en cliente para abrir sesión automáticamente con la mesa activa (`/api/sessions/open`) y luego ejecutar `/api/call-waiter`; se mantiene mensaje de mesa activa solo si no se puede resolver/abrir sesión. Incluye tests del flujo waiter-call y notificaciones.
+
+- FECHA: 2026-03-10
+  VERSION_ANTERIOR: 1.0638
+  VERSION_NUEVA: 1.0639
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Fix para editar/cancelar órdenes en cliente cuando el tracker trae IDs no resolubles por ownership: client-checkout ahora resuelve la orden objetivo contra `/api/customer/orders` (fuente autorizada del cliente) con fallback por folio/display id antes de editar/cancelar, evitando 404 en `/api/customer/orders/<id>`; además cancelación sin id explícito usa lista de órdenes del cliente en lugar de sesión global.
+
+- FECHA: 2026-03-10
+  VERSION_ANTERIOR: 1.0639
+  VERSION_NUEVA: 1.0640
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Endurecimiento del flujo de órdenes activas para evitar 404 en editar/cancelar: mini-tracker prioriza órdenes de `/api/customer/orders` (customer_scoped=true) y solo usa `/api/orders?session_id=` como fallback de visibilidad (customer_scoped=false). Las órdenes fallback ya no son cancelables/editables en UI (`isOrderCancellable` bloquea acciones cuando `customer_scoped=false`).
+
+- FECHA: 2026-03-10
+  VERSION_ANTERIOR: 1.0640
+  VERSION_NUEVA: 1.0641
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Se detectó que static servía assets host-mount desactualizados; se recompilaron bundles de clientes (`npm run build:clients`) para publicar el código actual de editar/cancelar órdenes (sin GET directo por id), incluyendo flags `customer_scoped` en tracker y resolución robusta de order id por lista de cliente.
+
+- FECHA: 2026-03-10
+  VERSION_ANTERIOR: 1.0641
+  VERSION_NUEVA: 1.0642
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-client
+  RESUMEN: Ajuste visual de navegación por tabs en cliente para mejorar separación/legibilidad: se elimina efecto de tabs pegados agregando gap centrado en `view-tabs-container`, refinando paddings de `view-tab` y destacando tab activo con fondo/borde suave sin alterar lógica funcional de navegación.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0642
+  VERSION_NUEVA: 1.0643
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Fix de UX/estado en cliente: el flujo de campanita ahora reintenta automáticamente abrir/reconciliar sesión cuando `/api/call-waiter` responde sin sesión activa (evita 400 por sesión desincronizada), y se añade refresh reactivo post-auth (`pronto:auth-success`/`pronto:auth-state-changed`) para mostrar el tab Órdenes inmediatamente tras login sin requerir refresh manual.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0643
+  VERSION_NUEVA: 1.0644
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Mejora de cancelación en cliente: se reemplaza `prompt()` por modal flotante para capturar motivo de cancelación, se propaga `displayId` al flujo de cancelar para resolver id canónico en `/api/customer/orders`, y se añade fallback de reintento ante 404 con resolución refrescada por folio/id antes de repetir `/cancel`.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0644
+  VERSION_NUEVA: 1.0645
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Mejora del flujo de edición en cliente: se elimina el `confirm()` nativo y se agrega modal flotante para iniciar edición de orden (modo reemplazar o combinar con carrito + opción de abrir panel). La edición inicia en tab Menú para permitir quitar/agregar productos del catálogo antes de confirmar cambios.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0645
+  VERSION_NUEVA: 1.0646
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Fix de edición cuando el listado de órdenes llega sin items: client-checkout ahora hidrata detalle de orden desde `/api/customer/orders/<id|order_number>` antes de bloquear edición, y la UI de órdenes oculta botón Editar si la orden no trae items visibles. Evita falso warning "La orden no tiene productos para editar" cuando sí existen productos en detalle.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0646
+  VERSION_NUEVA: 1.0647
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Fix de cancelación robusta en cliente para evitar 404 por IDs no canónicos: el flujo de `/cancel` ahora intenta múltiples identificadores de la misma orden (id original, id resuelto, order_number/display/public_id y hint de folio) hasta encontrar uno válido. Se agrega prueba unitaria del fallback UUID→folio.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0647
+  VERSION_NUEVA: 1.0648
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Endurecimiento adicional de cancelación para 404 persistente: antes de `/cancel`, el cliente expande candidatos canónicos consultando `/api/customer/orders/<candidate>` y agrega IDs/folios derivados del detalle (id, order_id, order_number, display/public id). Luego intenta cancelación sobre el set expandido para resolver desalineaciones id↔folio en runtime.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0648
+  VERSION_NUEVA: 1.0649
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Flujo de edición de órdenes en cliente ajustado a modo "solo retirar": se agrega modal flotante para seleccionar productos a remover y se desactiva la lógica de reemplazar/combinar con carrito para edición. Además, mini tracker evita spam de errores 401 cuando no hay autenticación/sesión válida y limpia estado de órdenes de forma segura.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0649
+  VERSION_NUEVA: 1.0650
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Fix de sesión expirada en cliente para cancelar/editar órdenes: endurecimiento de detección de autenticación (evita cookie stale sin customer_ref), manejo explícito de 401 en `cancelPendingOrder` y `editPendingOrder` con reapertura de login, y bloqueo de ruido repetitivo del mini tracker tras 401 con recuperación automática en `pronto:auth-success`.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0650
+  VERSION_NUEVA: 1.0651
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Fix visual del historial de pedidos en cliente: se aisla el modal Vue con clases `pronto-*` para evitar colisión con estilos legacy globales de `order-history-modal` en SSR base. Esto elimina superposición/ghost text del historial sobre la vista de menú.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0651
+  VERSION_NUEVA: 1.0652
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Fix de cancelación de órdenes en cliente: el fallback de cancel/modify ahora interpreta correctamente errores HTTP tanto con `statusCode` como `status`, evitando abortar reintentos por 404 no canónicos. Además, acciones Editar/Cancelar quedan restringidas a órdenes explícitamente `customer_scoped=true` para eliminar intentos sobre órdenes no propias y reducir 404 por ownership.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0652
+  VERSION_NUEVA: 1.0653
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-client, pronto-static
+  RESUMEN: Limpieza de deuda técnica legacy en historial de pedidos: se eliminó el modal SSR legacy (markup + estilos globales) en `base.html` e `includes/_modals.html` para dejar una única implementación canónica en Vue (`OrderHistory.vue` con clases aisladas `pronto-*`). Se evita colisión de capas/estilos y mezcla de dos modales para el mismo flujo.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0653
+  VERSION_NUEVA: 1.0654
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Fix de imágenes faltantes en carrito: `ProductDetailModal` ahora guarda `image` al agregar ítems al cart y también soporta `image_url` además de `image_path`. En `CartPanel` se fortaleció normalización de rutas legacy (`cafeteria-de-prueba`→`pronto`) y el manejo de error de imagen ahora usa placeholder en lugar de ocultar el `<img>`, evitando cuadros vacíos.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0654
+  VERSION_NUEVA: 1.0655
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-libs, pronto-api, pronto-employees
+  RESUMEN: Fix crítico de pago en consola de mesero: el endpoint `/api/sessions/<id>/pay` fallaba con 500 por `NameError` en `finalize_payment` (`OrderItem` no importado en `order_payment_service`). Se agregó el import canónico, se reiniciaron contenedores de API y empleados para aplicar el cambio y se validó que el módulo cargado en runtime ya incluye `OrderItem`.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0655
+  VERSION_NUEVA: 1.0656
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Reglas de acciones por estado en órdenes del cliente reforzadas con matriz explícita: solo `new` y `queued` permiten `Editar/Cancelar`; desde `preparing` en adelante no se muestran acciones. Se mantiene validación estricta de `customer_scoped` y se agregan pruebas para `awaiting_payment`/`paid` sin acciones.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0656
+  VERSION_NUEVA: 1.0657
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Ordenamiento de órdenes en cliente por progreso de estado (new→queued→preparing→ready→delivered→awaiting_payment→paid→cancelled) sin separadores visuales, preservando el mismo layout de tarjetas. Se aplica tanto a panel activo como historial y se agrega prueba unitaria para evitar regresión.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0657
+  VERSION_NUEVA: 1.0658
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Fix visual en panel de cocina `/chef/dashboard`: se agregaron estilos scoped en `KitchenFilters` para contener el ícono SVG de búsqueda (evita la “Q” gigante) y estilos base de estado vacío/tarjetas en `KitchenOrders` para evitar render sin formato cuando no hay órdenes. Se validó con build de empleados exitoso.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0658
+  VERSION_NUEVA: 1.0659
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Endurecimiento del flujo de pago en caja (`PaymentFlow.vue`): prevención de doble envío (`isProcessing` guard + botones deshabilitados) y manejo explícito de conflicto 409 “cuenta ya pagada” para refrescar sesión, notificar de forma informativa y cerrar modal sin disparar errores repetidos en consola.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0659
+  VERSION_NUEVA: 1.0660
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Rediseño del modal de cobro en caja (`PaymentFlow.vue`): se reemplazó el link de dividir por selector explícito de tipo de cobro (`Cobro total` / `Dividir cuenta / Pago parcial`), se muestran los tipos de cobro directamente en los botones de método y el monto a cobrar en cada botón, y se agregó validación de monto parcial antes de enviar pago.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0660
+  VERSION_NUEVA: 1.0661
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Flujo de pago en efectivo mejorado en caja (`PaymentFlow.vue`): al seleccionar `Efectivo` ahora abre un form dedicado para capturar datos de cobro (monto recibido, referencia y notas), muestra cambio calculado y valida monto recibido antes de confirmar el pago.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0661
+  VERSION_NUEVA: 1.0662
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Pago con tarjeta mejorado en caja (`PaymentFlow.vue`): se agregó captura de `Monto con tarjeta` y `Últimos 4 dígitos` (obligatorio), con validación de rango contra monto restante y construcción de referencia de pago incluyendo `LAST4-####`.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0662
+  VERSION_NUEVA: 1.0663
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Se eliminó la duplicidad de tabs en consola de caja: `cashier` ahora solo muestra una pestaña “Caja” en `DashboardView` (se removió `sessions` del set de tabs para scope cashier) y se alineó `App.vue` para no incluir `sessions` en `visibleSections` del scope `cashier`.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0663
+  VERSION_NUEVA: 1.0664
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Fix de visibilidad en `/cashier`: `CashierBoard` ahora construye base de órdenes cobrables desde `ordersStore.orders` (entregadas o con sesión pendiente de cobro) en lugar de depender solo de `deliveredOrders`, evitando panel vacío cuando hay desalineación de estado workflow/sesión.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0664
+  VERSION_NUEVA: 1.0665
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Fix en flujo de cobro desde consola de mesero: en `WaiterBoard` el botón `Cobrar` ahora dispara el evento global `employee:payments:open` (modal canónico `PaymentFlow`) en lugar de un estado interno de modal inexistente. Se removió código muerto del modal legacy para evitar ruta de acción sin UI.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0665
+  VERSION_NUEVA: 1.0666
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Ordenamiento en tracker de cliente mejorado por estado + `created_at`: dentro de cada estado ahora se soporta dirección configurable (`desc` por default = más reciente primero, `asc` = más antiguo primero) en `buildActiveOrdersHtml` y `buildCheckoutHistoryHtml`, con tests unitarios para ambos sentidos.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0666
+  VERSION_NUEVA: 1.0667
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Normalización de estado legacy `closed/billed` en tablero de mesero: ahora se muestra como `Pagada`, se clasifica en tab `Pagadas` (y no en activas), y el detalle de orden corrige etiquetas de `Cerrada/Cerradas` a `Pagada`.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0667
+  VERSION_NUEVA: 1.0668
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Sidebar de consola `cashier` alineado visualmente con `waiter`: el item primario ahora muestra texto `Meseros` (manteniendo navegación a la ruta de caja) para que el botón principal aparezca seleccionado como en el menú de mesero.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0668
+  VERSION_NUEVA: 1.0669
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: Título superior de `cashier` alineado con vista de mesero en `DashboardView`: para scope `cashier` el encabezado del módulo ahora muestra `Mesero` (antes `Caja`) manteniendo intacta la navegación de tabs.
+
+- FECHA: 2026-03-11
+  VERSION_ANTERIOR: 1.0669
+  VERSION_NUEVA: 1.0670
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-api
+  RESUMEN: Fix de `POST /api/call-waiter` con 400 por sesión no activa: `client_sessions.open` ahora sincroniza `session_id`/`dining_session_id`/`table_id` en `customer_session_store` para `customer_ref`; además `customers/waiter_calls.call_waiter` agrega fallback seguro a `payload.session_id` validando pertenencia de la sesión al cliente autenticado.
+
+- FECHA: 2026-03-12
+  VERSION_ANTERIOR: 1.0670
+  VERSION_NUEVA: 1.0671
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static
+  RESUMEN: UX de checkout cliente ajustada: se elimina el mensaje "Para continuar al pago, inicia sesión o regístrate." y el botón `Ir a pagar` del carrito ahora solo se muestra cuando hay sesión autenticada de cliente (`APP_SESSION.customer`), con actualización reactiva en eventos de auth.
+
+- FECHA: 2026-03-13
+  VERSION_ANTERIOR: 1.0672
+  VERSION_NUEVA: 1.0673
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-scripts, root
+  RESUMEN: Unificación de nombre de proyecto Docker Compose para evitar duplicación de contenedores por `pronto` vs `pronto-app`: `stack-helpers.sh` ahora usa `COMPOSE_PROJECT_NAME=pronto` por defecto y `reset-db-and-seed.sh` deja de hardcodear `pronto-app` y usa el nombre de proyecto configurable.
+
+- FECHA: 2026-03-13
+  VERSION_ANTERIOR: 1.0673
+  VERSION_NUEVA: 1.0674
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-libs, pronto-api, root
+  RESUMEN: Resolución de 502 en `:6080/api/menu` causada por fallos de boot en `pronto-app-api-1`: se corrigió inconsistencia de `order_state_machine_core` (eventos/handlers faltantes), se restauraron miembros de enums usados en runtime (`OrderStatus`, `PaymentStatus`, `SessionStatus`) y se reparó carga de rutas de órdenes (`orders.py` shim + import inválido en `orders_cancellation.py`). Se reinició solo el contenedor API para aplicar cambios.
+
+- FECHA: 2026-03-14
+  VERSION_ANTERIOR: 1.0674
+  VERSION_NUEVA: 1.0675
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-api, pronto-static, pronto-docs, root, pronto-scripts/pronto-root
+  RESUMEN: Ejecución big-bang de deuda técnica con D0 por bug: hardening RBAC canónico (sin CRUD de roles custom en `employees` API), corrección de `sync-canonical-types` por naming real de script, saneamiento de compilación Vue employees/clients (SFCs rotos, entrypoints/módulos faltantes y compatibilidad de stores), eliminación de módulos legacy pendientes en employees Vue, documentación `BUG-001..BUG-010` con evidencia transversal y actualización de versión de sistema.
