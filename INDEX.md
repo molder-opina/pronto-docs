@@ -1,6 +1,6 @@
 # Pronto Documentation Index
 
-> Última actualización: 2026-03-09
+> Última actualización: 2026-03-18
 
 ## Estructura de Documentación
 
@@ -84,6 +84,14 @@ pronto-docs/
 | [CHECKLIST-PRONTO-CLIENT.md](CHECKLIST-PRONTO-CLIENT.md) | Checklist cliente |
 | [CHECKLIST-PRONTO-EMPLOYEES.md](CHECKLIST-PRONTO-EMPLOYEES.md) | Checklist empleados |
 | [qa/](qa/) | Reportes de QA |
+
+### Standards
+
+| Archivo | Descripción |
+|---------|-------------|
+| [standards/file-naming-standard.md](standards/file-naming-standard.md) | Canon de nomenclatura documental |
+| [standards/frontend-design-rules.md](standards/frontend-design-rules.md) | Reglas de diseño frontend |
+| [standards/functional-changelog-control.md](standards/functional-changelog-control.md) | Politica obligatoria de trazabilidad para cambios funcionales en `pronto-docs` |
 
 ### Módulos
 

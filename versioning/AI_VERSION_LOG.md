@@ -1307,3 +1307,12 @@ Registro incremental obligatorio de cambios aplicados por agentes AI.
   AGENTE: Codex (GPT-5)
   MODULOS: pronto-libs, pronto-api, pronto-docs, root, pronto-scripts/pronto-root
   RESUMEN: Implementación Fase A.1 + A.3 sin bypass legacy: se eliminó el uso de `order.is_paid()` con helper canónico `is_order_paid(order)`, se removieron helpers `mark_order_*` de `order_state_machine_core`, se creó `order/payment_domain.py` con cierre de sesión atómico/idempotente usando `SELECT ... FOR UPDATE` y transiciones exclusivamente vía state machine, `sync_session_financials` delega cierre al dominio canónico, `confirm_partial_payment` ahora solo paga órdenes `DELIVERED` por state machine, se limpiaron imports muertos en split-bill, se agregaron tests `tests/order/test_payment_domain.py` y se actualizó evidencia en `pronto-docs/debug/phase-a3-bypass-scan.md`.
+
+- FECHA: 2026-03-18
+  VERSION_ANTERIOR: 1.0706
+  VERSION_NUEVA: 1.0707
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-docs
+  RESUMEN: Se implementa la funcionalidad de control explicito de cambios funcionales en `pronto-docs`: nuevo estandar obligatorio de trazabilidad, plantilla oficial para `change-logs`, registro inicial `CHG-20260318-142033` y enlace desde `INDEX.md`.
+  COMMIT_HASHES: [HEAD]
+  RUTAS_AFECTADAS: standards/functional-changelog-control.md, change-logs/chg-template-result.md, change-logs/CHG-20260318-142033/result.md, INDEX.md, versioning/AI_VERSION_LOG.md
