@@ -1316,3 +1316,26 @@ Registro incremental obligatorio de cambios aplicados por agentes AI.
   RESUMEN: Se implementa la funcionalidad de control explicito de cambios funcionales en `pronto-docs`: nuevo estandar obligatorio de trazabilidad, plantilla oficial para `change-logs`, registro inicial `CHG-20260318-142033` y enlace desde `INDEX.md`.
   COMMIT_HASHES: [a54ed5f]
   RUTAS_AFECTADAS: standards/functional-changelog-control.md, change-logs/chg-template-result.md, change-logs/CHG-20260318-142033/result.md, INDEX.md, versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-18
+  VERSION_ANTERIOR: 1.0712
+  VERSION_NUEVA: 1.0713
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-api, pronto-libs, pronto-tests, pronto-docs, root, pronto-scripts/pronto-root
+  RESUMEN: Cierre de Día 4 de idempotencia e integridad financiera. Se amplió `pronto-api/tests/test_payment_idempotency.py` con casos de pagos parciales acumulados, split + confirmación externa y confirmación webhook idempotente; se corrigió regresión ORM agregando `DiningSession.payment_audit_logs`; se restauró compatibilidad lazy de `pronto_shared.services.<module>` para tests; se actualizó checklist de avance con evidencia de suites ejecutadas (pronto-api y pronto-tests) y se revalidaron regresiones relevantes en verde.
+
+- FECHA: 2026-03-18
+  VERSION_ANTERIOR: 1.0713
+  VERSION_NUEVA: 1.0713
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, pronto-libs, pronto-client, pronto-tests, pronto-docs
+  RESUMEN: Continuacion de estabilizacion Big Bang del frontend cliente con evidencia correlacionada en `change-logs/CHG-20260318-162900/result.md`: se corrigio la fachada canónica de checkout (`prepare_checkout`) para eliminar 500 en request-check, se consolidó bootstrap Vue-first en `MenuPage`, se estabilizaron tests Vitest de clientes (27/27) y se restauró el Dockerfile faltante de `pronto-client` para recuperar rebuild en `6080`.
+  COMMIT_HASHES: [c5ea39c, ef8e822, 3f915a0, 60772e0, 1c0195b]
+  RUTAS_AFECTADAS: pronto-static/src/vue/clients/views/MenuPage.vue, pronto-static/src/vue/clients/vitest.config.ts, pronto-static/src/vue/clients/components/{cart/cart-panel.spec.ts,profile/profile-modal.spec.ts,navigation/tab-navigation.spec.ts,orders/order-tracker.spec.ts,menu/product-detail-modal.spec.ts}, pronto-libs/src/pronto_shared/services/order_service.py, pronto-client/src/pronto_clients/Dockerfile, pronto-docs/change-logs/CHG-20260318-162900/result.md, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-18
+  VERSION_ANTERIOR: 1.0713
+  VERSION_NUEVA: 1.0714
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-api, pronto-docs, root, pronto-scripts/pronto-root
+  RESUMEN: Cierre de Día 5 con validación manual local y corrección de brechas detectadas en runtime. Se corrigió `pay_session` en `api_app/routes/payments.py` para permitir replay idempotente cuando la sesión ya está pagada (solo bloquea cuando no hay key). Se corrigió `session_pay` en `api_app/routes/employees/sessions.py` moviendo import de `finalize_payment` a carga lazy en rama de pago completo para evitar 500 en pagos parciales. Evidencia manual: pago digital sin key -> 400, con key -> 200, concurrencia 12 requests mismo key -> 12x200 con 1 payment_id, ruta de empleados con key -> 200.
