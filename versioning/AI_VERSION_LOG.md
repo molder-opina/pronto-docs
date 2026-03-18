@@ -1392,3 +1392,12 @@ Registro incremental obligatorio de cambios aplicados por agentes AI.
   RESUMEN: Trazabilidad explicita de inclusion solicitada por el usuario para cambios ya integrados y pushados en `codex/fix/phase-a3-state-machine-bypass`: centralizacion de escritura de sesion pagada en `payment_domain.py` y versionado de respaldo `PRONTO_SYSTEM_VERSION=1.0715` en `pronto-scripts/pronto-root`.
   COMMIT_HASHES: [6bad092, 52047ec]
   RUTAS_AFECTADAS: pronto-libs/src/pronto_shared/services/order/payment_domain.py, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/change-logs/CHG-20260318-170100/result.md, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-18
+  VERSION_ANTERIOR: 1.0715
+  VERSION_NUEVA: 1.0715
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, pronto-docs
+  RESUMEN: Se incluye en branch remoto el nuevo composable compartido `action-state.ts` para empleados (modelo de estado operacional, timeout y utilitarios de accion) y se registra trazabilidad explicita asociada.
+  COMMIT_HASHES: [bd783e2]
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/shared/composables/action-state.ts, pronto-docs/change-logs/CHG-20260318-170600/result.md, pronto-docs/versioning/AI_VERSION_LOG.md
