@@ -1383,3 +1383,12 @@ Registro incremental obligatorio de cambios aplicados por agentes AI.
   MODULOS: pronto-libs, pronto-api, pronto-scripts, pronto-docs, root, pronto-scripts/pronto-root
   RESUMEN: Continuacion de cierre tecnico para idempotencia (puntos 2 y 3): se valido y estabilizo `rebuild.sh api` con infraestructura `postgres/redis` recreada sin conflicto de puertos; se aplicaron migraciones con entorno cargado (`pronto-migrate --apply`) y se confirmo `pending=0 drift=0` junto con `pronto-init --check` OK; se alineo schema de `pronto_payment_audit_logs` (PK UUID + columnas canónicas) y se confirmo insercion de auditoria en contexto request; adicionalmente se elimino el write directo literal de `SessionStatus.PAID` en `payment_domain.py` centralizando la transicion con helper interno.
   RUTAS_AFECTADAS: pronto-libs/src/pronto_shared/services/order/payment_domain.py, pronto-scripts/bin/mac/rebuild.sh, pronto-scripts/init/sql/migrations/20260318_05__align_payment_audit_logs_schema.sql, pronto-docs/versioning/AI_VERSION_LOG.md, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example
+
+- FECHA: 2026-03-18
+  VERSION_ANTERIOR: 1.0715
+  VERSION_NUEVA: 1.0715
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-libs, pronto-scripts, pronto-docs
+  RESUMEN: Trazabilidad explicita de inclusion solicitada por el usuario para cambios ya integrados y pushados en `codex/fix/phase-a3-state-machine-bypass`: centralizacion de escritura de sesion pagada en `payment_domain.py` y versionado de respaldo `PRONTO_SYSTEM_VERSION=1.0715` en `pronto-scripts/pronto-root`.
+  COMMIT_HASHES: [6bad092, 52047ec]
+  RUTAS_AFECTADAS: pronto-libs/src/pronto_shared/services/order/payment_domain.py, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/change-logs/CHG-20260318-170100/result.md, pronto-docs/versioning/AI_VERSION_LOG.md
