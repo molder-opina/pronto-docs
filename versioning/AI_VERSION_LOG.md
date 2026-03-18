@@ -1357,3 +1357,12 @@ Registro incremental obligatorio de cambios aplicados por agentes AI.
   RESUMEN: Endurecimiento de autoridad Vue-first en cliente: `requestJSON` deja de intentar rehidratar sesion en errores 401 y ahora emite `HTTPError` para que el control de recuperacion viva en el bootstrap central. Evidencia validada con `npm run build:clients` y `vitest` clientes (27/27).
   COMMIT_HASHES: [65ba8cc]
   RUTAS_AFECTADAS: pronto-static/src/vue/clients/core/http.ts, pronto-docs/change-logs/CHG-20260318-165200/result.md, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-18
+  VERSION_ANTERIOR: 1.0714
+  VERSION_NUEVA: 1.0714
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, pronto-docs
+  RESUMEN: Se añade suite de pruebas para el contrato de polling de ordenes en cliente (`startPolling` idempotente, un solo intervalo activo y limpieza correcta al detener), reforzando el release gate de `polling_interval_count <= 1`.
+  COMMIT_HASHES: [34ff1cc]
+  RUTAS_AFECTADAS: pronto-static/src/vue/clients/stores/orders-store.spec.ts, pronto-docs/change-logs/CHG-20260318-165400/result.md, pronto-docs/versioning/AI_VERSION_LOG.md
