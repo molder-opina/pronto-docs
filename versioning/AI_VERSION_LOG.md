@@ -1335,6 +1335,15 @@ Registro incremental obligatorio de cambios aplicados por agentes AI.
 
 - FECHA: 2026-03-18
   VERSION_ANTERIOR: 1.0713
+  VERSION_NUEVA: 1.0713
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-scripts, pronto-docs
+  RESUMEN: Correccion del gate de pre-commit/push para eliminar falla por argumento no soportado (`--files-file`) en `pronto-check-business-invariants`, manteniendo compatibilidad con flujo `--files`, `--staged` y nuevo `--files-file` usado por `pre-commit-ai`; evidencia en `change-logs/CHG-20260318-164500/result.md`.
+  COMMIT_HASHES: [a6935ec]
+  RUTAS_AFECTADAS: pronto-scripts/bin/pre-commit-ai, pronto-scripts/bin/pronto-check-business-invariants, pronto-docs/change-logs/CHG-20260318-164500/result.md, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-18
+  VERSION_ANTERIOR: 1.0713
   VERSION_NUEVA: 1.0714
   AGENTE: Codex (GPT-5)
   MODULOS: pronto-api, pronto-docs, root, pronto-scripts/pronto-root
