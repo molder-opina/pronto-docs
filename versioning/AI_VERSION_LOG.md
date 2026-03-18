@@ -1314,5 +1314,5 @@ Registro incremental obligatorio de cambios aplicados por agentes AI.
   AGENTE: Codex (GPT-5)
   MODULOS: pronto-docs
   RESUMEN: Se implementa la funcionalidad de control explicito de cambios funcionales en `pronto-docs`: nuevo estandar obligatorio de trazabilidad, plantilla oficial para `change-logs`, registro inicial `CHG-20260318-142033` y enlace desde `INDEX.md`.
-  COMMIT_HASHES: [HEAD]
+  COMMIT_HASHES: [a54ed5f]
   RUTAS_AFECTADAS: standards/functional-changelog-control.md, change-logs/chg-template-result.md, change-logs/CHG-20260318-142033/result.md, INDEX.md, versioning/AI_VERSION_LOG.md
