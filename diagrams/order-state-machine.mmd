@@ -1,0 +1,41 @@
+```mermaid
+stateDiagram-v2
+    direction LR
+    
+    [*] --> new
+    new --> queued: accept_or_queue\n(waiter, admin, system)
+    new --> cancelled: cancel\n(client, waiter, admin, system)
+    
+    queued --> preparing: kitchen_start\n(chef, admin, system)
+    queued --> ready: skip_kitchen\n(system)
+    queued --> cancelled: cancel\n(client, waiter, admin, system)
+    
+    preparing --> ready: kitchen_complete\n(chef, admin, system)
+    preparing --> cancelled: cancel\n(waiter, admin, system)\n*requires justification*
+    
+    ready --> delivered: deliver\n(waiter, admin, system)
+    ready --> cancelled: cancel\n(admin, system)\n*requires justification*
+    
+    delivered --> awaiting_payment: mark_awaiting_payment\n(waiter, cashier, admin, system)
+    delivered --> paid: pay_direct\n(admin, system)\n*requires justification*
+    delivered --> cancelled: cancel\n(admin, system)\n*requires justification*
+    
+    awaiting_payment --> paid: pay\n(waiter, cashier, admin, system)
+    awaiting_payment --> cancelled: cancel\n(admin, system)\n*requires justification*
+    
+    state "new\n(Solicitada)" as new
+    state "queued\n(Aceptada)" as queued
+    state "preparing\n(En cocina)" as preparing
+    state "ready\n(Lista)" as ready
+    state "delivered\n(Entregada)" as delivered
+    state "awaiting_payment\n(Cerrando)" as awaiting_payment
+    state "paid\n(Pagada)" as paid
+    state "cancelled\n(Cancelada)" as cancelled
+    
+    classDef activeState fill:#98FB98,stroke:#333,stroke-width:1px;
+    classDef terminalState fill:#32CD32,stroke:#333,stroke-width:2px;
+    classDef startState fill:#FFE4B5,stroke:#333,stroke-width:1px;
+    
+    class new,queued,preparing,ready,delivered,awaiting_payment startState|activeState
+    class paid,cancelled terminalState
+```

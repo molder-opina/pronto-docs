@@ -1,0 +1,58 @@
+digraph OrderStateMachine {
+    rankdir=LR;
+    size="12,8";
+    node [shape=box, style=rounded, fontsize=12, fontname="Arial"];
+    edge [fontsize=10, fontname="Arial"];
+    
+    // Estados
+    NEW [label="new\n(Solicitada)", fillcolor="#FFE4B5", style="filled,rounded"];
+    QUEUED [label="queued\n(Aceptada)", fillcolor="#FFD700", style="filled,rounded"];
+    PREPARING [label="preparing\n(En cocina)", fillcolor="#98FB98", style="filled,rounded"];
+    READY [label="ready\n(Lista)", fillcolor="#00FF00", style="filled,rounded"];
+    DELIVERED [label="delivered\n(Entregada)", fillcolor="#87CEEB", style="filled,rounded"];
+    AWAITING_PAYMENT [label="awaiting_payment\n(Cerrando)", fillcolor="#FFA500", style="filled,rounded"];
+    PAID [label="paid\n(Pagada)", fillcolor="#32CD32", style="filled,rounded,peripheries=2"];
+    CANCELLED [label="cancelled\n(Cancelada)", fillcolor="#DC143C", style="filled,rounded,peripheries=2"];
+    
+    // Transiciones
+    // Desde NEW
+    NEW -> QUEUED [label="accept_or_queue\n(waiter,admin,system)"];
+    NEW -> CANCELLED [label="cancel\n(client,waiter,admin,system)"];
+    
+    // Desde QUEUED  
+    QUEUED -> PREPARING [label="kitchen_start\n(chef,admin,system)"];
+    QUEUED -> READY [label="skip_kitchen\n(system)"];
+    QUEUED -> CANCELLED [label="cancel\n(client,waiter,admin,system)"];
+    
+    // Desde PREPARING
+    PREPARING -> READY [label="kitchen_complete\n(chef,admin,system)"];
+    PREPARING -> CANCELLED [label="cancel\n(waiter,admin,system)\n*requires justification*"];
+    
+    // Desde READY
+    READY -> DELIVERED [label="deliver\n(waiter,admin,system)"];
+    READY -> CANCELLED [label="cancel\n(admin,system)\n*requires justification*"];
+    
+    // Desde DELIVERED
+    DELIVERED -> AWAITING_PAYMENT [label="mark_awaiting_payment\n(waiter,cashier,admin,system)"];
+    DELIVERED -> PAID [label="pay_direct\n(admin,system)\n*requires justification*"];
+    DELIVERED -> CANCELLED [label="cancel\n(admin,system)\n*requires justification*"];
+    
+    // Desde AWAITING_PAYMENT
+    AWAITING_PAYMENT -> PAID [label="pay\n(waiter,cashier,admin,system)"];
+    AWAITING_PAYMENT -> CANCELLED [label="cancel\n(admin,system)\n*requires justification*"];
+    
+    // Estados terminales
+    { rank=same; PAID; CANCELLED; }
+    
+    // Leyenda
+    subgraph cluster_legend {
+        label="Leyenda";
+        style="dashed";
+        fontsize=10;
+        fontname="Arial";
+        
+        legend_start [label="Inicio", shape=circle, style=filled, fillcolor="#FFE4B5", width=0.3];
+        legend_active [label="Estados activos", shape=box, style="filled,rounded", fillcolor="#98FB98", width=1.2];
+        legend_terminal [label="Estados terminales", shape=box, style="filled,rounded,peripheries=2", fillcolor="#32CD32", width=1.5];
+    }
+}

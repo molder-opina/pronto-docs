@@ -326,3 +326,12 @@
 2026-03-10 | LIBS-20260310-MENU-MUTATION-RESIDUAL-IMPL-DEPENDENCY | `menu_mutation_service.py` seguía delegando CRUD real de ítems a `menu_service_impl.py` | NO_COMMIT_LOCAL | pronto-libs,pronto-docs,pronto-scripts
 2026-03-10 | LIBS-20260310-MENU-LABEL-RESIDUAL-IMPL-DEPENDENCY | `menu_label_service.py` seguía delegando `update_menu_item_prep_time` y `get_item_schedules` a `menu_service_impl.py` | NO_COMMIT_LOCAL | pronto-libs,pronto-docs,pronto-scripts
 2026-03-10 | LIBS-20260310-MENU-IMPL-PRIVATE-HELPER-DUPLICATION | `menu_service_impl.py` seguía reteniendo helpers privados duplicados de `menu_mutation_service.py` | NO_COMMIT_LOCAL | pronto-libs,pronto-docs,pronto-scripts
+2026-03-17 | ERR-20260317-001 | Tecla ESC no cierra el carrito de compras | pendiente | pronto-static,pronto-docs
+2026-03-17 | ERR-20260317-002 | Contador de aditamientos no indica claramente el mínimo requerido | pendiente | pronto-static,pronto-docs,pronto-scripts
+2026-03-17 | ERR-20260317-003 | Tecla ESC no cierra el carrito debido a conflictos de event listeners | pendiente | pronto-static,pronto-docs
+2026-03-17 | ERR-20260317-004 | Botón "Ir a pagar" no funciona - vista de checkout no se muestra | pendiente | pronto-static,pronto-docs
+2026-03-17 | ERR-20260317-002 | Contador de aditamientos no indica claramente el mínimo requerido | pendiente | pronto-static,pronto-docs,pronto-scripts
+2026-03-17 | ERR-20260317-005 | Botón de login sigue gris y no hay indicación de éxito tras login | pendiente | pronto-static,pronto-docs
+2026-03-17 | ERR-20260317-005 | Botón de login sigue gris y no hay indicación de éxito tras login | pendiente | pronto-static,pronto-docs
+2026-03-17 | ERR-20260317-006 | Botón de login sigue gris y no hay indicación de éxito tras login | pendiente | pronto-static,pronto-docs
+2026-03-17 | PRONTO-PAY-013 | Escrituras directas de workflow_status y payment_status fuera de máquina de estados | [PENDIENTE] | pronto-libs

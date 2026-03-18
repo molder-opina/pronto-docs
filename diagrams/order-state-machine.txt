@@ -1,0 +1,100 @@
+FINITE STATE MACHINE - PRONTO ORDER STATES
+==========================================
+
+ESTADOS (OrderStatus):
+- new: Orden creada (estado inicial)
+- queued: Aceptada/En cola
+- preparing: En cocina  
+- ready: Lista para entrega
+- delivered: Entregada al cliente
+- awaiting_payment: Esperando pago
+- paid: Pagada (estado terminal)
+- cancelled: Cancelada (estado terminal)
+
+TRANSICIONES VÁLIDAS:
+====================
+
+1. new → queued
+   - Acción: accept_or_queue
+   - Roles permitidos: waiter, admin, system
+   - Justificación requerida: No
+
+2. new → cancelled  
+   - Acción: cancel
+   - Roles permitidos: client, waiter, admin, system  
+   - Justificación requerida: No
+
+3. queued → preparing
+   - Acción: kitchen_start
+   - Roles permitidos: chef, admin, system
+   - Justificación requerida: No
+
+4. queued → ready
+   - Acción: skip_kitchen  
+   - Roles permitidos: system
+   - Justificación requerida: No
+
+5. queued → cancelled
+   - Acción: cancel
+   - Roles permitidos: client, waiter, admin, system
+   - Justificación requerida: No
+
+6. preparing → ready
+   - Acción: kitchen_complete
+   - Roles permitidos: chef, admin, system
+   - Justificación requerida: No
+
+7. preparing → cancelled
+   - Acción: cancel
+   - Roles permitidos: waiter, admin, system
+   - Justificación requerida: Sí
+
+8. ready → delivered
+   - Acción: deliver
+   - Roles permitidos: waiter, admin, system
+   - Justificación requerida: No
+
+9. ready → cancelled
+   - Acción: cancel
+   - Roles permitidos: admin, system
+   - Justificación requerida: Sí
+
+10. delivered → awaiting_payment
+    - Acción: mark_awaiting_payment
+    - Roles permitidos: waiter, cashier, admin, system
+    - Justificación requerida: No
+
+11. delivered → paid
+    - Acción: pay_direct
+    - Roles permitidos: admin, system
+    - Justificación requerida: Sí
+
+12. delivered → cancelled
+    - Acción: cancel
+    - Roles permitidos: admin, system
+    - Justificación requerida: Sí
+
+13. awaiting_payment → paid
+    - Acción: pay
+    - Roles permitidos: waiter, cashier, admin, system
+    - Justificación requerida: No
+
+14. awaiting_payment → cancelled
+    - Acción: cancel
+    - Roles permitidos: admin, system
+    - Justificación requerida: Sí
+
+REGLAS IMPORTANTES:
+==================
+
+- Estados terminales: paid, cancelled (no se pueden modificar después)
+- Solo los roles específicos pueden realizar cada transición
+- Las cancelaciones desde estados avanzados requieren justificación
+- El flujo normal es: new → queued → preparing → ready → delivered → awaiting_payment → paid
+- Existen atajos como skip_kitchen (queued → ready) para pedidos rápidos
+- Los clientes solo pueden cancelar desde estados iniciales (new, queued)
+
+AUTORIDAD ÚNICA:
+===============
+Todas las transiciones deben realizarse a través del OrderStateMachine 
+en pronto-libs/src/pronto_shared/services/order_state_machine.py

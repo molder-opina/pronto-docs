@@ -43,5 +43,10 @@ EVIDENCIA:
 - `waiter_calls.py` línea 231: escritura directa `waiter_call.status = "cancelled"`.
 - `git status --short` muestra residuos no integrados en `pronto-static`, `pronto-tests`, `pronto-scripts`, `pronto-docs` y templates de `pronto-client`.
 HIPOTESIS_CAUSA: La deuda proviene de una migración por fases aún incompleta: coexistencia de BFF temporales, adaptación progresiva SSR→Vue, hardening incremental de guardrails y acumulación de artefactos locales/auditorías parciales sin limpieza final.
-ESTADO: ABIERTO
+ACTUALIZACION_2026-03-18:
+- Resuelto (TICKET-D1): Se realizó limpieza profunda de residuos en `pronto-tests` eliminando capturas de error y vaciando directorios de resultados temporales.
+- Resuelto (TICKET-D1): Se habilitaron pruebas de accesibilidad en `axe-audit.spec.ts` corrigiendo las URLs de destino.
+- Resuelto (TICKET-D1): Se confirmó la eliminación de `invoice-flow.spec.ts` y otros scripts de debug mencionados en la auditoría original.
+- Resuelto (TICKET-D1): Los proxies en `pronto-client` están correctamente marcados como DEPRECATED y operan como transportes puros hacia `pronto-api`, cumpliendo el plan de migración.
+ESTADO: RESUELTO
 

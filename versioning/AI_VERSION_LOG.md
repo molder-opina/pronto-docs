@@ -4,6 +4,9 @@ Registro incremental obligatorio de cambios aplicados por agentes AI.
 
 | FECHA | VERSION_ANTERIOR | VERSION_NUEVA | AGENTE | MODULOS | RESUMEN |
 |---|---|---|---|---|---|
+| 2026-03-17 | 1.0702 | 1.0703 | opencode | pronto-api, pronto-client, pronto-static, pronto-libs, pronto-scripts, pronto-docs | Implementación de infraestructura de sesión resiliente (TICKET-C2) con rehidratación automática, interceptor 401 y promise-lock. Saneamiento de integridad de mesas (TICKET-C3) eliminando columna redundante y mandatando relación autoritativa en AGENTS.md. Apertura pública de /api/business-info (TICKET-C1). Blindaje de caché en tableros real-time (TICKET-C4). Cierre de auditorías de deuda técnica (TICKET-D1/D2) con limpieza de residuos y reducción del 50% en order_service_impl.py.
+| 2026-03-17 | 1.0701 | 1.0702 | opencode | pronto-libs, pronto-scripts/pronto-root | Corrección del bug PRONTO-PAY-013: múltiples servicios legacy llamaban `order.mark_status()` directamente, bypassing la autoridad única de transiciones de estado definida en `order_state_machine.py`. Se migraron todos los servicios afectados para usar exclusivamente `order_state_machine.apply_transition()`, asegurando validación canónica, side effects consistentes y cumplimiento P0.
+| 2026-03-15 | 1.0684 | 1.0685 | opencode | pronto-libs, pronto-scripts, pronto-static, pronto-tests | Implementación de sistema de permisos de pago configurable con dos parámetros: enable_cashier_role y allow_waiter_cashier_operations. Incluye servicio backend, composable frontend, migración de base de datos, y tests unitarios.
 | 2026-03-12 | 1.0671 | 1.0672 | opencode | pronto-libs, pronto-api, pronto-static, pronto-scripts | Implementación completa del sistema de entrega parcial y cancelación por item para restaurantes pequeños/medianos |
 | 2026-03-10 | 1.0614 | 1.0615 | Augment Agent | root(.env,.env.example), pronto-libs, pronto-docs, pronto-scripts/pronto-root | Se movió la implementación real de `update_menu_item_prep_time` y `get_item_schedules` a `menu_label_service.py`; `menu_service_impl.py` ahora conserva esos símbolos solo como aliases mínimos importados desde `menu_label_service.py`. Se actualizó `test_menu_query_facade.py` para fijar esa compatibilidad. Validación verde: `py_compile`, `25 passed` en unit tests de `pronto-libs` y `19 passed` en `test_menu_validation.py` + `test_menu_home_dedupe_policy.py`. |
 | 2026-03-10 | 1.0613 | 1.0614 | Augment Agent | root(.env,.env.example), pronto-libs, pronto-tests, pronto-docs, pronto-scripts/pronto-root | Se movió la implementación real del CRUD de ítems a `menu_mutation_service.py`: `create_menu_item`, `update_menu_item` y `delete_menu_item` ya no delegan al `impl`, mientras `menu_service_impl.py` conserva esos símbolos solo como compatibilidad mínima importada desde `menu_mutation_service.py`. Se actualizaron `test_menu_query_facade.py` y `pronto-tests/tests/functionality/unit/test_menu_validation.py` para reflejar la nueva autoridad. Validación verde: `py_compile`, `25 passed` en unit tests de `pronto-libs` y `19 passed` en `test_menu_validation.py` + `test_menu_home_dedupe_policy.py`. |
@@ -1164,3 +1167,143 @@ Registro incremental obligatorio de cambios aplicados por agentes AI.
   AGENTE: Codex (GPT-5)
   MODULOS: pronto-docs, root, pronto-scripts/pronto-root
   RESUMEN: Registro D0 por funcionalidad en `pronto-docs/errors/` para BUG-010 por repo, consolidación de evidencia de validación (gates/parity/tests/migrate/init en verde) y sincronización de `PRONTO_SYSTEM_VERSION` en root y backup versionado.
+
+- FECHA: 2026-03-14
+  VERSION_ANTERIOR: 1.0682
+  VERSION_NUEVA: 1.0683
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, pronto-client, pronto-docs, root, pronto-scripts/pronto-root
+  RESUMEN: Inicio de migración sin compatibilidad legacy en cliente: modal de perfil/login legacy SSR deshabilitado (`profile-modal-legacy-disabled`), eliminación de `onclick` inline en header para perfil/carrito, retiro de bridges globales de perfil en `App.vue`, ajuste de `index.html` para abrir perfil vía trigger real de UI y actualización de tests del `ProfileModal` a IDs/clases canónicas Vue.
+
+- FECHA: 2026-03-15
+  VERSION_ANTERIOR: 1.0683
+  VERSION_NUEVA: 1.0684
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-client, pronto-docs, root, pronto-scripts/pronto-root
+  RESUMEN: Fix de renderizado flotante de cliente: `pronto-client` ahora resuelve e inyecta CSS de Vue desde `/assets/js/clients/.vite/manifest.json` (entries `entrypoints/base.ts` y `entrypoints/menu.ts`, incluyendo imports CSS). Se añadieron `<link>` dinámicos de esos bundles en `base.html`, corrigiendo estilos faltantes que dejaban login/carrito en layout plano al fondo de la página.
+
+- FECHA: 2026-03-15
+  VERSION_ANTERIOR: 1.0685
+  VERSION_NUEVA: 1.0686
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-api, pronto-client, pronto-docs, root, pronto-scripts/pronto-root
+  RESUMEN: Saneamiento de backlog crítico sin bypass legacy: corrección de claims JWT canónicos (`employee_role`) para evitar `SCOPE_MISMATCH` falsos en `/api/auth/me` y resolución de scope en empleados/órdenes; habilitación explícita de lectura de mesas para `chef` en `/api/tables` (fix tab Mesas en consola cocina); eliminación de inline styles remanentes en templates cliente (`base.html`, `includes/_modals.html`, `kiosk.html`) reemplazados por clases CSS canónicas.
+
+- FECHA: 2026-03-15
+  VERSION_ANTERIOR: 1.0686
+  VERSION_NUEVA: 1.0687
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, pronto-client, pronto-docs, root, pronto-scripts/pronto-root
+  RESUMEN: Eliminación de fallbacks silenciosos en autenticación y scope (employees `auth.ts`, `router/index.ts`, `LoginForm.vue`, `Sidebar.vue`), endurecimiento de carga de configuración cliente sin defaults ocultos (`use-app-config.ts`, `static-host.ts`), y retiro de rutas/contratos legacy en checkout cliente (`index.html`: sin `/api/orders`, sin `legacy_code`, sin parseos fallback de mesa). Build de `pronto-static` (employees+clients) validado en verde.
+
+- FECHA: 2026-03-16
+  VERSION_ANTERIOR: 1.0687
+  VERSION_NUEVA: 1.0688
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-libs, pronto-api, pronto-static, pronto-employees, pronto-scripts, root, pronto-scripts/pronto-root
+  RESUMEN: Cierre de pendientes críticos de cobro e imágenes: se centralizó autorización de pagos con `payment_permission_service` en rutas de sesiones (eliminando checks legacy `waiter_can_collect` del flujo crítico), se agregó invalidación de caché de permisos al actualizar configuración, se alineó UI de caja a permisos canónicos (`use-payment-permissions` con `active_scope`), se exigió imagen obligatoria para alta de productos y se incorporó default canónico persistido para seeds (helper + migración de backfill). También se completó metadata de estados faltantes (`awaiting_tip` y `awaiting_payment_confirmation`) y se añadieron pruebas unitarias nuevas/actualizadas.
+
+- FECHA: 2026-03-16
+  VERSION_ANTERIOR: 1.0688
+  VERSION_NUEVA: 1.0689
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-libs, pronto-api, pronto-employees, pronto-static, pronto-tests, pronto-scripts, pronto-docs, root, pronto-scripts/pronto-root
+  RESUMEN: Cierre de brechas de canonicalización de permisos de cobro: validación robusta y coerción booleana para `payments.enable_cashier_role` y `payments.allow_waiter_cashier_operations` en actualización de settings (`set_config_value`/`update_system_setting`) con invalidación de caché de permisos. Se retiró `waiter_can_collect` del runtime (API/public config, bootstrap employees, stores/tipos Vue y composables cliente), se actualizaron tests funcionales/integración a llaves canónicas, y se saneó tooling/seed para evitar reintroducción legacy (`create_test_data.py`, `pronto-abc.sh`, script de verificación y migración SQL para eliminar la llave legacy).
+
+- FECHA: 2026-03-16
+  VERSION_ANTERIOR: 1.0689
+  VERSION_NUEVA: 1.0690
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, pronto-client, pronto-docs, root, pronto-scripts/pronto-root
+  RESUMEN: Corrección de contraste visual en formulario/modal de personalización en cliente: se añadieron alias canónicos de tema (`--text`, `--muted`, `--border`, `--surface`, `--primary`, `--primary-light`) en `design-system.css` para resolver colores heredados inconsistentes en Vue; además `ModalDialog.vue` ahora fuerza superficie y color de texto/bordes en header/body/footer, evitando letras lavadas y fondo incorrecto en el detalle de producto.
+
+- FECHA: 2026-03-16
+  VERSION_ANTERIOR: 1.0690
+  VERSION_NUEVA: 1.0691
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, pronto-client, pronto-docs, root, pronto-scripts/pronto-root
+  RESUMEN: Fix de capas del carrito para garantizar visibilidad por encima del header/títulos: se elevó z-index del `cart-backdrop` y `cart-panel` en componente Vue activo (`components/CartPanel.vue`) y en CSS legacy (`menu-components.css`), además de alinear la variante alternativa (`components/cart/CartPanel.vue`) al mismo nivel de apilamiento para prevenir regresiones por rutas de render mixtas SSR+Vue.
+
+- FECHA: 2026-03-16
+  VERSION_ANTERIOR: 1.0691
+  VERSION_NUEVA: 1.0692
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, pronto-client, pronto-docs, root, pronto-scripts/pronto-root
+  RESUMEN: Fix funcional de click en carrito: el panel cerrado ahora desactiva interacción (`pointer-events: none`) y solo la habilita al abrir (`pointer-events: auto`) en todas las rutas (Vue `components/cart/CartPanel.vue`, Vue `components/CartPanel.vue` y CSS legacy `menu-components.css`), evitando que una capa fija invisible bloquee el botón del header. Se agregó además hardening del trigger en `App.vue` con selectores ampliados y soporte de evento global `pronto:cart-open`.
+
+- FECHA: 2026-03-16
+  VERSION_ANTERIOR: 1.0692
+  VERSION_NUEVA: 1.0693
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-client, pronto-static, pronto-docs, root, pronto-scripts/pronto-root
+  RESUMEN: Corrección de franja vacía por ocultamiento legacy del menú: se identificó que `.initial-view-details|orders [data-menu-root]` ocultaba permanentemente el contenedor del menú cuando no tenía `menu-visible`, dejando pantalla en blanco al final. Se ajustó la regla en `base.html` para respetar estado explícito `menu-visible` y se agregó sincronización de visibilidad en `index.html` usando `pronto:view-change` (`menu-visible/menu-hidden`). También se añadió `.menu-page.menu-hidden` en CSS de modales para comportamiento consistente.
+
+- FECHA: 2026-03-16
+  VERSION_ANTERIOR: 1.0694
+  VERSION_NUEVA: 1.0695
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, pronto-client, pronto-docs, root, pronto-scripts/pronto-root
+  RESUMEN: Mejora visual del modal de login con hardening de contraste: se añadieron estilos específicos para `vue-profile-modal` (título, botón de cierre, labels e inputs) en `ProfileModal.vue` y refuerzo en `audit-fixes.css` para evitar herencia de colores de tema global que dejaba texto casi invisible (especialmente el título “Iniciar sesión”).
+
+- FECHA: 2026-03-16
+  VERSION_ANTERIOR: 1.0695
+  VERSION_NUEVA: 1.0696
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-libs, pronto-api, pronto-client, pronto-docs, root, pronto-scripts/pronto-root
+  RESUMEN: Cierre de pendientes de arquitectura financiera y webhook: se introdujo `session_financial_service` para centralizar cálculo de `total_paid` y cierre de sesiones desde `Payment` (eliminando mutaciones manuales en `payment_service`, `order_payment_service`, `split_bill_service_core` y merges de sesiones), se migraron consumidores de autoridad financiera de `Order.payment_status` hacia `DiningSession`/ledger en serializers y analytics, se unificó confirmación externa (`stripe`/`clip` requieren `awaiting_payment_confirmation` y confirmación explícita), se movió el webhook Stripe a `pronto-api` (`/api/webhooks/stripe`) retirando el proxy legacy de `pronto-client`, y se exportó `PaymentAuditLog` desde `pronto_shared.models` para corregir imports canónicos.
+
+- FECHA: 2026-03-16
+  VERSION_ANTERIOR: 1.0696
+  VERSION_NUEVA: 1.0697
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-libs, pronto-api, pronto-scripts, pronto-docs, root, pronto-scripts/pronto-root
+  RESUMEN: Cierre final de brechas remanentes: `process_partial_payment` ahora respeta confirmación externa para `stripe/clip` y no cierra sesión en pago total hasta confirmación explícita; se eliminaron escrituras residuales de autoridad financiera en `Order` (`payment_method/reference` en state machine y sincronización de sesión, y filtro por `Order.paid_at` migrado a `DiningSession.closed_at`); se deprecó `pronto_orders.payment_status` como no autoritativo en ORM/init/migración SQL; y se añadieron pruebas de regresión para confirmación externa más pruebas unitarias de firma de webhook Stripe.
+
+- FECHA: 2026-03-17
+  VERSION_ANTERIOR: 1.0697
+  VERSION_NUEVA: 1.0698
+  AGENTE: Kimi (K2.5)
+  MODULOS: pronto-docs, root, pronto-scripts/pronto-root, AGENTS.md, delivery.log
+  RESUMEN: Documentación exhaustiva de state machines y actualización de delivery.log: se creó pronto-docs/architecture/state-machines.md con diagramas completos de OrderStatus (7 estados), SessionStatus (8 estados), PaymentStatus (6 estados), TableStatus (4 estados), WaiterCallStatus (4 estados) y ModificationStatus (4 estados); se actualizó delivery.log con todas las 15+ funcionalidades del sistema, matriz de complejidad verificada (todos los valores dentro de umbrales para restaurante pequeño/mediano); se actualizó AGENTS.md con reglas de documentación obligatoria (Sección 26), mandato de no más módulos (Sección 27), y regla de no crecimiento de complejidad expandida (Sección 25.3).
+
+- FECHA: 2026-03-17
+  VERSION_ANTERIOR: 1.0698
+  VERSION_NUEVA: 1.0699
+  AGENTE: Kimi (K2.5)
+  MODULOS: pronto-static, AGENTS.md, delivery.log
+  RESUMEN: Implementación de aislamiento de consolas (Regla de Oro): activeConsole en auth store, canAccessConsole guard, dashboards separados por consola (waiter, chef, cashier, admin, system), corrección de shared imports (WaiterCall types), documentación en AGENTS.md Sección 28.
+
+- FECHA: 2026-03-17
+  VERSION_ANTERIOR: 1.0699
+  VERSION_NUEVA: 1.0700
+  AGENTE: Kimi (K2.5)
+  MODULOS: pronto-api, pronto-static, pronto-docs, delivery.log
+  RESUMEN: Implementación de switch-scope endpoint: backend POST /auth/switch-scope valida roles contra ALLOWED_SCOPES_BY_ROLE y setea cookie access_token_{scope}, frontend switchConsoleScope() en auth store, router guard actualizado para llamar switch-scope en navegación, documentación actualizada con switch-scope flow.
+
+- FECHA: 2026-03-17
+  VERSION_ANTERIOR: 1.0700
+  VERSION_NUEVA: 1.0701
+  AGENTE: Kimi (K2.5)
+  MODULOS: AGENTS.md, delivery.log
+  RESUMEN: Documentación de regla operativa en AGENTS.md Sección 28.3: "El rol decide si puedes entrar. El activeConsole decide dónde estás. El backend valida ambos." + Frontend (UX guard), + Backend (Security gate), + Switch-Scope Flow, + Matriz de Switch Válida, + Violaciones P0; agregado Gate de Switch-Scope en Sección 28.6.
+
+- FECHA: 2026-03-18
+  VERSION_ANTERIOR: 1.0703
+  VERSION_NUEVA: 1.0704
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-client, pronto-docs, root, pronto-scripts/pronto-root
+  RESUMEN: Fix de pantalla en blanco/interfaz parcial al cargar cliente: se reforzó la sincronización de visibilidad de `data-menu-root` en `templates/index.html` para no depender solo de `pronto:view-change`. Ahora también se deriva el estado desde tabs activas (`#tab-menu/#tab-details/#tab-orders`), se hacen resyncs diferidos al bootstrap y se escucha click en tabs para aplicar `menu-visible/menu-hidden` de forma consistente.
+
+- FECHA: 2026-03-18
+  VERSION_ANTERIOR: 1.0704
+  VERSION_NUEVA: 1.0705
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, pronto-docs, root, pronto-scripts/pronto-root
+  RESUMEN: Fix de errores runtime en `ProfileModal.vue`: se corrigió el formulario de registro (input de nombre estaba reemplazado por checkbox), se migró el login a `userStore.login` con manejo seguro de errores/notificación y se endureció autenticación en UI (`isAuthenticated` basado en `userStore.user`) para evitar `Cannot read properties of undefined (reading 'email')`. Se recompiló `pronto-static` con `npm run build:clients`, regenerando `base.js/menu.js/chunks` servidos por cliente.
+
+- FECHA: 2026-03-18
+  VERSION_ANTERIOR: 1.0705
+  VERSION_NUEVA: 1.0706
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-libs, pronto-api, pronto-docs, root, pronto-scripts/pronto-root
+  RESUMEN: Implementación Fase A.1 + A.3 sin bypass legacy: se eliminó el uso de `order.is_paid()` con helper canónico `is_order_paid(order)`, se removieron helpers `mark_order_*` de `order_state_machine_core`, se creó `order/payment_domain.py` con cierre de sesión atómico/idempotente usando `SELECT ... FOR UPDATE` y transiciones exclusivamente vía state machine, `sync_session_financials` delega cierre al dominio canónico, `confirm_partial_payment` ahora solo paga órdenes `DELIVERED` por state machine, se limpiaron imports muertos en split-bill, se agregaron tests `tests/order/test_payment_domain.py` y se actualizó evidencia en `pronto-docs/debug/phase-a3-bypass-scan.md`.

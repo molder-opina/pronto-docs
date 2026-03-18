@@ -9,6 +9,175 @@ paths:
       responses:
         "200":
           description: OK
+  /api/orders/{order_id}/cancellation-rules:
+    get:
+      summary: Obtener reglas de cancelación para items de orden
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Reglas de cancelación obtenidas exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CancellationRulesResponse"
+        "404":
+          description: Orden no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/orders/{order_id}/cancel-items:
+    post:
+      summary: Cancelar items específicos en una orden
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CancelItemsRequest"
+      responses:
+        "200":
+          description: Items cancelados exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CancellationResponse"
+        "400":
+          description: Solicitud inválida
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: Orden o items no encontrados
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: Conflicto - no se pueden cancelar los items
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/orders/{order_id}/deliver-items:
+    post:
+      summary: Entregar items específicos en una orden
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DeliverItemsRequest"
+      responses:
+        "200":
+          description: Items entregados exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeliveryResponse"
+        "400":
+          description: Solicitud inválida
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: Orden o items no encontrados
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: Conflicto - no se pueden entregar los items
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/orders/{order_id}/cancellation-rules:
+    get:
+      summary: Obtener reglas de cancelación para items de orden
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Reglas de cancelación obtenidas exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CancellationRulesResponse"
+        "404":
+          description: Orden no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/orders/{order_id}/cancel-items:
+    post:
+      summary: Cancelar items específicos en una orden
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CancelItemsRequest"
+      responses:
+        "200":
+          description: Items cancelados exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CancellationResponse"
+        "400":
+          description: Solicitud inválida
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: Orden o items no encontrados
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: Conflicto - no se pueden cancelar los items
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
   /api/customer/orders:
     post:
       summary: Crear orden de cliente (requiere sesión de cliente)
@@ -1181,6 +1350,66 @@ components:
               type: string
             value:
               nullable: true
+    CancellationRule:
+      type: object
+      properties:
+        item_id:
+          type: string
+          format: uuid
+        can_cancel:
+          type: boolean
+        reason:
+          type: string
+          nullable: true
+    CancellationRulesResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/CancellationRule"
+    CancelItemsRequest:
+      type: object
+      required:
+        - item_ids
+      properties:
+        item_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+        cancellation_reason:
+          type: string
+          nullable: true
+        cancellation_type:
+          type: string
+          nullable: true
+    CancellationResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+    DeliverItemsRequest:
+      type: object
+      required:
+        - item_ids
+      properties:
+        item_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+    DeliveryResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
     ReportResponse:
       type: object
       properties:
