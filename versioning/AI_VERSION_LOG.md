@@ -1401,3 +1401,12 @@ Registro incremental obligatorio de cambios aplicados por agentes AI.
   RESUMEN: Se incluye en branch remoto el nuevo composable compartido `action-state.ts` para empleados (modelo de estado operacional, timeout y utilitarios de accion) y se registra trazabilidad explicita asociada.
   COMMIT_HASHES: [bd783e2]
   RUTAS_AFECTADAS: pronto-static/src/vue/employees/shared/composables/action-state.ts, pronto-docs/change-logs/CHG-20260318-170600/result.md, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-18
+  VERSION_ANTERIOR: 1.0715
+  VERSION_NUEVA: 1.0715
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, pronto-docs
+  RESUMEN: Se incluye bloque pendiente de comandos/estado en empleados: `orders.ts` migra a estructura por entidad con control de acciones y se agregan composables de comandos para orden, pago y sesión. Se documenta validación ejecutada y brechas baseline detectadas en build/tests de employees.
+  COMMIT_HASHES: [69f8b27]
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/shared/store/orders.ts, pronto-static/src/vue/employees/shared/composables/use-order-commands.ts, pronto-static/src/vue/employees/shared/composables/use-payment-commands.ts, pronto-static/src/vue/employees/shared/composables/use-session-commands.ts, pronto-docs/change-logs/CHG-20260318-171000/result.md, pronto-docs/versioning/AI_VERSION_LOG.md
