@@ -1348,3 +1348,12 @@ Registro incremental obligatorio de cambios aplicados por agentes AI.
   AGENTE: Codex (GPT-5)
   MODULOS: pronto-api, pronto-docs, root, pronto-scripts/pronto-root
   RESUMEN: Cierre de Día 5 con validación manual local y corrección de brechas detectadas en runtime. Se corrigió `pay_session` en `api_app/routes/payments.py` para permitir replay idempotente cuando la sesión ya está pagada (solo bloquea cuando no hay key). Se corrigió `session_pay` en `api_app/routes/employees/sessions.py` moviendo import de `finalize_payment` a carga lazy en rama de pago completo para evitar 500 en pagos parciales. Evidencia manual: pago digital sin key -> 400, con key -> 200, concurrencia 12 requests mismo key -> 12x200 con 1 payment_id, ruta de empleados con key -> 200.
+
+- FECHA: 2026-03-18
+  VERSION_ANTERIOR: 1.0714
+  VERSION_NUEVA: 1.0714
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, pronto-docs
+  RESUMEN: Endurecimiento de autoridad Vue-first en cliente: `requestJSON` deja de intentar rehidratar sesion en errores 401 y ahora emite `HTTPError` para que el control de recuperacion viva en el bootstrap central. Evidencia validada con `npm run build:clients` y `vitest` clientes (27/27).
+  COMMIT_HASHES: [65ba8cc]
+  RUTAS_AFECTADAS: pronto-static/src/vue/clients/core/http.ts, pronto-docs/change-logs/CHG-20260318-165200/result.md, pronto-docs/versioning/AI_VERSION_LOG.md
