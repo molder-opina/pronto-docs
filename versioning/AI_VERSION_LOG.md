@@ -1410,3 +1410,12 @@ Registro incremental obligatorio de cambios aplicados por agentes AI.
   RESUMEN: Se incluye bloque pendiente de comandos/estado en empleados: `orders.ts` migra a estructura por entidad con control de acciones y se agregan composables de comandos para orden, pago y sesión. Se documenta validación ejecutada y brechas baseline detectadas en build/tests de employees.
   COMMIT_HASHES: [69f8b27]
   RUTAS_AFECTADAS: pronto-static/src/vue/employees/shared/store/orders.ts, pronto-static/src/vue/employees/shared/composables/use-order-commands.ts, pronto-static/src/vue/employees/shared/composables/use-payment-commands.ts, pronto-static/src/vue/employees/shared/composables/use-session-commands.ts, pronto-docs/change-logs/CHG-20260318-171000/result.md, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-18
+  VERSION_ANTERIOR: 1.0715
+  VERSION_NUEVA: 1.0715
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, pronto-docs
+  RESUMEN: Hardening de estabilidad para empleados tras rollout de command-layer: fix de import path en `SessionsBoard`, correccion sintactica en `CashierBoard`, traducciones de estado faltantes en helpers de mesero, restauracion de fallback de logo en config y ajuste de specs de store/admin para el contrato actual. Se valida `npm run test:run` (56/56) y `npm run build` (employees+clients) en verde.
+  COMMIT_HASHES: [724963b]
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/cashier/views/sessions/SessionsBoard.vue, pronto-static/src/vue/employees/cashier/components/CashierBoard.vue, pronto-static/src/vue/employees/waiter/modules/waiter/board-helpers.ts, pronto-static/src/vue/employees/shared/store/config.ts, pronto-static/src/vue/employees/shared/store/orders.spec.ts, pronto-static/src/vue/employees/admin/components/employees-manager.spec.ts, pronto-docs/change-logs/CHG-20260318-171300/result.md, pronto-docs/versioning/AI_VERSION_LOG.md
