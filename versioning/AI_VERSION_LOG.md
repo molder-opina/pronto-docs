@@ -1366,3 +1366,20 @@ Registro incremental obligatorio de cambios aplicados por agentes AI.
   RESUMEN: Se añade suite de pruebas para el contrato de polling de ordenes en cliente (`startPolling` idempotente, un solo intervalo activo y limpieza correcta al detener), reforzando el release gate de `polling_interval_count <= 1`.
   COMMIT_HASHES: [34ff1cc]
   RUTAS_AFECTADAS: pronto-static/src/vue/clients/stores/orders-store.spec.ts, pronto-docs/change-logs/CHG-20260318-165400/result.md, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-18
+  VERSION_ANTERIOR: 1.0714
+  VERSION_NUEVA: 1.0714
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, pronto-docs
+  RESUMEN: Se agrega cobertura automatica de `submitCart()` para reforzar gates de checkout: bloqueo por concurrencia, rechazo sin sesion lista, rechazo con carrito vacio y validacion de eventos de observabilidad de inicio/cierre de submit con headers de idempotencia/request.
+  COMMIT_HASHES: [363036d]
+  RUTAS_AFECTADAS: pronto-static/src/vue/clients/stores/cart-store.spec.ts, pronto-docs/change-logs/CHG-20260318-165800/result.md, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-18
+  VERSION_ANTERIOR: 1.0714
+  VERSION_NUEVA: 1.0715
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-libs, pronto-api, pronto-scripts, pronto-docs, root, pronto-scripts/pronto-root
+  RESUMEN: Continuacion de cierre tecnico para idempotencia (puntos 2 y 3): se valido y estabilizo `rebuild.sh api` con infraestructura `postgres/redis` recreada sin conflicto de puertos; se aplicaron migraciones con entorno cargado (`pronto-migrate --apply`) y se confirmo `pending=0 drift=0` junto con `pronto-init --check` OK; se alineo schema de `pronto_payment_audit_logs` (PK UUID + columnas canónicas) y se confirmo insercion de auditoria en contexto request; adicionalmente se elimino el write directo literal de `SessionStatus.PAID` en `payment_domain.py` centralizando la transicion con helper interno.
+  RUTAS_AFECTADAS: pronto-libs/src/pronto_shared/services/order/payment_domain.py, pronto-scripts/bin/mac/rebuild.sh, pronto-scripts/init/sql/migrations/20260318_05__align_payment_audit_logs_schema.sql, pronto-docs/versioning/AI_VERSION_LOG.md, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example
