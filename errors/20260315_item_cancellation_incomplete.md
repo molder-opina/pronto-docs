@@ -18,4 +18,4 @@ UBICACION:
 - pronto-libs/src/pronto_shared/models/order_models.py (cálculo de totales)
 EVIDENCIA: El análisis del código muestra que la cancelación de ítems y los pagos parciales son funcionalidades separadas sin integración clara, lo que puede causar inconsistencias financieras.
 HIPOTESIS_CAUSA: Las funcionalidades se implementaron de manera incremental sin considerar adecuadamente la necesidad de integración entre cancelación de ítems y pagos parciales.
-ESTADO: ABIERTO
+ESTADO: RESUELTO

@@ -17,4 +17,4 @@ UBICACION:
 - pronto-libs/src/pronto_shared/services/order_payment_service.py (cálculos de totales)
 EVIDENCIA: El análisis del código muestra que los campos financieros usan tipos float en lugar de Decimal, y no existe una estrategia consistente de redondeo para operaciones financieras.
 HIPOTESIS_CAUSA: La implementación inicial no consideró adecuadamente los requisitos de precisión financiera, usando tipos de datos inadecuados para cálculos monetarios.
-ESTADO: ABIERTO
+ESTADO: RESUELTO

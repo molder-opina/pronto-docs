@@ -18,4 +18,12 @@ UBICACION:
 - pronto-libs/src/pronto_shared/logging_config.py (configuración de logging)
 EVIDENCIA: El análisis del código muestra que no existe una observabilidad adecuada para las operaciones financieras críticas, especialmente en entornos distribuidos donde se requiere tracing distribuido y correlación de eventos financieros.
 HIPOTESIS_CAUSA: La implementación inicial no consideró adecuadamente los requisitos de observabilidad para operaciones financieras críticas en entornos de producción donde el monitoreo y la detección de anomalías son esenciales para la integridad financiera.
-ESTADO: ABIERTO
+ACTUALIZACION_2026-03-18:
+- Resuelto: Se implementó una infraestructura de auditoría financiera completa con la tabla `pronto_payment_audit_logs`.
+- Resuelto: Cada operación financiera (pago creado, confirmado, cierre de sesión) registra ahora:
+    - ID de Sesión y Pago.
+    - ID del Empleado responsable.
+    - IP del cliente y User Agent.
+    - **Correlation ID** (X-Correlation-ID) para trazabilidad completa entre logs de aplicación y registros de base de datos.
+- Resuelto: Los servicios de pago ahora emiten estos registros de forma automática y segura.
+ESTADO: RESUELTO

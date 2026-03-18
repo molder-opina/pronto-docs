@@ -21,4 +21,4 @@ EVIDENCIA:
 - No existe funcionalidad de entrega parcial en interfaces de mesero
 - Concurrencia no protegida en operaciones de entrega/cancelación
 HIPOTESIS_CAUSA: Implementación inicial enfocada solo en cancelación, sin considerar integración completa con entrega parcial y sin aplicar regla fundamental de optimización para restaurantes pequeños/medianos
-ESTADO: ABIERTO
+ESTADO: RESUELTO

@@ -16,4 +16,4 @@ UBICACION:
 - pronto-scripts/init/sql/migrations/20260315_01__add_payment_permission_config.sql:13-14
 EVIDENCIA: Búsqueda exhaustiva en todo el código base no encuentra ninguna implementación que utilice la configuración session_auto_close_hours para cerrar sesiones automáticamente.
 HIPOTESIS_CAUSA: La funcionalidad fue planeada pero nunca implementada, dejando solo la configuración en el sistema.
-ESTADO: ABIERTO
+ESTADO: RESUELTO

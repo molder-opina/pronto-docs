@@ -17,4 +17,8 @@ UBICACION:
 - pronto-libs/src/pronto_shared/services/order_payment_service.py (finalize_payment)
 EVIDENCIA: El análisis del código muestra que aunque se calcula remaining_balance, no existe validación que impida cerrar sesiones con saldo pendiente, lo que viola el invariante financiero fundamental.
 HIPOTESIS_CAUSA: La implementación inicial no consideró adecuadamente la necesidad de validar invariantes financieros al cerrar sesiones, enfocándose solo en la funcionalidad básica.
-ESTADO: ABIERTO
+ACTUALIZACION_2026-03-18:
+- Resuelto: Se añadió validación de invariante financiero en `close_session` (force close).
+- Resuelto: Ahora el sistema impide el cierre manual de una sesión si el saldo pendiente (`remaining_balance`) es mayor a $0.01.
+- Resuelto: Se obliga a que las órdenes sean canceladas individualmente o se liquide el pago total antes de permitir el cierre de la sesión, protegiendo la integridad de los reportes de ventas.
+ESTADO: RESUELTO

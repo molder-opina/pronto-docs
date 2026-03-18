@@ -17,4 +17,4 @@ UBICACION:
 - Archivos de migración y seed
 EVIDENCIA: Búsqueda con rg muestra numerosas ocurrencias de asignaciones directas de estados fuera del servicio canónico, violando explícitamente la regla P0 definida en AGENTS.md.
 HIPOTESIS_CAUSA: La regla de autoridad única de estados se estableció después de que gran parte del código base ya estaba implementado, y no se realizó una migración completa para cumplir con esta regla crítica.
-ESTADO: ABIERTO
+ESTADO: RESUELTO

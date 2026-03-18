@@ -17,4 +17,8 @@ UBICACION:
 - pronto-libs/src/pronto_shared/services/order_state_machine.py
 EVIDENCIA: La línea 201 en split_bill_service_core.py muestra una asignación directa de payment_status, violando la regla P0 que prohíbe escrituras directas de estados fuera del servicio canónico.
 HIPOTESIS_CAUSA: La funcionalidad de cuentas divididas fue implementada antes de establecer la regla de autoridad única de estados, o no se actualizó para cumplir con esta regla crítica.
-ESTADO: ABIERTO
+ACTUALIZACION_2026-03-18:
+- Resuelto: Se eliminó la mutación directa de `payment_status` en `split_bill_service_core.py`.
+- Resuelto: Se implementó el método `mark_status` en el modelo `SplitBillPerson` (autoridad delegada) que valida el estado contra el enum `PaymentStatus` y maneja efectos secundarios como `paid_at`.
+- Resuelto: Todas las transiciones de pago en cuentas divididas ahora siguen el patrón canónico del sistema.
+ESTADO: RESUELTO

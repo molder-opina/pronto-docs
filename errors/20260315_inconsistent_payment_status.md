@@ -16,4 +16,4 @@ UBICACION:
 - pronto-libs/src/pronto_shared/constants.py:22-28
 EVIDENCIA: La definición del modelo DiningSession establece payment_status con default="pending", pero el enum PaymentStatus define valores como "unpaid", "awaiting_tip", "processing", etc., sin incluir "pending".
 HIPOTESIS_CAUSA: El modelo de sesión fue implementado antes de definir el enum PaymentStatus, o no se actualizó para usar los valores canónicos del enum.
-ESTADO: ABIERTO
+ESTADO: RESUELTO

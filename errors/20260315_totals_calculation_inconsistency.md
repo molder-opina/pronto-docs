@@ -17,4 +17,4 @@ UBICACION:
 - pronto-libs/src/pronto_shared/services/order_payment_service.py (finalize_payment)
 EVIDENCIA: El análisis del código muestra que algunos métodos actualizan directamente total_paid mientras que otros llaman a recompute_totals(). También hay lógica duplicada para calcular totales en diferentes servicios.
 HIPOTESIS_CAUSA: La funcionalidad de pagos parciales y totales fue implementada incrementalmente sin establecer un único punto canónico para los cálculos financieros.
-ESTADO: ABIERTO
+ESTADO: RESUELTO

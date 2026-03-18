@@ -16,4 +16,4 @@ UBICACION:
 - pronto-scripts/init/sql/migrations/20260315_01__add_payment_permission_config.sql:13-14
 EVIDENCIA: Ambas migraciones inicializan sus respectivas configuraciones como 'true', pero no existe validación cruzada para garantizar la consistencia entre ellas.
 HIPOTESIS_CAUSA: Las migraciones fueron implementadas por separado sin considerar la necesidad de validación cruzada entre las configuraciones relacionadas.
-ESTADO: ABIERTO
+ESTADO: RESUELTO

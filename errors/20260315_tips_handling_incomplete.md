@@ -17,4 +17,10 @@ UBICACION:
 - pronto-libs/src/pronto_shared/models/order_models.py (cálculo de totales)
 EVIDENCIA: El análisis del código muestra que la función para agregar propinas no valida adecuadamente los montos o porcentajes, lo que puede permitir operaciones financieras inválidas.
 HIPOTESIS_CAUSA: La implementación inicial se enfocó en la funcionalidad básica sin considerar adecuadamente la necesidad de validación de propinas para garantizar la integridad financiera.
-ESTADO: ABIERTO
+ACTUALIZACION_2026-03-18:
+- Resuelto: Se refactorizó `calculate_tip_amount` para incluir validaciones estrictas:
+    - No se permiten montos ni porcentajes negativos.
+    - Se aplica el límite de `TIP_MAX_PERCENT` (50%) del subtotal.
+    - Se aplica el límite de `TIP_MAX_FIXED_AMOUNT` ($5000) incluso para cálculos basados en porcentaje.
+- Resuelto: Se añadió manejo de errores en `apply_tip` para capturar y retornar mensajes claros al frontend.
+ESTADO: RESUELTO
