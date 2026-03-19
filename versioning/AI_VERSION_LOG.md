@@ -1419,3 +1419,42 @@ Registro incremental obligatorio de cambios aplicados por agentes AI.
   RESUMEN: Hardening de estabilidad para empleados tras rollout de command-layer: fix de import path en `SessionsBoard`, correccion sintactica en `CashierBoard`, traducciones de estado faltantes en helpers de mesero, restauracion de fallback de logo en config y ajuste de specs de store/admin para el contrato actual. Se valida `npm run test:run` (56/56) y `npm run build` (employees+clients) en verde.
   COMMIT_HASHES: [724963b]
   RUTAS_AFECTADAS: pronto-static/src/vue/employees/cashier/views/sessions/SessionsBoard.vue, pronto-static/src/vue/employees/cashier/components/CashierBoard.vue, pronto-static/src/vue/employees/waiter/modules/waiter/board-helpers.ts, pronto-static/src/vue/employees/shared/store/config.ts, pronto-static/src/vue/employees/shared/store/orders.spec.ts, pronto-static/src/vue/employees/admin/components/employees-manager.spec.ts, pronto-docs/change-logs/CHG-20260318-171300/result.md, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-18
+  VERSION_ANTERIOR: 1.0715
+  VERSION_NUEVA: 1.0716
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Refactor operativo en empleados para endurecer determinismo de acciones: se agregó command layer (`use-order-commands`, `use-payment-commands`, `use-session-commands`), estado transaccional con `ActionId`/`ActionState` y timeouts a `uncertain`, normalización de `orders store` por entidad (`entities/ids/meta/ui.processing`), eliminación de `v-html` en paneles de empleados, eliminación de listeners directos en componentes Vue críticos y migración de flujos waiter/chef/cashier/payment/sessions a comandos centralizados. Validación ejecutada: `npm run build:employees` y `npm run test:run -- src/vue/employees/shared/store/orders.spec.ts` en verde.
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0716
+  VERSION_NUEVA: 1.0717
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Cierre operativo de pendientes en `pronto-employees`: se eliminaron llamadas HTTP directas desde componentes `.vue` y se centralizaron en `src/vue/employees/shared/api/employee-commands.ts` (mesas, asignaciones, menú/modificadores, promociones, feedback/reportes, branding, perfiles, sesiones, facturación, shortcuts y configuración). Se mantuvo comportamiento de endpoints y payloads existentes, con validación de salida `requestJSON/fetch=0` en `.vue`, `v-html/document listeners=0` en `.vue` y `npm run build:employees` en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/shared/api/employee-commands.ts, pronto-static/src/vue/employees/**/**/*.vue, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0717
+  VERSION_NUEVA: 1.0718
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Endurecimiento transversal de mutaciones en `pronto-employees`: la capa `employee-commands` ahora inyecta `X-Action-ID` automáticamente en métodos mutativos (POST/PUT/PATCH/DELETE), adjunta `actionId` en respuesta si backend no lo devuelve y aplica lock por entidad (`entity:id`) para bloquear doble ejecución concurrente en el frontend. Se valida compatibilidad con `npm run build:employees` y se mantiene `0` HTTP directo en `.vue`.
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/shared/api/employee-commands.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0718
+  VERSION_NUEVA: 1.0719
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Reducción adicional de refetch global post-mutación en módulos empleados con actualización local determinística: mesas (`TableManager`, `TableAssignmentModal`), sesiones de caja (`SessionsManager`), áreas (`AreasEditor`), categorías (`CategoriesManager`) y personal/kiosko (`EmployeesManager`, `KioskUsersManager`). Se mantiene command-layer centralizado y build employees en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/waiter/views/tables/TableManager.vue, pronto-static/src/vue/employees/waiter/components/TableAssignmentModal.vue, pronto-static/src/vue/employees/cashier/components/SessionsManager.vue, pronto-static/src/vue/employees/shared/views/areas/AreasEditor.vue, pronto-static/src/vue/employees/admin/components/CategoriesManager.vue, pronto-static/src/vue/employees/admin/components/EmployeesManager.vue, pronto-static/src/vue/employees/admin/components/KioskUsersManager.vue, pronto-static/src/vue/employees/shared/api/employee-commands.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0719
+  VERSION_NUEVA: 1.0720
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-libs, pronto-tests, pronto-scripts, pronto-docs, root, pronto-scripts/pronto-root
+  RESUMEN: Cierre de estabilizacion para suite funcional `pronto-api`: se corrigieron incompatibilidades de contrato en pruebas (`business-info` publico y payload de menu), se alineo `menu_publication_service/menu_utils` con el schema actual (`publish_status`, `last_publish_at`, `last_publish_error`, snapshot revision/version) incluyendo compatibilidad legacy en `mark_menu_home_draft_updated`, y se elimino acceso lazy post-commit en `update_menu_item` precalculando campos de respuesta. Validacion final ejecutada: `pronto-tests/.venv-test/bin/python -m pytest pronto-tests/tests/functionality/api/api-tests -v` => 33 passed.
+  RUTAS_AFECTADAS: pronto-libs/src/pronto_shared/services/menu_publication_service.py, pronto-libs/src/pronto_shared/services/menu_utils.py, pronto-libs/src/pronto_shared/services/menu_mutation_service.py, pronto-tests/tests/functionality/api/api-tests/test_business_config_api.py, pronto-tests/tests/functionality/api/api-tests/test_menu_validation_api.py, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
