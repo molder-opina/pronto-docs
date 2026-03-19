@@ -1458,3 +1458,19 @@ Registro incremental obligatorio de cambios aplicados por agentes AI.
   MODULOS: pronto-libs, pronto-tests, pronto-scripts, pronto-docs, root, pronto-scripts/pronto-root
   RESUMEN: Cierre de estabilizacion para suite funcional `pronto-api`: se corrigieron incompatibilidades de contrato en pruebas (`business-info` publico y payload de menu), se alineo `menu_publication_service/menu_utils` con el schema actual (`publish_status`, `last_publish_at`, `last_publish_error`, snapshot revision/version) incluyendo compatibilidad legacy en `mark_menu_home_draft_updated`, y se elimino acceso lazy post-commit en `update_menu_item` precalculando campos de respuesta. Validacion final ejecutada: `pronto-tests/.venv-test/bin/python -m pytest pronto-tests/tests/functionality/api/api-tests -v` => 33 passed.
   RUTAS_AFECTADAS: pronto-libs/src/pronto_shared/services/menu_publication_service.py, pronto-libs/src/pronto_shared/services/menu_utils.py, pronto-libs/src/pronto_shared/services/menu_mutation_service.py, pronto-tests/tests/functionality/api/api-tests/test_business_config_api.py, pronto-tests/tests/functionality/api/api-tests/test_menu_validation_api.py, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0720
+  VERSION_NUEVA: 1.0721
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Cierre de pendientes operativos en `pronto-employees` para mutaciones determinísticas sin refetch post-acción en flujos críticos: `SchedulesEditor` (add/delete local), `ShortcutsManager` (toggle local con rollback y contrato estricto de create), `KioskUsersManager` (create sin fallback load) y `EmployeesManager` (create sin fallback load). Se mantiene `0` HTTP directo en `.vue`, `0` `v-html` interactivo/listeners globales en `.vue`, y build de empleados en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/shared/views/menu/SchedulesEditor.vue, pronto-static/src/vue/employees/shared/components/ShortcutsManager.vue, pronto-static/src/vue/employees/admin/components/KioskUsersManager.vue, pronto-static/src/vue/employees/admin/components/EmployeesManager.vue, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0721
+  VERSION_NUEVA: 1.0722
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Eliminación del último patrón `mutación -> refresh` en `PromotionsManager` para módulos de home menú: `save/delete/reorder` ahora reconcilian estado local (`modules`) y sincronizan `preview` local sin refetch post-mutación. Validación en verde: `npm run build:employees`, sin HTTP directo en `.vue`, sin `v-html` interactivo/listeners globales en `.vue`, y sin patrón `await mutación + await fetch/load/refresh` en `.vue` de employees.
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/admin/views/promotions/PromotionsManager.vue, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
