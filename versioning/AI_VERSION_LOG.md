@@ -1474,3 +1474,19 @@ Registro incremental obligatorio de cambios aplicados por agentes AI.
   MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
   RESUMEN: Eliminación del último patrón `mutación -> refresh` en `PromotionsManager` para módulos de home menú: `save/delete/reorder` ahora reconcilian estado local (`modules`) y sincronizan `preview` local sin refetch post-mutación. Validación en verde: `npm run build:employees`, sin HTTP directo en `.vue`, sin `v-html` interactivo/listeners globales en `.vue`, y sin patrón `await mutación + await fetch/load/refresh` en `.vue` de employees.
   RUTAS_AFECTADAS: pronto-static/src/vue/employees/admin/views/promotions/PromotionsManager.vue, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0722
+  VERSION_NUEVA: 1.0723
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Continuación de saneamiento de command layer en `pronto-employees`: se centralizaron operaciones RBAC en `employee-commands` (fetch/create/update/delete role + bulk permissions), `use-rbac` dejó de usar `requestJSON` directo, `use-sessions-board` migró lecturas a `employee-commands`, y `auth.switchConsoleScope` se corrigió para usar comando API y evaluación de payload canónico (sin asumir `Response.ok`). Validación: `npm run build:employees` en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/shared/api/employee-commands.ts, pronto-static/src/vue/employees/shared/composables/use-rbac.ts, pronto-static/src/vue/employees/cashier/composables/use-sessions-board.ts, pronto-static/src/vue/employees/shared/store/auth.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0723
+  VERSION_NUEVA: 1.0724
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-libs, pronto-scripts, pronto-docs, root, pronto-scripts/pronto-root
+  RESUMEN: Cierre de saneamiento Día 2/3 de autoridad de estados: se eliminó el último write directo de `SessionStatus.PAID` en runtime (`payment_domain`) usando transición vía `DiningSession.mark_status`, se añadió validación de estado en el modelo `DiningSession`, y se actualizó cobertura en tests de dominio de pago para verificar uso de `mark_status`. Verificaciones ejecutadas: `pronto-tests/.venv-test/bin/python -m pytest pronto-libs/tests/order/test_payment_domain.py -v` (10 passed), `python3 -m pytest pronto-libs/tests/unit/test_order_state_authority_regressions.py -v` (3 passed), `rg "status\s*=\s*SessionStatus\.PAID\.value" pronto-libs/src pronto-api/src` (0 resultados).
+  RUTAS_AFECTADAS: pronto-libs/src/pronto_shared/models/order_models.py, pronto-libs/src/pronto_shared/services/order/payment_domain.py, pronto-libs/tests/order/test_payment_domain.py, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
