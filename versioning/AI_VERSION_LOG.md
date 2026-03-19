@@ -1498,3 +1498,19 @@ Registro incremental obligatorio de cambios aplicados por agentes AI.
   MODULOS: pronto-tests, pronto-scripts, pronto-docs, root, pronto-scripts/pronto-root
   RESUMEN: Día 4 - tests de integridad financiera para pagos API: se agregó cobertura funcional para (1) pago parcial + pago final con cierre de sesión y transición de orden a `paid`, (2) replay idempotente con mismo `Idempotency-Key` sin duplicar ledger, (3) rechazo de nuevo key cuando la sesión ya está pagada, y (4) validación obligatoria de key para pagos digitales (`terminal`). Validación ejecutada: `pronto-tests/.venv-test/bin/python -m pytest pronto-tests/tests/functionality/api/api-tests -v` => 37 passed.
   RUTAS_AFECTADAS: pronto-tests/tests/functionality/api/api-tests/test_payment_financial_integrity_api.py, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0723
+  VERSION_NUEVA: 1.0724
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Cierre de checklist pendiente en `pronto-employees`: (1) eliminación de bypass UI→store para mutaciones críticas (KDS, notificaciones, tracking) enroutando por `useOrderCommands`; (2) eliminación de `refetch` post-mutación en RBAC con reconciliación local de roles; (3) implementación de merge policy explícita en `orders store` para desempate por prioridad de fuente (`command > realtime > fetch`) con `entitySource` por entidad. Validación: `npm run build:employees` en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/shared/composables/use-order-commands.ts, pronto-static/src/vue/employees/chef/components/KDSBoard.vue, pronto-static/src/vue/employees/shared/components/NotificationPanel.vue, pronto-static/src/vue/employees/waiter/components/WaiterBoard.vue, pronto-static/src/vue/employees/shared/composables/use-rbac.ts, pronto-static/src/vue/employees/shared/store/orders.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0725
+  VERSION_NUEVA: 1.0726
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Continuación de cierre de checklist en `pronto-employees`: se removieron bypass UI→store de mutaciones (`KDSBoard`, `NotificationPanel`, `WaiterBoard`) usando `useOrderCommands`; `use-rbac` dejó de hacer refetch post-mutación y ahora reconcilia roles localmente; y `orders store` implementa desempate explícito por prioridad de fuente (`command > realtime > fetch`) mediante `entitySource` para evitar sobrescrituras ambiguas en timestamps equivalentes. Validación: `npm run build:employees` en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/shared/composables/use-order-commands.ts, pronto-static/src/vue/employees/chef/components/KDSBoard.vue, pronto-static/src/vue/employees/shared/components/NotificationPanel.vue, pronto-static/src/vue/employees/waiter/components/WaiterBoard.vue, pronto-static/src/vue/employees/shared/composables/use-rbac.ts, pronto-static/src/vue/employees/shared/store/orders.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
