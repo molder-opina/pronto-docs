@@ -1490,3 +1490,11 @@ Registro incremental obligatorio de cambios aplicados por agentes AI.
   MODULOS: pronto-libs, pronto-scripts, pronto-docs, root, pronto-scripts/pronto-root
   RESUMEN: Cierre de saneamiento Día 2/3 de autoridad de estados: se eliminó el último write directo de `SessionStatus.PAID` en runtime (`payment_domain`) usando transición vía `DiningSession.mark_status`, se añadió validación de estado en el modelo `DiningSession`, y se actualizó cobertura en tests de dominio de pago para verificar uso de `mark_status`. Verificaciones ejecutadas: `pronto-tests/.venv-test/bin/python -m pytest pronto-libs/tests/order/test_payment_domain.py -v` (10 passed), `python3 -m pytest pronto-libs/tests/unit/test_order_state_authority_regressions.py -v` (3 passed), `rg "status\s*=\s*SessionStatus\.PAID\.value" pronto-libs/src pronto-api/src` (0 resultados).
   RUTAS_AFECTADAS: pronto-libs/src/pronto_shared/models/order_models.py, pronto-libs/src/pronto_shared/services/order/payment_domain.py, pronto-libs/tests/order/test_payment_domain.py, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0724
+  VERSION_NUEVA: 1.0725
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-tests, pronto-scripts, pronto-docs, root, pronto-scripts/pronto-root
+  RESUMEN: Día 4 - tests de integridad financiera para pagos API: se agregó cobertura funcional para (1) pago parcial + pago final con cierre de sesión y transición de orden a `paid`, (2) replay idempotente con mismo `Idempotency-Key` sin duplicar ledger, (3) rechazo de nuevo key cuando la sesión ya está pagada, y (4) validación obligatoria de key para pagos digitales (`terminal`). Validación ejecutada: `pronto-tests/.venv-test/bin/python -m pytest pronto-tests/tests/functionality/api/api-tests -v` => 37 passed.
+  RUTAS_AFECTADAS: pronto-tests/tests/functionality/api/api-tests/test_payment_financial_integrity_api.py, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
