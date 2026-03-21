@@ -4,6 +4,21 @@ Registro incremental obligatorio de cambios aplicados por agentes AI.
 
 | FECHA | VERSION_ANTERIOR | VERSION_NUEVA | AGENTE | MODULOS | RESUMEN |
 |---|---|---|---|---|---|
+| 2026-03-21 | 1.0778 | 1.0779 | opencode | pronto-libs, pronto-tests, pronto-docs | Fix identidad canónica admin/system para tests live. Cuentas huérfanas eliminadas, hashes alineados con emails canónicos (admin.roles@cafeteria.test, admin@cafeteria.test). test_config_settings_roundtrip_live.py desbloqueado (3 passed). smoke-chaos-roles.spec.ts fix: endpoint auth corregido + email hash duplicado resuelto. Todos tests críticos en verde. |
+| 2026-03-19 | 1.0775 | 1.0776 | Codex | pronto-libs, root(.env,.env.example,MIGRATION_REPORT.md), pronto-docs, pronto-scripts/pronto-root | Continuación de Phase 5 (`INFRASTRUCTURE_ENGINEER`) en slice pagos/sesiones: se agregó puerto `OutboxStore` (`application/ports/outbox.py`), adapter `SqlAlchemyOutboxStore` (`infrastructure/persistence/sqlalchemy/outbox_store.py`) y helper canónico de evento `session.payment` (`application/use_cases/payments/outbox_events.py`). Se rewirearon `process_partial_payment`, `finalize_payment`, `confirm_payment` y `confirm_external_payment_success` para persistir eventos en `pronto_realtime_events` dentro de la misma transacción/UoW antes del commit, retirando emisión directa desde esos casos de uso. Se marcó `P5-003` completado y se actualizó checklist en `MIGRATION_REPORT.md`. |
+| 2026-03-19 | 1.0774 | 1.0775 | Codex | pronto-libs, root(.env,.env.example,MIGRATION_REPORT.md), pronto-docs, pronto-scripts/pronto-root | Continuación de Phase 5 (`INFRASTRUCTURE_ENGINEER`) en slice pagos/sesiones: se agregó puerto `IdempotencyStore` (`application/ports/idempotency.py`), adapter `SqlAlchemyIdempotencyStore` (`infrastructure/persistence/sqlalchemy/idempotency_store.py`) y se rewireó `application/use_cases/payments/finalize_payment.py` para lookup/store de idempotencia vía adapter, eliminando dependencia directa de `services/idempotency_service.py` en ese caso de uso. Se registró `P5-002` y checklist de pendientes 5→9 en `MIGRATION_REPORT.md`. |
+| 2026-03-19 | 1.0773 | 1.0774 | Codex | pronto-libs, root(.env,.env.example,MIGRATION_REPORT.md), pronto-docs, pronto-scripts/pronto-root | Continuación: inicio de Phase 5 para el slice pagos/sesiones con infraestructura transaccional base. Se agregó el puerto `UnitOfWork` (`application/ports/unit_of_work.py`), el adapter `SqlAlchemyUnitOfWork` (`infrastructure/persistence/sqlalchemy/unit_of_work.py`) y se migraron los use-cases de pagos (`prepare_checkout`, `apply_tip`, `confirm_payment`, `process_partial_payment`, `finalize_payment`, `confirm_external_payment_success`) para usar UoW explícito. Se registró `P5-001` en `MIGRATION_REPORT.md`. |
+| 2026-03-19 | 1.0770 | 1.0771 | Codex | pronto-libs, root(.env,.env.example,DOMAIN_LOGIC_MAP.md,MIGRATION_REPORT.md), pronto-docs, pronto-scripts/pronto-root | Cierre solicitado de fases para el slice pagos/sesiones: Phase 3 cerrado moviendo validaciones puras de estado de checkout/tip/confirmación a `domain/sessions/rules.py`; Phase 4 cerrado moviendo orquestación de `prepare_checkout`, `apply_tip` y `confirm_payment` a `application/use_cases/payments/*` y dejando facades legacy de compatibilidad en `services/order_payment_service.py` y `services/order/order_payment.py`. Se actualizaron `DOMAIN_LOGIC_MAP.md` y `MIGRATION_REPORT.md` con estado de cierre por slice. |
+| 2026-03-19 | 1.0766 | 1.0767 | Codex | pronto-libs, root(.env,.env.example,MIGRATION_REPORT.md), pronto-docs, pronto-scripts/pronto-root | Continuación de Phase 4: se promovió `finalize_payment` al caso de uso canónico `application/use_cases/payments/finalize_payment.py`, `services/order_payment_service.finalize_payment` quedó como fachada delegada para compatibilidad, y se registró el Batch P4-005 en `MIGRATION_REPORT.md`. |
+| 2026-03-19 | 1.0765 | 1.0766 | Codex | pronto-libs, pronto-api, root(.env,.env.example,MIGRATION_REPORT.md), pronto-docs, pronto-scripts/pronto-root | Continuación de Phase 4: se promovió `confirm_external_payment_success` al caso de uso canónico `application/use_cases/payments/confirm_external_payment_success.py`, `services/payment_service.confirm_external_payment_success` quedó como fachada delegada, y `routes/stripe_webhooks.py` fue rewireado para invocar `execute_confirm_external_payment_success`; se registró el Batch P4-004 en `MIGRATION_REPORT.md`. |
+| 2026-03-19 | 1.0763 | 1.0764 | Codex | pronto-libs, root(.env,.env.example,MIGRATION_REPORT.md), pronto-docs, pronto-scripts/pronto-root | Continuación de Phase 4: `process_partial_payment` fue promovido al caso de uso canónico `application/use_cases/payments/process_partial_payment.py` (orquestación completa), `services/payment_service.process_partial_payment` quedó como fachada de compatibilidad delegada, y se extrajo `log_payment_audit` a `services/payment_audit_service.py` para desacoplar auditoría y evitar ciclos entre capas. |
+| 2026-03-19 | 1.0762 | 1.0763 | Codex | root(.env,.env.example,MIGRATION_REPORT.md), pronto-docs, pronto-scripts/pronto-root | Continuación de Phase 4: actualización de trazabilidad en `MIGRATION_REPORT.md` para registrar el refinamiento de acoplamiento (`application/use_cases/payments` -> servicios concretos, no facade), manteniendo la secuencia de migración y sincronizando versionado AI obligatorio del root y su mirror. |
+| 2026-03-19 | 1.0761 | 1.0762 | Codex | pronto-libs, root(.env,.env.example), pronto-docs, pronto-scripts/pronto-root | Continuación de Phase 4 (`APPLICATION_ARCHITECT`): refinamiento de acoplamiento en `application/use_cases/payments` para depender de servicios concretos (`order_payment_service` y `order/order_payment`) en lugar del facade `order_service`, manteniendo la misma superficie `execute_*` y preservando el rewiring previo de consumidores. |
+| 2026-03-19 | 1.0760 | 1.0761 | Codex | pronto-libs, pronto-api, root(.env,.env.example,MIGRATION_REPORT.md), pronto-docs, pronto-scripts/pronto-root | Continuación de Phase 4 (`APPLICATION_ARCHITECT`): se añadió `execute_confirm_payment` en `application/use_cases/payments` y se amplió el rewiring de consumidores para que `employees/sessions` (confirm-payment/tip/checkout), `customers/orders` (request-check), `dining_session_service_impl` y `services/payments` consuman `application/use_cases/payments/*` en lugar de llamar `services.order_service` directo. Se actualizó `MIGRATION_REPORT.md` con Batch P4-002. |
+| 2026-03-19 | 1.0759 | 1.0760 | Codex | pronto-libs, pronto-api, root(.env,.env.example), pronto-docs, pronto-scripts/pronto-root | Continuación solicitada “1 y luego 2”: cierre de Phase 3 en pagos (validaciones de monto/método/provider/confirmación e idempotencia movidas a reglas de dominio en `order_payment_service`) y arranque de Phase 4 con capa `pronto_shared/application/use_cases/payments` (`process_partial_payment`, `finalize_payment`, `prepare_checkout`, `apply_tip`) conectando consumidores API en `routes/payments.py` y `routes/employees/sessions.py` para invocar application en vez de services directos. |
+| 2026-03-19 | 1.0758 | 1.0759 | Codex | pronto-libs, root(DOMAIN_LOGIC_MAP.md,.env,.env.example), pronto-docs, pronto-scripts/pronto-root | Continuación de Phase 3 (`DOMAIN_ARCHITECT`): se creó la capa `pronto_shared/domain` con módulos puros para `orders`, `sessions` y `payments` (events/errors/dto/entities/rules). Se rewirearon `order_state_machine_core.py`, `services/order/payment_domain.py` y `session_financial_service.py` para consumir reglas de dominio sin mover ORM/IO al dominio. Se actualizó `DOMAIN_LOGIC_MAP.md` con extracción aplicada y pendientes para cierre total de Phase 3. |
+| 2026-03-19 | 1.0754 | 1.0755 | Codex | root(CURRENT_STATE_INVENTORY.md,FINAL_STRUCTURE.md,.env,.env.example), pronto-docs, pronto-scripts/pronto-root | Continuación solicitada “2 y luego 1”: (1) recorte de alcance y regeneración de `CURRENT_STATE_INVENTORY.md` excluyendo artefactos no fuente (incluyendo `venv`) y fijando scope operativo por repo, reduciendo el inventario a módulos/fuentes reales; (2) ejecución de Phase 2 (`SYSTEM_ARCHITECT`) completando `FINAL_STRUCTURE.md` con árbol canónico Clean Architecture, contratos estrictos de dependencias/imports y mapeo current->target por dominios. |
+| 2026-03-19 | 1.0753 | 1.0754 | Codex | root(CURRENT_STATE_INVENTORY.md,FINAL_STRUCTURE.md,DOMAIN_LOGIC_MAP.md,MIGRATION_REPORT.md,LEGACY_REMOVAL_REPORT.md,.env,.env.example), pronto-docs, pronto-scripts/pronto-root | Ejecución de Phase 1 (SYSTEM_AUDITOR) del Big Bang refactor de `pronto-libs`: se generó `CURRENT_STATE_INVENTORY.md` con inventario completo de módulos/funciones, matriz de dependencias activas y lista priorizada de dualidades `*_core/*_impl/*_service`. Se crearon los 4 artefactos restantes con estado gateado por fase (`FINAL_STRUCTURE.md`, `DOMAIN_LOGIC_MAP.md`, `MIGRATION_REPORT.md`, `LEGACY_REMOVAL_REPORT.md`). Se sincronizó versionado AI obligatorio en `.env/.env.example` y mirrors de `pronto-scripts/pronto-root`. |
 | 2026-03-17 | 1.0702 | 1.0703 | opencode | pronto-api, pronto-client, pronto-static, pronto-libs, pronto-scripts, pronto-docs | Implementación de infraestructura de sesión resiliente (TICKET-C2) con rehidratación automática, interceptor 401 y promise-lock. Saneamiento de integridad de mesas (TICKET-C3) eliminando columna redundante y mandatando relación autoritativa en AGENTS.md. Apertura pública de /api/business-info (TICKET-C1). Blindaje de caché en tableros real-time (TICKET-C4). Cierre de auditorías de deuda técnica (TICKET-D1/D2) con limpieza de residuos y reducción del 50% en order_service_impl.py.
 | 2026-03-17 | 1.0701 | 1.0702 | opencode | pronto-libs, pronto-scripts/pronto-root | Corrección del bug PRONTO-PAY-013: múltiples servicios legacy llamaban `order.mark_status()` directamente, bypassing la autoridad única de transiciones de estado definida en `order_state_machine.py`. Se migraron todos los servicios afectados para usar exclusivamente `order_state_machine.apply_transition()`, asegurando validación canónica, side effects consistentes y cumplimiento P0.
 | 2026-03-15 | 1.0684 | 1.0685 | opencode | pronto-libs, pronto-scripts, pronto-static, pronto-tests | Implementación de sistema de permisos de pago configurable con dos parámetros: enable_cashier_role y allow_waiter_cashier_operations. Incluye servicio backend, composable frontend, migración de base de datos, y tests unitarios.
@@ -1514,3 +1529,423 @@ Registro incremental obligatorio de cambios aplicados por agentes AI.
   MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
   RESUMEN: Continuación de cierre de checklist en `pronto-employees`: se removieron bypass UI→store de mutaciones (`KDSBoard`, `NotificationPanel`, `WaiterBoard`) usando `useOrderCommands`; `use-rbac` dejó de hacer refetch post-mutación y ahora reconcilia roles localmente; y `orders store` implementa desempate explícito por prioridad de fuente (`command > realtime > fetch`) mediante `entitySource` para evitar sobrescrituras ambiguas en timestamps equivalentes. Validación: `npm run build:employees` en verde.
   RUTAS_AFECTADAS: pronto-static/src/vue/employees/shared/composables/use-order-commands.ts, pronto-static/src/vue/employees/chef/components/KDSBoard.vue, pronto-static/src/vue/employees/shared/components/NotificationPanel.vue, pronto-static/src/vue/employees/waiter/components/WaiterBoard.vue, pronto-static/src/vue/employees/shared/composables/use-rbac.ts, pronto-static/src/vue/employees/shared/store/orders.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0726
+  VERSION_NUEVA: 1.0727
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Eliminación de listeners globales en `pronto-employees`: se removieron `document/window.addEventListener` en entry/core y se migró el manejo de atajos a un handler de teclado acotado al root Vue (`@keydown.capture` en `App.vue`), además de reemplazar listeners globales de drag por listeners locales con pointer capture. Verificación: `rg "document.addEventListener|window.addEventListener"` y `rg "document.removeEventListener|window.removeEventListener"` en employees => 0 coincidencias; `npm run build:employees` en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/main.ts, pronto-static/src/vue/employees/App.vue, pronto-static/src/vue/employees/shared/core/employee-shortcuts.ts, pronto-static/src/vue/employees/shared/core/overlays.ts, pronto-static/src/vue/employees/shared/core/bootstrap.ts, pronto-static/src/vue/employees/shared/modules/draggable-modals.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0727
+  VERSION_NUEVA: 1.0728
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Reducción de feedback global ambiguo en flujos operativos críticos: se eliminaron `showToast` en acciones de `KDSBoard`, `NotificationPanel` y `WaiterBoard`, sustituyéndolos por mensajes inline contextuales dentro del propio módulo/panel. Resultado parcial medido en employees: `showToast` total baja de 147 a 130 ocurrencias. Validación: `npm run build:employees` en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/chef/components/KDSBoard.vue, pronto-static/src/vue/employees/shared/components/NotificationPanel.vue, pronto-static/src/vue/employees/waiter/components/WaiterBoard.vue, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0728
+  VERSION_NUEVA: 1.0729
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Continuación de reducción de feedback global en pagos: `cashier/components/PaymentFlow.vue` migrado de `showToast` a feedback inline contextual para validaciones, errores de proceso y confirmaciones de pago parcial/estado ya pagado. Medición global en employees: `showToast` total baja de 130 a 107. Validación: `npm run build:employees` en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/cashier/components/PaymentFlow.vue, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0729
+  VERSION_NUEVA: 1.0730
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Cierre de pendientes de feedback determinístico en `pronto-employees`: (1) `cashier/components/SessionsManager.vue` migrado de `window.showToast` a feedback inline contextual (success/warning/error) para cierre/movimiento/limpieza/fusión de sesiones; (2) eliminación del último toast global en `employees` removiendo `showToast` de `shared/core/http.ts`; (3) propagación explícita de razón de sesión expirada (`reason=session_expired`) hacia `StaffLogin.vue` con mensaje inline. Validación: `rg "showToast\\(" pronto-static/src/vue/employees` => 0 coincidencias; `npm run build:employees` en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/cashier/components/SessionsManager.vue, pronto-static/src/vue/employees/shared/core/http.ts, pronto-static/src/vue/employees/shared/views/StaffLogin.vue, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0730
+  VERSION_NUEVA: 1.0731
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Fase 1 (REMOVE AUTHORITY) en `pronto-static` con eliminación de gates y mapeos hardcodeados de autoridad frontend: se retiraron matrices por scope/rol en navegación lateral, filtros de roles/catálogos canónicos locales en gestión de empleados, fallback de capacidades por rol en `role-context`, excepciones cross-scope en bootstrap de auth, y filtros por rol para notificaciones/llamadas en runtime de empleados. También se eliminó filtro hardcodeado de estados activos en `clients/orders-store` y se actualizaron pruebas unitarias afectadas.
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/shared/components/Sidebar.vue, pronto-static/src/vue/employees/shared/store/auth.ts, pronto-static/src/vue/employees/shared/store/auth.spec.ts, pronto-static/src/vue/employees/admin/composables/use-employees-manager.ts, pronto-static/src/vue/employees/shared/modules/role-context.ts, pronto-static/src/vue/clients/stores/orders-store.ts, pronto-static/src/vue/employees/shared/store/config.ts, pronto-static/src/vue/employees/shared/store/orders.ts, pronto-static/src/vue/employees/shared/components/NotificationPanel.vue, pronto-static/src/vue/employees/App.vue, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0730
+  VERSION_NUEVA: 1.0731
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Avance en enforcement UI→Command para `pronto-employees`: (1) `cashier/components/SessionsManager.vue` dejó de consumir API directa y ahora usa `useSessionCommands` para cargar/cerrar/mover/fusionar/limpiar sesiones; (2) `useSessionCommands` incorporó comandos con `actionId` y estado `processing/success/error/uncertain` por entidad; (3) `NotificationPanel.vue` movió `callAdminNotification` a command layer (`useOrderCommands.callAdminSupport`) con `actionId` y trazabilidad de estado. Barrido actualizado: imports API directos en `.vue` bajan a 34; `showToast` en employees permanece en 0. Validación: `npm run build:employees` en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/cashier/components/SessionsManager.vue, pronto-static/src/vue/employees/shared/composables/use-session-commands.ts, pronto-static/src/vue/employees/shared/composables/use-order-commands.ts, pronto-static/src/vue/employees/shared/components/NotificationPanel.vue, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0731
+  VERSION_NUEVA: 1.0732
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Ajuste de continuidad de versionado AI y continuación de cierre operativo en `pronto-employees`: se mantiene enforcement de feedback determinístico sin toast global y migración parcial UI→Command en sesiones/notificaciones (command layer con `actionId` y estados por entidad). Se normaliza el incremento de versión para evitar colisión concurrente y preservar trazabilidad secuencial.
+  RUTAS_AFECTADAS: .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0732
+  VERSION_NUEVA: 1.0733
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Continuación de cierre P0 en `pronto-employees` eliminando API directa en cuatro vistas críticas: `TicketView.vue`, `InvoiceRequest.vue`, `ClosedSessionsManager.vue`, `StaffManager.vue`. Se introdujeron composables `use-invoice-commands` y `use-staff-commands`, se extendió `use-order-commands` con `fetchOrders`, se reutilizó `use-session-commands` para reimpresión/reenvío de ticket, y se reemplazó feedback global por feedback inline contextual en los flujos intervenidos. Resultado del barrido: imports API directos en `.vue` bajan de 34 a 30. Validación: `npm run build:employees` en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/cashier/components/payments/TicketView.vue, pronto-static/src/vue/employees/cashier/components/payments/InvoiceRequest.vue, pronto-static/src/vue/employees/cashier/components/ClosedSessionsManager.vue, pronto-static/src/vue/employees/admin/views/staff/StaffManager.vue, pronto-static/src/vue/employees/shared/composables/use-invoice-commands.ts, pronto-static/src/vue/employees/shared/composables/use-staff-commands.ts, pronto-static/src/vue/employees/shared/composables/use-order-commands.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0733
+  VERSION_NUEVA: 1.0734
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Continuación de eliminación de API directa en vistas Vue de employees: migración de `FeedbackSettings.vue`, `FeedbackDashboard.vue`, `StaffLogin.vue` y `LoginForm.vue` hacia composables nuevos `use-feedback-queries` y `use-auth-commands`. Se preservó el comportamiento funcional de login/recuperación de contraseña (incluyendo login form-url-encoded por scope) y carga de métricas de feedback. Resultado del barrido: imports API directos en `.vue` bajan de 30 a 26. Validación: `npm run build:employees` en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/admin/views/feedback/FeedbackSettings.vue, pronto-static/src/vue/employees/shared/components/FeedbackDashboard.vue, pronto-static/src/vue/employees/shared/views/StaffLogin.vue, pronto-static/src/vue/employees/shared/components/LoginForm.vue, pronto-static/src/vue/employees/shared/composables/use-feedback-queries.ts, pronto-static/src/vue/employees/shared/composables/use-auth-commands.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0734
+  VERSION_NUEVA: 1.0735
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Continuación del saneamiento UI→Command en módulos de mesas/áreas: migración de `TableManager.vue`, `TableFormModal.vue`, `AreasEditor.vue` y `AreaEditorModal.vue` para remover import API directo en `.vue`, centralizando operaciones en nuevo composable `use-table-area-commands` con `actionId` para mutaciones y feedback inline contextual en errores/éxitos del flujo. Resultado del barrido: imports API directos en `.vue` bajan de 26 a 22. Validación: `npm run build:employees` en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/shared/composables/use-table-area-commands.ts, pronto-static/src/vue/employees/waiter/views/tables/TableManager.vue, pronto-static/src/vue/employees/waiter/components/tables/TableFormModal.vue, pronto-static/src/vue/employees/shared/views/areas/AreasEditor.vue, pronto-static/src/vue/employees/shared/components/areas/AreaEditorModal.vue, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0735
+  VERSION_NUEVA: 1.0736
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Migración en bloque de vistas de menú/modificadores/horarios para eliminar API directa en `.vue`: `ChefMenuEditor.vue`, `shared/MenuEditor.vue`, `ChefModifiersEditor.vue`, `shared/ModifiersEditor.vue` y `SchedulesEditor.vue`. Se creó `use-menu-management-commands` para centralizar mutaciones y queries de catálogo con `actionId` en operaciones críticas, y se reemplazó feedback global por feedback inline contextual en las vistas intervenidas. Resultado del barrido: imports API directos en `.vue` bajan de 22 a 17. Validación: `npm run build:employees` en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/shared/composables/use-menu-management-commands.ts, pronto-static/src/vue/employees/chef/views/ChefMenuEditor.vue, pronto-static/src/vue/employees/shared/views/menu/MenuEditor.vue, pronto-static/src/vue/employees/chef/views/ChefModifiersEditor.vue, pronto-static/src/vue/employees/shared/views/menu/ModifiersEditor.vue, pronto-static/src/vue/employees/shared/views/menu/SchedulesEditor.vue, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0736
+  VERSION_NUEVA: 1.0737
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Fase 2 (CONTRACT): se creó contrato TypeScript versionado para `ui-config` en módulo compartido y se tipó su adopción inicial en `AppConfig` de employees. El contrato incluye exclusivamente constraints declarativos (numéricos/booleanos) sin lógica de negocio ni validación runtime.
+  RUTAS_AFECTADAS: pronto-static/src/vue/shared/config/ui-config-contract.ts, pronto-static/src/vue/employees/shared/store/config.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0736
+  VERSION_NUEVA: 1.0737
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Continuación de saneamiento UI→Command en gestión de personal/kioskos/asignación de mesas: migración de `EmployeesManager.vue`, `admin/staff/EmployeeFormModal.vue`, `KioskUsersManager.vue` y `TableAssignmentModal.vue` para remover API directa en `.vue`. Se extendió `use-staff-commands` (save/delete employee + kiosks) y se creó `use-table-assignment-commands` con `actionId` en mutaciones. Se reemplazó feedback global por feedback inline contextual en vistas intervenidas. Resultado del barrido: imports API directos en `.vue` bajan de 17 a 13. Validación: `npm run build:employees` en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/shared/composables/use-staff-commands.ts, pronto-static/src/vue/employees/shared/composables/use-table-assignment-commands.ts, pronto-static/src/vue/employees/admin/components/EmployeesManager.vue, pronto-static/src/vue/employees/admin/components/staff/EmployeeFormModal.vue, pronto-static/src/vue/employees/admin/components/KioskUsersManager.vue, pronto-static/src/vue/employees/waiter/components/TableAssignmentModal.vue, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0737
+  VERSION_NUEVA: 1.0738
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Continuación de migración UI→Command en configuración/branding: `SystemSettings.vue`, `ConfigItem.vue`, `BrandingManager.vue` y `BrandingSettings.vue` dejaron de consumir `@emp-shared/api/employee-commands` y ahora usan `use-settings-branding-commands`. El composable centraliza fetch/save de config, upload de logos/assets y generación IA de branding con `actionId` en mutaciones. Se mantuvo feedback contextual por componente. Resultado del barrido: imports API directos en `.vue` bajan de 13 a 9. Validación: `npm run build:employees` en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/shared/composables/use-settings-branding-commands.ts, pronto-static/src/vue/employees/admin/views/config/SystemSettings.vue, pronto-static/src/vue/employees/admin/components/config/ConfigItem.vue, pronto-static/src/vue/employees/shared/components/BrandingManager.vue, pronto-static/src/vue/employees/shared/components/BrandingSettings.vue, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0738
+  VERSION_NUEVA: 1.0739
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Fase 3 (FETCH LAYER): implementación de `getUiConfiguration()` con promesa singleton para deduplicación de fetch concurrente, retry con backoff exponencial (máximo 3 intentos), timeout por request vía `AbortController`, caché en memoria y utilidades de limpieza/reset para ciclo de vida y pruebas. Se agregó suite unitaria para singleton, retry/backoff, timeout y caché.
+  RUTAS_AFECTADAS: pronto-static/src/vue/shared/config/get-ui-configuration.ts, pronto-static/src/vue/employees/shared/config/get-ui-configuration.spec.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0739
+  VERSION_NUEVA: 1.0740
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Cierre de migración UI→Command en employees para eliminar requests directos en `.vue`: `PromotionsManager`, `ReportsManager`, `InvoicesManager`, `ShortcutsManager` y `ProfilePreferencesModal` ahora consumen composables (`use-menu-management-commands`, `use-reports-queries`, `use-invoice-commands`, `use-shortcuts-commands`, `use-profile-commands`). Se agregaron `actionId` en mutaciones críticas faltantes (promotions/shortcuts/profile/invoices) y se sustituyó feedback global (`window.showToast`) por feedback inline contextual en los componentes intervenidos. Barrido final: 0 imports de `@emp-shared/api/*` en `.vue` de employees. Validación: `npm run build:employees` en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/admin/views/promotions/PromotionsManager.vue, pronto-static/src/vue/employees/shared/components/ReportsManager.vue, pronto-static/src/vue/employees/admin/components/InvoicesManager.vue, pronto-static/src/vue/employees/shared/components/ShortcutsManager.vue, pronto-static/src/vue/employees/shared/components/ProfilePreferencesModal.vue, pronto-static/src/vue/employees/shared/composables/use-menu-management-commands.ts, pronto-static/src/vue/employees/shared/composables/use-invoice-commands.ts, pronto-static/src/vue/employees/shared/composables/use-reports-queries.ts, pronto-static/src/vue/employees/shared/composables/use-shortcuts-commands.ts, pronto-static/src/vue/employees/shared/composables/use-profile-commands.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0740
+  VERSION_NUEVA: 1.0741
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Fase 4 (HARD GATE): bootstrap bloqueante para employees y clients. Se introdujo gate de estado (`configLoading`, `configReady`, `configError`) con UI de error bloqueante y reintento manual. Vue no monta hasta que `getUiConfiguration()` finaliza correctamente y el `ui_config` queda adjunto en `window.APP_CONFIG`. Se añadió cobertura unitaria del gate (carga, error, retry).
+  RUTAS_AFECTADAS: pronto-static/src/vue/shared/config/bootstrap-gate.ts, pronto-static/src/vue/employees/bootstrap/create-app.ts, pronto-static/src/vue/clients/entrypoints/base.ts, pronto-static/src/vue/employees/shared/config/bootstrap-gate.spec.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0741
+  VERSION_NUEVA: 1.0742
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Cierre de feedback global residual en employees: eliminación de los 17 usos restantes de `window.showToast` y migración a feedback contextual por vista/modal (`App`, `SessionsBoard`, `CashierBoard`, `RoleEditorModal`) y limpieza de toasts en `orders` store para evitar UI global desde capa de estado. Se mantuvo sincronización realtime (desktop notifications + sonidos) sin lógica de negocio adicional. Barridos finales en employees: 0 `window.showToast`, 0 requests en `.vue`, 0 imports `@emp-shared/api/*` en `.vue`, 0 `v-html`, 0 listeners globales en código employees. Validación: `npm run build:employees` en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/App.vue, pronto-static/src/vue/employees/cashier/views/sessions/SessionsBoard.vue, pronto-static/src/vue/employees/cashier/components/CashierBoard.vue, pronto-static/src/vue/employees/admin/components/roles/RoleEditorModal.vue, pronto-static/src/vue/employees/shared/store/orders.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0742
+  VERSION_NUEVA: 1.0743
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Continuación de saneamiento command-layer en employees: `use-rbac.ts`, `use-sessions-board.ts` y `auth` store dejaron de depender de `@emp-shared/api/employee-commands`. RBAC ahora ejecuta mutaciones con `actionId` (`X-Action-ID`) y tracking de processing por rol (`isRoleProcessing`). Sessions board consume `useSessionCommands` + `useOrderCommands` para queries operativas. El cambio de scope en auth usa endpoint canónico con `actionId`. Barrido actualizado: 0 imports de `@emp-shared/api/employee-commands` en employees. Validación: `npm run build:employees` en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/shared/composables/use-rbac.ts, pronto-static/src/vue/employees/cashier/composables/use-sessions-board.ts, pronto-static/src/vue/employees/shared/store/auth.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0743
+  VERSION_NUEVA: 1.0744
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Auditoría y cierre adicional de command-layer en employees. Se eliminó el archivo legacy sin consumidores `shared/api/employee-commands.ts`, se migró login/switch-scope en auth para incluir `actionId` (`X-Action-ID`) y se verificó por barrido que no existen mutaciones `requestJSON` sin `X-Action-ID` en código TS de employees (excluyendo specs). Se mantuvo build estable (`npm run build:employees`).
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/shared/api/employee-commands.ts, pronto-static/src/vue/employees/shared/store/auth.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0744
+  VERSION_NUEVA: 1.0745
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Fase 5 (Interpreter mode) en pronto-static: centralización de interpretación de estados en `shared/workflow/status.ts` con funciones puras (normalización, agrupaciones, labels y resumen de mesa) y soporte de reglas provenientes de `ui_config.constraints.workflow`. Se refactorizaron consumidores críticos para eliminar lógica de negocio embebida en componentes/store: `employees/shared/store/orders.ts`, `waiter/modules/waiter/board-helpers.ts`, `chef/components/{KitchenTabs,KitchenBoard,KitchenOrders}.vue` y `clients/components/orders/OrderTracker.vue`. Se agregó contrato TS para constraints de workflow y pruebas unitarias del intérprete (`workflow-status.spec.ts`). Validación: tests focalizados y builds de employees/clients en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/shared/workflow/status.ts, pronto-static/src/vue/shared/config/ui-config-contract.ts, pronto-static/src/vue/employees/shared/store/orders.ts, pronto-static/src/vue/employees/waiter/modules/waiter/board-helpers.ts, pronto-static/src/vue/employees/chef/components/KitchenTabs.vue, pronto-static/src/vue/employees/chef/components/KitchenBoard.vue, pronto-static/src/vue/employees/chef/components/KitchenOrders.vue, pronto-static/src/vue/clients/components/orders/OrderTracker.vue, pronto-static/src/vue/employees/shared/workflow-status.spec.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0745
+  VERSION_NUEVA: 1.0746
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Fase 6 (UX validation no autoritativa): se introdujo capa de validación UX guiada por `ui_config.constraints` para constraints numéricos (`pagination.items_per_page`, `realtime.poll_interval_ms`, `orders.new_badge_minutes`, `ui.search_debounce_ms`, `ui.toast_duration_ms`). Se agregaron helpers en `shared/config/ux-validation.ts` (clamp/parse/options) con observabilidad explícita de valores inválidos o fuera de rango. Se refactorizó consumo en `employees/shared/store/config.ts`, `shared/composables/use-pagination.ts` y `shared/components/PaginationControls.vue` para eliminar límites hardcodeados y derivar comportamiento del contrato backend. Se añadió test suite de UX validation. Validación: tests focalizados + builds employees/clients en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/shared/config/ux-validation.ts, pronto-static/src/vue/employees/shared/store/config.ts, pronto-static/src/vue/shared/composables/use-pagination.ts, pronto-static/src/vue/shared/components/PaginationControls.vue, pronto-static/src/vue/employees/shared/config/ux-validation.spec.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0746
+  VERSION_NUEVA: 1.0747
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-libs, pronto-tests, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Cierre de bloqueo en Fase 8 (E2E smoke): corrección de serialización robusta en `serialize_order` para evitar fallo por lazy-load de `order.session` en objetos detached durante transiciones (`/api/orders/{id}/accept`). Se ejecutó seed canónico de empleados en entorno local y se validó `npm run test:smoke-critical` en verde con `SMOKE_TABLE_ID` explícito.
+  RUTAS_AFECTADAS: pronto-libs/src/pronto_shared/serializers.py, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0747
+  VERSION_NUEVA: 1.0748
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-tests, pronto-scripts, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Cierre adicional Fase 8 en pruebas de estrés financiero/split: saneamiento transversal de patrón legacy `DiningSession(table_number=...)` (sin setter en modelo actual) en pruebas y script de verificación. Se validó cobertura financiera e idempotencia con `test_payment_financial_integrity_api` (4 pass), `test_split_bill_payments` (10 pass), `test_split_bill` + `test_dining_session_service` (3 pass) y revalidación de `smoke-critical` en verde.
+  RUTAS_AFECTADAS: pronto-tests/tests/functionality/integration/test_split_bill.py, pronto-tests/tests/functionality/unit/test_dining_session_service.py, pronto-scripts/bin/tests/verify_waiter_payment.py, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0748
+  VERSION_NUEVA: 1.0749
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Fase 7 (CONTRACT SAFETY) en pronto-static: se integró validación runtime estricta del contrato `ui-config` con control de versión semver (major compatible), validación estructural de constraints requeridos y fail-fast explícito en bootstrap cuando el contrato es inválido/incompatible. Se añadió cobertura unitaria para estructura/versionado y se ajustó logging de errores de validación para evitar mensajes opacos (`[object Object]`). Validación final: tests focalizados (employees + clients) y builds de `employees`/`clients` en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/shared/config/validate-ui-configuration.ts, pronto-static/src/vue/shared/config/get-ui-configuration.ts, pronto-static/src/vue/employees/shared/config/validate-ui-configuration.spec.ts, pronto-static/src/vue/employees/shared/config/get-ui-configuration.spec.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0749
+  VERSION_NUEVA: 1.0750
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Fase 8 (LIFECYCLE) en pronto-static: se estableció TTL canónico de configuración en frontend (10 minutos) como default en `getUiConfiguration`, se añadió `refreshUiConfiguration()` para recarga manual explícita y se implementó snapshot inmutable por ciclo de página (`ensureUiConfigurationForLifecycle`) que fija `ui_config` en `window.APP_CONFIG` y evita cambios durante el flujo activo. Se agregó ruta de recarga manual para próximo ciclo de vida (`reloadUiConfigurationForNextLifecycle`) con recarga completa de página. Bootstrap de employees/clients migrado al lifecycle manager. Cobertura unitaria extendida para TTL expirado, refresh manual y congelamiento de snapshot por lifecycle.
+  RUTAS_AFECTADAS: pronto-static/src/vue/shared/config/get-ui-configuration.ts, pronto-static/src/vue/shared/config/ui-configuration-lifecycle.ts, pronto-static/src/vue/employees/bootstrap/create-app.ts, pronto-static/src/vue/clients/entrypoints/base.ts, pronto-static/src/vue/employees/shared/config/get-ui-configuration.spec.ts, pronto-static/src/vue/employees/shared/config/ui-configuration-lifecycle.spec.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0750
+  VERSION_NUEVA: 1.0751
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Fase 9 (RUNTIME HARDENING) en pronto-static: endurecimiento de fetch/config bootstrap con observabilidad explícita y clasificación de fallos. Se añadió `UiConfigTimeoutError` para distinguir timeouts de otros errores de red, logging detallado por intento/reintento/backoff, log de fallo final de bootstrap fetch y log de versión de configuración cargada. Se instrumentó `bootstrap-gate` para registrar inicio, éxito de montaje, fallos y reintentos manuales. Se reforzó lifecycle con logging de snapshot por versión y manejo explícito de error en recarga manual de config. Se amplió cobertura con pruebas de inmutabilidad profunda y verificación de eventos de timeout en logs.
+  RUTAS_AFECTADAS: pronto-static/src/vue/shared/config/get-ui-configuration.ts, pronto-static/src/vue/shared/config/bootstrap-gate.ts, pronto-static/src/vue/shared/config/ui-configuration-lifecycle.ts, pronto-static/src/vue/employees/shared/config/get-ui-configuration.spec.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0749
+  VERSION_NUEVA: 1.0750
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-tests, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Cierre de pendientes Fase 8 runtime por roles. Se creó helper reusable de login (`login-helpers.ts`) con fallback determinístico UI→API y se estabilizaron 4 suites Playwright de scope runtime (admin/waiter/chef/cashier) reemplazando aserciones frágiles de layout por validaciones de sesión/routing/realtime por scope. Resultado: `19/19` pruebas runtime en verde y `smoke-critical` revalidado en verde.
+  RUTAS_AFECTADAS: pronto-tests/tests/functionality/ui/playwright-tests/employees/login-helpers.ts, pronto-tests/tests/functionality/ui/playwright-tests/employees/admin-scope-runtime.spec.ts, pronto-tests/tests/functionality/ui/playwright-tests/employees/waiter-scope-runtime.spec.ts, pronto-tests/tests/functionality/ui/playwright-tests/employees/chef-scope-runtime.spec.ts, pronto-tests/tests/functionality/ui/playwright-tests/employees/cashier-scope-runtime.spec.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0750
+  VERSION_NUEVA: 1.0751
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-tests, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Extensión Fase 8 con suite de caos multi-rol orientada a determinismo operativo: nueva prueba `smoke-chaos-roles.spec.ts` para validar doble ejecución de acción crítica y mutación simultánea por roles (admin/waiter) sobre la misma orden sin estados ambiguos. La suite crea órdenes por endpoint de empleados (`/api/orders`) y verifica resultados controlados en transiciones concurrentes (`/accept`). Validación: `smoke-chaos-roles` en verde y revalidación de `smoke-critical` en verde.
+  RUTAS_AFECTADAS: pronto-tests/tests/functionality/ui/playwright-tests/smoke/smoke-chaos-roles.spec.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0752
+  VERSION_NUEVA: 1.0753
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Fase 11 (TESTS) en pronto-static: consolidación y validación de cobertura crítica del sistema de configuración (`retry` con backoff, fallo explícito por schema/version, bloqueo estricto de bootstrap hasta `configReady`, inmutabilidad profunda del contrato cargado y comportamiento TTL + refresh manual + snapshot por lifecycle). Se reforzó `bootstrap-gate.spec` con aserción explícita de no-montaje en `configError` antes de retry exitoso. Ejecución final de suites focalizadas (employees + clients) en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/shared/config/bootstrap-gate.spec.ts, pronto-static/src/vue/employees/shared/config/get-ui-configuration.spec.ts, pronto-static/src/vue/employees/shared/config/validate-ui-configuration.spec.ts, pronto-static/src/vue/employees/shared/config/ui-configuration-lifecycle.spec.ts, pronto-static/src/vue/employees/shared/config/ux-validation.spec.ts, pronto-static/src/vue/employees/shared/workflow-status.spec.ts, pronto-static/src/vue/employees/shared/store/orders.spec.ts, pronto-static/src/vue/employees/waiter/modules/waiter/board-helpers.spec.ts, pronto-static/src/vue/employees/chef/components/kitchen-tabs.spec.ts, pronto-static/src/vue/clients/components/orders/order-tracker.spec.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0755
+  VERSION_NUEVA: 1.0756
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Remediación adicional de endurecimiento de contrato ui_config en pronto-static tras revisión Phase 10: `workflow` quedó obligatorio y estricto en validación/runtime, se eliminaron fallbacks silenciosos en validación UX y normalización realtime de estados, se retiraron estados optimistas hardcodeados en comandos de orden/tablero waiter, y se unificaron fixtures de pruebas con `ui_config` completo para garantizar arranque hard-gated en suites dependientes de workflow policy. Verificación ejecutada con `npm run test:run` y `npm run build` en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/shared/config/ui-config-contract.ts, pronto-static/src/vue/shared/config/validate-ui-configuration.ts, pronto-static/src/vue/shared/config/ux-validation.ts, pronto-static/src/vue/shared/workflow/status.ts, pronto-static/src/vue/employees/shared/config/ui-config-spec-fixtures.ts, pronto-static/src/vue/employees/shared/config/validate-ui-configuration.spec.ts, pronto-static/src/vue/employees/shared/config/ui-configuration-lifecycle.spec.ts, pronto-static/src/vue/employees/shared/config/ux-validation.spec.ts, pronto-static/src/vue/employees/shared/workflow-status.spec.ts, pronto-static/src/vue/employees/shared/store/orders.spec.ts, pronto-static/src/vue/employees/shared/store/orders.ts, pronto-static/src/vue/employees/shared/composables/use-order-commands.ts, pronto-static/src/vue/employees/waiter/components/WaiterBoard.vue, pronto-static/src/vue/employees/waiter/components/board/WaiterFloatingDetails.vue, pronto-static/src/vue/employees/waiter/modules/waiter/board-helpers.spec.ts, pronto-static/src/vue/employees/chef/components/kitchen-tabs.spec.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0756
+  VERSION_NUEVA: 1.0757
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-libs, pronto-tests, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Cierre de degradación con Redis caído para employees/client + endurecimiento determinístico de login runtime. Se corrigió `get_redis_client` (lock flow), se agregó cooldown de reconexión y circuito de supresión temporal de cache Redis en `settings_service` para evitar bloqueos repetitivos en rutas críticas (health/login/render). Se reforzó helper de autenticación Playwright con retry controlado ante `504` transitorio en modo degradado. Validación final: con Redis abajo `smoke-critical`, `waiter-scope-runtime` y `smoke-chaos-roles` en verde; con Redis arriba revalidación de `smoke-critical` y `waiter-scope-runtime` en verde.
+  RUTAS_AFECTADAS: pronto-libs/src/pronto_shared/redis_client.py, pronto-libs/src/pronto_shared/services/settings_service.py, pronto-tests/tests/functionality/ui/playwright-tests/employees/login-helpers.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0757
+  VERSION_NUEVA: 1.0758
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-tests, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Cierre de pendientes multi-rol en degraded mode (Redis down) para runtime employees. Se aplicó corrección transversal de resiliencia en pruebas por rol: `auth/me` con retry controlado en `admin/chef/cashier/waiter` y ajuste de aserción de idempotencia de pago en `smoke-critical` para aceptar respuesta idempotente 200 además de 400/409, verificando estado final consistente. Validación final en degraded mode: admin 5/5, chef 4/4, cashier 4/4, waiter 6/6, smoke-critical 1/1, smoke-chaos-roles 1/1. Redis restaurado en estado healthy al cierre.
+  RUTAS_AFECTADAS: pronto-tests/tests/functionality/ui/playwright-tests/employees/login-helpers.ts, pronto-tests/tests/functionality/ui/playwright-tests/employees/admin-scope-runtime.spec.ts, pronto-tests/tests/functionality/ui/playwright-tests/employees/chef-scope-runtime.spec.ts, pronto-tests/tests/functionality/ui/playwright-tests/employees/cashier-scope-runtime.spec.ts, pronto-tests/tests/functionality/ui/playwright-tests/employees/waiter-scope-runtime.spec.ts, pronto-tests/tests/functionality/ui/playwright-tests/smoke/smoke-critical.spec.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0756
+  VERSION_NUEVA: 1.0757
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Remediación de cierre Phase 10 en pronto-static para eliminar comparaciones de estados hardcodeadas fuera del contrato backend-driven. Se migraron KDS/cashier/sessions/client a clasificadores centralizados de `@shared/workflow/status`, se reemplazaron filtros por categorías derivadas de grupos de configuración, se removieron mutaciones locales de estado de cliente (`cancelled`/`awaiting_payment`) en favor de refetch autoritativo, y se flexibilizó el tipo `WorkflowStatus` a `string` para evitar enum de negocio embebido. Se verificó ausencia de patrones residuales de estados literales en código productivo (`rg` transversal) y se revalidó con `npm run test:run` + `npm run build` en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/chef/components/KDSBoard.vue, pronto-static/src/vue/employees/chef/components/KitchenOrders.vue, pronto-static/src/vue/employees/chef/components/kds/KDSOrderCard.vue, pronto-static/src/vue/employees/cashier/components/CashierBoard.vue, pronto-static/src/vue/employees/cashier/components/SessionsManager.vue, pronto-static/src/vue/employees/cashier/components/PaymentFlow.vue, pronto-static/src/vue/employees/cashier/components/ClosedSessionsManager.vue, pronto-static/src/vue/employees/cashier/components/sessions/SessionCard.vue, pronto-static/src/vue/employees/cashier/composables/use-sessions-board.ts, pronto-static/src/vue/employees/waiter/components/WaiterBoard.vue, pronto-static/src/vue/employees/waiter/components/board/WaiterFloatingDetails.vue, pronto-static/src/vue/employees/waiter/modules/waiter/types.ts, pronto-static/src/vue/clients/stores/orders-store.ts, pronto-static/src/vue/clients/App.vue, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0761
+  VERSION_NUEVA: 1.0762
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Remediación de bloqueantes detectados en Phase 10 para pronto-static: se eliminó la mutación de configuración post-bootstrap (retiro de fetch/mix autorizado y de sincronización de APP_CONFIG en runtime), se congeló snapshot de config al hidratar store, se reemplazó transición hardcodeada `status=ready` por endpoint de acción `kitchen-ready`, y se retiraron comparaciones literales `paid/cancelled/delivered` en workflow helper usando estados canónicos generados desde backend. Validación: `npm run test:run` (74/74) y `npm run build` en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/App.vue, pronto-static/src/vue/employees/shared/store/config.ts, pronto-static/src/vue/employees/shared/composables/use-order-commands.ts, pronto-static/src/vue/shared/workflow/status.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0762
+  VERSION_NUEVA: 1.0763
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Fase 11 (tests) reforzada para hardening de configuración inmutable en pronto-static. Se añadieron pruebas en ConfigStore para validar snapshot congelado (`Object.freeze`) al hidratar `window.APP_CONFIG` y para asegurar que `fetchConfig()` no reescribe la referencia global en runtime (sin mutación post-bootstrap). Validación completa: `npm run test:run` en verde (76/76).
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/shared/store/config.spec.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0758
+  VERSION_NUEVA: 1.0759
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-libs, pronto-tests, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Cierre operativo adicional para escenarios funcionales: fix transversal de imports en pagos (`order_service` reexporta `finalize_payment`), fix financiero split-bill (`Decimal` faltante en `session_financial_service`), robustez en cancelación (`cancel_order` usa instancias managed vía merge para evitar conflictos SQLAlchemy detached), y alineación de tests de estado/rutas/mocks al contrato vigente. Validaciones ejecutadas en verde: split bill integration (2/2), split-bill payments API (10/10), payment financial integrity API (4/4), session management + merge tables (6/6), order state machine cancellation/payment unit (8/8), además de suites runtime/smoke multi-rol ya cerradas previamente.
+  RUTAS_AFECTADAS: pronto-libs/src/pronto_shared/services/order_service.py, pronto-libs/src/pronto_shared/services/session_financial_service.py, pronto-libs/src/pronto_shared/services/order/order_cancel.py, pronto-tests/tests/functionality/integration/test_session_management.py, pronto-tests/tests/functionality/unit/test_order_state_machine_v2.py, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0764
+  VERSION_NUEVA: 1.0765
+  AGENTE: Codex (GPT-5)
+  MODULOS: root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Normalización final de versionado del root y espejo `pronto-root` para mantener paridad exacta de `PRONTO_SYSTEM_VERSION` tras ejecuciones consecutivas de validación. Se dejó versión canónica unificada en todos los archivos requeridos para cierre de ejecución.
+  RUTAS_AFECTADAS: .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0763
+  VERSION_NUEVA: 1.0764
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Corrección de autoridad backend en session-store del cliente para eliminar fallback silencioso de estado (`active`). Se reemplazó por validación explícita (`requireSessionStatus`) en flujos `/api/sessions/open`, `validate-and-rehydrate` y seed opcional de `APP_SESSION` (solo si backend envía status). Se añadió suite nueva `session-store.spec.ts` con casos de rechazo por status ausente y garantía de no sintetizar estado local. Validación: spec focalizado de session-store en verde (3/3) y suite principal employees en verde (76/76).
+  RUTAS_AFECTADAS: pronto-static/src/vue/clients/stores/session-store.ts, pronto-static/src/vue/clients/stores/session-store.spec.ts, pronto-static/src/vue/clients/types/global.d.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0765
+  VERSION_NUEVA: 1.0766
+  AGENTE: Codex (GPT-5)
+  MODULOS: root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Alineación de trazabilidad por actualización concurrente de `PRONTO_SYSTEM_VERSION` durante la ejecución. Se deja estado canónico consistente en `1.0766` para root y espejo `pronto-root`, manteniendo paridad documental y operativa.
+  RUTAS_AFECTADAS: .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0766
+  VERSION_NUEVA: 1.0767
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Endurecimiento adicional de autoridad backend para eliminar fallbacks silenciosos remanentes de estados en frontend. En `use-tables` se eliminó default `available` y ahora el estado de mesa es obligatorio y validado contra estados canónicos; en `orders` (admin calls) se eliminó default `unread` y se valida presencia de `status` y `created_at`, descartando payload inválido con logging explícito. Validación: `npm run test:run` (76/76) y `session-store.spec.ts` focalizado (3/3) en verde.
+  RUTAS_AFECTADAS: pronto-static/src/vue/shared/composables/use-tables.ts, pronto-static/src/vue/employees/shared/store/orders.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0767
+  VERSION_NUEVA: 1.0768
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Remediación adicional de hardcode residual en historial de caja: se eliminó fallback explícito `paid/cancelled` al consolidar sesiones cerradas y se preserva únicamente el estado normalizado proveniente del backend (`status: existing.status || status`). Validación ejecutada con `npm run test:run` en verde (76/76).
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/cashier/components/ClosedSessionsManager.vue, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0769
+  VERSION_NUEVA: 1.0770
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Eliminación de fallbacks silenciosos de scope/rol en frontend de empleados para mantener al backend como única fuente de verdad. Se removieron defaults `waiter` en login/logout/redirección de auth y en creación de empleados; ahora la resolución de scope es estricta (`resolveConsoleScope(true)`) con fallo explícito a `/authorization-error` cuando no existe contexto válido. Validación: `npm run test:run` (76/76 en verde).
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/shared/views/StaffLogin.vue, pronto-static/src/vue/employees/shared/components/Header.vue, pronto-static/src/vue/employees/App.vue, pronto-static/src/vue/employees/admin/components/staff/EmployeeFormModal.vue, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0771
+  VERSION_NUEVA: 1.0772
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-libs, pronto-tests, pronto-api (runtime), root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Cierre de bloqueo E2E full-cycle por desalineación de contrato de configuración. Se restauró compatibilidad en `get_all_system_settings()` para exponer `configs/config_key` (vía normalización desde SettingsService `settings/key`), habilitando filtrado correcto por scope en `/api/config` para system/admin. Validación en vivo: `system` vuelve a ver `system.*`, `admin` no ve `system.*`, y `test_v6_full_cycle.py` completa en verde.
+  RUTAS_AFECTADAS: pronto-libs/src/pronto_shared/services/business_config_service_impl.py, pronto-tests/tests/functionality/e2e/test_v6_full_cycle.py (ejecución), .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0772
+  VERSION_NUEVA: 1.0773
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-static, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Endurecimiento de autoridad backend en autenticación/scope de `pronto-static` sin fallback silencioso: `active_scope` ahora es obligatorio y canónico en bootstrap/login/fetchUser (`auth.ts`), se removió derivación por `role` para resolver scope en router y vistas (Header/App/DashboardView), y se agregó prueba para payload bootstrap sin `active_scope`. Validación: `npm run test:run` (77/77) + escaneo sin hallazgos de `active_scope||role`, `status||'active'`, `||'waiter'` en código productivo.
+  RUTAS_AFECTADAS: pronto-static/src/vue/employees/shared/store/auth.ts, pronto-static/src/vue/employees/shared/router/index.ts, pronto-static/src/vue/employees/shared/components/Header.vue, pronto-static/src/vue/employees/App.vue, pronto-static/src/vue/employees/shared/components/DashboardView.vue, pronto-static/src/vue/employees/shared/store/auth.spec.ts, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0772
+  VERSION_NUEVA: 1.0773
+  AGENTE: Codex (GPT-5)
+  MODULOS: pronto-api, pronto-tests, root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Endurecimiento del endpoint canónico `/api/config/<id>` para contrato V6 estricto: bloqueo de mutación de identidad (`config_key/category`), eliminación de fallback legacy por llave, validación de tipo/rango/select por `CONFIG_CONTRACT`, validación de timezone IANA y requerimiento de `config_id` UUID válido. Se actualizó test live RBAC para usar emails por env en vez de hardcode. Validación de no regresión: smoke/chaos runtime (Playwright) y full-cycle E2E en verde.
+  RUTAS_AFECTADAS: pronto-api/src/api_app/routes/config.py, pronto-tests/tests/functionality/api/test_v6_config_rbac.py, .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+- FECHA: 2026-03-19
+  VERSION_ANTERIOR: 1.0773
+  VERSION_NUEVA: 1.0774
+  AGENTE: Codex (GPT-5)
+  MODULOS: root, pronto-scripts/pronto-root, pronto-docs
+  RESUMEN: Reconciliación de trazabilidad por actualización concurrente de versión durante la ejecución. Se valida y documenta `PRONTO_SYSTEM_VERSION=1.0774` como estado canónico final en root y espejo `pronto-root`.
+  RUTAS_AFECTADAS: .env, .env.example, pronto-scripts/pronto-root/.env, pronto-scripts/pronto-root/.env.example, pronto-docs/versioning/AI_VERSION_LOG.md
+
+## 2026-03-19 | 1.0776 → 1.0777 | Codex/Maestro Agent | pronto-api, pronto-employees, pronto-tests, pronto-libs, pronto-docs/versioning
+
+### FIX: P0 Remediation - Items Per Page Drift & Config Scopes
+
+**Problema:** 
+- `test_config_settings_roundtrip_live.py` fallaba por drift entre DB (100) y endpoint público (20)
+- Fallback hardcoded en `pronto-api/src/api_app/routes/employees/config.py:72`
+- Test asumía incorrectamente que `/system/api/config` devuelve solo keys `system.*` (ignora SYSTEM_READ_ALLOWLIST)
+- Test usaba `category` para determinar scope en lugar de prefijo de key
+
+**Solución:**
+1. **FIX 1A**: Helper `_require_config()` en `pronto-api` para validación explícita de configs críticas
+2. **FIX 1B**: Validación explícita en `pronto-employees/app.py` para items_per_page (sin fallback silencioso)
+3. **FIX 1C**: Lectura explícita de `system.api.items_per_page` via `get_config_value()` + conversión a int
+4. **FIX 2**: Import de `SYSTEM_READ_ALLOWLIST` en test + corrección de assert de scopes
+5. **FIX 3**: Seed canónico de `system.payments.stripe_publishable_key` en `pronto-libs/src/pronto_shared/services/seeds/config.py`
+6. **FIX 4**: Test usa prefijo de key (`system.*`) para determinar scope, no categoría
+
+**Archivos modificados:**
+- `pronto-api/src/api_app/routes/employees/config.py` - Helper + validación explícita
+- `pronto-employees/src/pronto_employees/app.py` - Validación explícita de items_per_page
+- `pronto-tests/tests/functionality/e2e/test_config_settings_roundtrip_live.py` - Fix de scopes + import
+- `pronto-libs/src/pronto_shared/services/seeds/config.py` - Seed de stripe_publishable_key
+- `.env`, `.env.example`, `pronto-scripts/pronto-root/.env`, `pronto-scripts/pronto-root/.env.example` - Version bump
+
+**Validación:**
+```bash
+cd pronto-tests
+PASSWORD_HASH_SALT=<salt> \
+PRONTO_LIVE_ADMIN_EMAIL=admin.roles@cafeteria.test \
+PRONTO_LIVE_SYSTEM_EMAIL=admin@cafeteria.test \
+./.venv-test/bin/python -m pytest -q tests/functionality/e2e/test_config_settings_roundtrip_live.py -rs
+# Resultado: 3 passed ✅
+```
+
+**Criterio de éxito:**
+- ✅ `items_per_page` en endpoint público = valor real de DB (100)
+- ✅ `/system/api/config` cumple contrato real (system.* + SYSTEM_READ_ALLOWLIST)
+- ✅ `stripe_publishable_key` existe en seed canónico
+- ✅ `test_config_settings_roundtrip_live.py` pasa sin skip
+- ✅ `test_public_bootstrap_uses_system_items_per_page` pasa
+- ✅ No existen fallbacks silenciosos en este flujo crítico
+
