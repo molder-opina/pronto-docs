@@ -6,6 +6,106 @@
 
 ---
 
+## 🚀 FASE 2: CI/CD INTEGRATION (2026-03-19)
+
+**Estado:** ✅ COMPLETADA
+
+### Entregables Fase 2
+
+#### 1. Scanner Hardening
+
+**Archivo:** `pronto-scripts/bin/pronto-config-fallback-check`
+
+**Mejoras implementadas:**
+- `SCANNER_VERSION = "1.0.0"` - Trazabilidad
+- `--repo` flag obligatorio - Aislamiento por repo
+- `--mode warn|enforce|strict` - Modos de escaneo
+- `--audit` alias - Modo strict semántico
+- Baseline por repo forzado (`.pronto/config-fallback-baseline.json`)
+- `code_hash` anti-drift - Resiste refactors
+- Baseline regeneration protection:
+  - CI no puede generar baseline
+  - Requiere `--force-baseline-update`
+  - Solo en modo warn
+- Summary output CI-friendly
+- Protección repos vacíos/incompletos
+
+**Commit:** `pronto-scripts:d91ac0d`
+
+---
+
+#### 2. Pre-commit Integration
+
+**Archivos:**
+- `pronto-scripts/bin/pre-commit-ai`
+- `pronto-scripts/config/gate-profiles.yml`
+
+**Cambios:**
+- Agregado `config_fallbacks` a core_checks
+- Modo: warn (siempre, nunca falla)
+- Exit code: 0 (feedback temprano, no bloqueo)
+
+**Commit:** `pronto-scripts:9ce482b`
+
+---
+
+#### 3. GitHub Actions Integration
+
+**Archivo:** `.github/workflows/pronto-guardrails.yml`
+
+**Cambios:**
+- Matriz expandida: 5 repos (api, client, employees, static, libs)
+- Paso "Config Fallbacks Check" (antes de guardrails)
+- Modo: enforce (respeta baseline)
+- Baseline generation disabled en CI
+- Scanner version logged
+
+**Commit:** `pronto-docs:89fe1e1` (workflow en root)
+
+---
+
+#### 4. Baselines Generados
+
+**Archivos:** `.pronto/config-fallback-baseline.json` en cada repo
+
+| Repo | Fallbacks | Commit |
+|------|-----------|--------|
+| pronto-api | 117 | `a8a0935` |
+| pronto-client | 12 | `349fae6` |
+| pronto-employees | 13 | `32d5ffc` |
+| pronto-libs | 152 | `c85444f` |
+| pronto-static | N/A (no src/) | - |
+
+**Total:** 294 fallbacks en baseline (todos legacy, CI falla solo en nuevos)
+
+**Commits atómicos:** 1 por repo con mensaje:
+```
+chore: add config fallback baseline (all repos)
+```
+
+---
+
+#### 5. Documentación CI/CD
+
+**Archivo:** `pronto-docs/features/config-integrity-layer/CI_INTEGRATION.md`
+
+**Contenido:**
+- Scanner versioning
+- Pre-commit integration (warn mode)
+- GitHub Actions integration (enforce mode)
+- Baseline mechanism (per repo, code_hash)
+- Baseline regeneration protection
+- CRITICAL_CONFIG_KEYS reference
+- Troubleshooting guide
+- Strict/audit mode usage
+- Metrics and targets
+
+**Commit:** `pronto-docs:89fe1e1`
+
+---
+
+---
+
 ## 📦 Entregables
 
 ### 1. Módulo de Validación
