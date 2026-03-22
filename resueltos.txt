@@ -312,6 +312,7 @@
 2026-03-10 | LIBS-20260310-MENU-MUTATION-SERVICE-LEGACY-FIELD-DRIFT | `menu_mutation_service.py` conserva campos legacy incompatibles con el modelo actual | NO_COMMIT_LOCAL | pronto-libs,pronto-docs,pronto-scripts
 2026-03-10 | LIBS-20260310-MENU-QUERY-FACADE-PUBLICATION-GAP | La fachada pública de menú seguía exponiendo la capa query desde `menu_service_impl.py` | NO_COMMIT_LOCAL | pronto-libs,pronto-tests,pronto-docs,pronto-scripts
 2026-03-10 | LIBS-20260310-MENU-POPULAR-ITEMS-PUBLICATION-GAP | `get_popular_items` seguía viviendo en `menu_service_impl.py` pese a la publicación de la fachada query | NO_COMMIT_LOCAL | pronto-libs,pronto-docs,pronto-scripts
+2026-03-21 | ARCH-20260321-001 | Architecture Gate: pronto-client direct DB access validation | APROBADO | pronto-client,pronto-libs,pronto-tests,pronto-docs,pronto-scripts
 2026-03-10 | LIBS-20260310-MENU-ITEM-DETAIL-PUBLICATION-GAP | `get_menu_item_detail` seguía implementándose en `menu_service_impl.py` | NO_COMMIT_LOCAL | pronto-libs,pronto-tests,pronto-docs,pronto-scripts
 2026-03-10 | LIBS-20260310-MENU-LIST-PUBLICATION-GAP | `list_menu` seguía implementándose en `menu_service_impl.py` | NO_COMMIT_LOCAL | pronto-libs,pronto-docs,pronto-scripts
 2026-03-10 | LIBS-20260310-MENU-FULL-MENU-PUBLICATION-GAP | `get_full_menu` seguía implementándose en `menu_service_impl.py` | NO_COMMIT_LOCAL | pronto-libs,pronto-tests,pronto-docs,pronto-scripts
